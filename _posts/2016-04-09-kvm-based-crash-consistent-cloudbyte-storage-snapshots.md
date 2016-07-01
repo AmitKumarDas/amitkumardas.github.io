@@ -45,10 +45,9 @@ title: KVM based crash consistent CloudByte storage snapshots - WIP
 
 ## Verify KVM as the hypervisor in Ubuntu:
 
-For details refer to below link:
-
-- [OpenStack nova](http://docs.openstack.org/liberty/config-reference/content/kvm.html)
-- [Ubuntu and KVM](https://help.ubuntu.com/community/KVM/Installation)
+- For details refer to below link:
+  - [OpenStack nova](http://docs.openstack.org/liberty/config-reference/content/kvm.html)
+  - [Ubuntu and KVM](https://help.ubuntu.com/community/KVM/Installation)
 
 <br />
 
