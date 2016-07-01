@@ -19,7 +19,7 @@ title: KVM based crash consistent CloudByte storage snapshots - WIP
 - CloudByte storage volumes will be iSCSI based
 ```
 
-**OpenStack devstack (version - Liberty) install verifications:**
+## OpenStack devstack (version - Liberty) install verifications:
 
 - Refer to below link for details:
   - [link](http://cloudbytestorages.github.io/blog/general/setup/openstack/2016/05/11/OpenStack-Configuration-With-CloudByte-Cinder-Driver.html)
@@ -50,7 +50,7 @@ ERROR: You must provide a user name through --os-username or env[OS_USERNAME].
 # will provide some list of volumes if already created
 ```
 
-**OpenStack CloudByte cinder code refresh:**
+## OpenStack CloudByte cinder code refresh:
 
 - This is required if we want the hot patches, fixes from CloudByte team.
 - These may not be present in upstream OpenStack maintained repository.
@@ -114,7 +114,7 @@ ps -aux | grep cinder | grep -v grep
 > Ctrl + a + d
 ```
 
-**OpenStack CloudByte cinder configuration:**
+## OpenStack CloudByte cinder configuration:
 
 - Refer below link for details:
   - [link](http://cloudbytestorages.github.io/blog/general/setup/openstack/2016/05/11/OpenStack-Configuration-With-CloudByte-Cinder-Driver.html)
@@ -153,14 +153,14 @@ cb_initiator_group_name = ALL
 
 ```
 
-**Verify KVM as the hypervisor in Ubuntu**
+## Verify KVM as the hypervisor in Ubuntu:
 
 For details refer to below link:
 
 - [OpenStack nova](http://docs.openstack.org/liberty/config-reference/content/kvm.html)
 - [Ubuntu and KVM](https://help.ubuntu.com/community/KVM/Installation)
 
-Check virtualization support:
+### Check virtualization support:
 
 ```
 # check if CPU supports hardware virtualization
@@ -194,7 +194,7 @@ Check virtualization support:
 # NOTE - i386, i486, i586 or i686 are 32-bit kernel.
 ```
 
-Various packages to manage VMs:
+### Various packages to manage VMs:
 
 ```
 # Some of below are must & some are good to have::
@@ -206,7 +206,7 @@ Various packages to manage VMs:
 # virt-viewer to view instances
 ```
 
-Libvirt verifications:
+### Libvirt verifications:
 
 ```
 # check the installation
@@ -232,7 +232,7 @@ srwxrwx--- 1 root libvirtd 0 Jun 30 16:39 /var/run/libvirt/libvirt-sock
 crw-rw----+ 1 root kvm 10, 232 Jun 30 16:39 /dev/kvm
 ```
 
-Check OpenStack settings:
+### Check OpenStack settings:
 
 ```
 # verify virt_type property in /etc/nova/nova.conf file
