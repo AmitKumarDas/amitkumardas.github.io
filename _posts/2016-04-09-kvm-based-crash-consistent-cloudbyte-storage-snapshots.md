@@ -6,7 +6,8 @@ title: KVM based crash consistent CloudByte storage snapshots - WIP
 KVM based crash consistent CloudByte storage snapshots - **WIP**
 
 > This article tries to collage information on how to implement a perfect
-> crash consistent snapshot for VMs running in KVM hypervisor.
+> crash consistent snapshot for VMs running on KVM based hypervisors. This
+> article focuses on KVM kernel module with Ubuntu as the host OS.
 
 **Overall setup:**
 
