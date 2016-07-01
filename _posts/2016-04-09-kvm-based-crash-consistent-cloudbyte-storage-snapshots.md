@@ -9,7 +9,7 @@ title: KVM based crash consistent CloudByte storage snapshots - WIP
 > crash consistent snapshot for VMs running on KVM based hypervisors. This
 > article focuses on KVM kernel module with Ubuntu as the host OS.
 
-**Overall setup:**
+## Overall setup:
 
 ```
 - OpenStack Liberty single node setup
