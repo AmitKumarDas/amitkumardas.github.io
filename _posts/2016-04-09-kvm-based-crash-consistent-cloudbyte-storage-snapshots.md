@@ -248,7 +248,7 @@ crw-rw----+ 1 root kvm 10, 232 Jun 30 16:39 /dev/kvm
 
 <br />
 
-### Check OpenStack settings:
+### Check OpenStack KVM settings:
 
 ```
 # verify virt_type property in /etc/nova/nova.conf file
