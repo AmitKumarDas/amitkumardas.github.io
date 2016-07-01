@@ -3,7 +3,7 @@ layout: post
 title: KVM based crash consistent CloudByte storage snapshots - WIP
 ---
 
-KVM based crash consistent CloudByte storage snapshots - **WIP**
+## KVM based crash consistent CloudByte storage snapshots - **WIP**
 
 > This article tries to collage information on how to implement a perfect
 > crash consistent snapshot for VMs running on KVM based hypervisors. This
