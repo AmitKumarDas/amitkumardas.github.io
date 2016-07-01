@@ -1,0 +1,81 @@
+---
+layout: default
+title: Amit Kumar Das
+---
+
+<div id="home">
+  <h1>Gists, Articles, etc..</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h1>Keep Learning</h1>
+  <ul class="posts">
+    <li>
+      <a href="http://blog.plataformatec.com.br/2016/05/beyond-functional-programming-with-elixir-and-erlang/">
+        Erlang, Elixir approach towards software:
+      </a>
+      Thinking beyond functional
+    </li>
+    <li>
+      <a href="http://www.lihaoyi.com/post/StrategicScalaStylePrincipleofLeastPower.html">
+        Programming Patterns:
+      </a>
+      From scala's perspective
+    </li>
+    <li>
+      <a href="http://mishadoff.com/blog/clojure-design-patterns/">
+        Java vs Clojure:
+      </a>
+      From a design patterns perspective
+    </li>
+    <li>
+      <a href="http://randyzwitch.com/gnu-parallel-medium-data/">
+        Processing a million files:
+      </a>
+      Unix way
+    </li>
+    <li>
+      <a href="http://docs.julialang.org/en/release-0.4/manual/running-external-programs/">
+        Unix Awesomeness:
+      </a>
+      Julia way
+    </li>
+    <li>
+      <a href="https://brandonkmiller.com/?blog/analyzing-network-traffic-with-julia">
+        Analyzing Network Traffic:
+      </a>
+      Using Julia programming language.
+    </li>
+    <li>
+      <a href="http://docs.openstack.org/liberty/config-reference/content/kvm.html">
+        Enabling KVM:
+      </a>
+      In an OpenStack environment.
+    </li>
+  </ul>
+
+  <h1>Noteworthy Open Source Projects & Specifications</h1>
+  <ul class="posts">
+    <li>
+      <a href="https://github.com/amineasli/sysconfig-snapshot">
+        sysconfig-snapshot:
+      </a>
+      A bash based system snapshot.
+    </li>
+    <li>
+      <a href="https://github.com/kerl/kerl">
+        Erlang/OTP:
+      </a>
+      A shell based easy build or install tool.
+    </li>
+    <li>
+      <a href="https://github.com/apache/incubator-mynewt-core">
+        Learn an OS:
+      </a>
+      A RTOS (Real Time OS) designed for IOT.
+    </li>
+  </ul>
+</div>

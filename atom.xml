@@ -1,0 +1,36 @@
+---
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Amit Kumar Das</title>
+ <link href="http://amitkumardas.github.io/atom.xml" rel="self"/>
+ <link href="http://amitkumardas.github.io/"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>http://amitkumardas.github.io/</id>
+ <author>
+   <name>Amit Kumar Das</name>
+   <email>amit.das@cloudbyte.com</email>
+ </author>
+
+ {% for post in site.posts %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="http://amitkumardas.github.io{{ post.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>http://amitkumardas.github.io{{ post.id }}</id>
+   <content type="html">{{ post.content | xml_escape }}</content>
+ </entry>
+ {% endfor %}
+ 
+ {% for gist in site.gists %}
+ <entry>
+   <title>{{ gist.title }}</title>
+   <link href="http://amitkumardas.github.io{{ gist.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>http://amitkumardas.github.io{{ gist.id }}</id>
+   <content type="html">{{ gist.content | xml_escape }}</content>
+ </entry>
+ {% endfor %}
+
+</feed>
