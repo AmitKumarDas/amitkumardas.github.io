@@ -10,6 +10,7 @@ title: OpenStack CloudByte cinder code refresh
 - These may not be present in upstream OpenStack maintained repository.
 - This assumes devstack as the installed base of OpenStack.
 
+<br />
 
 ```
 # check for the presence of 3 files named:
