@@ -10,7 +10,6 @@ title: KVM based crash consistent CloudByte storage snapshots - WIP
 > article focuses on KVM kernel module with Ubuntu as the host OS.
 
 ## Overall setup:
-<br/>
 
 ```
 - OpenStack Liberty single node setup
@@ -19,6 +18,8 @@ title: KVM based crash consistent CloudByte storage snapshots - WIP
 - CentOS VM 7.0
 - CloudByte storage volumes will be iSCSI based
 ```
+
+<br />
 
 ## OpenStack devstack (version - Liberty) install verifications:
 
