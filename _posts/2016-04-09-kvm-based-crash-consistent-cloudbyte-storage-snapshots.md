@@ -74,8 +74,7 @@ ERROR: You must provide a user name through --os-username or env[OS_USERNAME].
 
 # multiple instances of cinder-api services leads to bind errors
 
-WARNING keystonemiddleware.auth_token [-] signing_dir mode is 0755 instead of 0700
-CRITICAL cinder [-] RuntimeError: Could not bind to 0.0.0.0:8776 after trying for 30 seconds
+RuntimeError: Could not bind to 0.0.0.0:8776 after trying for 30 seconds
 ERROR cinder Traceback (most recent call last):
 ERROR cinder   File "/usr/local/bin/cinder-api", line 10, in <module>
 ERROR cinder     sys.exit(main())
@@ -83,7 +82,8 @@ ERROR cinder   File "/opt/stack/cinder/cinder/cmd/api.py", line 56, in main
 ERROR cinder     server = service.WSGIService('osapi_volume')
 ERROR cinder   File "/opt/stack/cinder/cinder/service.py", line 377, in __init__
 ERROR cinder     port=self.port)
-ERROR cinder   File "/opt/stack/cinder/cinder/wsgi/eventlet_server.py", line 176, in __init__
+ERROR cinder   File "/opt/stack/cinder/cinder/wsgi/eventlet_server.py", line 176, 
+                 in __init__
 ERROR cinder     {'host': host, 'port': port})
 ERROR cinder RuntimeError: Could not bind to 0.0.0.0:8776 after trying for 30 seconds
 
@@ -193,7 +193,7 @@ Check virtualization support:
 # NOTE - i386, i486, i586 or i686 are 32-bit kernel.
 ```
 
-Installation of KVM packages:
+Various packages to manage VMs:
 
 ```
 # Some of below are must & some are good to have::
@@ -211,7 +211,7 @@ Libvirt verifications:
 # check the installation
 > libvirtd
 2016-07-01 09:00:17.331+0000: 31430: info : libvirt version: 1.2.2
-2016-07-01 09:00:17.331+0000: 31430: debug : virLogParseOutputs:1378 : outputs=1:file:/var/log/libvirt/libvirtd.log
+...
 
 # check if /var/log/libvirt/libvirtd.log has recent errors ?
 
@@ -231,7 +231,7 @@ srwxrwx--- 1 root libvirtd 0 Jun 30 16:39 /var/run/libvirt/libvirt-sock
 crw-rw----+ 1 root kvm 10, 232 Jun 30 16:39 /dev/kvm
 ```
 
-Check OpenStack settings
+Check OpenStack settings:
 
 ```
 # verify virt_type property in /etc/nova/nova.conf file
