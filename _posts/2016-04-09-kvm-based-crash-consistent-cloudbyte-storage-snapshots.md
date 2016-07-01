@@ -52,6 +52,8 @@ ERROR: You must provide a user name through --os-username or env[OS_USERNAME].
 # will provide some list of volumes if already created
 ```
 
+<br />
+
 ## OpenStack CloudByte cinder code refresh:
 
 - This is required if we want the hot patches, fixes from CloudByte team.
@@ -116,6 +118,8 @@ ps -aux | grep cinder | grep -v grep
 > Ctrl + a + d
 ```
 
+<br />
+
 ## OpenStack CloudByte cinder configuration:
 
 - Refer below link for details:
@@ -155,12 +159,16 @@ cb_initiator_group_name = ALL
 
 ```
 
+<br />
+
 ## Verify KVM as the hypervisor in Ubuntu:
 
 For details refer to below link:
 
 - [OpenStack nova](http://docs.openstack.org/liberty/config-reference/content/kvm.html)
 - [Ubuntu and KVM](https://help.ubuntu.com/community/KVM/Installation)
+
+<br />
 
 ### Check virtualization support:
 
@@ -196,6 +204,8 @@ For details refer to below link:
 # NOTE - i386, i486, i586 or i686 are 32-bit kernel.
 ```
 
+<br />
+
 ### Various packages to manage VMs:
 
 ```
@@ -207,6 +217,8 @@ For details refer to below link:
 # bridge-utils (provides bridge from hypervisor network to VMs)
 # virt-viewer to view instances
 ```
+
+<br />
 
 ### Libvirt verifications:
 
@@ -233,6 +245,8 @@ srwxrwx--- 1 root libvirtd 0 Jun 30 16:39 /var/run/libvirt/libvirt-sock
 > # ls -l /dev/kvm
 crw-rw----+ 1 root kvm 10, 232 Jun 30 16:39 /dev/kvm
 ```
+
+<br />
 
 ### Check OpenStack settings:
 
