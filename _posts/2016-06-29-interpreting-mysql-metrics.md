@@ -3,7 +3,7 @@ layout: post
 title: Interpreting MySQL metrics - WIP
 ---
 
-Interpreting MySQL metrics
+Interpreting MySQL metrics **WIP**
 
 > This article tries to itemize the various metrics w.r.t MySQL application.
 > These help us in understanding the health of MySQL application and act thereof.
