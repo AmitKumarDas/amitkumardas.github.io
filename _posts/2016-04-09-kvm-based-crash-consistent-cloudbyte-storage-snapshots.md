@@ -13,9 +13,9 @@ KVM based crash consistent CloudByte storage snapshots - **WIP**
 
 ```
 - OpenStack Liberty single node setup
-- Ubuntu 14.04 as KVM based hypervisor (will host OpenStack)
-- Libvirt (version - ) on hypervisor
-- CentOS VM (version - )
+- Ubuntu 14.04.1 as KVM based hypervisor (will host OpenStack)
+- Libvirt 1.2.2 on hypervisor
+- CentOS VM 7.0
 - CloudByte storage volumes will be iSCSI based
 ```
 
