@@ -8,8 +8,8 @@ title: OpenStack CloudByte cinder code refresh
 
 - This is required if we want the hot patches, fixes from CloudByte team.
 - These may not be present in upstream OpenStack maintained repository.
+- This assumes devstack as the installed base of OpenStack.
 
-<br />
 
 ```
 # check for the presence of 3 files named:
