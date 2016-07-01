@@ -1,9 +1,9 @@
 ---
 layout: post
-title: KVM based MySQL consistent CloudByte storage snapshots
+title: KVM based MySQL consistent CloudByte storage snapshots - WIP
 ---
 
-KVM based MySQL consistent CloudByte storage snapshots
+KVM based MySQL consistent CloudByte storage snapshots - **WIP**
 
 > This article does not focus on why should we have consistent snapshots.
 > Rather it tries to collage information on how to do it right for MySQL
