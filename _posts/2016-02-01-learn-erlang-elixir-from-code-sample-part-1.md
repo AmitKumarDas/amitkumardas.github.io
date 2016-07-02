@@ -11,6 +11,7 @@ title: Learn Erlang or Elixir from code sample - Part 1
 - refer - [elixir forum post](https://elixirforum.com/t/help-with-performance-file-io/802)
 
 <br />
+
 ```
 # elixir
 
@@ -34,6 +35,7 @@ Foo.run(file_name)
 ```
 
 <br />
+
 ### module
 
 - Each module lives in its own file.
@@ -43,6 +45,7 @@ Foo.run(file_name)
 - defp in elixir makes a function private.
 
 <br />
+
 ### atom
 
 - Notice the capital letters in Erlang
@@ -65,6 +68,7 @@ x = 100
 ```
 
 <br />
+
 ### Maps
 
 - A bit tough to master if you are coming from Java world.
@@ -101,6 +105,7 @@ map.key === 1
 ```
 
 <br />
+
 ### keyword lists
 
 - Elixir offers a literal syntax for creating a list of **two-item** tuples
@@ -131,6 +136,7 @@ List.last([1, 2])
 ```
 
 <br />
+
 ### Need of ```&``` in elixir
 
 ```
