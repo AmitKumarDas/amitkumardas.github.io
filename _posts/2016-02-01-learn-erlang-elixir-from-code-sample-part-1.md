@@ -9,7 +9,7 @@ title: Learn Erlang or Elixir from code sample - Part 1
 
 - refer - [crash course](http://elixir-lang.org/crash-course.html#anonymous-functions)
 - refer - [elixir forum post](https://elixirforum.com/t/help-with-performance-file-io/802)
-
+inv
 <br />
 
 ```
@@ -125,6 +125,7 @@ proplists:get_value(another_key, Proplist).
 ```
 
 <br />
+
 ### Invoking a function from a module
 
 ```
