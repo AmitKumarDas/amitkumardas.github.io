@@ -10,6 +10,7 @@ title: Learn Erlang or Elixir from code sample - Part 1
 - refer - [crash course](http://elixir-lang.org/crash-course.html#anonymous-functions)
 - refer - [elixir forum post](https://elixirforum.com/t/help-with-performance-file-io/802)
 
+<br />
 ```
 # elixir
 
@@ -32,6 +33,7 @@ end
 Foo.run(file_name)
 ```
 
+<br />
 ### module
 
 - Each module lives in its own file.
@@ -40,6 +42,7 @@ Foo.run(file_name)
 - Non-exported functions become private.
 - defp in elixir makes a function private.
 
+<br />
 ### atom
 
 - Notice the capital letters in Erlang
@@ -61,6 +64,7 @@ iam_a_var
 x = 100
 ```
 
+<br />
 ### Maps
 
 - A bit tough to master if you are coming from Java world.
@@ -96,6 +100,7 @@ map = %{map | key: 1}
 map.key === 1
 ```
 
+<br />
 ### keyword lists
 
 - Elixir offers a literal syntax for creating a list of **two-item** tuples
@@ -114,6 +119,7 @@ Proplist = [{another_key, 20}, {key, 10}].
 proplists:get_value(another_key, Proplist).
 ```
 
+<br />
 ### Invoking a function from a module
 
 ```
@@ -124,6 +130,7 @@ lists:last([1, 2]).
 List.last([1, 2])         
 ```
 
+<br />
 ### Need of ```&``` in elixir
 
 ```
