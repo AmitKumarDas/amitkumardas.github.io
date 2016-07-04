@@ -151,6 +151,9 @@ virt_type = kvm
 - Try various scenarios & check if OpenStack responds properly to libvirt upgrade.
 
 ```
+# NOTE - I had upgrade the libvirt when logged in as 'root' user !!
+# NOTE - devstack was installed under user 'cbos' !!
+
 # Check if all the nova services are running or not.
 > nova service-list
 +----+------------------+----------+-------+------------------------------------+
@@ -207,5 +210,40 @@ srwxrwxrwx 1 root root 0 Jul  4 10:49 /var/run/libvirt/libvirt-sock
 
 # Checking the nova service list gave the original error
 # i.e. nova-compute's status was disabled
+
+# login to the terminal as root user gave below ouputs:
+
+> cat /etc/group | grep cbos
+adm:x:4:syslog,cbos
+cdrom:x:24:cbos
+sudo:x:27:cbos
+dip:x:30:cbos
+plugdev:x:46:cbos
+lpadmin:x:108:cbos
+cbos:x:1000:
+sambashare:x:124:cbos
+libvirtd:x:129:cbos
+
+> groups
+root
+
+# NOTE - At this point, I logged-in to the terminal as cbos
+
+> users
+cbos
+
+> groups
+cbos adm cdrom sudo dip plugdev lpadmin sambashare libvirtd
+
+> libvirtd
+info : libvirt version: 1.2.5
+14890: error : virPidFileAcquirePath:414 : 
+	Failed to acquire pid file '/run/user/1000/libvirt/libvirtd.pid': 
+	Resource temporarily unavailable
+
+> virsh --version
+1.2.5
+
+# running libvirtd multiple times would hang
 
 ```
