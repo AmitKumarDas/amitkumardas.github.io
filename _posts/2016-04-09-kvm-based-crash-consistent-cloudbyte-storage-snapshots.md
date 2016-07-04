@@ -312,6 +312,8 @@ srwxrwxrwx 1 root libvirtd 0 Jul  4 12:33 /var/run/libvirt/libvirt-sock
 # However, this corrupted my Ubuntu 14.04 completely
 ```
 
+<br />
+
 ### Upgrade libvirt to have freeze & thaw support - II
 
 - [Upgrade libvirt on Ubuntu](http://nolimitsdesigns.com/game-design/ubuntu-14-04-libvirt-compile-and-install/)
@@ -320,5 +322,15 @@ srwxrwxrwx 1 root libvirtd 0 Jul  4 12:33 /var/run/libvirt/libvirt-sock
 - Try various scenarios & check if OpenStack responds properly to libvirt upgrade.
 
 ```
+# When we are using the user cbos for virsh qemu communication operation.
+# libvirtd wants to authenticate with polkit. 
+# This issue never appears when we do the same operation via root.
+# There isn't any polkit agent running where libvirtd is, 
+# since it doesn't have a desktop session. 
+# Even if there _was_ an agent running, it could only pop open a password dialog on the 
+# remote host's desktop, it wouldn't work over the remote connection.
+# refer - https://bugzilla.redhat.com/show_bug.cgi?id=1062660
+
+
 
 ```
