@@ -270,4 +270,35 @@ HypervisorUnavailable: Connection to the hypervisor is broken on host: cbos
 error: failed to connect to the hypervisor
 error: authentication failed: polkit: polkit\56retains_authorization_after_challenge=1
 Authorization requires authentication but no agent is available.
+
+# Modified /etc/libvirt/libvirtd.conf file
+# Uncommented the unix_sock_group & set it as libvirtd
+# & then ran below commands:
+
+> sudo service libvirt-bin restart
+libvirt-bin stop/waiting
+libvirt-bin start/running, process 16142
+
+> sudo libvirtd
+2016-07-04 07:03:10.456+0000: 16233: info : libvirt version: 1.2.5
+2016-07-04 07:03:10.456+0000: 16233: error : virPidFileAcquirePath:414 : Failed to acquire pid file '/var/run/libvirtd.pid': Resource temporarily unavailable
+
+> virsh -c 'qemu:///system' list
+error: failed to connect to the hypervisor
+error: authentication failed: polkit: polkit\56retains_authorization_after_challenge=1
+Authorization requires authentication but no agent is available.
+
+> sudo virsh -c 'qemu:///system' list
+ Id    Name                           State
+----------------------------------------------------
+
+> ls -ltr /var/run/libvirt/libvirt-sock
+srwxrwxrwx 1 root libvirtd 0 Jul  4 12:33 /var/run/libvirt/libvirt-sock
+
+# logging out & relogin using cbos
+# & then restarting the service at n-cpu did not help
+# it gave the same errors.
+
+# Finally, did a devstack unstack & stack.sh as above did not solve the issue.
+
 ```
