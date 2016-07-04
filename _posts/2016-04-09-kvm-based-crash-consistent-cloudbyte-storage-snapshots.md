@@ -301,5 +301,11 @@ srwxrwxrwx 1 root libvirtd 0 Jul  4 12:33 /var/run/libvirt/libvirt-sock
 # it gave the same errors.
 
 # Finally, did a devstack unstack & stack.sh as above did not solve the issue.
+# However, this too gave the same error.
 
+# Tried to uninstall below packages as per mentioned in the link:
+# https://github.com/retspen/webvirtmgr/issues/284
+# console-setup-linux libck-connector0 libpam-ck-connector 
+# 	libpolkit-gobject-1-0 xkb-data consolekit
+# Had to reboot the system
 ```
