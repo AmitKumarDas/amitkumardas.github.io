@@ -143,12 +143,14 @@ virt_type = kvm
 
 <br />
 
-### Upgrade libvirt to have freeze & thaw support
+### Upgrade libvirt to have freeze & thaw support - I
 
 - [Upgrade libvirt on Ubuntu](http://nolimitsdesigns.com/game-design/ubuntu-14-04-libvirt-compile-and-install/)
 - __or__
 - [Use Ubuntu 16.04](https://wiki.openstack.org/wiki/LibvirtDistroSupportMatrix)
 - Try various scenarios & check if OpenStack responds properly to libvirt upgrade.
+
+- NOTE - Below steps were unsuccessful. Just read & understand.
 
 ```
 # NOTE - I had upgrade the libvirt when logged in as 'root' user !!
@@ -308,4 +310,15 @@ srwxrwxrwx 1 root libvirtd 0 Jul  4 12:33 /var/run/libvirt/libvirt-sock
 # console-setup-linux libck-connector0 libpam-ck-connector 
 # 	libpolkit-gobject-1-0 xkb-data consolekit
 # However, this corrupted my Ubuntu 14.04 completely
+```
+
+### Upgrade libvirt to have freeze & thaw support - II
+
+- [Upgrade libvirt on Ubuntu](http://nolimitsdesigns.com/game-design/ubuntu-14-04-libvirt-compile-and-install/)
+- __or__
+- [Use Ubuntu 16.04](https://wiki.openstack.org/wiki/LibvirtDistroSupportMatrix)
+- Try various scenarios & check if OpenStack responds properly to libvirt upgrade.
+
+```
+
 ```
