@@ -281,7 +281,8 @@ libvirt-bin start/running, process 16142
 
 > sudo libvirtd
 2016-07-04 07:03:10.456+0000: 16233: info : libvirt version: 1.2.5
-2016-07-04 07:03:10.456+0000: 16233: error : virPidFileAcquirePath:414 : Failed to acquire pid file '/var/run/libvirtd.pid': Resource temporarily unavailable
+2016-07-04 07:03:10.456+0000: 16233: error : virPidFileAcquirePath:414 :
+Failed to acquire pid file '/var/run/libvirtd.pid': Resource temporarily unavailable
 
 > virsh -c 'qemu:///system' list
 error: failed to connect to the hypervisor
