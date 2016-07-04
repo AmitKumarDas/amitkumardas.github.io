@@ -153,6 +153,16 @@ virt_type = kvm
 ```
 # Check if all the nova services are running or not.
 > nova service-list
++----+------------------+----------+-------+------------------------------------+
+| Id | Binary           | Status   | State | Disabled Reason                    |
++----+------------------+----------+-------+------------------------------------+
+| 1  | nova-conductor   | enabled  | up    | -                                  |
+| 3  | nova-cert        | enabled  | up    | -                                  |
+| 4  | nova-network     | enabled  | up    | -                                  |
+| 5  | nova-scheduler   | enabled  | up    | -                                  |
+| 6  | nova-consoleauth | enabled  | up    | -                                  |
+| 7  | nova-compute     | disabled | up    | AUTO: Failed to connect to libvirt |
++----+------------------+----------+-------+------------------------------------+
 
 # In my case the compute service was disabled with below reason:
 # AUTO: Failed to connect to libvirt
@@ -190,5 +200,12 @@ srwxrwxrwx 1 root root 0 Jul  4 10:49 /var/run/libvirt/libvirt-sock
 | 6  | nova-consoleauth | cbos | internal | enabled | up    | -               |
 | 7  | nova-compute     | cbos | nova     | enabled | up    | -               |
 +----+------------------+------+----------+---------+-------+-----------------+
+
+# Tried to create a VM from OpenStack
+# It failed with below error:
+# Error: No valid host was found. There are not enough hosts available.
+
+# Checking the nova service list gave the original error
+# i.e. nova-compute's status was disabled
 
 ```
