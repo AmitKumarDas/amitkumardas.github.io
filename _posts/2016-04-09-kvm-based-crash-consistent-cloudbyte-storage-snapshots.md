@@ -307,5 +307,5 @@ srwxrwxrwx 1 root libvirtd 0 Jul  4 12:33 /var/run/libvirt/libvirt-sock
 # https://github.com/retspen/webvirtmgr/issues/284
 # console-setup-linux libck-connector0 libpam-ck-connector 
 # 	libpolkit-gobject-1-0 xkb-data consolekit
-# Had to reboot the system
+# However, this corrupted my Ubuntu 14.04 completely
 ```
