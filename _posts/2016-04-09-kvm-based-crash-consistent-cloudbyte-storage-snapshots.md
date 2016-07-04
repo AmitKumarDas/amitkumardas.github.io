@@ -228,6 +228,7 @@ libvirtd:x:129:cbos
 root
 
 # NOTE - At this point, I logged-in to the terminal as cbos
+# and started to run various commands as follows:
 
 > users
 cbos
@@ -260,4 +261,13 @@ Authorization requires authentication but no agent is available.
 ..
 HypervisorUnavailable: Connection to the hypervisor is broken on host: cbos
 
+# running the virsh commands gave below results:
+> virsh list
+ Id    Name                           State
+----------------------------------------------------
+
+> virsh -c 'qemu:///system' list
+error: failed to connect to the hypervisor
+error: authentication failed: polkit: polkit\56retains_authorization_after_challenge=1
+Authorization requires authentication but no agent is available.
 ```
