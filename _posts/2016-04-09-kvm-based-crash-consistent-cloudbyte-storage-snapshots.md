@@ -157,6 +157,7 @@ virt_type = kvm
 # In my case the compute service was disabled with below reason:
 # AUTO: Failed to connect to libvirt
 
+# run nova hypervisor-list
 >  nova hypervisor-list
 +----+---------------------+-------+----------+
 | ID | Hypervisor hostname | State | Status   |
@@ -164,4 +165,7 @@ virt_type = kvm
 | 1  | cbos                | up    | disabled |
 +----+---------------------+-------+----------+
 
+# The permissions for libvirt-sock was as follows:
+> ls -ltr /var/run/libvirt/libvirt-sock
+srwxrwxrwx 1 root root 0 Jul  4 10:49 /var/run/libvirt/libvirt-sock
 ```
