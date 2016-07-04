@@ -168,4 +168,21 @@ virt_type = kvm
 # The permissions for libvirt-sock was as follows:
 > ls -ltr /var/run/libvirt/libvirt-sock
 srwxrwxrwx 1 root root 0 Jul  4 10:49 /var/run/libvirt/libvirt-sock
+
+# restart the compute service
+> sg libvirtd '/usr/local/bin/nova-compute --config-file /etc/nova/nova.conf'
+
+# checked the service list
+> nova service-list
++----+------------------+------+----------+---------+-------+-----------------+
+| Id | Binary           | Host | Zone     | Status  | State | Disabled Reason |
++----+------------------+------+----------+---------+-------+-----------------+
+| 1  | nova-conductor   | cbos | internal | enabled | up    | -               |
+| 3  | nova-cert        | cbos | internal | enabled | up    | -               |
+| 4  | nova-network     | cbos | internal | enabled | up    | -               |
+| 5  | nova-scheduler   | cbos | internal | enabled | up    | -               |
+| 6  | nova-consoleauth | cbos | internal | enabled | up    | -               |
+| 7  | nova-compute     | cbos | nova     | enabled | up    | -               |
++----+------------------+------+----------+---------+-------+-----------------+
+
 ```
