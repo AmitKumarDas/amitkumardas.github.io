@@ -129,14 +129,6 @@ crw-rw----+ 1 root kvm 10, 232 Jun 30 16:39 /dev/kvm
 
 <br />
 
-### Upgrade libvirt to have freeze & thaw support
-
-- [Upgrade libvirt on Ubuntu](http://nolimitsdesigns.com/game-design/ubuntu-14-04-libvirt-compile-and-install/)
-- __or__
-- [Use Ubuntu 16.04](https://wiki.openstack.org/wiki/LibvirtDistroSupportMatrix)
-
-<br />
-
 ### Check OpenStack KVM settings:
 
 ```
@@ -147,4 +139,22 @@ crw-rw----+ 1 root kvm 10, 232 Jun 30 16:39 /dev/kvm
 [libvirt]
 virt_type = kvm
 ...
+```
+
+<br />
+
+### Upgrade libvirt to have freeze & thaw support
+
+- [Upgrade libvirt on Ubuntu](http://nolimitsdesigns.com/game-design/ubuntu-14-04-libvirt-compile-and-install/)
+- __or__
+- [Use Ubuntu 16.04](https://wiki.openstack.org/wiki/LibvirtDistroSupportMatrix)
+- Try various scenarios & check if OpenStack responds properly to libvirt upgrade.
+
+```
+# Check if all the nova services are running or not.
+> nova service-list
+
+# In my case the compute service was disabled with below reason:
+# AUTO: Failed to connect to libvirt
+
 ```
