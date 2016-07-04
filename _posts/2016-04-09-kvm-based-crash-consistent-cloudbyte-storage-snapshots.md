@@ -332,5 +332,57 @@ srwxrwxrwx 1 root libvirtd 0 Jul  4 12:33 /var/run/libvirt/libvirt-sock
 # refer - https://bugzilla.redhat.com/show_bug.cgi?id=1062660
 
 
+# Ubuntu 14.04 does not install libvirt.
+# devstack liberty stack.sh installs libvirt.
+# Below commands were run after installation of devstack liberty.
 
+> ls -ltr /var/run/libvirt/libvirt-sock
+srwxrwx--- 1 root libvirtd 0 Jul  4 16:50 /var/run/libvirt/libvirt-sock
+
+> virsh --version
+1.2.2
+
+> sudo libvirtd
+2016-07-04 11:47:27.948+0000: 4806: info : libvirt version: 1.2.2
+2016-07-04 11:47:27.948+0000: 4806: debug : virLogParseOutputs:1378 : outputs=1:file:/var/log/libvirt/libvirtd.log
+
+> groups
+cbos adm cdrom sudo dip plugdev lpadmin sambashare
+
+> users
+cbos cbos cbos
+
+> cat /etc/group | grep cbos
+adm:x:4:syslog,cbos
+cdrom:x:24:cbos
+sudo:x:27:cbos
+dip:x:30:cbos
+plugdev:x:46:cbos
+lpadmin:x:108:cbos
+cbos:x:1000:
+sambashare:x:124:cbos
+libvirtd:x:129:cbos
+
+> virsh list
+error: failed to connect to the hypervisor
+error: no valid connection
+error: Failed to connect socket to '/var/run/libvirt/libvirt-sock': Permission denied
+
+> sudo virsh list
+ Id    Name                           State
+----------------------------------------------------
+ 2     instance-00000001              running
+
+> kvm --version
+QEMU emulator version 2.0.0 (Debian 2.0.0+dfsg-2ubuntu1.24), Copyright (c) 2003-2008 Fabrice Bellard
+
+> vi /etc/libvirt/libvirtd.conf
+..
+unix_sock_group = "libvirtd"
+unix_sock_ro_perms = "0777"
+unix_sock_rw_perms = "0770"
+auth_unix_ro = "none"
+auth_unix_rw = "none"
+log_filters="1:libvirt.c 1:qemu 1:conf 1:security 3:object 3:event 3:json 3:file 1:util 1:qemu_monitor"
+log_outputs="1:file:/var/log/libvirt/libvirtd.log"
 ```
