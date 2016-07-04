@@ -157,4 +157,11 @@ virt_type = kvm
 # In my case the compute service was disabled with below reason:
 # AUTO: Failed to connect to libvirt
 
+>  nova hypervisor-list
++----+---------------------+-------+----------+
+| ID | Hypervisor hostname | State | Status   |
++----+---------------------+-------+----------+
+| 1  | cbos                | up    | disabled |
++----+---------------------+-------+----------+
+
 ```
