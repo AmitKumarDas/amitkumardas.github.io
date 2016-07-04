@@ -246,4 +246,18 @@ info : libvirt version: 1.2.5
 
 # running libvirtd multiple times would hang
 
+# joining the devstack screens & running below command at n-cpu screen
+> screen -x
+sg libvirtd '/usr/local/bin/nova-compute --config-file /etc/nova/nova.conf'
+
+# following errors were noticed
+..
+Connection event '0' reason 'Failed to connect to libvirt'
+..
+libvirtError: authentication failed: polkit: polkit\56retains_authorization_after_challenge=1
+..
+Authorization requires authentication but no agent is available.
+..
+HypervisorUnavailable: Connection to the hypervisor is broken on host: cbos
+
 ```
