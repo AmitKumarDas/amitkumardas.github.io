@@ -169,6 +169,12 @@ virt_type = kvm
 > ls -ltr /var/run/libvirt/libvirt-sock
 srwxrwxrwx 1 root root 0 Jul  4 10:49 /var/run/libvirt/libvirt-sock
 
+# under root, virsh list command worked fine
+# this was to check if errors with libvirt itself
+> virsh -c 'qemu:///system' list
+ Id    Name                           State
+----------------------------------------------------
+
 # restart the compute service
 > sg libvirtd '/usr/local/bin/nova-compute --config-file /etc/nova/nova.conf'
 
