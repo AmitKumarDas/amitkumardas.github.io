@@ -429,5 +429,59 @@ virsh -c 'qemu:///system' list
  4     instance-00000001              running
 
 # started all nova & cinder services successfully
+```
 
+<br />
+
+### Test fsfreeze & thaw commands
+
+```
+refer - https://www.sebastien-han.fr/blog/2015/02/09/openstack-perform-consistent-snapshots-with-qemu-guest-agent/
+
+@ guest VM
+
+> file /dev/virtio-ports/org.qemu.guest_agent.0
+/dev/virtio-ports/org.qemu.guest_agent.0: symbolic link to `../vport1p1'
+
+> sudo yum install qemu-guest-agent
+
+Installed:
+  qemu-guest-agent.x86_64 10:2.3.0-4.el7
+
+> sudo tee /etc/default/qemu-guest-agent > /dev/null <<EOF
+> DAEMON_ARGS="--logfile /var/log/qemu-agent/org.qemu.guest_agent.0.log --fsfreeze-hook --verbose"
+> EOF
+
+> sudo service qemu-guest-agent restart
+Redirecting to /bin/systemctl restart  qemu-guest-agent.service
+
+# followed the fsfreeze related directions given in below link:
+https://www.sebastien-han.fr/blog/2015/02/09/openstack-perform-consistent-snapshots-with-qemu-guest-agent/
+
+@ host
+>  sudo bash -c  "ls /var/lib/libvirt/qemu/*.sock"
+/var/lib/libvirt/qemu/org.qemu.guest_agent.0.instance-00000003.sock
+
+sudo file /var/lib/libvirt/qemu/org.qemu.guest_agent.0.instance-00000003.sock
+/var/lib/libvirt/qemu/org.qemu.guest_agent.0.instance-00000003.sock: socket
+
+> sudo virsh qemu-agent-command instance-00000003 '{"execute":"guest-ping"}'
+{"return":{}}
+
+> sudo virsh domfsfreeze instance-00000003
+Froze 1 filesystem(s)
+
+> sudo virsh domfsthaw instance-00000003
+Thawed 1 filesystem(s)
+```
+
+<br />
+
+### Final Solution:
+
+```
+# cd to devstack location
+> source openrc admin admin
+
+> 
 ```
