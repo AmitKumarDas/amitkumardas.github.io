@@ -358,7 +358,7 @@ cdrom:x:24:cbos
 sudo:x:27:cbos
 dip:x:30:cbos
 plugdev:x:46:cbos
-lpadmin:x:108:cbos
+lpadmin:x:108:cboslibvi
 cbos:x:1000:
 sambashare:x:124:cbos
 libvirtd:x:129:cbos
@@ -391,4 +391,35 @@ log_outputs="1:file:/var/log/libvirt/libvirtd.log"
 # Upgraded the libvirt following below link:
 # http://nolimitsdesigns.com/game-design/ubuntu-14-04-libvirt-compile-and-install/
 
+# ran below commands:
+> ls -ltr /var/run/libvirt/libvirt-sock
+srwxrwxrwx 1 root root 0 Jul  4 10:49 /var/run/libvirt/libvirt-sock
+
+> virsh -c 'qemu:///system' list
+error: failed to connect to the hypervisor
+error: internal error: DBus support not compiled into this binary
+
+# made changes to /etc/libvirt/libvirtd.conf file
+> vi /etc/libvirt/libvirtd.conf
+..
+unix_sock_group = "libvirtd"
+unix_sock_ro_perms = "0777"
+unix_sock_rw_perms = "0770"
+auth_unix_ro = "none"
+auth_unix_rw = "none"
+log_filters="1:libvirt.c 1:qemu 1:conf 1:security 3:object 3:event 3:json 3:file 1:util 1:qemu_monitor"
+log_outputs="1:file:/var/log/libvirt/libvirtd.log"
+
+# restarted service
+> sudo service libvirt-bin restart
+
+# logout & login
+# ran the commands once again
+> ls -ltr /var/run/libvirt/libvirt-sock
+srwxrwx--- 1 root libvirtd 0 Jul  5 11:51 /var/run/libvirt/libvirt-sock
+
+virsh -c 'qemu:///system' list
+ Id    Name                           State
+----------------------------------------------------
+ 4     instance-00000001              running
 ```
