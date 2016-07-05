@@ -388,7 +388,12 @@ log_outputs="1:file:/var/log/libvirt/libvirtd.log"
 
 # was able to create VM instances via openstack successfully.
 
-# Upgraded the libvirt following below link:
+# stopped all nova & cinder services
+
+#######################################
+# **Upgraded the libvirt following below link:**
+#######################################
+
 # http://nolimitsdesigns.com/game-design/ubuntu-14-04-libvirt-compile-and-install/
 
 # ran below commands:
@@ -422,4 +427,7 @@ virsh -c 'qemu:///system' list
  Id    Name                           State
 ----------------------------------------------------
  4     instance-00000001              running
+
+# started all nova & cinder services successfully
+
 ```
