@@ -385,4 +385,10 @@ auth_unix_ro = "none"
 auth_unix_rw = "none"
 log_filters="1:libvirt.c 1:qemu 1:conf 1:security 3:object 3:event 3:json 3:file 1:util 1:qemu_monitor"
 log_outputs="1:file:/var/log/libvirt/libvirtd.log"
+
+# was able to create VM instances via openstack successfully.
+
+# Upgraded the libvirt following below link:
+# http://nolimitsdesigns.com/game-design/ubuntu-14-04-libvirt-compile-and-install/
+
 ```
