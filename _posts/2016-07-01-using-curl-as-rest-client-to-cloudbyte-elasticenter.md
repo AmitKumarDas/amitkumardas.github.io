@@ -63,7 +63,7 @@ $ curl https://20.10.112.70/client/api?command=listTsm -k
 
 ### cURL - Pass query parameters via -d
 
-- Use of -G is a must with -d as EC is pure GET !!!
+- Use of -G is a must with -d as ElastiCenter is a pure GET API !!!
 
 ```bash
 
@@ -268,10 +268,12 @@ $ curl -K ec112.70 -d command=listUserss -d @ecapi -G -k -s -S \
 
 ### Do you have a billion dollar question ?
 
-- **Can I create a ElastiStor volume with such ease ?**
+- ```Can I create a ElastiStor volume with such ease ?```
 - In other words, can we avoid resorting to programming for such complex tasks ?
 - Remember, this is the best of a complex REST client use-case w.r.t ElastiCenter.
 - Refer - create_volume in python (OpenStack cinder plugin for CloudByte)
+
+<br />
 
 | Task                           | REST Command           | Query Parameters       | Filter            |
 | :-------------                 | :-------------         | :-------------         | :-------------    |
@@ -284,6 +286,8 @@ $ curl -K ec112.70 -d command=listUserss -d @ecapi -G -k -s -S \
 | Fetch iscsi id                 | listVolumeiSCSIService | storageid              | volume id (m)     |
 | Fetch initiator group id       | listiSCSIInitiator     | accountid              | name (m)          |
 | Update iscsi service           | updateVolumeiSCSIService | id, igid, ..         | __                |
+
+<br />
 
 - (m) refers to match; is provided by user
 - .. indicates presence of more query parameters
