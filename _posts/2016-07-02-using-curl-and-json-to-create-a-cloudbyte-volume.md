@@ -64,8 +64,8 @@ $ curl -K ec112.70 -d command=listUsers -d @ecapi -G -k -s -S | json
         "accounttype": 1,
         "domainid": "58ea5ec4-ccd9-44c2-a361-074841dce9eb",
         "domain": "ROOT",
-        "apikey": "OjvktW98EGI6QkGicGh40Pd4FevWXo2jLQePg1fSMx4QXwQedR5Xkrm_yphF1Hk_63kpOfwjvAeX7YQHoajevA",
-        "secretkey": "0NsCDSk4Je4QFPtDRKljsV6IeEPIXmblNLwHu1gXpKaz-HHAH_6dCsHAhO4i4HaBLC0zYP22Z8lVBz-bkGAMfA",
+        "apikey": "jLQfSMx4QXwQedR5Xkrm_yphF1Hk_63kpOfwjvAeX7YQHoajevA",
+        "secretkey": "1gXpKaz-HHAH_6dCsHAhO4i4HaBLC0zYP22Z8lVBz-bkGAMfA",
         "accountid": "3395d7ba-7e32-4ed5-ad39-a17ee7d0c6c4",
         "flag": "false"
       }
