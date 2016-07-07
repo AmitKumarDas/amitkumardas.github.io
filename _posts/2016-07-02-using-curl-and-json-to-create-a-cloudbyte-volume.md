@@ -429,6 +429,8 @@ $ curl -K ec112.70 -d command=listAccount -d @ecapi -G -k -s -S \
   | awk '$2 == 1 {print "SUCCESS "$1} $2 == 2 {print "ERROR "$1} $2 == 0 {print "IN-PROGRESS "$1}'
 ```
 
+<br />
+
 ### Step 1 till 7 i.e. ```listAccount``` till ```new volume confirmation```
 
 ```bash
