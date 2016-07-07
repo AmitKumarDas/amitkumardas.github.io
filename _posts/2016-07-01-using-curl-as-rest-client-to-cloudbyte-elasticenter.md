@@ -5,6 +5,12 @@ title: Using cURL as REST client to CloudByte ElastiCenter
 
 # Using cURL as REST client to CloudByte ElastiCenter
 
+<br/>
+
+## Mission Impossible - Mastering cURL
+
+<br />
+
 ## How to learn cURL ?
 
 - ```curl --help```
@@ -135,7 +141,9 @@ $ curl https://20.10.112.70/client/api -d 'command=listTsm' -d 'response=json' -
 
 ### Can we reduce verbosity ?
 
+- Yes.
 - NOTE - Store the URL in a file as shown below & understood by cURL.
+- NOTE - Use cURL with -K option.
 
 ```bash
 
@@ -147,9 +155,7 @@ url=https://20.10.112.70/client/api
 
 <br />
 
-### Show me the terse syntax now!!!
-
-- NOTE - Use cURL with -K option.  
+### Show me the terse syntax !!!
 
 ```bash
 
@@ -178,8 +184,11 @@ $ curl -K ec112.70 -d 'command=listTsm' -d 'response=json' -d @ecapi -G -k
 } ] } }  
 ```
 
+<br />
+
 ### Can we limit the verboseness further ?
 
+- Yes.
 - NOTE - Put the common stuff in ecapi file itself.
 - NOTE - Let the URL stuff be present in ec112.70 file.
 
@@ -193,8 +202,9 @@ url=https://20.10.112.70/client/api
 
 <br />
 
-### Can we limit the verboseness further - Part 2 ?
+### Limit the verboseness further. Is it possible ?
 
+- Yes.
 - NOTE - The quotes '' for providing value to -d seems optional.
 - Here we go. **The terse ever syntax !!!**
 
@@ -218,9 +228,11 @@ $ curl -K ec112.70 -d command=listTsm -d @ecapi -G -k
 } ] } }  
 ```
 
-### Million dollar question: Can I use it in Unix pipes ?
+<br />
 
-- Yes!!!
+### Million dollar question: **Can I use it in Unix pipes** ?
+
+- Oh Yes !!!
 - NOTE - Redirect std err to std output & then use it in Unix pipes.
 
 ```bash
@@ -232,8 +244,9 @@ $ curl -K ec112.70 -d 'command=listTsm' -d 'response=json' -G -k --stderr - \
 
 <br />
 
-### Can I use it in Unix pipes - part 2 ?
+### Is there a better way to use cURL in Unix pipes ?
 
+- Yes.
 - Alternative & compact way to use the output from curl in Unix pipes
   - -s -> silent, i.e. do not show progress
   - -S -> show errors
@@ -253,8 +266,9 @@ $ curl -K ec112.70 -d command=listUserss -d @ecapi -G -k -s -S \
 
 <br />
 
-### The billion dollar query: Can I create a ElastiStor volume with such ease ?
+### Do you have a billion dollar question ?
 
+- **Can I create a ElastiStor volume with such ease ?**
 - In other words, can we avoid resorting to programming for such complex tasks ?
 - Remember, this is the best of a complex REST client use-case w.r.t ElastiCenter.
 - Refer - create_volume in python (OpenStack cinder plugin for CloudByte)
@@ -278,17 +292,17 @@ $ curl -K ec112.70 -d command=listUserss -d @ecapi -G -k -s -S \
 
 <br />
 
-### List down the json parser cli libraries that can help us in our effort
+### Seems like a ```Mission Impossible``` part - II sequence
 
-- [underscore-cli](https://github.com/ddopson/underscore-cli)
-- [json](http://trentm.com/json/)
-- [Lenses, Folds, and Traversals ](https://github.com/ekmett/lens)
-- [Lens Tutorial from School of Haskell](https://www.schoolofhaskell.com/school/to-infinity-and-beyond/pick-of-the-week/a-little-lens-starter-tutorial)
-- [jq](https://stedolan.github.io/jq/)
-
-<br />
-
-### Separate article(s) will show how above use-case is achievable.
+- Separate article(s) will show how above use-case is achievable.
+- Trailer: 
+  - Need to take help from ```json parser cli``` libraries.
+- List of json cli helps:
+  - [underscore-cli](https://github.com/ddopson/underscore-cli)
+  - [json](http://trentm.com/json/)
+  - [Lenses, Folds, and Traversals ](https://github.com/ekmett/lens)
+  - [Lens Tutorial from School of Haskell](https://www.schoolofhaskell.com/school/to-infinity-and-beyond/pick-of-the-week/a-little-lens-starter-tutorial)
+  - [jq](https://stedolan.github.io/jq/)
 
 <br />
 
