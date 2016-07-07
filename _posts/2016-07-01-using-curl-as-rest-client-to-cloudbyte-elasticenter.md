@@ -266,7 +266,7 @@ $ curl -K ec112.70 -d command=listUserss -d @ecapi -G -k -s -S \
 
 <br />
 
-### Do you have a billion dollar question ?
+### Do you have any billion dollar question ?
 
 - ```Can I create a ElastiStor volume with such ease ?```
 - In other words, can we avoid resorting to programming for such complex tasks ?
