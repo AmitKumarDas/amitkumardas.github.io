@@ -305,7 +305,7 @@ d9a86229-9698-382a-a240-ff26b489a1f0 VSMTEST2
 
 <br />
 
-### Step 1 till 4 i.e. listAccount till ```addQosGroup```
+### Step 1 till 4 i.e. ```listAccount``` till ```addQosGroup```
 
 - NOTE - We have **set the IOPS to 0** here as IOPS were not available in my EC.
 
