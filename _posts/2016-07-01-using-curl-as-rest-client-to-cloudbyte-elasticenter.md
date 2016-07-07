@@ -131,6 +131,8 @@ $ curl https://20.10.112.70/client/api -d 'command=listTsm' -d 'response=json' -
 } ] } }
 ```
 
+<br />
+
 ### Can we reduce verbosity ?
 
 - NOTE - Store the URL in a file as shown below & understood by cURL.
