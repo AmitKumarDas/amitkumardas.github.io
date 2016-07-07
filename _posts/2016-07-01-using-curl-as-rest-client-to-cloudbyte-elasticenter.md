@@ -276,7 +276,7 @@ $ curl -K ec112.70 -d command=listUserss -d @ecapi -G -k -s -S \
 <br />
 
 | Task                           | REST Command           | Query Parameters       | Filter            |
-| :-------------                 | :-------------         | -------------:         | -------------:    |
+| :-------------                 | :-------------         | :-------------         | :-------------    |
 | Account ID from Account Name   | listAccount            | __                     | account name (m)  |
 | List VSM details               | listTsm                | accountid              | VSM name (m)      |
 | Add QOS group                  | addQosGroup            | name, tsmid, ..        | id                |
