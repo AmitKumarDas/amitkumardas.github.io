@@ -1,9 +1,13 @@
 ---
 layout: post
-title: Scripting OpenStack's CLI
+title: Scripting OpenStack's cli
 ---
 
-# Scripting OpenStack's CLI
+# Scripting OpenStack's cli
+
+<br />
+
+## Scripting Goodness - I ```Scripting on top of OpenStack's cli```
 
 <br />
 
