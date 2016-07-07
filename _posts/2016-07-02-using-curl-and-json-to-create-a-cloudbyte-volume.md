@@ -12,8 +12,6 @@ title: Using cURL & json to create a CloudByte volume
 
 ## Using ```json```
 
-<br />
-
 - [json](http://trentm.com/json/)
 
 <br />
@@ -44,8 +42,6 @@ https://github.com/trentm/json
 <br />
 
 ## First steps in using json: ```Pass In - Pass Out -- Do Nothing```
-
-<br />
 
 - It validates & pretty prints. Amazing stuff even with nothing !!!
 
@@ -98,8 +94,6 @@ $ curl -K ec112.70 -d command=listUsers -d @ecapi -G -k -s -S \
 <br />
 
 ## Using json: An advanced usage involving Unix pipes.
-
-<br />
 
 - NOTE - -a is used for operations on a json array.
   - also used to display the stream of texts -into- a single line separated by space.
@@ -203,8 +197,6 @@ abhishek@cloudbyte.com
 <br />
 
 ## Billion dollar task: ```Create an ElastiStor ISCSI volume using json & cURL```
-
-<br />
 
 - ASSUMPTIONS:
   - The VSM Name & Account Name are provided.
@@ -315,8 +307,6 @@ d9a86229-9698-382a-a240-ff26b489a1f0 VSMTEST2
 
 ### Step 1 till 4 i.e. listAccount till ```addQosGroup```
 
-<br />
-
 - NOTE - We have **set the IOPS to 0** here as IOPS were not available in my EC.
 
 ```bash
@@ -414,8 +404,6 @@ $ curl -K ec112.70  -d command=queryAsyncJobResult \
 <br />
 
 ### Step 1 till 6 i.e. ```listAccount``` till ```queryAsyncJobResult```
-
-<br />
 
 - NOTE - We have used ```sleep``` to handle this async call.
 
