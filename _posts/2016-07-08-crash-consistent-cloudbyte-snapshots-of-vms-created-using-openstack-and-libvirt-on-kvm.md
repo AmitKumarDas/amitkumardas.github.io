@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Crash consistent CloudByte snapshots of VMs created using OpenStack & libvirt on KVM based hypervisor
+title: Crash consistent snapshots of VMs created using OpenStack & libvirt on KVM
 ---
 
 # Crash consistent CloudByte snapshots of VMs created using OpenStack & libvirt on KVM based hypervisor
