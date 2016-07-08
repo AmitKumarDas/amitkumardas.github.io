@@ -53,7 +53,7 @@ dd280c48-f5cc-4e86-a866-4cff0bf330ec cb-gold true 0b7724e2-fc8a-420c-a20a-7da853
 # ASSUMPTION - ElastiStor volumes have volume-type starting with 'cb-'
 
 $ cinder list \
-  | awk ' NF > 1 && $2 != "ID" && $12 ~ /^cb-/ && $14 {print $2 " " $18}' \
+  | awk ' NF > 1 && $2 != "ID" && $12 ~ /^cb-/ && $14=="true" {print $2 " " $18}' \
   | column -t
 dd280c48-f5cc-4e86-a866-4cff0bf330ec 0b7724e2-fc8a-420c-a20a-7da85329e419
 ```
@@ -89,7 +89,7 @@ bye
 
 # Map Nova instances with Virsh instances with ElastiStor boot volumes
 $ awk 'NR==FNR {a[$2]=$1;next} a[$1] {print $0 " " a[$1]}' \
-  <(cinder list | awk ' NF > 1 && $2 != "ID" && $12 ~ /^cb-/ && $14 {print $2 " " $18}') \
+  <(cinder list | awk ' NF > 1 && $2 != "ID" && $12 ~ /^cb-/ && $14=="true" {print $2 " " $18}') \
   <(nova list | awk 'NF > 1 && $2 != "ID" {print $2 }' \
     | nova show $(awk '{print $1}') \
     | awk '$2=="OS-EXT-SRV-ATTR:instance_name" {virsh_id=$4} $2=="id" {nova_id=$4} \
@@ -100,7 +100,7 @@ $ awk 'NR==FNR {a[$2]=$1;next} a[$1] {print $0 " " a[$1]}' \
 # pretty printed format
 $ awk 'BEGIN {print "Nova_ID Virsh_ID Volume_ID"} \
         NR==FNR {a[$2]=$1;next} a[$1] {print $0 " " a[$1]}' \
-  <(cinder list | awk ' NF > 1 && $2 != "ID" && $12 ~ /^cb-/ && $14 {print $2 " " $18}') \
+  <(cinder list | awk ' NF > 1 && $2 != "ID" && $12 ~ /^cb-/ && $14=="true" {print $2 " " $18}') \
   <(nova list | awk 'NF > 1 && $2 != "ID" {print $2 }' \
     | nova show $(awk '{print $1}') \
     | awk '$2=="OS-EXT-SRV-ATTR:instance_name" {virsh_id=$4} $2=="id" {nova_id=$4} \
