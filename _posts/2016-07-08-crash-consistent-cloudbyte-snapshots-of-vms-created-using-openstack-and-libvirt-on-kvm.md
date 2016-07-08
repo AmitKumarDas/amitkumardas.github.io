@@ -161,7 +161,8 @@ Thawed 1 filesystem(s)
 - List CloudByte volume snapshots of a given Nova instance.
 - List CloudByte volume snapshots of all Nova instances.
 - Steps:
-  - display the entire list
+  - Step 1 - 
+  - Step 2 - display the entire list
     - (Nova Instance ID, Nova Instance Name, Cinder Volume ID, CB Snapshot ID)
   - or
   - display the list for a particular Nova Instance ID
@@ -169,6 +170,22 @@ Thawed 1 filesystem(s)
 
 ```bash
 
+$ curl -K ec20.10.43.1 \
+    -d @eckey20.10.43.1 -G -k -s -S \
+    -d command=listFileSystem \
+  | json listFilesystemResponse.filesystem \
+  | json -a id name \
+  | awk '$2=="dd280c48f5cc4e86a8664cff0bf330ec" {print "id="$1}' \
+  | curl -K ec20.10.43.1 \
+    -d @eckey20.10.43.1 -G -k -s -S \
+    -d command=listStorageSnapshots \
+    -d @- \
+  | json listDatasetSnapshotsResponse.snapshot \
+  | json -a name path \
+  | column -t
+
+mysnappy   POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mysnappy
+mysnappy2  POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mysnappy2
 ```
 
 <br />
