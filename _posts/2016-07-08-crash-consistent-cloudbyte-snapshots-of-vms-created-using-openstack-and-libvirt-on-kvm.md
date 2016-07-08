@@ -47,7 +47,7 @@ curl 7.35.0
 
 <br />
 
-## Task: ```Setup ElastiCenter```
+## Task: ```Setup ElastiCenter Client```
 
 - Setup the environment to make cURL requests to ElastiCenter
 
