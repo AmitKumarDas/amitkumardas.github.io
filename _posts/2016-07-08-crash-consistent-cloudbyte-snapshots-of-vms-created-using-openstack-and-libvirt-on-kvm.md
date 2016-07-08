@@ -119,6 +119,8 @@ Froze 1 filesystem(s)
 # Assumptions: Cinder Volume ID is provided as input.
 # NOTE - Cinder volume id will be sanitized from hyphen '-'.
 # NOTE - CloudByte snapshot id & name are the output.
+# NOTE - In actual script, we will move the listFileSystem
+# call before fsfreeze.
 
 $ curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -G -k -s -S \
@@ -149,7 +151,7 @@ Thawed 1 filesystem(s)
 ### Task 1: ```Step 5```
 
 ```bash
-
+# The output captured from step 3 will be listed here.
 ```
 
 <br />
