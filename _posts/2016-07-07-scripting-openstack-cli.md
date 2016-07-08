@@ -98,7 +98,7 @@ $ awk 'NR==FNR {a[$2]=$1;next} a[$1] {print $0 " " a[$1]}' \
 
 
 # pretty printed format
-$ awk 'BEGIN {print "Nova_ID Virsh_ID Volume_ID"} \
+$ awk 'BEGIN {print "Nova_ID Virsh_ID Cinder_ID"} \
         NR==FNR {a[$2]=$1;next} a[$1] {print $0 " " a[$1]}' \
   <(cinder list | awk ' NF > 1 && $2 != "ID" && $12 ~ /^cb-/ && $14=="true" {print $2 " " $18}') \
   <(nova list | awk 'NF > 1 && $2 != "ID" {print $2 }' \
