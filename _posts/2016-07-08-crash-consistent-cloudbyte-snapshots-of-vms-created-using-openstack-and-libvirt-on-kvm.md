@@ -94,7 +94,11 @@ $ awk 'BEGIN {print "Nova_ID Virsh_ID Cinder_ID"} \
         | awk 'NF > 1 && $2 != "ID" {print $2 }' \
         | nova show $(awk '{print $1}') \
         | awk '$2=="OS-EXT-SRV-ATTR:instance_name" {virsh_id=$4} $2=="id" {nova_id=$4} \
-            END {print nova_id " " virsh_id}')
+            END {print nova_id " " virsh_id}') \
+  | column -t
+
+Nova_ID                               Virsh_ID           Cinder_ID
+0b7724e2-fc8a-420c-a20a-7da85329e419  instance-00000003  dd280c48-f5cc-4e86-a866-4cff0bf330ec
 ```
 
 <br />
