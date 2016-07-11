@@ -7,6 +7,93 @@ title: Scripting that you wanted to master
 
 <br />
 
+## Expansion using positional parameters
+
+- [Shell parameter expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
+
+```bash
+
+$ string=01234567890abcdefgh
+
+$ echo ${string:7}
+7890abcdefgh
+
+$ echo ${string:7:0}
+
+$ echo ${string:7:2}
+78
+
+$ echo ${string:7:-2}
+7890abcdef
+
+$ echo ${string: -7}
+bcdefgh
+
+$ echo ${string: -7:0}
+
+$ echo ${string: -7:2}
+bc
+
+$ echo ${string: -7:-2}
+bcdef
+```
+
+<br />
+
+```bash
+$ array[0]=01234567890abcdefgh
+
+$ echo ${array[0]:7}
+7890abcdefgh
+
+$ echo ${array[0]:7:0}
+
+$ echo ${array[0]:7:2}
+78
+
+$ echo ${array[0]:7:-2}
+7890abcdef
+
+$ echo ${array[0]: -7}
+bcdefgh
+
+$ echo ${array[0]: -7:0}
+
+$ echo ${array[0]: -7:2}
+bc
+
+$ echo ${array[0]: -7:-2}
+bcdef
+```
+
+<br />
+
+```bash
+$ array=(0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h)
+
+$ echo ${array[@]:7}
+7 8 9 0 a b c d e f g h
+
+$ echo ${array[@]:7:2}
+7 8
+
+$ echo ${array[@]: -7:2}
+b c
+
+$ echo ${array[@]: -7:-2}
+bash: -2: substring expression < 0
+
+$ echo ${array[@]:0}
+0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h
+
+$ echo ${array[@]:0:2}
+0 1
+
+$ echo ${array[@]: -7:0}
+```
+
+<br />
+
 ## Named Pipes
 
 - [A reference to Named Pipes](http://www.linuxjournal.com/article/2156?page=0,1)
