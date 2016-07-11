@@ -77,6 +77,8 @@ title: Curated filesystem based learnings/quotes
 > regions with a wide degree of replication to ensure protection against calamities
 > and natural disasters.
 
+<br />
+
 ## Scaling issues
 
 > ..traffic grew suddenly and we started saturating the routers between our network
@@ -94,6 +96,8 @@ title: Curated filesystem based learnings/quotes
 > this turned out to be a really great decision in terms of simplifying development
 > and minimizing unknowns.
 
+<br />
+
 ## What size is good size ?
 
 > ..**4MB** is a pretty small amount of data in a multi-exabyte storage system however
@@ -102,6 +106,8 @@ title: Curated filesystem based learnings/quotes
 > these blocks into **1GB** logical storage containers called buckets. The blocks
 > within a given bucket don’t necessarily have anything in common; they’re just
 > blocks that happened to be uploaded around the same time.
+
+<br />
 
 ## What about replication ?
 
