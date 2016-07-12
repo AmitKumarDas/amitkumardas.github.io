@@ -1,15 +1,15 @@
-### This is the data for my blog
+# Source of my blog
 
 It will be automatically transformed by [Jekyll](http://github.com/mojombo/jekyll) into a static site, whenever I push this repository to GitHub.
 
-### List of advantages
+## List of advantages
 
 - Author your posts locally in Markdown format. 
 - Blog should be easily stylable and customizable any way I please. 
 - It should take care of creating a feed for me. 
 - And most of all, my site should be stored on GitHub so that I never lose data again.
 
-### License
+## License
 
 - This is a fork of mojombo/mojombo.github.io. 
 - The following directories and their contents are Copyright Amit Kumar Das. 
