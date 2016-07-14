@@ -21,6 +21,8 @@ title: Better Bash Coding & Utils
 - Prefix ```_``` for internal variable & function names.
 - Treat the output of a command like a file via ```<(some command)```.
 - Check if you script needs a trap.
+  - Useful for clean up.
+  - Useful for mandatory restarts. Read the reference link for details.
 - Verify your script via [shellcheck](http://www.shellcheck.net/).
 
 <br />
