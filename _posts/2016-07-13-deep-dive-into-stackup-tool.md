@@ -12,13 +12,13 @@ title: Deep dive into Stack Up deployment tool
 
 <br />
 
-# What makes ```Stack Up``` so special ?
+# What makes ```Stack Up``` special ?
 
-> I find sup is really good at creating customized commands & allowing placement
+> I find sup good at creating customized commands & allowing placement
 > of command's implementation in the run, local, etc tags. This lets one to expose
 > reusable shell snippets as customized commands. In addition, the interactive mode
 > provides the ability to pass prepared commands via sup. To summarize, I find this to
-> be an effective replacement of building aliases, plugins, etc. found in oh-my-zsh
+> be an effective replacement of building aliases, plugins, etc. found in oh-my-zsh,
 > bash-it, etc. shell based libraries.
 
 <br />
@@ -44,8 +44,8 @@ title: Deep dive into Stack Up deployment tool
 
 # Similar stuff elsewhere
 
-- [Turtle](https://github.com/Gabriel439/Haskell-Turtle-Library)
-- [invoke](https://github.com/pyinvoke/invoke)
+- [Haskell based turtle](https://github.com/Gabriel439/Haskell-Turtle-Library)
+- [Python based invoke](https://github.com/pyinvoke/invoke)
 
 <br />
 
