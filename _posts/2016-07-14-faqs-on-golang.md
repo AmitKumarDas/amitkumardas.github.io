@@ -11,10 +11,10 @@ title: FAQs on golang
 
 # Here are the questions:
 
-```
-# [semicolon] Is it required ?
+```golang
+// [semicolon] Is it required ?
 
-# [code block] How is it done ?
+// [code block] How is it done ?
 
 # [multi-valued return] Is it possible ?
 
