@@ -16,100 +16,100 @@ title: FAQs on golang
 
 // [code block] How is it done ?
 
-# [multi-valued return] Is it possible ?
+// [multi-valued return] Is it possible ?
 
-# [return nil, err] What is the utility of such combination ?
+// [return nil, err] What is the utility of such combination ?
 
-# [:= vs. =] What is the difference ?
+// [:= vs. =] What is the difference ?
 
-# [if statement] Is it the same usage as other languages ?
+// [if statement] Is it the same usage as other languages ?
 
-# [all-in-one if statement]
+// [all-in-one if statement]
 
-# [variable name & data-type] How is the placement done ?
+// [variable name & data-type] How is the placement done ?
 
-# [method naming convention] ?
+// [method naming convention] ?
 
-# [variable naming convention] ?
+// [variable naming convention] ?
 
-# [io/ioutil vs. bufio] ?
+// [io/ioutil vs. bufio] ?
 
-# [struct vs class] ?
+// [struct vs class] ?
 
-# [func signature - I]
+// [func signature - I]
 func f(x int)
 
-# [func signature - II]
+// [func signature - II]
 func avg(nums []float64) float64
 
-# [func signature - III]
+// [func signature - III]
 func f() (int, int)
 
-# [func signature - IV]
+// [func signature - IV]
 func add(args ...int) int
 
-# [func signature - V]
+// [func signature - V]
 func Println(a ...interface{}) (n int, err error)
 
-# [func signature - VI]
+// [func signature - VI]
 func (c *SSHClient) getShell() error
 
-# [func signature - VII]
+// [func signature - VII]
 add := func(x, y int) int
 
-# [defer] ?
+// [defer] ?
 
-# [recover] ?
+// [recover] ?
 ```
 
 <br />
 
 # Time for solutions:
 
-```
-# [semicolon] No need.
+```go
+// [semicolon] No need.
 
-# [code block] Use ```{}```.
+// [code block] Use ```{}```.
 
-# [multi-valued return] It is possible & used heavily for error handling.
+// [multi-valued return] It is possible & used heavily for error handling.
 
-# [return nil, err] nil may or may not indicate an error.
-# Alternative to throwing exceptions.
+// [return nil, err] nil may or may not indicate an error.
+// Alternative to throwing exceptions.
 
-# [:= vs. =]
+// [:= vs. =]
 
-# [if] It does not mandate a ```()```.
+// [if] It does not mandate a ```()```.
 if err != nil && err != io.EOF {..}
 
-# [variable name & data-type] first comes the name & then the data-type.
+// [variable name & data-type] first comes the name & then the data-type.
 
-# [method naming convention] CapitalCase
+// [method naming convention] CapitalCase
 
-# [variable naming convention] camelCase
+// [variable naming convention] camelCase
 
-# [func signature - IV] variadic function
+// [func signature - IV] variadic function
 
-# [func signature - III] multi return
+// [func signature - III] multi return
 
-# [func signature - V] variadic values of any type
-# assumption - increment is a func here
+// [func signature - V] variadic values of any type
+// assumption - increment is a func here
 fmt.Println(increment())
 
-# [all-in-one if statement]
+// [all-in-one if statement]
 if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
 
-# [func signature - VII] closure
+// [func signature - VII] closure
 
-# [defer] moves the call to the end of the enclosing function
-# .. easy reading
-# .. handles multiple return statements inside the func
-# .. runs even when run-time panic occurs
-# .. i.e. equivalent to a big try .. finally block in a java method
+// [defer] moves the call to the end of the enclosing function
+// .. easy reading
+// .. handles multiple return statements inside the func
+// .. runs even when run-time panic occurs
+// .. i.e. equivalent to a big try .. finally block in a java method
 f, _ := os.Open(filename)
 defer f.Close()
 
-# [recover] Looks like the catch block as in java.
-# .. needs to be paired with defer
+// [recover] Looks like the catch block as in java.
+// .. needs to be paired with defer
 func main() {
   defer func() {
     str := recover()
