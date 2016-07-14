@@ -20,15 +20,28 @@ title: Better Bash Coding & Utils
 - Use ```{}``` when referencing variables, preferring ${NAME} instead of $NAME.
 - Prefix ```_``` for internal variable & function names.
 - Treat the output of a command like a file via ```<(some command)```.
-- Verify your script via [shellcheck](http://www.shellcheck.net/)
+- Check if you script needs a trap.
+- Verify your script via [shellcheck](http://www.shellcheck.net/).
 
 <br />
 
 ## More bash tips
 
 ```bash
+# bash exit trap
 
+#!/bin/bash
+function finish {
+  # Your cleanup code here
+}
+trap finish EXIT
+```
+
+<br />
+
+```bash
 # left trim & right trim
+
 ${var%suffix-pattern}         # the suffix is trimmed out
 ${var#prefix-pattern}         # the prefix is trimmed out
 
@@ -39,6 +52,7 @@ echo ${var%.pdf}.txt          # prints foo.txt
 <br />
 
 ```bash
+# working with string
 
 $ string=01234567890abcdefgh
 
@@ -55,6 +69,8 @@ bcdefgh
 <br />
 
 ```bash
+# working with arrays - I
+
 $ array[0]=01234567890abcdefgh
 
 $ echo ${array[0]:7}
@@ -75,6 +91,8 @@ bcdef
 <br />
 
 ```bash
+# working with arrays - II
+
 $ array=(0 1 2 3 4 5 6 7 8 9 0 a b c d e f g h)
 
 $ echo ${array[@]:7}
@@ -95,8 +113,8 @@ $ echo ${array[@]: -7:0}
 <br />
 
 ```bash
-
 # Use () to group commands
+
 # do something in current dir
 (cd /some/other/dir && other-command)
 # continue in original dir
@@ -105,16 +123,16 @@ $ echo ${array[@]: -7:0}
 <br />
 
 ```bash
-
 # Arithmetic expansions within (())
+
 i=$(( (i + 1) % 5 ))
 ```
 
 <br />
 
 ```bash
-
 # Avoid re-typing
+
 mv foo.{txt,pdf} some-dir   # moves both food.txt & foo.pdf
 cp somefile{,.bak}          # expands to somefile & somefile.bak
 
@@ -125,7 +143,6 @@ mkdir -p test-{a,b,c}/subtest-{1,2,3}
 <br />
 
 ```bash
-
 # Positional variables & parameter expansions:
 
 ${1:-alternative}       # default value: the string 'alternative'
@@ -136,7 +153,6 @@ ${1:?'error message'}   # exit with 'error message' if variable is unbound
 <br />
 
 ```bash
-
 # Arrays & parameter expansions:
 
 ${some_array[@]:-}              # blank default value
@@ -159,6 +175,7 @@ ${some_array[0]:-default_value} # default value: the string 'default_value'
 
 ## References
 
-- [bash boilerplate](https://github.com/alphabetum/bash-boilerplate)
+- [Bash boilerplate](https://github.com/alphabetum/bash-boilerplate)
 - [Art of command line](https://github.com/jlevy/the-art-of-command-line)
 - [Shell parameter expansion](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
+- [Bash exit traps](http://redsymbol.net/articles/bash-exit-traps/)
