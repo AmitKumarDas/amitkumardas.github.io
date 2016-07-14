@@ -11,7 +11,7 @@ title: FAQs on golang
 
 # Here are the questions:
 
-```golang
+```go
 // [semicolon] Is it required ?
 
 // [code block] How is it done ?
