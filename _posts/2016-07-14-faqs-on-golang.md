@@ -60,6 +60,19 @@ add := func(x, y int) int
 // [defer] ?
 
 // [recover] ?
+
+// [formatting & style] Any specific styling ?
+
+// [Code Review Comments] Any guide ?
+
+// [Naming conventions] Are there any ?
+
+// [dot import] What are these ?
+
+// [Flags] What are these ?
+
+// [path settings, workspaces, etc.] What are these ?
+
 ```
 
 <br />
@@ -117,4 +130,41 @@ func main() {
   }()
   panic("PANIC")
 }
+
+// [formatting & style] gofmt on save - nothing else is accepted
+
+// [path settings, workspaces, etc.] https://golang.org/doc/code.html
+// [path settings, workspaces, etc.] Below are Windows specific
+$ echo $GOPATH
+C:\Users\amit\code_src\goworks
+
+$ echo $PATH
+C:\Users\amit\code_src\goworks\bin
+
+$ go get github.com/golang/example/hello
+
+$ pwd
+/c/Users/amit/code_src/goworks/src
+
+$ ls -ltr
+total 0
+drwxr-xr-x    2 amit     Administ        0 Jul 15 14:58 bin
+drwxr-xr-x    2 amit     Administ        0 Jul 15 14:58 pkg
+drwxr-xr-x    3 amit     Administ        0 Jul 15 14:59 src
+
+$ go build github.com/AmitKumarDas/sup
+
+$ cd src/github.com/AmitKumarDas/sup/
+
+$ go build
+
+// [Flags] http://bit.ly/GoFlags
+
+// [dot import] Looks similar to static imports in Java
+// [dot import] Do not do it. Makes code unreadable.
+// [dot import] Is bad. Favor explicit than implicit.
+
+// [Code Review Comments] bit.ly/GoCodeReview
+
+// [Naming conventions] bit.ly/GoNames
 ```
