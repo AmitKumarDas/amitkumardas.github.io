@@ -161,8 +161,8 @@ $ go build
 // [Flags] http://bit.ly/GoFlags
 
 // [dot import] Looks similar to static imports in Java
-// [dot import] Do not do it. Makes code unreadable.
-// [dot import] Is bad. Favor explicit than implicit.
+// .. Do not do it. Makes code unreadable.
+// .. Is bad. Favor explicit than implicit.
 
 // [Code Review Comments] bit.ly/GoCodeReview
 
