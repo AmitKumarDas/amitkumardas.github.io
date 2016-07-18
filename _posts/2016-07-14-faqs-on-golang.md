@@ -188,8 +188,19 @@ export PATH=$PATH:$GOPATH/bin
   - May use govendor
   - go get -u github.com/kardianos/govendor
 
+- **creating a new golang project**
+  - install govendor
+  - navigate to your project folder
+    - e.g. pwd
+    - /home/goworkspace/src/github.com/openebs/openebs
+  - initialize your project with govendor
+    - govendor init
+  - install the 3rd party libraries
+    - govendor fetch github.com/urfave/cli/@=v1
+
 <br />
 
 ## Other useful links:
 
 - [golang & use of shell commands](http://nathanleclaire.com/blog/2014/12/29/shelled-out-commands-in-golang/)
+- [govendor](https://github.com/kardianos/govendor)
