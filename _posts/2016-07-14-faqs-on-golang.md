@@ -9,117 +9,39 @@ title: FAQs on golang
 
 <br />
 
-## Here are the questions:
+## Frequently asked question:
 
-- **semicolon**
-  - Is it required ?
+- **semicolon** Do we need them ?
+  - No need.
 
-- **code block**
-  - How is it done ?
+- **code block** Do we have it ?
+  - Use ```{}```.
 
-- **multi-valued return**
-  - Is it possible ?
+- **multi-valued return** Is it possible ?
+  - It is possible & used heavily for error handling.
 
-- **return nil, err**
-  - What is the utility of such combination ?
+- **return nil, err** What is the utility of such syntax ?
+  - nil may or may not indicate an error.
+  - alternative to throwing exceptions.
+  - multi-valued return
 
-- **:= vs. =** 
-  - What is the difference ?
+- **:= vs. =** What is the difference ?
 
-- **if statement**
-  - Is it the same usage as other languages ?
+- **if** Does this have any variations from other languages ?
+  - It does not mandate use of ```()```.
+  - e.g. ```if err != nil && err != io.EOF {..}```
 
-- **variable name & data-type**
-  - How is the placement done ?
+- **all-in-one if statement** Read the sample & understand !!
 
-- **method naming convention**
-  - Are there any ?
-
-- **variable naming convention**
-  - Are there any ?
+```
+  if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
+```
 
 - **io/ioutil vs. bufio**
   - When to use one ?
 
 - **struct vs class**
   - When to use one ?
-
-- **func signature - I**
-  - func f(x int)
-
-- **func signature - II**
-  - func avg(nums []float64) float64
-
-- **func signature - III**
-  - func f() (int, int)
-
-- **func signature - IV**
-  - func add(args ...int) int
-
-- **func signature - V**
-  - func Println(a ...interface{}) (n int, err error)
-
-- **func signature - VI**
-  - func (c *SSHClient) getShell() error
-
-- **func signature - VII**
-  - add := func(x, y int) int
-
-- **defer**
-  - What is it? 
-
-- **recover**
-  - What is it?
-
-- **formatting & style**
-  - Any specific styling ?
-
-- **Code Review Comments**
-  - Any guide ?
-
-- **Naming conventions**
-  - Are there any ?
-
-- **dot import**
-  - What are these ?
-
-- **Flags**
-  - What are these ?
-
-- **path settings, workspaces, etc.**
-  - What are these ?
-
-- **install golang on CentOS**
-  - Any steps ?
-
-- **golang & creation of workspace for development** 
-  - Any steps ?
-
-<br />
-
-## Time for solutions:
-
-- **semicolon**
-  - No need.
-
-- **code block**
-  - Use ```{}```.
-
-- **multi-valued return**
-  - It is possible & used heavily for error handling.
-
-- **return nil, err**
-  - nil may or may not indicate an error.
-  - Alternative to throwing exceptions.
-
-- **:= vs. =**
-
-- **if**
-  - It does not mandate use of ```()```.
-  - e.g. ```if err != nil && err != io.EOF {..}```
-
-- **all-in-one if statement**
-  - if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
 
 - **variable name & data-type**
   - first comes the name & then the data-type.
@@ -130,17 +52,32 @@ title: FAQs on golang
 - **variable naming convention**
   - camelCase
 
-- **func signature - IV**
-  - it refers to a variadic function
+- **func signature - I**
+  - func f(x int)
+
+- **func signature - II**
+  - func avg(nums []float64) float64
 
 - **func signature - III**
+  - func f() (int, int)
   - it refers to a multi return function
 
+- **func signature - IV**
+  - func add(args ...int) int
+  - it refers to a variadic function
+
 - **func signature - V**
-  - variadic values of any type
+  - func Println(a ...interface{}) (n int, err error)
+  - variadic inputs of any type
+  - multi-return
+
+- **func signature - VI**
+  - func (c *SSHClient) getShell() error
 
 - **func signature - VII**
+  - add := func(x, y int) int
   - it refers to a closure function
+  - note: func is after the :=
 
 - **defer**
   - moves the call to the end of the enclosing function
@@ -150,8 +87,8 @@ title: FAQs on golang
   - i.e. equivalent to a big try .. finally block in a java method
 
 ```    
-f, _ := os.Open(filename)
-defer f.Close()
+  f, _ := os.Open(filename)
+  defer f.Close()
 ```
 
 - **recover**
