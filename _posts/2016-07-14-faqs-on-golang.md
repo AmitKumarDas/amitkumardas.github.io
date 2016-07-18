@@ -13,119 +13,152 @@ title: FAQs on golang
 
 - **semicolon**
   - Is it required ?
+
 - **code block**
   - How is it done ?
+
 - **multi-valued return**
   - Is it possible ?
+
 - **return nil, err**
   - What is the utility of such combination ?
+
 - **:= vs. =** 
   - What is the difference ?
+
 - **if statement**
   - Is it the same usage as other languages ?
 
+- **variable name & data-type**
+  - How is the placement done ?
 
-// [all-in-one if statement]
+- **method naming convention**
+  - Are there any ?
 
-// [variable name & data-type] How is the placement done ?
+- **variable naming convention**
+  - Are there any ?
 
-// [method naming convention] ?
+- **io/ioutil vs. bufio**
+  - When to use one ?
 
-// [variable naming convention] ?
+- **struct vs class**
+  - When to use one ?
 
-// [io/ioutil vs. bufio] ?
+- **func signature - I**
+  - func f(x int)
 
-// [struct vs class] ?
+- **func signature - II**
+  - func avg(nums []float64) float64
 
-// [func signature - I]
-func f(x int)
+- **func signature - III**
+  - func f() (int, int)
 
-// [func signature - II]
-func avg(nums []float64) float64
+- **func signature - IV**
+  - func add(args ...int) int
 
-// [func signature - III]
-func f() (int, int)
+- **func signature - V**
+  - func Println(a ...interface{}) (n int, err error)
 
-// [func signature - IV]
-func add(args ...int) int
+- **func signature - VI**
+  - func (c *SSHClient) getShell() error
 
-// [func signature - V]
-func Println(a ...interface{}) (n int, err error)
+- **func signature - VII**
+  - add := func(x, y int) int
 
-// [func signature - VI]
-func (c *SSHClient) getShell() error
+- **defer**
+  - What is it? 
 
-// [func signature - VII]
-add := func(x, y int) int
+- **recover**
+  - What is it?
 
-// [defer] ?
+- **formatting & style**
+  - Any specific styling ?
 
-// [recover] ?
+- **Code Review Comments**
+  - Any guide ?
 
-// [formatting & style] Any specific styling ?
+- **Naming conventions**
+  - Are there any ?
 
-// [Code Review Comments] Any guide ?
+- **dot import**
+  - What are these ?
 
-// [Naming conventions] Are there any ?
+- **Flags**
+  - What are these ?
 
-// [dot import] What are these ?
+- **path settings, workspaces, etc.**
+  - What are these ?
 
-// [Flags] What are these ?
+- **install golang on CentOS**
+  - Any steps ?
 
-// [path settings, workspaces, etc.] What are these ?
-
-// [install golang on CentOS] Any steps ?
-
-
+- **golang & creation of workspace for development** 
+  - Any steps ?
 
 <br />
 
 ## Time for solutions:
 
-```go
-// [semicolon] No need.
+- **semicolon**
+  - No need.
 
-// [code block] Use ```{}```.
+- **code block**
+  - Use ```{}```.
 
-// [multi-valued return] It is possible & used heavily for error handling.
+- **multi-valued return**
+  - It is possible & used heavily for error handling.
 
-// [return nil, err] nil may or may not indicate an error.
-// Alternative to throwing exceptions.
+- **return nil, err**
+  - nil may or may not indicate an error.
+  - Alternative to throwing exceptions.
 
-// [:= vs. =]
+- **:= vs. =**
 
-// [if] It does not mandate a ```()```.
-if err != nil && err != io.EOF {..}
+- **if**
+  - It does not mandate use of ```()```.
+  - e.g. ```if err != nil && err != io.EOF {..}```
 
-// [variable name & data-type] first comes the name & then the data-type.
+- **all-in-one if statement**
+  - if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
 
-// [method naming convention] CapitalCase
+- **variable name & data-type**
+  - first comes the name & then the data-type.
 
-// [variable naming convention] camelCase
+- **method naming convention**
+  - CapitalCase
 
-// [func signature - IV] variadic function
+- **variable naming convention**
+  - camelCase
 
-// [func signature - III] multi return
+- **func signature - IV**
+  - it refers to a variadic function
 
-// [func signature - V] variadic values of any type
-// assumption - increment is a func here
-fmt.Println(increment())
+- **func signature - III**
+  - it refers to a multi return function
 
-// [all-in-one if statement]
-if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
+- **func signature - V**
+  - variadic values of any type
 
-// [func signature - VII] closure
+- **func signature - VII**
+  - it refers to a closure function
 
-// [defer] moves the call to the end of the enclosing function
-// .. easy reading
-// .. handles multiple return statements inside the func
-// .. runs even when run-time panic occurs
-// .. i.e. equivalent to a big try .. finally block in a java method
+- **defer**
+  - moves the call to the end of the enclosing function
+  - easy reading
+  - handles multiple return statements inside the func
+  - runs even when run-time panic occurs
+  - i.e. equivalent to a big try .. finally block in a java method
+
+```    
 f, _ := os.Open(filename)
 defer f.Close()
+```
 
-// [recover] Looks like the catch block as in java.
-// .. needs to be paired with defer
+- **recover**
+  - looks like the catch block as in java.
+  - needs to be paired with defer
+
+```
 func main() {
   defer func() {
     str := recover()
@@ -133,11 +166,16 @@ func main() {
   }()
   panic("PANIC")
 }
+```
 
-// [formatting & style] gofmt on save - nothing else is accepted
+- **formatting & style**
+  - gofmt on save - nothing else is accepted
 
-// [path settings, workspaces, etc.] https://golang.org/doc/code.html
-// [path settings, workspaces, etc.] Below are Windows specific
+- **path settings, workspaces, etc.**
+  - refer [link](https://golang.org/doc/code.html)
+  - below are Windows specific
+
+```
 $ echo $GOPATH
 C:\Users\amit\code_src\goworks
 
@@ -160,24 +198,51 @@ $ go build github.com/AmitKumarDas/sup
 $ cd src/github.com/AmitKumarDas/sup/
 
 $ go build
+```
 
-// [Flags] http://bit.ly/GoFlags
+- **Flags**
+  - http://bit.ly/GoFlags
 
-// [dot import] Looks similar to static imports in Java
-// .. Do not do it. Makes code unreadable.
-// .. Is bad. Favor explicit than implicit.
+- **dot import**
+  - Looks similar to static imports in Java
+  - Do not use it. Makes code unreadable.
+  - Is bad. Favor explicit than implicit.
 
-// [Code Review Comments] bit.ly/GoCodeReview
+- **Code Review Comments**
+  - bit.ly/GoCodeReview
 
-// [Naming conventions] refer bit.ly/GoNames
+- **Naming conventions**
+  - bit.ly/GoNames
 
-// [install golang on CentOS]
-// .. https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
-// tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
-// .. update the PATH environment variable.
-//    export PATH=$PATH:/usr/local/go/bin   @
-//      .. edit /etc/profile.d/golang.sh    (system-wide installation)
-//      .. or $HOME/.profile                (local)
-// exit the session & re-login
-// type in go & hit enter
+- **install golang on CentOS**
+
+```
+curl -O https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
+
+tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
+
+# update the PATH environment variable.
+# export PATH=$PATH:/usr/local/go/bin   @
+#      .. edit /etc/profile.d/golang.sh    (system-wide installation)
+#      .. or $HOME/.profile                (local)
+
+exit the session & re-login
+```
+
+- **golang & creation of workspace for development w.r.t CentOS**
+
+```
+$ pwd
+/home/goworkspace
+
+$ ls -ltr
+drwxr-xr-x. 2 root root  6 Jul 18 10:29 bin
+drwxr-xr-x. 2 root root  6 Jul 18 10:29 pkg
+drwxr-xr-x. 3 root root 23 Jul 18 10:30 src
+
+$ cat /etc/profile.d/golang.sh
+export GOROOT=/usr/local/go
+export GOPATH=/home/goworkspace
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOPATH/bin
 ```
