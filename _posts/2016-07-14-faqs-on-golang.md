@@ -11,10 +11,10 @@ title: FAQs on golang
 
 ## Frequently asked question:
 
-- **semicolon** Do we need them ?
+- **semicolon** - Do we need them ?
   - No need.
 
-- **code block** Do we have it ?
+- **code block** - Do we have it ?
   - Use ```{}```.
 
 - **multi-valued return** Is it possible ?
@@ -183,6 +183,10 @@ export GOPATH=/home/goworkspace
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 ```
+
+- **3rd party lib management**
+  - May use govendor
+  - go get -u github.com/kardianos/govendor
 
 <br />
 
