@@ -9,20 +9,14 @@ title: FAQs on golang
 
 <br />
 
-# Here are the questions:
+## Here are the questions:
 
-```go
-// [semicolon] Is it required ?
-
-// [code block] How is it done ?
-
-// [multi-valued return] Is it possible ?
-
-// [return nil, err] What is the utility of such combination ?
-
-// [:= vs. =] What is the difference ?
-
-// [if statement] Is it the same usage as other languages ?
+- [semicolon] Is it required ?
+- [code block] How is it done ?
+- [multi-valued return] Is it possible ?
+- [return nil, err] What is the utility of such combination ?
+- [:= vs. =] What is the difference ?
+- [if statement] Is it the same usage as other languages ?
 
 // [all-in-one if statement]
 
@@ -73,11 +67,13 @@ add := func(x, y int) int
 
 // [path settings, workspaces, etc.] What are these ?
 
-```
+// [install golang on CentOS] Any steps ?
+
+
 
 <br />
 
-# Time for solutions:
+## Time for solutions:
 
 ```go
 // [semicolon] No need.
@@ -166,5 +162,15 @@ $ go build
 
 // [Code Review Comments] bit.ly/GoCodeReview
 
-// [Naming conventions] bit.ly/GoNames
+// [Naming conventions] refer bit.ly/GoNames
+
+// [install golang on CentOS]
+// .. https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
+// tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+// .. update the PATH environment variable.
+//    export PATH=$PATH:/usr/local/go/bin   @
+//      .. edit /etc/profile.d/golang.sh    (system-wide installation)
+//      .. or $HOME/.profile                (local)
+// exit the session & re-login
+// type in go & hit enter
 ```
