@@ -183,3 +183,7 @@ export GOPATH=/home/goworkspace
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 ```
+
+## Other useful links:
+
+- [golang & use of shell commands](http://nathanleclaire.com/blog/2014/12/29/shelled-out-commands-in-golang/)
