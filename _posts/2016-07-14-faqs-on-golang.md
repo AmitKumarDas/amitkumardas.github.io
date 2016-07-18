@@ -11,12 +11,18 @@ title: FAQs on golang
 
 ## Here are the questions:
 
-- [semicolon] Is it required ?
-- [code block] How is it done ?
-- [multi-valued return] Is it possible ?
-- [return nil, err] What is the utility of such combination ?
-- [:= vs. =] What is the difference ?
-- [if statement] Is it the same usage as other languages ?
+> [semicolon] Is it required ?
+<br />
+> [code block] How is it done ?
+<br />
+> [multi-valued return] Is it possible ?
+<br />
+> [return nil, err] What is the utility of such combination ?
+<br />
+> [:= vs. =] What is the difference ?
+<br />
+> [if statement] Is it the same usage as other languages ?
+<br />
 
 // [all-in-one if statement]
 
