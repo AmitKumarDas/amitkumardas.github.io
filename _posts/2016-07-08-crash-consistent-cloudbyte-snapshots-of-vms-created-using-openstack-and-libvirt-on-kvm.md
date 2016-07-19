@@ -17,6 +17,7 @@ title: Crash consistent snapshots of VMs created using OpenStack & libvirt on KV
 - [Refresh Link 1](https://amitkumardas.github.io/2016/07/07/scripting-openstack-cli.html)
 - [Refresh Link 2](https://amitkumardas.github.io/2016/07/01/using-curl-as-rest-client-to-cloudbyte-elasticenter.html)
 - [Refresh link 3](https://amitkumardas.github.io/2016/07/02/using-curl-and-json-to-create-a-cloudbyte-volume.html)
+- [Refresh link 4](https://amitkumardas.github.io/2016/04/09/setting-up-a-kvm-based-setup-for-crash-consistent-cloudbyte-storage-snapshots.html)
 
 <br />
 
