@@ -198,6 +198,56 @@ export PATH=$PATH:$GOPATH/bin
   - install the 3rd party libraries
     - govendor fetch github.com/urfave/cli/@=v1
 
+- **govendor tips**
+
+```
+- install or update govendor
+  - go get -u github.com/kardianos/govendor
+  - this places the source code @ $GOPATH/src
+  - then compiles the package & places govendor binary in $GOPATH/bin
+
+- get started
+  - govendor init
+
+- add a dependency
+  - inside your project...
+  - govendor fetch github.com/amit/das
+
+- update an existing dependency
+  - inside the your project..
+  - govendor fetch github.com/openebs/openebs@master
+
+- more
+  - https://github.com/kardianos/govendor/wiki/Govendor-CheatSheet
+```
+
+- **git tips**
+ 
+```
+- git set user name
+  - git config --global user.name "AmitKumarDas"
+  - git config --get user.name
+- git set user email
+  - git config --global user.email "amit.das@cloudbyte.com"
+  - git config --get user.email
+- git add existing project into git
+  - cd existing_folder
+  - git init
+  - git remote add origin http://20.11.1.101/root/openebs.git
+  - git add .
+  - git commit
+  - git push -u origin master
+- git commit history
+  - git log --pretty=oneline
+  - git log --pretty=format:"%h - %an, %ar : %s"
+- git learn the origin
+  - git config --get remote.origin.url
+- git learn the origin if referential integrity is intact
+  - git remote show origin
+- git update a repository
+  - git pull origin master
+```
+
 <br />
 
 ## Other useful links:
