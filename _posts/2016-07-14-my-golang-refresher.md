@@ -1,6 +1,6 @@
 ---
 layout: post
-title: FAQs on golang
+title: My golang refresher
 ---
 
 # Why this article ?
