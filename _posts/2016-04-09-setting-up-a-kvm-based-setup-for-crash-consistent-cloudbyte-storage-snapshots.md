@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Setting up a KVM based setup for crash consistent CloudByte storage snapshots - WIP
+title: Setting up a KVM based setup for crash consistent CloudByte storage snapshots
 ---
 
 # Setting up a KVM based setup for crash consistent CloudByte storage snapshots
