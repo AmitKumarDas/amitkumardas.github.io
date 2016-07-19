@@ -56,24 +56,24 @@ doubleUs x y = doubleMe x + doubleMe y
 -- else is mandatory
 ```
 
+<br />
+
 ## Are heterogeneous elements allowed in a list ?
 
 - No
+
+<br />
 
 ## How are strings & lists related ?
 
 - Strings are list of characters.
 - list operations on Strings is possible.
 
+<br />
+
 ## Do you understand [] vs. [[]] vs. [[], [], []] ?
 
 - empty list vs. list containing an empty list vs. ...
-
-- [string & list] How are they related ?
-- [!!] When is !! used ?
-- [: vs. ++] operator wars. Do you understand the usage difference ?
-- [square brackets]
-- [list index] index in a list start at ?
 
 <br />
 
