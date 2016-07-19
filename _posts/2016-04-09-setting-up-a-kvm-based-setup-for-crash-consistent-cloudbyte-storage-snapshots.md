@@ -1,9 +1,9 @@
 ---
 layout: post
-title: KVM based crash consistent CloudByte storage snapshots - WIP
+title: Setting up a KVM based setup for crash consistent CloudByte storage snapshots - WIP
 ---
 
-# KVM based crash consistent CloudByte storage snapshots - **WIP**
+# Setting up a KVM based setup for crash consistent CloudByte storage snapshots
 
 > This article tries to collage information on how to implement a perfect
 > crash consistent snapshot for VMs running on KVM based hypervisors. This
@@ -479,9 +479,4 @@ Thawed 1 filesystem(s)
 
 ### Final Solution:
 
-```
-# cd to devstack location
-> source openrc admin admin
-
-> 
-```
+- Refer to [link](https://amitkumardas.github.io/2016/07/08/crash-consistent-cloudbyte-snapshots-of-vms-created-using-openstack-and-libvirt-on-kvm.html)
