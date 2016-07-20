@@ -41,6 +41,43 @@ title: My golang refresher
 
 <br />
 
+- **constants** - Are there any restrictions ?
+  - String, numbers or boolean can be constants.
+
+<br />
+
+- **(  )** - Does it signify anything special ?
+  - It is used for grouping:
+  - NOTE - Do not mix them up.
+
+```go
+import (    
+)
+
+var(  
+)
+
+const(  
+)
+```
+
+<br />
+
+- **enumerated constants** - What are these ?
+  - these are incremented by 1 starting from 0
+
+```go
+// use of keyword iota
+
+const(
+  a = iota // a == 0
+  b = iota // b == 1
+  c        // implicitly c == iota, c == 2
+)
+```
+
+<br />
+
 - **:= vs. =** What is the difference ?
  
 ```go
