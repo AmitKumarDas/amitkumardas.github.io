@@ -14,70 +14,108 @@ title: My golang refresher
 - **semicolon** - Do we need them ?
   - No need.
 
+<br />
+
 - **code block** - Do we have it ?
   - Use ```{}```.
 
+<br />
+
 - **multi-valued return** Is it possible ?
   - It is possible & used heavily for error handling.
+
+<br />
 
 - **return nil, err** What is the utility of such syntax ?
   - nil may or may not indicate an error.
   - alternative to throwing exceptions.
   - multi-valued return
 
+<br />
+
 - **:= vs. =** What is the difference ?
+
+<br />
 
 - **if** Does this have any variations from other languages ?
   - It does not mandate use of ```()```.
   - e.g. ```if err != nil && err != io.EOF {..}```
 
+<br />
+
 - **all-in-one if statement** Read the sample & understand !!
 
-```
+```go
   if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
 ```
+
+<br />
 
 - **io/ioutil vs. bufio**
   - When to use one ?
 
+<br />
+
 - **struct vs class**
   - When to use one ?
+
+<br />
 
 - **variable name & data-type**
   - first comes the name & then the data-type.
 
+<br />
+
 - **method naming convention**
   - CapitalCase
+
+<br />
 
 - **variable naming convention**
   - camelCase
 
+<br />
+
 - **func signature - I**
   - func f(x int)
 
+<br />
+
 - **func signature - II**
   - func avg(nums []float64) float64
+
+<br />
 
 - **func signature - III**
   - func f() (int, int)
   - it refers to a multi return function
 
+<br />
+
 - **func signature - IV**
   - func add(args ...int) int
   - it refers to a variadic function
+
+<br />
 
 - **func signature - V**
   - func Println(a ...interface{}) (n int, err error)
   - variadic inputs of any type
   - multi-return
 
+<br />
+
 - **func signature - VI**
   - func (c *SSHClient) getShell() error
+
+<br />
 
 - **func signature - VII**
   - add := func(x, y int) int
   - it refers to a closure function
   - note: func is after the :=
+
+<br />
 
 - **defer**
   - moves the call to the end of the enclosing function
@@ -86,16 +124,38 @@ title: My golang refresher
   - runs even when run-time panic occurs
   - i.e. equivalent to a big try .. finally block in a java method
 
-```    
+```go  
   f, _ := os.Open(filename)
   defer f.Close()
 ```
+
+<br />
+
+- **Error Handling**
+
+```go
+var (
+	ErrNoDefault          = fmt.Errorf("Error: No %q machine exists.", defaultMachineName)
+	ErrTooManyArguments   = errors.New("Error: Too many arguments given")
+
+	osExit = func(code int) { os.Exit(code) }
+)
+
+// usage
+osExit(3)
+return
+
+// usage
+return "", ErrNoDefault
+```
+
+<br />
 
 - **recover**
   - looks like the catch block as in java.
   - needs to be paired with defer
 
-```
+```go
 func main() {
   defer func() {
     str := recover()
@@ -105,14 +165,18 @@ func main() {
 }
 ```
 
+<br />
+
 - **formatting & style**
   - gofmt on save - nothing else is accepted
+
+<br />
 
 - **path settings, workspaces, etc.**
   - refer [link](https://golang.org/doc/code.html)
   - below are Windows specific
 
-```
+```bash
 $ echo $GOPATH
 C:\Users\amit\code_src\goworks
 
@@ -137,23 +201,33 @@ $ cd src/github.com/AmitKumarDas/sup/
 $ go build
 ```
 
+<br />
+
 - **Flags**
   - http://bit.ly/GoFlags
+
+<br />
 
 - **dot import**
   - Looks similar to static imports in Java
   - Do not use it. Makes code unreadable.
   - Is bad. Favor explicit than implicit.
 
+<br />
+
 - **Code Review Comments**
   - bit.ly/GoCodeReview
+
+<br />
 
 - **Naming conventions**
   - bit.ly/GoNames
 
+<br />
+
 - **install golang on CentOS**
 
-```
+```bash
 curl -O https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
 
 tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
@@ -165,6 +239,8 @@ tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
 
 exit the session & re-login
 ```
+
+<br />
 
 - **golang & creation of workspace for development w.r.t CentOS**
 
@@ -184,9 +260,13 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 ```
 
+<br />
+
 - **3rd party lib management**
   - May use govendor
   - go get -u github.com/kardianos/govendor
+
+<br />
 
 - **creating a new golang project**
   - install govendor
@@ -198,9 +278,11 @@ export PATH=$PATH:$GOPATH/bin
   - install the 3rd party libraries
     - govendor fetch github.com/urfave/cli/@=v1
 
+<br />
+
 - **govendor tips**
 
-```
+```bash
 - install or update govendor
   - go get -u github.com/kardianos/govendor
   - this places the source code @ $GOPATH/src
@@ -221,9 +303,11 @@ export PATH=$PATH:$GOPATH/bin
   - https://github.com/kardianos/govendor/wiki/Govendor-CheatSheet
 ```
 
+<br />
+
 - **git tips**
  
-```
+```bash
 - git set user name
   - git config --global user.name "AmitKumarDas"
   - git config --get user.name
