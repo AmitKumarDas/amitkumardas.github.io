@@ -11,6 +11,14 @@ title: My golang refresher
 
 ## Frequently asked question:
 
+- **main** - What is it ?
+
+> Every standalone Go program contains a package called main and its main function,
+> after initialization, is where execution starts. The main.main function takes 
+> no arguments and returns no value.
+
+<br />
+
 - **semicolon** - Do we need them ?
   - No need.
 
@@ -338,3 +346,4 @@ export PATH=$PATH:$GOPATH/bin
 
 - [golang & use of shell commands](http://nathanleclaire.com/blog/2014/12/29/shelled-out-commands-in-golang/)
 - [govendor](https://github.com/kardianos/govendor)
+- [Let us learn go](http://go-book.appspot.com/index.html)
