@@ -50,7 +50,11 @@ var var1, var2, var3 type = value1, value2, value3
 // above is same as below without any type
 var var1, var2, var3  = value1, value2, value3
 
-
+// omit var and type, 
+// and use ':=' instead of '=' inside the function body
+func test(){
+    var1, var2, var3 := value1, value2, value3
+}
 ```
 
 <br />
