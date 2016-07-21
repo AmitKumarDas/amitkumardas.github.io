@@ -199,8 +199,8 @@ func test(){
 
 ```go
 var (
-	ErrNoDefault          = fmt.Errorf("Error: No %q machine exists.", defaultMachineName)
-	ErrTooManyArguments   = errors.New("Error: Too many arguments given")
+	ErrNoDefault = fmt.Errorf("Error: No %q machine exists.", defaultMachineName)
+	ErrTooManyArguments = errors.New("Error: Too many arguments given")
 
 	osExit = func(code int) { os.Exit(code) }
 )
