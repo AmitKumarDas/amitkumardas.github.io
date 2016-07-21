@@ -191,6 +191,11 @@ func test(){
 <br />
 
 - **Error Handling**
+	- May use errors package to create new errors.
+	- err = errors.New("an error")
+	- The returned error can be treated as a string by either:
+		- accessing err.Error(), or 
+		- using the fmt package functions (e.g. fmt.Println(err)).
 
 ```go
 var (
