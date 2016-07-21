@@ -211,6 +211,10 @@ return
 
 // usage
 return "", ErrNoDefault
+
+// usage
+fmt.Fprintln(os.Stderr, err)
+os.Exit(1)
 ```
 
 <br />
