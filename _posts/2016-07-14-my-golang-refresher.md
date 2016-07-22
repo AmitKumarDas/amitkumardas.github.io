@@ -359,13 +359,15 @@ export PATH=$PATH:$GOPATH/bin
 
 <br />
 
-## **concurrency** How to do it right ?
+- **concurrency** How to get it right ?
 
-- use right tools
-- when sharing memory between goroutines - use a mutex
-- when orchestrating goroutines - use channels
-- channels orchestrate; mutexes serialize.
-- refer [go-proverbs.github.io](http://go-proverbs.github.io/)
+```bash
+  - use right tools
+  - when sharing memory between goroutines - use a mutex
+  - when orchestrating goroutines - use channels
+  - channels orchestrate; mutexes serialize.
+  - refer [go-proverbs.github.io](http://go-proverbs.github.io/)
+```
 
 <br />
 
