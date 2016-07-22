@@ -194,10 +194,10 @@ mysnappy2  POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mys
 ## Task 3: ```Rollback to a snapshot```
 
 - Rollback (a Nova instance) to a particular CloudByte volume snapshot.
-# Assumptions: Cinder Volume ID is provided as input.
-# Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot4) is provided as input.
-# NOTE - Cinder volume id will be sanitized from hyphen '-'.
-# NOTE - job_status is the output.
+## Assumptions: Cinder Volume ID is provided as input.
+## Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot4) is provided as input.
+## NOTE - Cinder volume id will be sanitized from hyphen '-'.
+## NOTE - job_status is the output.
 ```bash
 curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -G -k -s -S \
@@ -218,8 +218,8 @@ curl -K ec20.10.43.1 \
 ## Task 4: ```Delete a snapshot```
 
 - Delete a CloudByte volume snapshot (of a particular Nova instance).
-# Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot3) is provided as input.
-# NOTE - job_status is the output.
+## Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot3) is provided as input.
+## NOTE - job_status is the output.
 ```bash
 
 curl -K ec20.10.43.1 \
