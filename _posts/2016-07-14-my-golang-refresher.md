@@ -51,7 +51,7 @@ title: My golang refresher
   - NOTE - Do not mix them up.
 
 ```go
-import (    
+import ( 
 )
 
 var(  
@@ -135,55 +135,43 @@ func test(){
 
 <br />
 
-- **func signature - I**
-  - func f(x int)
+- **func signatures**
 
-<br />
+```go
 
-- **func signature - II**
-  - func avg(nums []float64) float64
+	func f(x int)
+	
+	func avg(nums []float64) float64
 
-<br />
+	// it refers to a multi return function  
+	func f() (int, int)
 
-- **func signature - III**
-  - func f() (int, int)
-  - it refers to a multi return function
-
-<br />
-
-- **func signature - IV**
-  - func add(args ...int) int
-  - it refers to a variadic function
-
-<br />
-
-- **func signature - V**
-  - func Println(a ...interface{}) (n int, err error)
-  - variadic inputs of any type
-  - multi-return
-
-<br />
-
-- **func signature - VI**
-  - func (c *SSHClient) getShell() error
-
-<br />
-
-- **func signature - VII**
-  - add := func(x, y int) int
-  - it refers to a closure function
-  - note: func is after the :=
+	// it refers to a variadic function
+	func add(args ...int) int
+  
+	// variadic inputs of any type
+  // multi-return
+  func Println(a ...interface{}) (n int, err error)
+  
+  func (c *SSHClient) getShell() error
+  
+  // it refers to a closure function
+  // note: func is after the :=
+  add := func(x, y int) int
+```
 
 <br />
 
 - **defer**
-  - moves the call to the end of the enclosing function
-  - easy reading
-  - handles multiple return statements inside the func
-  - runs even when run-time panic occurs
-  - i.e. equivalent to a big try .. finally block in a java method
 
 ```go  
+
+  // moves the call to the end of the enclosing function
+  // easy reading
+  // handles multiple return statements inside the func
+  // runs even when run-time panic occurs
+  // i.e. equivalent to a big try .. finally block in a java method
+  
   f, _ := os.Open(filename)
   defer f.Close()
 ```
@@ -191,13 +179,15 @@ func test(){
 <br />
 
 - **Error Handling**
-	- May use errors package to create new errors.
-	- err = errors.New("an error")
-	- The returned error can be treated as a string by either:
-		- accessing err.Error(), or 
-		- using the fmt package functions (e.g. fmt.Println(err)).
 
 ```go
+
+// May use errors package to create new errors.
+// err = errors.New("an error")
+// The returned error can be treated as a string by either:
+// accessing err.Error(), or 
+// using the fmt package functions (e.g. fmt.Println(err)).
+
 var (
 	ErrNoDefault = fmt.Errorf("Error: No %q machine exists.", defaultMachineName)
 	ErrTooManyArguments = errors.New("Error: Too many arguments given")
@@ -220,10 +210,11 @@ os.Exit(1)
 <br />
 
 - **recover**
-  - looks like the catch block as in java.
-  - needs to be paired with defer
 
 ```go
+
+// looks like the catch block as in java.
+// needs to be paired with defer
 func main() {
   defer func() {
     str := recover()
@@ -236,15 +227,21 @@ func main() {
 <br />
 
 - **formatting & style**
+
+```bash
+
   - gofmt on save - nothing else is accepted
+```
 
 <br />
 
 - **path settings, workspaces, etc.**
-  - refer [link](https://golang.org/doc/code.html)
-  - below are Windows specific
-
+  
 ```bash
+
+- refer https://golang.org/doc/code.html
+- below are Windows specific
+ 
 $ echo $GOPATH
 C:\Users\amit\code_src\goworks
 
@@ -272,30 +269,47 @@ $ go build
 <br />
 
 - **Flags**
-  - http://bit.ly/GoFlags
+
+```bash
+
+  - refer http://bit.ly/GoFlags
+```
 
 <br />
 
 - **dot import**
+
+```bash
+
   - Looks similar to static imports in Java
   - Do not use it. Makes code unreadable.
   - Is bad. Favor explicit than implicit.
+```
 
 <br />
 
 - **Code Review Comments**
-  - bit.ly/GoCodeReview
+
+```bash
+
+	- refer bit.ly/GoCodeReview
+```
 
 <br />
 
 - **Naming conventions**
-  - bit.ly/GoNames
+
+```bash
+
+  - refer bit.ly/GoNames
+```
 
 <br />
 
 - **install golang on CentOS**
 
 ```bash
+
 curl -O https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
 
 tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
@@ -312,7 +326,8 @@ exit the session & re-login
 
 - **golang & creation of workspace for development w.r.t CentOS**
 
-```
+```bash
+
 $ pwd
 /home/goworkspace
 
@@ -331,12 +346,19 @@ export PATH=$PATH:$GOPATH/bin
 <br />
 
 - **3rd party lib management**
+
+```bash
+
   - May use govendor
   - go get -u github.com/kardianos/govendor
+```
 
 <br />
 
 - **creating a new golang project**
+
+```bash
+
   - install govendor
   - navigate to your project folder
     - e.g. pwd
@@ -345,6 +367,7 @@ export PATH=$PATH:$GOPATH/bin
     - govendor init
   - install the 3rd party libraries
     - govendor fetch github.com/urfave/cli/@=v1
+```
 
 <br />
 
@@ -359,9 +382,10 @@ export PATH=$PATH:$GOPATH/bin
 
 <br />
 
-- **concurrency** How to get it right ?
+- **Concurrency** How to get it right ?
 
 ```bash
+
   - use right tools
   - when sharing memory between goroutines - use a mutex
   - when orchestrating goroutines - use channels
@@ -374,6 +398,7 @@ export PATH=$PATH:$GOPATH/bin
 - **govendor tips**
 
 ```bash
+
 - install or update govendor
   - go get -u github.com/kardianos/govendor
   - this places the source code @ $GOPATH/src
