@@ -348,6 +348,17 @@ export PATH=$PATH:$GOPATH/bin
 
 <br />
 
+- **go keyword** - What is it ?
+  - A "go" statement starts the execution of a function call
+  - As an independent concurrent thread of control, or goroutine,
+  - All these are within the same address space.
+
+```go
+  go Server()
+```
+
+<br />
+
 - **govendor tips**
 
 ```bash
