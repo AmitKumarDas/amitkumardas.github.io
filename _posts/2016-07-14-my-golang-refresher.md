@@ -391,6 +391,17 @@ export PATH=$PATH:$GOPATH/bin
   - when orchestrating goroutines - use channels
   - channels orchestrate; mutexes serialize.
   - refer [go-proverbs.github.io](http://go-proverbs.github.io/)
+  
+  - When to use channels ?
+	- complex behavior to model
+	- mode other low level primitives
+	- scatter & gather
+	- model the semaphore - a mutual exclusion primitive
+	- actor pattern
+
+	- Bad uses of channels ?
+	- Channels use a mutex internally
+	- Hence bad in performance
 ```
 
 <br />
