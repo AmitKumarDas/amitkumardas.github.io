@@ -195,14 +195,14 @@ mysnappy2  POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mys
 
 - Rollback (a Nova instance) to a particular CloudByte volume snapshot.
 
-## Assumptions: Cinder Volume ID is provided as input.
-## Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot4) is provided as input.
-## NOTE - Cinder volume id will be sanitized from hyphen '-'.
-## NOTE - job_status is the output.
-
 ```bash
 
-curl -K ec20.10.43.1 \
+# Assumptions: Cinder Volume ID is provided as input.
+# Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot4) is provided as input.
+# NOTE - Cinder volume id will be sanitized from hyphen '-'.
+# NOTE - job_status is the output.
+
+$ curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -G -k -s -S \
     -d command=listFileSystem \
   | json listFilesystemResponse.filesystem \
@@ -222,14 +222,14 @@ curl -K ec20.10.43.1 \
 
 - Delete a CloudByte volume snapshot (of a particular Nova instance).
 
-## Assumptions: Cinder Volume ID is provided as input.
-## Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot3) is provided as input.
-## NOTE - Cinder volume id will be sanitized from hyphen '-'.
-## NOTE - job_status is the output.
-
 ```bash
 
-curl -K ec20.10.43.1 \
+# Assumptions: Cinder Volume ID is provided as input.
+# Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot3) is provided as input.
+# NOTE - Cinder volume id will be sanitized from hyphen '-'.
+# NOTE - job_status is the output.
+
+$ curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -G -k -s -S \
     -d command=listFileSystem \
   | json listFilesystemResponse.filesystem \
