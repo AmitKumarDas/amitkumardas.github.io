@@ -194,25 +194,81 @@ mysnappy2  POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mys
 ## Task 3: ```Rollback to a snapshot```
 
 - Rollback (a Nova instance) to a particular CloudByte volume snapshot.
+- Steps:
+  - ```Step 1``` - display the list of
+    - (Nova Instance ID, Virsh Instance ID, Cinder Volume ID)
+  - ```Step 2``` - List CloudByte volume snapshots of a given Nova instance.
+  - ```Step 3``` - Rollback to a particular snapshot.
+
+<br />
+
+### Task 3 : ```Step 1```
 
 ```bash
 
-# Assumptions: Cinder Volume ID is provided as input.
-# Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot4) is provided as input.
-# NOTE - Cinder volume id will be sanitized from hyphen '-'.
-# NOTE - job_status is the output.
+# Assumptions: A simple command will display the list
+# Nova Instance ID, Virsh Instance ID, Cinder Volume ID
+
+$ awk 'BEGIN {print "Nova_ID Virsh_ID Cinder_ID"} \
+       NR==FNR {a[$2]=$1;next} a[$1] {print $0 " " a[$1]}' \
+    <(cinder list \
+        | awk ' NF > 1 && $2 != "ID" && $12 ~ /^cb-/ && $14=="true" \
+            {print $2 " " $18}') \
+    <(nova list \
+        | awk 'NF > 1 && $2 != "ID" {print $2 }' \
+        | nova show $(awk '{print $1}') \
+        | awk '$2=="OS-EXT-SRV-ATTR:instance_name" {virsh_id=$4} $2=="id" {nova_id=$4} \
+            END {print nova_id " " virsh_id}') \
+  | column -t
+
+Nova_ID                               Virsh_ID           Cinder_ID
+0b7724e2-fc8a-420c-a20a-7da85329e419  instance-00000003  dd280c48-f5cc-4e86-a866-4cff0bf330ec
+```
+
+<br />
+
+### Task 3 : ```Step 2```
+
+```bash
 
 $ curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -G -k -s -S \
     -d command=listFileSystem \
   | json listFilesystemResponse.filesystem \
   | json -a id name \
-  | awk '$2=="f7e62f31b41f3509a84147da1fc354d7" {print "id="$1}' \
+  | awk '$2=="dd280c48f5cc4e86a8664cff0bf330ec" {print "id="$1}' \
+  | curl -K ec20.10.43.1 \
+    -d @eckey20.10.43.1 -G -k -s -S \
+    -d command=listStorageSnapshots \
+    -d @- \
+  | json listDatasetSnapshotsResponse.snapshot \
+  | json -a name path \
+  | column -t
+
+mysnappy   POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mysnappy
+mysnappy2  POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mysnappy2
+```
+
+<br />
+
+### Task 3 : ```Step 3```
+
+```bash
+
+# NOTE - Cinder volume id will be sanitized from hyphen '-'.
+# NOTE - job_status is the output.
+
+curl -K ec20.10.43.1 \
+    -d @eckey20.10.43.1 -G -k -s -S \
+    -d command=listFileSystem \
+  | json listFilesystemResponse.filesystem \
+  | json -a id name \
+  | awk '$2=="dd280c48f5cc4e86a8664cff0bf330ec" {print "id="$1}' \
   | curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -G -k -S  \
     -d command=rollbackToSnapshot \
-    -d id=f7e62f31-b41f-3509-a841-47da1fc354d7 \
-    -d path=POOL1%2FOPENSTACK_ACCOPENSTACK_VSM%2Ftest2%40snapshot4 \
+    -d id=dd280c48-f5cc-4e86-a866-4cff0bf330ec \
+    -d path=POOL1%2FOPENSTACK_ACCOPENSTACK_VSM%2Ftest2%40mysnappy \
     -d response=json
 ```
 
@@ -222,25 +278,36 @@ $ curl -K ec20.10.43.1 \
 
 - Delete a CloudByte volume snapshot (of a particular Nova instance).
 
+- Steps:
+  - ```Step 1``` - display the list of(Refer to Task 3 Step 1)
+    - (Nova Instance ID, Virsh Instance ID, Cinder Volume ID)
+  - ```Step 2``` - List CloudByte volume snapshots of a given Nova instance.(Refer to Task 3 Step 2)
+  - ```Step 3``` - Delete a snapshot.
+
+<br />
+
+### Task 4 : ```Step 3```
+
 ```bash
 
-# Assumptions: Cinder Volume ID is provided as input.
-# Assumptions: Volume ID(here,test2) and snapshot name(here,snapshot3) is provided as input.
 # NOTE - Cinder volume id will be sanitized from hyphen '-'.
+# NOTE - mysnappy is the snapshot to be deleted.
 # NOTE - job_status is the output.
 
-$ curl -K ec20.10.43.1 \
+
+curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -G -k -s -S \
     -d command=listFileSystem \
   | json listFilesystemResponse.filesystem \
   | json -a id name \
-  | awk '$2=="1f6ebe097d414aed86a12fb95f6b2f57" {print "id="$1}' \
+  | awk '$2=="dd280c48f5cc4e86a8664cff0bf330ec" {print "id="$1}' \
   | curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -k -G -s -S \
     -d command=deleteSnapshot \
     -d @- \
-    -d path=POOL1/OPENSTACK_ACCOPENSTACK_VSM/1f6ebe097d414aed86a12fb95f6b2f57@snapshot3 \
+    -d path=POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mysnappy \
   | json deleteSnapshotResponse.DeleteSnapshot \
   | json -a status \
   | column -t
 ```
+
