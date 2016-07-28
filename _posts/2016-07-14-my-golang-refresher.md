@@ -319,24 +319,32 @@ func NewFile(fd int, name string) *File {
     return &f
 }
 
+// unlike in C, it's perfectly OK to return the address of a local variable; 
+// the storage associated with the variable survives after the function returns. 
+// taking the address of a composite literal allocates a fresh instance each time 
+// it is evaluated
+
+// last 2 lines can be re-written as
+return &File{fd, name, nil, 0}
+
+// or
+return &File{fd: fd, name: name}
+
+// IMPORTANT - new(File) and &File{} are same !!!
+// You need to set the fields separately now !!!
 ```
 
 <br />
 
-- **Code Review Comments**
+- Composite literals w.r.t ```arrays, slices, maps```
 
-```bash
+```go
 
-# refer bit.ly/GoCodeReview
-```
-
-<br />
-
-- **Naming conventions**
-
-```bash
-
-# refer bit.ly/GoNames
+// Either the field labels or map keys are indices 
+// All of below work as long as values of Enone, Eio & Einval are distinct
+a := [...]string   {Enone: "no error", Eio: "Eio", Einval: "invalid argument"}
+s := []string      {Enone: "no error", Eio: "Eio", Einval: "invalid argument"}
+m := map[int]string{Enone: "no error", Eio: "Eio", Einval: "invalid argument"}
 ```
 
 <br />
@@ -374,9 +382,21 @@ func NewFile(fd int, name string) *File {
 # Hence bad in performance
 ```
 
-<br />
+## **Code Review Comments**
 
-- **install golang on CentOS**
+```bash
+
+# refer bit.ly/GoCodeReview
+```
+
+## **Naming conventions**
+
+```bash
+
+# refer bit.ly/GoNames
+```
+
+## **install golang on CentOS**
 
 ```bash
 
@@ -392,9 +412,7 @@ tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
 exit the session & re-login
 ```
 
-<br />
-
-- **golang & creation of workspace for development w.r.t CentOS**
+## **golang & creation of workspace for development w.r.t CentOS**
 
 ```bash
 
@@ -413,9 +431,7 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 ```
 
-<br />
-
-- **creating a new golang project**
+## **creating a new golang project**
 
 ```bash
 
@@ -429,9 +445,7 @@ $ govendor init
 $ govendor fetch github.com/urfave/cli/@=v1
 ```
 
-<br />
-
-- **govendor tips**
+## **govendor tips**
 
 ```bash
 
@@ -454,9 +468,7 @@ $ govendor fetch github.com/openebs/openebs@master
 # refer - https://github.com/kardianos/govendor/wiki/Govendor-CheatSheet
 ```
 
-<br />
-
-- **git tips**
+## **git tips**
  
 ```bash
 
@@ -486,8 +498,6 @@ git config --get remote.origin.url
 git learn the origin if referential integrity is intact
 git remote show origin
 ```
-
-<br />
 
 ## Other useful links:
 
