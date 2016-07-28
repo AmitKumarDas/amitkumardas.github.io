@@ -3,7 +3,7 @@ layout: post
 title: My makefile refresher
 ---
 
-# Why this article ?
+## Why this article ?
 
 > This helps me in learning or referencing makefile quickly.
 
@@ -92,13 +92,13 @@ include another-makefile
 
 ## References
 
-- https://gist.github.com/isaacs/62a2d1825d04437c6f08
-- http://makefiletutorial.com/
-- http://electric-cloud.com/blog/2009/03/makefile-performance-shell/
-- http://electric-cloud.com/blog/2009/08/makefile-performance-built-in-rules/
-- http://electric-cloud.com/blog/2009/04/makefile-performance-pattern-specific-variables/
-- https://github.com/teracyhq/devops/blob/master/docs/Makefile
-- https://bost.ocks.org/mike/make/
-- https://github.com/ndmitchell/build-shootout
-- https://hackage.haskell.org/package/turtle-1.2.8/docs/Turtle-Tutorial.html
-- https://github.com/buildsome/buildsome/blob/master/doc/Presentation.pdf
+- [A make gist](https://gist.github.com/isaacs/62a2d1825d04437c6f08)
+- [Make tutorial](http://makefiletutorial.com/)
+- [Make blog - 1](http://electric-cloud.com/blog/2009/03/makefile-performance-shell/)
+- [Make blog - 2](http://electric-cloud.com/blog/2009/08/makefile-performance-built-in-rules/)
+- [Make blog - 3](http://electric-cloud.com/blog/2009/04/makefile-performance-pattern-specific-variables/)
+- [A sample makefile](https://github.com/teracyhq/devops/blob/master/docs/Makefile)
+- [Make blog - 4](https://bost.ocks.org/mike/make/)
+- [Build shootout](https://github.com/ndmitchell/build-shootout)
+- [Turtle](https://hackage.haskell.org/package/turtle-1.2.8/docs/Turtle-Tutorial.html)
+- [Buildsome](https://github.com/buildsome/buildsome/blob/master/doc/Presentation.pdf)
