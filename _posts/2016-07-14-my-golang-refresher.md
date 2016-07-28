@@ -245,6 +245,84 @@ $ go build
 
 <br />
 
+- **Address** of a given variable
+
+```go
+
+// Address can be found for a string, int, float32, complex64, etc.
+var (    
+    hello string = "Hello world"
+)
+
+func main() {    
+    fmt.Println("Hexadecimal address of hello is: ", &hello)
+}
+```
+
+<br />
+
+- Implicit definitions -- some examples
+
+```go
+
+// We know that pointer will be initialized with an address
+// i.e. *myptr = &myvar
+
+// In below example, cmdOutput is implicitly of type *bytes.Buffer
+// In addition, *cmdOutput will have the value of bytes.Buffer
+
+cmdOutput := &bytes.Buffer{}
+```
+
+<br />
+
+- new(T)
+
+```go
+
+- new(type) -> allocates memory for the particular type & returns a pointer
+- It does not initialize the memory, it zeros the memory
+- Remember, new(type) returns a pointer to a newly allocated zero value of type T
+- i.e. returns a *T
+
+```
+
+<br />
+
+- What after new(T) ?
+
+```go
+
+# initialize the constructor via composite literals
+# notice the verbose versus the terse option
+# notice carefully the use of * and &
+
+func NewFile(fd int, name string) *File {
+    if fd < 0 {
+        return nil
+    }
+    f := new(File)
+    f.fd = fd
+    f.name = name
+    f.dirinfo = nil
+    f.nepipe = 0
+    return f
+}
+
+// vs.
+
+func NewFile(fd int, name string) *File {
+    if fd < 0 {
+        return nil
+    }
+    f := File{fd, name, nil, 0}
+    return &f
+}
+
+```
+
+<br />
+
 - **Code Review Comments**
 
 ```bash
@@ -259,6 +337,41 @@ $ go build
 ```bash
 
 # refer bit.ly/GoNames
+```
+
+<br />
+
+- **go keyword** - What is it ?
+
+```go
+
+# A "go" statement starts the execution of a function call
+# As an independent concurrent thread of control, or goroutine,
+# All these are within the same address space.
+```
+
+<br />
+
+- **Concurrency** How to get it right ?
+
+```bash
+
+# use right tools
+# when sharing memory between goroutines - use a mutex
+# when orchestrating goroutines - use channels
+# channels orchestrate; mutexes serialize.
+# refer [go-proverbs.github.io](http://go-proverbs.github.io/)
+  
+# When to use channels ?
+# complex behavior to model
+# mode other low level primitives
+# scatter & gather
+# model the semaphore - a mutual exclusion primitive
+# actor pattern
+
+# Bad uses of channels ?
+# Channels use a mutex internally
+# Hence bad in performance
 ```
 
 <br />
@@ -302,16 +415,6 @@ export PATH=$PATH:$GOPATH/bin
 
 <br />
 
-- **3rd party lib management**
-
-```bash
-
-# May use govendor
-# go get -u github.com/kardianos/govendor
-```
-
-<br />
-
 - **creating a new golang project**
 
 ```bash
@@ -324,41 +427,6 @@ $ pwd
 $ govendor init
 # install the 3rd party libraries
 $ govendor fetch github.com/urfave/cli/@=v1
-```
-
-<br />
-
-- **go keyword** - What is it ?
-
-```go
-
-# A "go" statement starts the execution of a function call
-# As an independent concurrent thread of control, or goroutine,
-# All these are within the same address space.
-```
-
-<br />
-
-- **Concurrency** How to get it right ?
-
-```bash
-
-# use right tools
-# when sharing memory between goroutines - use a mutex
-# when orchestrating goroutines - use channels
-# channels orchestrate; mutexes serialize.
-# refer [go-proverbs.github.io](http://go-proverbs.github.io/)
-  
-# When to use channels ?
-# complex behavior to model
-# mode other low level primitives
-# scatter & gather
-# model the semaphore - a mutual exclusion primitive
-# actor pattern
-
-# Bad uses of channels ?
-# Channels use a mutex internally
-# Hence bad in performance
 ```
 
 <br />
