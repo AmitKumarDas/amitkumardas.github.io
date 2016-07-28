@@ -12,34 +12,34 @@ title: My makefile refresher
 
 - All for make's **love for files**
 
-```make
+```bash
 
-- $@ represents the file that is being made right now
-- $< is the first input file
-- $^ is the list of all input files
-- $? represents all the input files that are newer than target
-- In short you can build files using $< and $@ vars
+# $@ represents the file that is being made right now
+# $< is the first input file
+# $^ is the list of all input files
+# $? represents all the input files that are newer than target
+# In short you can build files using $< and $@ vars
 ```
 
 <br />
 
 - A bit of **shell scripting** in makefile
 
-```make
+```bash
 
 srcfiles := $(shell echo src/{00..99}.txt)
 ```
 
 - **Tricky** stuff
 
-```make
+```bash
 
-- When will one need to use $$< and $$@ ?
+# Query - When will one need to use $$< and $$@ ?
 ```
 
 - Call other targets from within a target
 
-```make
+```bash
 
 all-target:
     $(MAKE) a-target # means the make currently in use
