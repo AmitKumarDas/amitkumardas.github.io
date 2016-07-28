@@ -279,11 +279,23 @@ curl -K ec20.10.43.1 \
 - Delete a CloudByte volume snapshot (of a particular Nova instance).
 
 - Steps:
-  - ```Step 1``` - display the list of(Refer to Task 3 Step 1)
+  - ```Step 1``` - display the list of
     - (Nova Instance ID, Virsh Instance ID, Cinder Volume ID)
   - ```Step 2``` - List CloudByte volume snapshots of a given Nova instance.(Refer to Task 3 Step 2)
   - ```Step 3``` - Delete a snapshot.
 
+<br />
+
+### Task 4 : ```Step 1```
+```bash
+Refer to Task 3 Step 1
+```
+<br />
+
+### Task 4 : ```Step 2```
+```bash
+Refer to Task 3 Step 2
+```
 <br />
 
 ### Task 4 : ```Step 3```
@@ -310,4 +322,5 @@ curl -K ec20.10.43.1 \
   | json -a status \
   | column -t
 ```
+
 
