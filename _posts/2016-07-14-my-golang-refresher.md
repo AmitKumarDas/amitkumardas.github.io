@@ -349,6 +349,29 @@ m := map[int]string{Enone: "no error", Eio: "Eio", Einval: "invalid argument"}
 
 <br />
 
+- make vs. new
+ 
+```go
+
+// make returns an initialized value of a type T
+// i.e. it does not return a pointer i.e. *T
+// make can only initialize a slice, map or channel
+// to obtain a pointer explicitly, allocate with new 
+// to obtain a pointer explicitly, take the address of a variable explicitly
+
+var p *[]int = new([]int)       // allocates slice structure; *p == nil; rarely useful
+var v  []int = make([]int, 100) // the slice v now refers to a new array of 100 ints
+
+// Unnecessarily complex:
+var p *[]int = new([]int)
+*p = make([]int, 100, 100)
+
+// Idiomatic:
+v := make([]int, 100)
+```
+
+<br />
+
 - **go keyword** - What is it ?
 
 ```go
@@ -499,9 +522,7 @@ git learn the origin if referential integrity is intact
 git remote show origin
 ```
 
-## Other useful links:
+## Referenced Links:
 
-- [golang & use of shell commands](http://nathanleclaire.com/blog/2014/12/29/shelled-out-commands-in-golang/)
-- [govendor](https://github.com/kardianos/govendor)
-- [Let us learn golang](http://go-book.appspot.com/index.html)
 - [Effective golang](https://golang.org/doc/effective_go.html)
+- [Learn golang](http://go-book.appspot.com/index.html)
