@@ -7,7 +7,6 @@ title: My makefile refresher
 
 > This helps me in learning or referencing makefile quickly.
 
-
 <br />
 
 - All for make's **love for files**
@@ -30,12 +29,16 @@ title: My makefile refresher
 srcfiles := $(shell echo src/{00..99}.txt)
 ```
 
+<br />
+
 - **Tricky** stuff
 
 ```bash
 
 # Query - When will one need to use $$< and $$@ ?
 ```
+
+<br />
 
 - Call other targets from within a target
 
@@ -50,7 +53,7 @@ all-target:
 
 - variable assignment ```:=``` vs ```=```
 
-```make
+```bash
 
 # lazy assignment
 # will re-assign every time `objects` variable is used
@@ -67,7 +70,7 @@ immediate := some_value
 
 - defining prerequisites
 
-```make
+```bash
 
 # define.h is the prerequisite for entire list of `$(objects)`
 $(objects) : define.h
@@ -80,7 +83,7 @@ abc.o bef.o zef.o: common.h
 
 - Include other makefiles
 
-```make
+```bash
 
 include another-makefile
 ```
