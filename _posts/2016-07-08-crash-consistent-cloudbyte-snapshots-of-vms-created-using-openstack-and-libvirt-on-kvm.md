@@ -256,6 +256,7 @@ mysnappy2  POOL1/OPENSTACK_ACCOPENSTACK_VSM/dd280c48f5cc4e86a8664cff0bf330ec@mys
 ```bash
 
 # NOTE - Cinder volume id will be sanitized from hyphen '-'.
+# NOTE - mysnappy is the snapshot to be rolled back.
 # NOTE - job_status is the output.
 
 curl -K ec20.10.43.1 \
@@ -306,7 +307,6 @@ Refer to Task 3 Step 2
 # NOTE - mysnappy is the snapshot to be deleted.
 # NOTE - job_status is the output.
 
-
 curl -K ec20.10.43.1 \
     -d @eckey20.10.43.1 -G -k -s -S \
     -d command=listFileSystem \
@@ -322,5 +322,3 @@ curl -K ec20.10.43.1 \
   | json -a status \
   | column -t
 ```
-
-
