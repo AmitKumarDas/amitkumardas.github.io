@@ -3,7 +3,7 @@ layout: post
 title: My golang refresher
 ---
 
-# Why this article ?
+## Why this article ?
 
 > This helps me in learning or referencing golang quickly.
 
@@ -13,44 +13,22 @@ title: My golang refresher
 
 - **main** - What is it ?
 
-> Every standalone Go program contains a package called main and its main function,
-> after initialization, is where execution starts. The main.main function takes 
-> no arguments and returns no value.
+```go
 
-<br />
-
-- **semicolon** - Do we need them ?
-  - No need.
-
-<br />
-
-- **code block** - Do we have it ?
-  - Use ```{}```.
-
-<br />
-
-- **multi-valued return** Is it possible ?
-  - It is possible & used heavily for error handling.
-
-<br />
-
-- **return nil, err** What is the utility of such syntax ?
-  - nil may or may not indicate an error.
-  - alternative to throwing exceptions.
-  - multi-valued return
-
-<br />
-
-- **constants** - Are there any restrictions ?
-  - String, numbers or boolean can be constants.
+Every standalone Go program contains a package called main and its main function,
+after initialization, is where execution starts. The main.main function takes 
+no arguments and returns no value.
+```
 
 <br />
 
 - **(  )** - Does it signify anything special ?
-  - It is used for grouping:
-  - NOTE - Do not mix them up.
 
 ```go
+
+// It is used for grouping:
+// NOTE - Do not mix them up.
+
 import ( 
 )
 
@@ -64,11 +42,11 @@ const(
 <br />
 
 - **enumerated constants** - What are these ?
-  - these are incremented by 1 starting from 0
 
 ```go
-// use of keyword iota
 
+// use of keyword iota
+// these are incremented by 1 starting from 0
 const(
   a = iota // a == 0
   b = iota // b == 1
@@ -96,42 +74,30 @@ func test(){
 
 <br />
 
-- **if** Does this have any variations from other languages ?
-  - It does not mandate use of ```()```.
-  - e.g. ```if err != nil && err != io.EOF {..}```
-
-<br />
-
 - **all-in-one if statement** Read the sample & understand !!
 
 ```go
-  if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
+
+if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
 ```
 
 <br />
 
 - **io/ioutil vs. bufio**
-  - When to use one ?
+
+```go
+
+// When to use one ?
+```
 
 <br />
 
 - **struct vs class**
-  - When to use one ?
 
-<br />
+```go
 
-- **variable name & data-type**
-  - first comes the name & then the data-type.
-
-<br />
-
-- **method naming convention**
-  - CapitalCase
-
-<br />
-
-- **variable naming convention**
-  - camelCase
+// When to use one ?
+```
 
 <br />
 
@@ -139,25 +105,25 @@ func test(){
 
 ```go
 
-	func f(x int)
+func f(x int)
 	
-	func avg(nums []float64) float64
+func avg(nums []float64) float64
 
-	// it refers to a multi return function  
-	func f() (int, int)
+// it refers to a multi return function  
+func f() (int, int)
 
-	// it refers to a variadic function
-	func add(args ...int) int
+// it refers to a variadic function
+func add(args ...int) int
   
-	// variadic inputs of any type
-  // multi-return
-  func Println(a ...interface{}) (n int, err error)
+// variadic inputs of any type
+// multi-return
+func Println(a ...interface{}) (n int, err error)
   
-  func (c *SSHClient) getShell() error
+func (c *SSHClient) getShell() error
   
-  // it refers to a closure function
-  // note: func is after the :=
-  add := func(x, y int) int
+// it refers to a closure function
+// note: func is after the :=
+add := func(x, y int) int
 ```
 
 <br />
@@ -166,14 +132,14 @@ func test(){
 
 ```go  
 
-  // moves the call to the end of the enclosing function
-  // easy reading
-  // handles multiple return statements inside the func
-  // runs even when run-time panic occurs
-  // i.e. equivalent to a big try .. finally block in a java method
+// moves the call to the end of the enclosing function
+// easy reading
+// handles multiple return statements inside the func
+// runs even when run-time panic occurs
+// i.e. equivalent to a big try .. finally block in a java method
   
-  f, _ := os.Open(filename)
-  defer f.Close()
+f, _ := os.Open(filename)
+defer f.Close()
 ```
 
 <br />
@@ -189,10 +155,10 @@ func test(){
 // using the fmt package functions (e.g. fmt.Println(err)).
 
 var (
-	ErrNoDefault = fmt.Errorf("Error: No %q machine exists.", defaultMachineName)
-	ErrTooManyArguments = errors.New("Error: Too many arguments given")
+ ErrNoDefault = fmt.Errorf("Error: No %q machine exists.", defaultMachineName)
+ ErrTooManyArguments = errors.New("Error: Too many arguments given")
 
-	osExit = func(code int) { os.Exit(code) }
+ osExit = func(code int) { os.Exit(code) }
 )
 
 // usage
@@ -222,15 +188,6 @@ func main() {
   }()
   panic("PANIC")
 }
-```
-
-<br />
-
-- **formatting & style**
-
-```bash
-
-  - gofmt on save - nothing else is accepted
 ```
 
 <br />
@@ -272,7 +229,7 @@ $ go build
 
 ```bash
 
-  - refer http://bit.ly/GoFlags
+# refer http://bit.ly/GoFlags
 ```
 
 <br />
@@ -281,9 +238,9 @@ $ go build
 
 ```bash
 
-  - Looks similar to static imports in Java
-  - Do not use it. Makes code unreadable.
-  - Is bad. Favor explicit than implicit.
+# Looks similar to static imports in Java
+# Do not use it. Makes code unreadable.
+# Is bad. Favor explicit than implicit.
 ```
 
 <br />
@@ -292,7 +249,7 @@ $ go build
 
 ```bash
 
-	- refer bit.ly/GoCodeReview
+# refer bit.ly/GoCodeReview
 ```
 
 <br />
@@ -301,7 +258,7 @@ $ go build
 
 ```bash
 
-  - refer bit.ly/GoNames
+# refer bit.ly/GoNames
 ```
 
 <br />
@@ -349,8 +306,8 @@ export PATH=$PATH:$GOPATH/bin
 
 ```bash
 
-  - May use govendor
-  - go get -u github.com/kardianos/govendor
+# May use govendor
+# go get -u github.com/kardianos/govendor
 ```
 
 <br />
@@ -359,25 +316,25 @@ export PATH=$PATH:$GOPATH/bin
 
 ```bash
 
-  - install govendor
-  - navigate to your project folder
-    - e.g. pwd
-    - /home/goworkspace/src/github.com/openebs/openebs
-  - initialize your project with govendor
-    - govendor init
-  - install the 3rd party libraries
-    - govendor fetch github.com/urfave/cli/@=v1
+# install govendor
+# navigate to your project folder
+$ pwd
+/home/goworkspace/src/github.com/openebs/openebs
+# initialize your project with govendor
+$ govendor init
+# install the 3rd party libraries
+$ govendor fetch github.com/urfave/cli/@=v1
 ```
 
 <br />
 
 - **go keyword** - What is it ?
-  - A "go" statement starts the execution of a function call
-  - As an independent concurrent thread of control, or goroutine,
-  - All these are within the same address space.
 
 ```go
-  go Server()
+
+# A "go" statement starts the execution of a function call
+# As an independent concurrent thread of control, or goroutine,
+# All these are within the same address space.
 ```
 
 <br />
@@ -386,22 +343,22 @@ export PATH=$PATH:$GOPATH/bin
 
 ```bash
 
-  - use right tools
-  - when sharing memory between goroutines - use a mutex
-  - when orchestrating goroutines - use channels
-  - channels orchestrate; mutexes serialize.
-  - refer [go-proverbs.github.io](http://go-proverbs.github.io/)
+# use right tools
+# when sharing memory between goroutines - use a mutex
+# when orchestrating goroutines - use channels
+# channels orchestrate; mutexes serialize.
+# refer [go-proverbs.github.io](http://go-proverbs.github.io/)
   
-  - When to use channels ?
-	- complex behavior to model
-	- mode other low level primitives
-	- scatter & gather
-	- model the semaphore - a mutual exclusion primitive
-	- actor pattern
+# When to use channels ?
+# complex behavior to model
+# mode other low level primitives
+# scatter & gather
+# model the semaphore - a mutual exclusion primitive
+# actor pattern
 
-	- Bad uses of channels ?
-	- Channels use a mutex internally
-	- Hence bad in performance
+# Bad uses of channels ?
+# Channels use a mutex internally
+# Hence bad in performance
 ```
 
 <br />
@@ -410,24 +367,23 @@ export PATH=$PATH:$GOPATH/bin
 
 ```bash
 
-- install or update govendor
-  - go get -u github.com/kardianos/govendor
-  - this places the source code @ $GOPATH/src
-  - then compiles the package & places govendor binary in $GOPATH/bin
+# install or update govendor
+$ go get -u github.com/kardianos/govendor
+# this places the source code @ $GOPATH/src
+# then compiles the package & places govendor binary in $GOPATH/bin
 
-- get started
-  - govendor init
+# get started
+$ govendor init
 
-- add a dependency
-  - inside your project...
-  - govendor fetch github.com/amit/das
+# add a dependency
+# inside your project...
+$ govendor fetch github.com/amit/das
 
-- update an existing dependency
-  - inside the your project..
-  - govendor fetch github.com/openebs/openebs@master
+# update an existing dependency
+# inside the your project..
+$ govendor fetch github.com/openebs/openebs@master
 
-- more
-  - https://github.com/kardianos/govendor/wiki/Govendor-CheatSheet
+# refer - https://github.com/kardianos/govendor/wiki/Govendor-CheatSheet
 ```
 
 <br />
@@ -435,28 +391,32 @@ export PATH=$PATH:$GOPATH/bin
 - **git tips**
  
 ```bash
-- git set user name
-  - git config --global user.name "AmitKumarDas"
-  - git config --get user.name
-- git set user email
-  - git config --global user.email "amit.das@cloudbyte.com"
-  - git config --get user.email
-- git add existing project into git
-  - cd existing_folder
-  - git init
-  - git remote add origin http://20.11.1.101/root/openebs.git
-  - git add .
-  - git commit
-  - git push -u origin master
-- git commit history
-  - git log --pretty=oneline
-  - git log --pretty=format:"%h - %an, %ar : %s"
-- git learn the origin
-  - git config --get remote.origin.url
-- git learn the origin if referential integrity is intact
-  - git remote show origin
-- git update a repository
-  - git pull origin master
+
+# git set user name
+
+git config --global user.name "AmitKumarDas"
+git config --get user.name
+
+# git set user email
+
+git config --global user.email "amit.das@cloudbyte.com"
+git config --get user.email
+
+# git add existing project into git
+
+# cd existing_folder
+git init
+git remote add origin http://20.11.1.101/root/openebs.git
+git add .
+git commit
+git push -u origin master
+git commit history
+git log --pretty=oneline
+git log --pretty=format:"%h - %an, %ar : %s"
+git learn the origin
+git config --get remote.origin.url
+git learn the origin if referential integrity is intact
+git remote show origin
 ```
 
 <br />
@@ -465,4 +425,5 @@ export PATH=$PATH:$GOPATH/bin
 
 - [golang & use of shell commands](http://nathanleclaire.com/blog/2014/12/29/shelled-out-commands-in-golang/)
 - [govendor](https://github.com/kardianos/govendor)
-- [Let us learn go](http://go-book.appspot.com/index.html)
+- [Let us learn golang](http://go-book.appspot.com/index.html)
+- [Effective golang](https://golang.org/doc/effective_go.html)
