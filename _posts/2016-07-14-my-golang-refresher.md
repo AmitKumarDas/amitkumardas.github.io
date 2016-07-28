@@ -372,6 +372,39 @@ v := make([]int, 100)
 
 <br />
 
+- arrays & pass-by-value
+
+```go
+
+// passing arrays do not pass pointers to the arrays
+// it passes the copy of the array
+// hence, non-performant
+
+// If C like efficiency is required need to pass pointer of the array
+// i.e. x := someFunc(&array)
+
+// IMPORTANT - Above is not idiomatic go style !!!
+// One should use slices instead.
+```
+
+<br />
+
+- slices and efficiency
+ 
+```go
+
+// slices hold references to an underlying array
+// so instead of passing pointers we pass slice argument
+
+func (f *File) Read(buf []byte) (n int, err error)
+
+// To read into the first 32 bytes of a larger buffer buf, 
+// slice the buffer. It is efficient.
+n, err := f.Read(buf[0:32])
+```
+
+<br />
+
 - **go keyword** - What is it ?
 
 ```go
