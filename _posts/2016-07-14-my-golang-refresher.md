@@ -83,47 +83,31 @@ if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
 
 <br />
 
-- **io/ioutil vs. bufio**
+- **Playing with Array & Struct**
 
 ```go
 
-// When to use one ?
-```
+package cli
 
-<br />
+// Command is the struct containing the command name and description
+type Command struct {
+	Name        string
+	Description string
+}
 
-- **struct vs class**
+// OpenEBSCommandUsage lists the top level openebs commands 
+// and their short usage
+var OpenEBSCommandUsage = []Command{
+}
 
-```go
+// OpenEBSCommands stores all the openebs command
+var OpenEBSCommands = make(map[string]Command)
 
-// When to use one ?
-```
-
-<br />
-
-- **func signatures**
-
-```go
-
-func f(x int)
-	
-func avg(nums []float64) float64
-
-// it refers to a multi return function  
-func f() (int, int)
-
-// it refers to a variadic function
-func add(args ...int) int
-  
-// variadic inputs of any type
-// multi-return
-func Println(a ...interface{}) (n int, err error)
-  
-func (c *SSHClient) getShell() error
-  
-// it refers to a closure function
-// note: func is after the :=
-add := func(x, y int) int
+func init() {
+	for _, cmd := range OpenEBSCommandUsage {
+		OpenEBSCommands[cmd.Name] = cmd
+	}
+}
 ```
 
 <br />
@@ -438,21 +422,27 @@ n, err := f.Read(buf[0:32])
 # Hence bad in performance
 ```
 
-## **Code Review Comments**
+<br />
+
+- **Code Review Comments**
 
 ```bash
 
 # refer bit.ly/GoCodeReview
 ```
 
-## **Naming conventions**
+<br />
+
+- **Naming conventions**
 
 ```bash
 
 # refer bit.ly/GoNames
 ```
 
-## **install golang on CentOS**
+<br />
+
+- **install golang on CentOS**
 
 ```bash
 
@@ -468,7 +458,9 @@ tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
 exit the session & re-login
 ```
 
-## **golang & creation of workspace for development w.r.t CentOS**
+<br />
+
+- **golang & creation of workspace for development w.r.t CentOS**
 
 ```bash
 
@@ -487,7 +479,9 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 ```
 
-## **creating a new golang project**
+<br />
+
+- **creating a new golang project**
 
 ```bash
 
@@ -501,7 +495,9 @@ $ govendor init
 $ govendor fetch github.com/urfave/cli/@=v1
 ```
 
-## **govendor tips**
+<br />
+
+- **govendor tips**
 
 ```bash
 
@@ -524,7 +520,9 @@ $ govendor fetch github.com/openebs/openebs@master
 # refer - https://github.com/kardianos/govendor/wiki/Govendor-CheatSheet
 ```
 
-## **git tips**
+<br />
+
+- **git tips**
  
 ```bash
 
@@ -554,6 +552,8 @@ git config --get remote.origin.url
 git learn the origin if referential integrity is intact
 git remote show origin
 ```
+
+<br />
 
 ## Referenced Links:
 
