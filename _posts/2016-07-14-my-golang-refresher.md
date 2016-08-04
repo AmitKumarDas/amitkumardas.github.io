@@ -83,6 +83,39 @@ if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
 
 <br />
 
+- **Trying a functional approach via Closures**
+
+```go
+
+// RequiresMaxArgs returns an error if there is not at most max args
+func RequiresMaxArgs(max int) cobra.PositionalArgs {
+	return func(cmd *cobra.Command, args []string) error {
+		if len(args) <= max {
+			return nil
+		}
+		return fmt.Errorf(
+			"\"%s\" requires at most %d argument(s).\n",
+			cmd.CommandPath(),
+			max,
+		)
+	}
+}
+
+// some other file
+
+func NewLogoutCommand(dockerCli *client.DockerCli) *cobra.Command {
+	cmd := &cobra.Command{
+		Use:   "logout [SERVER]",
+		Short: "Log out from a Docker registry.",
+		Args:  cli.RequiresMaxArgs(1),
+	}
+
+	return cmd
+}
+```
+
+<br />
+
 - **Playing with Array & Struct**
 
 ```go
