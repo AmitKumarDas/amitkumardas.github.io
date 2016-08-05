@@ -174,6 +174,120 @@ func (s *Server) Accept(addr string, listeners ...net.Listener) {
 
 <br />
 
+- **Chain of Responsibility - Pass through the filters**
+ 
+```go
+
+//--------------------------------------------------------------
+// file - api/server/middleware/middleware.go
+//--------------------------------------------------------------
+
+// Middleware is an interface to allow the use of ordinary functions as OpenEBS API filters.
+// Any struct that has the appropriate signature can be registered as a middleware.
+type Middleware interface {
+	WrapHandler(func(ctx context.Context) error) func(ctx context.Context) error
+}
+
+//--------------------------------------------------------------
+// filter 1 -- file - api/server/middleware/debug.go
+//--------------------------------------------------------------
+func DebugRequestMiddleware(handler func(ctx context.Context) error) func(ctx context.Context) error {
+	return func(ctx context.Context) error {
+		// ... ...
+		return handler(ctx)
+	}
+}
+
+//--------------------------------------------------------------
+// filter 2 -- file - api/server/middleware/useragent.go
+//--------------------------------------------------------------
+
+type UserAgentMiddleware struct {
+	serverVersion string
+}
+
+func NewUserAgentMiddleware(s string) UserAgentMiddleware {
+	return UserAgentMiddleware{
+		serverVersion: s,
+	}
+}
+func (u UserAgentMiddleware) WrapHandler(handler func(ctx context.Context) error) func(ctx context.Context) error {
+	return func(ctx context.Context) error {
+		// ... ...
+		return handler(ctx)
+	}
+}
+
+//--------------------------------------------------------------
+// filter 2 -- file - api/server/middleware/version.go
+//--------------------------------------------------------------
+
+type badRequestError struct {
+	error
+}
+
+func (badRequestError) HTTPErrorStatusCode() int {
+	return http.StatusBadRequest
+}
+
+type VersionMiddleware struct {
+	serverVersion  string
+	defaultVersion string
+	minVersion     string
+}
+
+// Returns a new handler function wrapping the previous one in the request chain.
+func (v VersionMiddleware) WrapHandler(handler func(ctx context.Context) error) func(ctx context.Context) error {
+	return func(ctx context.Context) error {
+		// ... ...
+		return handler(ctx)
+	}
+}
+
+//-----------------------------------------
+// usage of middleware filters
+// file - api/server/middleware.go
+//-----------------------------------------
+func (s *Server) handleWithGlobalMiddlewares(handler httputils.APIFunc) httputils.APIFunc {
+	next := handler
+
+	for _, m := range s.middlewares {
+		next = m.WrapHandler(next)
+	}
+
+	return next
+}
+
+//-----------------------------------------
+// usage of middleware filters
+// file - api/server/server.go
+//-----------------------------------------
+func (s *Server) makeHTTPHandler(handler httputils.APIFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		// Define the context that we'll pass around to share info
+		// like the openebs-request-id.
+		//
+		// The 'context' will be used for global data that should
+		// apply to all requests. Data that is specific to the
+		// immediate function being called should still be passed
+		// as 'args' on the function call.
+		ctx := context.Background()
+		handlerFunc := s.handleWithGlobalMiddlewares(handler)
+
+		vars := mux.Vars(r)
+		if vars == nil {
+			vars = make(map[string]string)
+		}
+
+		if err := handlerFunc(ctx, w, r, vars); err != nil {
+			httputils.MakeErrorHandler(err)(w, r)
+		}
+	}
+}
+```
+
+<br />
+
 - **Here comes the goroutine - Your own http server !!**
  
 ```go
