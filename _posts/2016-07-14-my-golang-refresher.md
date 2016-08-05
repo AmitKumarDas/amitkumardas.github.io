@@ -26,6 +26,8 @@ no arguments and returns no value.
  
 ```go
 
+package middleware
+
 // VersionMiddleware is a middleware that
 // validates the client and server versions.
 type VersionMiddleware struct {
@@ -42,6 +44,44 @@ func NewVersionMiddleware(s, d, m string) VersionMiddleware {
 		defaultVersion: d,
 		minVersion:     m,
 	}
+}
+
+//-------------------------------------------------------------------------
+// in some other file
+//-------------------------------------------------------------------------
+middleware.NewVersionMiddleware("0.1omega2", api.DefaultVersion, api.MinVersion)
+```
+
+<br />
+
+- **Structs everywhere**
+
+```go
+
+// Config provides the configuration for the API server
+type Config struct {
+	Logging     bool
+	Version     string
+	SocketGroup string
+	TLSConfig   *tls.Config
+}
+
+// HTTPServer contains an instance of http server and the listener.
+// The instance srv *http.Server, contains configuration to 
+//     - create a http server and a mux router with all api end points.
+// l   net.Listener, is a TCP or Socket listener that dispatches incoming request to the router.
+type HTTPServer struct {
+	srv *http.Server
+	l   net.Listener
+}
+
+// Server contains instance details for the server
+type Server struct {
+	cfg           *Config
+	servers       []*HTTPServer
+	routers       []router.Router
+	routerSwapper *routerSwapper
+	middlewares   []middleware.Middleware
 }
 ```
 
@@ -93,6 +133,8 @@ srv := &Server{
 	cfg: cfg,
 }
 
+// An instance calling the instance method & then
+// package.ExposedMethod() invocation
 srv.UseMiddleware(middleware.NewVersionMiddleware("0.1omega2", api.DefaultVersion, api.MinVersion))
 ```
 
