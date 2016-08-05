@@ -191,7 +191,7 @@ type Middleware interface {
 //--------------------------------------------------------------
 // filter 1 -- file - api/server/middleware/debug.go
 //--------------------------------------------------------------
-func DebugRequestMiddleware(handler func(ctx context.Context) error) func(ctx context.Context) error {
+func DebugMiddleware(handler func(ctx context.Context) error) func(ctx context.Context) error {
 	return func(ctx context.Context) error {
 		// ... ...
 		return handler(ctx)
@@ -202,16 +202,16 @@ func DebugRequestMiddleware(handler func(ctx context.Context) error) func(ctx co
 // filter 2 -- file - api/server/middleware/useragent.go
 //--------------------------------------------------------------
 
-type UserAgentMiddleware struct {
+type UAMiddleware struct {
 	serverVersion string
 }
 
-func NewUserAgentMiddleware(s string) UserAgentMiddleware {
-	return UserAgentMiddleware{
+func NewUAMiddleware(s string) UAMiddleware {
+	return UAMiddleware{
 		serverVersion: s,
 	}
 }
-func (u UserAgentMiddleware) WrapHandler(handler func(ctx context.Context) error) func(ctx context.Context) error {
+func (u UAMiddleware) WrapHandler(handler func(ctx context.Context) error) func(ctx context.Context) error {
 	return func(ctx context.Context) error {
 		// ... ...
 		return handler(ctx)
@@ -230,14 +230,14 @@ func (badRequestError) HTTPErrorStatusCode() int {
 	return http.StatusBadRequest
 }
 
-type VersionMiddleware struct {
+type VMiddleware struct {
 	serverVersion  string
 	defaultVersion string
 	minVersion     string
 }
 
 // Returns a new handler function wrapping the previous one in the request chain.
-func (v VersionMiddleware) WrapHandler(handler func(ctx context.Context) error) func(ctx context.Context) error {
+func (v VMiddleware) WrapHandler(handler func(ctx context.Context) error) func(ctx context.Context) error {
 	return func(ctx context.Context) error {
 		// ... ...
 		return handler(ctx)
@@ -283,6 +283,20 @@ func (s *Server) makeHTTPHandler(handler httputils.APIFunc) http.HandlerFunc {
 			httputils.MakeErrorHandler(err)(w, r)
 		}
 	}
+}
+
+// Initializes the main router the server uses.
+func (s *Server) createMux() *mux.Router {
+	m := mux.NewRouter()
+
+	for _, apiRouter := range s.routers {
+		for _, r := range apiRouter.Routes() {
+			f := s.makeHTTPHandler(r.Handler())
+		}
+	}
+	// blah.. blah...
+
+	return m
 }
 ```
 
