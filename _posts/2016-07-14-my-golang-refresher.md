@@ -22,6 +22,31 @@ no arguments and returns no value.
 
 <br />
 
+- **Simply structs**
+ 
+```go
+
+// VersionMiddleware is a middleware that
+// validates the client and server versions.
+type VersionMiddleware struct {
+	serverVersion  string
+	defaultVersion string
+	minVersion     string
+}
+
+// NewVersionMiddleware creates a new VersionMiddleware
+// with the default versions.
+func NewVersionMiddleware(s, d, m string) VersionMiddleware {
+	return VersionMiddleware{
+		serverVersion:  s,
+		defaultVersion: d,
+		minVersion:     m,
+	}
+}
+```
+
+<br />
+
 - **Building logic... oops way !!!**
 
 ```go
