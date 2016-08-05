@@ -127,6 +127,35 @@ func (n Nothing) Bind(fn func(interface{}) Maybe) Maybe {
 
 <br />
 
+- **Building logic... functional way !!!**
+
+```go
+
+// Steps
+// 0. Get some Monad implemenations in some package
+
+// Steps for MayBe monad 
+// i.e. error handling in a functional way
+// 1. Implement any logic inside a function
+// 2. The function should accept a MayBe type & return a MayBe type
+// 3. This function will return another function that returns MayBe i.e. closure
+// 4. You achieve 3rd point -via- Bind & Just calls
+
+func MaybeDouble(a Maybe) Maybe {
+    return a.Bind(func (v interface{}) Maybe { 
+        return Just { 2 * v.(int) }
+    })
+}
+
+// Your client will use syntax similar to lisp
+// i.e. yourFn2(yourFn1(Just{someval}))
+// __OR__
+// Client can use method chaining 
+// i.e. Just{someval}.Bind(yourFn1).Bind(yourFn2)
+```
+
+<br />
+
 - **Building logic... oops way !!!**
 
 ```go
