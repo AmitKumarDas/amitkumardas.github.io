@@ -87,6 +87,46 @@ type Server struct {
 
 <br />
 
+- **Interfaces exposes methods implemented by structs**
+
+```go
+
+// refer - https://gist.github.com/Rubentxu/c353cac8f18321dbd96d/
+
+// Interface with methods returning the Interface
+// What can be the reason for above ?
+// Maybe method chaining !!!
+
+type Maybe interface {
+    Return(value interface{}) Maybe
+    Bind(func(interface{}) Maybe) Maybe
+}
+
+type Just struct {
+    Value interface{}
+}
+
+type Nothing struct {}
+
+func (j Just) Return(value interface{}) Maybe {
+    return Just{ value }
+}
+
+func (j Just) Bind(fn func(interface{}) Maybe) Maybe {
+    return fn(j.Value)
+}
+
+func (n Nothing) Return(value interface{}) Maybe {
+    return Nothing{}
+}
+
+func (n Nothing) Bind(fn func(interface{}) Maybe) Maybe {
+    return Nothing{}
+}
+```
+
+<br />
+
 - **Building logic... oops way !!!**
 
 ```go
