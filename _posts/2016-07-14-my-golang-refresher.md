@@ -257,47 +257,6 @@ func (s *Server) handleWithGlobalMiddlewares(handler httputils.APIFunc) httputil
 
 	return next
 }
-
-//-----------------------------------------
-// usage of middleware filters
-// file - api/server/server.go
-//-----------------------------------------
-func (s *Server) makeHTTPHandler(handler httputils.APIFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		// Define the context that we'll pass around to share info
-		// like the openebs-request-id.
-		//
-		// The 'context' will be used for global data that should
-		// apply to all requests. Data that is specific to the
-		// immediate function being called should still be passed
-		// as 'args' on the function call.
-		ctx := context.Background()
-		handlerFunc := s.handleWithGlobalMiddlewares(handler)
-
-		vars := mux.Vars(r)
-		if vars == nil {
-			vars = make(map[string]string)
-		}
-
-		if err := handlerFunc(ctx, w, r, vars); err != nil {
-			httputils.MakeErrorHandler(err)(w, r)
-		}
-	}
-}
-
-// Initializes the main router the server uses.
-func (s *Server) createMux() *mux.Router {
-	m := mux.NewRouter()
-
-	for _, apiRouter := range s.routers {
-		for _, r := range apiRouter.Routes() {
-			f := s.makeHTTPHandler(r.Handler())
-		}
-	}
-	// blah.. blah...
-
-	return m
-}
 ```
 
 <br />
