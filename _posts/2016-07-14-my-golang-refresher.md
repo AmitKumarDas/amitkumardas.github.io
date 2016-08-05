@@ -87,6 +87,64 @@ type Server struct {
 
 <br />
 
+- **Nouns as Structs and Verbs as Interfaces**
+
+```go
+
+// refer - http://www.lshift.net/blog/2013/10/25/going-monad-with-parser-combinators/
+
+// A typical one
+type ParseTree struct{
+    Value interface{}
+    Remaining string
+}
+
+// Collection
+type ParseTrees []ParseTree
+
+// A do nothing ParseTree
+type Zero struct {}
+
+// A ParseTree who does work
+type Item struct {}
+
+// Verbs i.e. behavior encapsulated in interface
+type Parser interface {
+    // Parse consumes some input and returns ParseTrees. If the
+    // receiver failed to parse anything, Parse returns an empty
+    // slice. A slice containing a single element represents an
+    // unambiguous parse. Multiple results mean multiple parse
+    // trees for the given consumed input.
+    Parse(s string) ParseTrees
+}
+
+// Behavior of Zero ParseTree
+func (p Zero) Parse(s string) (ParseTrees) {
+    return ParseTrees{}
+}
+
+// Behavior of Item ParseTree
+func (p Item) Parse(s string) (results ParseTrees) {
+    if len(s) == 0 {
+        results = ParseTrees{}
+    } else {
+        reader := strings.NewReader(s)
+        // ReadRune replaces an invalid rune with U+FFFD!
+        // Err is _never_ set!
+        first, size, _ := reader.ReadRune()
+        if first == 'uFFFD' {
+            results = ParseTrees{}
+        } else {
+            rest := s[size:]
+            results = ParseTrees{ParseTree{first, rest}}
+        }
+    }
+    return
+}
+```
+
+<br />
+
 - **Interfaces exposes methods implemented by structs**
 
 ```go
