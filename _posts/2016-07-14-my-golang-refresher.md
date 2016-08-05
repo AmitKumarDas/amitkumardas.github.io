@@ -140,7 +140,7 @@ srv.UseMiddleware(middleware.NewVersionMiddleware("0.1omega2", api.DefaultVersio
 
 <br />
 
-- **Terse loops in for**
+- **Terse for loops**
 
 ```go
 
@@ -169,6 +169,178 @@ func (s *Server) Accept(addr string, listeners ...net.Listener) {
 		}
 		s.servers = append(s.servers, httpServer)
 	}
+}
+```
+
+<br />
+
+- **Here comes the goroutine - Your own http server !!**
+ 
+```go
+
+// HTTPServer contains an instance of http server and the listener.
+// srv *http.Server, contains configuration to create a http server and a mux router with all api end points.
+// l   net.Listener, is a TCP or Socket listener that dispatches incoming request to the router.
+type HTTPServer struct {
+	srv *http.Server
+	l   net.Listener
+}
+
+// Server contains instance details for the server
+type Server struct {
+	cfg           *Config
+	servers       []*HTTPServer
+	routers       []router.Router
+	routerSwapper *routerSwapper
+	middlewares   []middleware.Middleware
+}
+
+// Serve starts listening for inbound requests.
+func (s *HTTPServer) Serve() error {
+	return s.srv.Serve(s.l)
+}
+
+// serveAPI loops through all initialized servers and spawns goroutine
+// with Server method for each. It sets createMux() as Handler also.
+func (s *Server) serveAPI() error {
+	var chErrors = make(chan error, len(s.servers))
+	for _, srv := range s.servers {
+		srv.srv.Handler = s.routerSwapper
+		go func(srv *HTTPServer) {
+			var err error
+			logrus.Infof("API listen on %s", srv.l.Addr())
+			if err = srv.Serve(); err != nil && strings.Contains(err.Error(), "use of closed network connection") {
+				err = nil
+			}
+			chErrors <- err
+		}(srv)
+	}
+
+	for i := 0; i < len(s.servers); i++ {
+		err := <-chErrors
+		if err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+// Wait blocks the server goroutine until it exits.
+// It sends an error message if there is any error during
+// the API execution.
+func (s *Server) Wait(waitChan chan error) {
+	if err := s.serveAPI(); err != nil {
+		logrus.Errorf("ServeAPI error: %v", err)
+		waitChan <- err
+		return
+	}
+	waitChan <- nil
+}
+
+//------------------------------------------------------------
+// In the daemon code
+//------------------------------------------------------------
+func (cli *DaemonCli) start() (err error) {
+	stopc := make(chan bool)
+	defer close(stopc)
+
+	flags := flag.CommandLine
+	cli.commonFlags.PostParse()
+
+	cliConfig, err := loadDaemonCliConfig(cli.Config, flags, cli.commonFlags, *cli.configFile)
+	if err != nil {
+		return err
+	}
+	cli.Config = cliConfig
+
+	if cli.Pidfile != "" {
+		pf, err := pidfile.New(cli.Pidfile)
+		if err != nil {
+			return fmt.Errorf("Error starting daemon: %v", err)
+		}
+		defer func() {
+			if err := pf.Remove(); err != nil {
+				logrus.Error(err)
+			}
+		}()
+	}
+
+	serverConfig := &apiserver.Config{
+		// blah blah blah ...
+	}
+
+	api := apiserver.New(serverConfig)
+	cli.api = api
+
+	for i := 0; i < len(cli.Config.Hosts); i++ {
+		var err error
+		
+		protoAddr := cli.Config.Hosts[i]
+		protoAddrParts := strings.SplitN(protoAddr, "://", 2)
+		if len(protoAddrParts) != 2 {
+			return fmt.Errorf("bad format %s, expected PROTO://ADDR", protoAddr)
+		}
+
+		proto := protoAddrParts[0]
+		addr := protoAddrParts[1]
+
+		// It's a bad idea to bind to TCP without tlsverify.
+		if proto == "tcp" {
+			logrus.Warn("[!] DON'T BIND ON ANY IP ADDRESS WITHOUT setting -tlsverify")
+		}
+		
+		ls, err := listeners.Init(proto, addr, serverConfig.SocketGroup, serverConfig.TLSConfig)
+		if err != nil {
+			return err
+		}
+		
+		ls = wrapListeners(proto, ls)
+		// If we're binding to a TCP port, make sure that a container doesn't try to use it.
+		if proto == "tcp" {
+			if err := allocateDaemonPort(addr); err != nil {
+				return err
+			}
+		}
+		logrus.Debugf("Listener created for HTTP on %s (%s)", protoAddrParts[0], protoAddrParts[1])
+		
+		api.Accept(protoAddrParts[1], ls...)
+	}
+
+	signal.Trap(func() {
+		cli.stop()
+		<-stopc // wait for daemonCli.start() to return
+	})
+
+	d, err := daemon.NewDaemon(cli.Config)
+	if err != nil {
+		return fmt.Errorf("Error starting daemon: %v", err)
+	}
+
+	cli.initMiddlewares(api, serverConfig)
+	initRouter(api, d)
+
+	cli.d = d
+	cli.setupConfigReloadTrap()
+
+	// The serve API routine never exits unless an error occurs
+	// We need to start it as a goroutine and wait on it so
+	// daemon doesn't exit
+	serveAPIWait := make(chan error)
+	go api.Wait(serveAPIWait)
+
+	// after the daemon is done setting up we can notify systemd api
+	notifySystem()
+
+	// Daemon is fully initialized and handling API traffic
+	// Wait for serve API to complete
+	errAPI := <-serveAPIWait
+	shutdownDaemon(d, 15)
+	if errAPI != nil {
+		return fmt.Errorf("Shutting down due to ServeAPI error: %v", errAPI)
+	}
+
+	return nil
 }
 ```
 
