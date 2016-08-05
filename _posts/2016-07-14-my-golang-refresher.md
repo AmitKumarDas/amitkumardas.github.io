@@ -22,21 +22,24 @@ no arguments and returns no value.
 
 <br />
 
-- **(  )** - Does it signify anything special ?
+- **This or That**
 
 ```go
 
-// It is used for grouping:
-// NOTE - Do not mix them up.
+// BoolValue transforms a form value in different formats into a boolean type.
+func BoolValue(r *http.Request, k string) bool {
+	s := strings.ToLower(strings.TrimSpace(r.FormValue(k)))
+	return !(s == "" || s == "0" || s == "no" || s == "false" || s == "none")
+}
 
-import ( 
-)
-
-var(  
-)
-
-const(  
-)
+// BoolValueOrDefault returns the default bool passed if the query param is
+// missing, otherwise it's just a proxy to boolValue above
+func BoolValueOrDefault(r *http.Request, k string, d bool) bool {
+	if _, ok := r.Form[k]; !ok {
+		return d
+	}
+	return BoolValue(r, k)
+}
 ```
 
 <br />
