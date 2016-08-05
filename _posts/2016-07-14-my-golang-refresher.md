@@ -98,6 +98,31 @@ srv.UseMiddleware(middleware.NewVersionMiddleware("0.1omega2", api.DefaultVersio
 
 <br />
 
+- **Terse loops in for**
+
+```go
+
+// Server contains instance details for the server
+type Server struct {
+	servers       []*HTTPServer
+}
+
+// Accept sets a listener the server accepts connections into.
+func (s *Server) Accept(addr string, listeners ...net.Listener) {
+	for _, listener := range listeners {
+		httpServer := &HTTPServer{
+			srv: &http.Server{
+				Addr: addr,
+			},
+			l: listener,
+		}
+		s.servers = append(s.servers, httpServer)
+	}
+}
+```
+
+<br />
+
 - **This or That - Case for defaults**
 
 ```go
