@@ -22,7 +22,55 @@ no arguments and returns no value.
 
 <br />
 
-- **This or That**
+- **Building logic... oops way !!!**
+
+```go
+
+// Config provides the configuration for the API server
+type Config struct {
+	Logging     bool
+	Version     string
+	SocketGroup string
+	TLSConfig   *tls.Config
+}
+
+// Server contains instance details for the server
+type Server struct {
+	cfg           *Config
+	servers       []*HTTPServer
+	routers       []router.Router
+	routerSwapper *routerSwapper
+	middlewares   []middleware.Middleware
+}
+
+// New returns a new instance of the server based on the specified configuration.
+// It allocates resources which will be needed for ServeAPI(ports, unix-sockets).
+func New(cfg *Config) *Server {
+	return &Server{
+		cfg: cfg,
+	}
+}
+
+// UseMiddleware appends a new middleware to the request chain.
+// This needs to be called before the API routes are configured.
+func (s *Server) UseMiddleware(m middleware.Middleware) {
+	s.middlewares = append(s.middlewares, m)
+}
+
+// some other file e.g. test file
+cfg := &Config{
+	Version: "0.1omega2",
+}
+srv := &Server{
+	cfg: cfg,
+}
+
+srv.UseMiddleware(middleware.NewVersionMiddleware("0.1omega2", api.DefaultVersion, api.MinVersion))
+```
+
+<br />
+
+- **This or That - Case for defaults**
 
 ```go
 
