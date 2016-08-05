@@ -82,7 +82,10 @@ func (s *Server) UseMiddleware(m middleware.Middleware) {
 	s.middlewares = append(s.middlewares, m)
 }
 
+//-----------------------------------------------------------------
 // some other file e.g. test file
+//-----------------------------------------------------------------
+
 cfg := &Config{
 	Version: "0.1omega2",
 }
