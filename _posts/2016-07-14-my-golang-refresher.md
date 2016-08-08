@@ -20,6 +20,135 @@ after initialization, is where execution starts. The main.main function takes
 no arguments and returns no value.
 ```
 
+<br>
+
+- **Composable, Maintainable, Readable code in golang**
+
+```go
+
+// Achieving DRY, testable, composable code in imperative languages is an uphill task.
+// In Java, you might want to make use of java.util.function package
+// You will be able to get most with lot of code verbosity
+
+// However, it is simpler to understand & implement in golang
+// This is derived out of Rob Pike's self referential functions & design article.
+```
+
+```go
+
+package storage
+
+// 1. Define a type
+// Mark the case-sensitiveness of option
+type option func(*Storage)
+
+// 2. Implement a business function
+// Mark the use of closure than direct setting of the property
+// Notice, that the client invocation to this method will be very simple
+// i.e. storage.Capacity(100)
+func Capacity(cap int) option {
+    return func(s *Storage) {
+        s.capacity = cap
+    }
+}
+
+// 3. Utility to set various options that are defined now or in future
+// Mark the use of variadic arguments
+func (s *Storage) Option(opts ...option) {
+  for _, opt := range opts {
+    opt(s)
+  }
+}
+```
+
+```go
+
+// A bit of state management & still have composable, maintainable & readable code.
+// What if we want to return the previous value when an update is being made to
+// an option ?
+// What if the feature encountered some issue & now needs to revert back to old
+// settings.
+// What if a feature needs to turn on a flag for 5 minutes & finally reset to
+// old flag. Probably, a profiling requirement.
+
+// 1. Define the type
+// Mark the option type can return a value i.e. previous state
+// Notice returning of empty interface value
+type option func(*Storage) interface{}
+
+// 2. Implement a business function
+// Mark the use of closure than direct setting of the property
+// Notice, that the client invocation to this method is still simple
+// i.e. storage.Capacity(100)
+// However, the client side resetting of this option will be verbose
+func Capacity(cap int) option {
+    return func(s *Storage) interface{}{
+        previous := s.capacity
+        s.capacity = cap
+        return previous
+    }
+}
+
+// 3. Utility to set various options that are defined now or in future
+// Mark the use of variadic arguments
+// Notice the previous value of last option is returned
+func (s *Storage) Option(opts ...option) (previous interface{}){
+  for _, opt := range opts {
+    previous = opt(s)
+  }
+
+  return previous
+}
+```
+
+```go
+
+// A state machine implementation.
+// What if the feature encountered some issue & now needs to revert back to old
+// settings.
+// What if a feature needs to turn on a flag for 5 minutes & finally reset to
+// old flag. Probably, a profiling requirement.
+
+// 1. Define the type
+// Mark the option type returns another option
+// Otherwise known as a self referential function.
+// The return option can implement the inverse logic.
+// i.e. closures to our rescue yet again !!!
+type option func(*Storage) option
+
+// 2. Implement a business function
+// Mark the use of closure than direct setting of the property
+// Notice, that the client invocation to this method is still simple
+// i.e. storage.Capacity(100)
+// However, the client side resetting of this option will be verbose
+func Capacity(cap int) option {
+    return func(s *Storage) option{
+        previous := s.capacity
+        s.capacity = cap
+        return Capacity(previous)
+    }
+}
+
+// 3. Utility to set various options that are defined now or in future
+// Mark the use of variadic arguments
+// Notice the previous value of last option is returned
+func (s *Storage) Option(opts ...option) (previous option){
+  for _, opt := range opts {
+    previous = opt(s)
+  }
+
+  return previous
+}
+```
+
+<br />
+
+- **References**
+
+- [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
+- [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
+- [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
+
 <br />
 
 - **Simply structs**
@@ -1166,3 +1295,6 @@ git remote show origin
 
 - [Effective golang](https://golang.org/doc/effective_go.html)
 - [Learn golang](http://go-book.appspot.com/index.html)
+- [Expressiveness & Runtime Performance](http://dave.cheney.net/2012/02/11/how-the-go-language-improves-expressiveness-without-sacrificing-runtime-performance)
+- [Table driven tests](http://dave.cheney.net/2013/06/09/writing-table-driven-tests-in-go)
+- [Benchmarks](http://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go)
