@@ -66,10 +66,6 @@ func (s *Storage) Option(opts ...option) {
 // A bit of state management & still have composable, maintainable & readable code.
 // What if we want to return the previous value when an update is being made to
 // an option ?
-// What if the feature encountered some issue & now needs to revert back to old
-// settings.
-// What if a feature needs to turn on a flag for 5 minutes & finally reset to
-// old flag. Probably, a profiling requirement.
 
 // 1. Define the type
 // Mark the option type can return a value i.e. previous state
