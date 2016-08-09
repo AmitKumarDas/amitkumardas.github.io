@@ -34,6 +34,8 @@ no arguments and returns no value.
 // This is derived out of Rob Pike's self referential functions & design article.
 ```
 
+<br />
+
 ```go
 
 package storage
@@ -60,6 +62,8 @@ func (s *Storage) Option(opts ...option) {
   }
 }
 ```
+
+<br />
 
 ```go
 
@@ -96,6 +100,8 @@ func (s *Storage) Option(opts ...option) (previous interface{}){
   return previous
 }
 ```
+
+<br />
 
 ```go
 
