@@ -302,7 +302,7 @@ func (p Item) Parse(s string) (results ParseTrees) {
 
 <br />
 
-- **Interfaces exposes methods implemented by structs**
+- **Interfaces exposes method signature(s) implemented as struct(s) properties**
 
 ```go
 
