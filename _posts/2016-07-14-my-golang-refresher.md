@@ -140,10 +140,9 @@ func (s *Storage) Option(opts ...option) (previous option){
 <br />
 
 - **References**
-
-- [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
-- [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
-- [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
+  - [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
+  - [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
+  - [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
 
 <br />
 
@@ -212,7 +211,34 @@ type Server struct {
 
 <br />
 
-- **Nouns as Structs and Verbs as Interfaces**
+- **Nouns as Structs' properties and Verbs as Interfaces' methods - I**
+
+```go
+
+// a simple built-in interface
+type error interface {
+    Error() string
+}
+
+// A library writer is free to implement this interface with a richer model
+// under the covers, making it possible not only to see the error 
+// but also to provide some context.
+// PathError records an error and the operation and
+// file path that caused it.
+type PathError struct {
+    Op string    // "open", "unlink", etc.
+    Path string  // The associated file.
+    Err error    // Returned by the system call.
+}
+
+func (e *PathError) Error() string {
+    return e.Op + " " + e.Path + ": " + e.Err.Error()
+}
+```
+
+<br />
+
+- **Nouns as Structs' properties and Verbs as Interfaces' methods - II**
 
 ```go
 
