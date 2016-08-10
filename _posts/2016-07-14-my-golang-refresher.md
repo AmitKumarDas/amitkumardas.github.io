@@ -308,7 +308,10 @@ func (p Item) Parse(s string) (results ParseTrees) {
 
 ```go
 
-// validator re
+// validator returns nil or ValidationErrors as type error
+// Hence, an error needs to be typecasted to ValidationErrors
+err := validate.Struct(mystruct)
+validationErrors := err.(validator.ValidationErrors)
 ```
 
 <br />
