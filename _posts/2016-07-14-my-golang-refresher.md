@@ -304,71 +304,11 @@ func (p Item) Parse(s string) (results ParseTrees) {
 
 <br />
 
-- **Interfaces exposes method signature(s) implemented as struct(s) properties**
+- **Types and type casting -- refer - validator library**
 
 ```go
 
-// refer - https://gist.github.com/Rubentxu/c353cac8f18321dbd96d/
-
-// Interface with methods returning the Interface
-// What can be the reason for above ?
-// Maybe method chaining !!!
-
-type Maybe interface {
-    Return(value interface{}) Maybe
-    Bind(func(interface{}) Maybe) Maybe
-}
-
-type Just struct {
-    Value interface{}
-}
-
-type Nothing struct {}
-
-func (j Just) Return(value interface{}) Maybe {
-    return Just{ value }
-}
-
-func (j Just) Bind(fn func(interface{}) Maybe) Maybe {
-    return fn(j.Value)
-}
-
-func (n Nothing) Return(value interface{}) Maybe {
-    return Nothing{}
-}
-
-func (n Nothing) Bind(fn func(interface{}) Maybe) Maybe {
-    return Nothing{}
-}
-```
-
-<br />
-
-- **Building logic... functional way !!!**
-
-```go
-
-// Steps
-// 0. Get some Monad implemenations in some package
-
-// Steps for MayBe monad 
-// i.e. error handling in a functional way
-// 1. Implement any logic inside a function
-// 2. The function should accept a MayBe type & return a MayBe type
-// 3. This function will return another function that returns MayBe i.e. closure
-// 4. You achieve 3rd point -via- Bind & Just calls
-
-func MaybeDouble(a Maybe) Maybe {
-    return a.Bind(func (v interface{}) Maybe { 
-        return Just { 2 * v.(int) }
-    })
-}
-
-// Your client will use syntax similar to lisp
-// i.e. yourFn2(yourFn1(Just{someval}))
-// __OR__
-// Client can use method chaining 
-// i.e. Just{someval}.Bind(yourFn1).Bind(yourFn2)
+// validator re
 ```
 
 <br />
