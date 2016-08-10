@@ -20,7 +20,53 @@ after initialization, is where execution starts. The main.main function takes
 no arguments and returns no value.
 ```
 
-<br>
+<br />
+
+- **Just types -- refer - conform library**
+
+```go
+
+// declaration
+type x map[string]string
+
+// usage
+stuff := []x{x{"[^\\pL-\\s]": ""}, x{"\\s": " "}, x{"-": "-"}}
+```
+
+<br />
+
+- **Types and type casting -- refer - validator library**
+
+```go
+
+// validator returns nil or ValidationErrors as type error
+// Hence, an error needs to be typecasted to ValidationErrors
+err := validate.Struct(mystruct)
+validationErrors := err.(validator.ValidationErrors)
+```
+
+<br />
+
+- **Types & Command pattern -- refer - conform library**
+
+```go
+
+var patterns = map[string]*regexp.Regexp{
+	"numbers":    regexp.MustCompile("[0-9]"),
+	"nonNumbers": regexp.MustCompile("[^0-9]"),
+	"alpha":      regexp.MustCompile("[\\pL]"),
+	"nonAlpha":   regexp.MustCompile("[^\\pL]"),
+	"name":       regexp.MustCompile("[\\p{L}]([\\p{L}|[:space:]|-]*[\\p{L}])*"),
+}
+
+// usage
+func onlyNumbers(s string) string {
+	return patterns["nonNumbers"].ReplaceAllLiteralString(s, "")
+}
+
+```
+
+<br />
 
 - **Composable, Maintainable, Readable code in golang**
 
@@ -300,18 +346,6 @@ func (p Item) Parse(s string) (results ParseTrees) {
     }
     return
 }
-```
-
-<br />
-
-- **Types and type casting -- refer - validator library**
-
-```go
-
-// validator returns nil or ValidationErrors as type error
-// Hence, an error needs to be typecasted to ValidationErrors
-err := validate.Struct(mystruct)
-validationErrors := err.(validator.ValidationErrors)
 ```
 
 <br />
