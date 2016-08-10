@@ -250,21 +250,6 @@ func (e *PathError) Error() string {
 
 // refer - http://www.lshift.net/blog/2013/10/25/going-monad-with-parser-combinators/
 
-// A typical one
-type ParseTree struct{
-    Value interface{}
-    Remaining string
-}
-
-// Collection
-type ParseTrees []ParseTree
-
-// A do nothing ParseTree
-type Zero struct {}
-
-// A ParseTree who does work
-type Item struct {}
-
 // Verbs i.e. behavior encapsulated in interface
 type Parser interface {
     // Parse consumes some input and returns ParseTrees. If the
@@ -275,12 +260,29 @@ type Parser interface {
     Parse(s string) ParseTrees
 }
 
-// Behavior of Zero ParseTree
+// Struct i.e. the Noun -- consists of the properties
+type ParseTree struct{
+    Value interface{}
+    Remaining string
+}
+
+// Collection of Structs i.e Nouns
+type ParseTrees []ParseTree
+
+// type declaration for a specific implementation of ParseTree
+// This will do nothing
+type Zero struct {}
+
+// type declaration for a specific implementation of ParseTree
+// This will do some work
+type Item struct {}
+
+// Actual implementation - polymorphism
 func (p Zero) Parse(s string) (ParseTrees) {
     return ParseTrees{}
 }
 
-// Behavior of Item ParseTree
+// Actual implementation - polymorphism
 func (p Item) Parse(s string) (results ParseTrees) {
     if len(s) == 0 {
         results = ParseTrees{}
