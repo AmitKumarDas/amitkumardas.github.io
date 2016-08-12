@@ -77,7 +77,7 @@ doubleUs x y = doubleMe x + doubleMe y
 
 <br />
 
-### folder structure
+## Good haskell project folder structure
 
 ```Haskell
 
@@ -94,7 +94,7 @@ doubleUs x y = doubleMe x + doubleMe y
 
 <br />
 
-## quick tips
+## Quick Tips
 
 ```Haskell
 
@@ -126,7 +126,7 @@ False
 
 <br />
 
-## list comprehension
+## List Comprehension
 
 ```Haskell
 
@@ -162,7 +162,7 @@ $ [ [ x | x <- xs, even x ] | xs <- xxs]
 
 <br />
 
-## types & typeclasses
+## Types & Typeclasses
 
 ```Haskell
 
