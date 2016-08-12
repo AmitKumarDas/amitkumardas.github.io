@@ -47,6 +47,32 @@ validationErrors := err.(validator.ValidationErrors)
 
 <br />
 
+- **Custom types on primitives & deferencing back to primitives**
+
+```go
+
+type Year uint16
+
+func AsUint16(val interface{}) uint16 {
+	ref := reflect.ValueOf(val)
+	if ref.Kind() != reflect.Uint16 {
+		return 0
+	}
+	return uint16(ref.Uint())
+}
+
+func (y Year) ToUint16() uint16 { 
+    return uint16(y)
+}
+
+func main() {
+	fmt.Println(AsUint16(Year(2015)))
+	fmt.Println(Year(2015).ToUint16())
+}
+```
+
+<br />
+
 - **Types & Command pattern -- refer - conform library**
 
 ```go
