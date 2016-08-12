@@ -154,3 +154,108 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 % pass named functions as arguments in erlang
 % fun Math:square/1
 ```
+
+<br />
+
+### Why Elixir -to- Enums -to- Streams -to- GenStage
+
+```elixir
+
+- better abstractions to work with collections
+- manipulate collections in lazy way
+- manipulate in a concurrent way
+- manipulate in a distributed way
+```
+
+<br />
+
+### Enum vs. Streams
+
+```elixir
+
+- whole collection in memory
+- versus. lazy traversal of collection
+```
+
+<br />
+
+### Streams vs. Stream.async()
+
+```elixir
+
+- lazy evaluation vs. using separate processes to process parts of the pipeline
+```
+
+<br />
+
+### Stream.async() vs. supervising
+
+```elixir
+
+- manual implementation leading to error prone implementation
+- how to manage back-pressure i.e. ensure a process from receiving too many messages
+- GenStage strives to provide this answer
+```
+
+<br />
+
+### case for **GenStage**
+
+```elixir
+
+- exchange events between producers & consumers
+- a new Elixir behaviour for exchanging events between Elixir processes.
+- understands back-pressure
+- expect GenStage to replace the use cases for GenEvent
+- will provide a composable abstraction for consuming data from third-party systems.
+- Act of data dispatch is managed
+```
+
+<br />
+
+### **GenStage** stages
+
+```elixir
+
+- stages receive or send data from other stages
+- can assume the role of a producer or consumer at once
+- can be source if it only produces
+- can be a sink if it only consumes
+- the request/demand to a producer is tracked
+- demand flows upstream & events downstream
+- :max_demand & :min_demand are set on the consumers
+```
+
+<br />
+
+### **GenStage** events
+
+```elixir
+
+- events are sent by a dispatcher
+- events may be in-memory
+- events may be in external queue system
+```
+
+<br />
+
+### **GenStage** buffer events
+
+```elixir
+
+- Assuming a consumer has crashed
+- The producer may want to buffer the events that have arrived from upstream
+- If the intake is more that demand than the events may be buffered
+- :buffer_size is the option
+```
+
+<br />
+
+### **GenStages** notifications vs. broadcast
+
+```elixir
+
+- send notifications to all consumers
+- out-of-band information
+- is different from broadcast
+```
