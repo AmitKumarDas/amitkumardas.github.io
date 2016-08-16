@@ -73,6 +73,128 @@ func main() {
 
 <br />
 
+- **Complex requirements yet simple implementation**
+
+```go
+
+// refer - io/io.go
+
+// If your requirements is going to be dangerously complex !
+// Yet you do not want your implementation to spiral out of control !
+
+///////////////
+// Design Step 1 - Group various interfaces to produce a new interface type.
+///////////////
+
+type Writer interface {
+        Write(p []byte) (n int, err error)
+}
+Writer is the interface that wraps the basic Write method.
+
+type Reader interface {
+        Read(p []byte) (n int, err error)
+}
+Reader is the interface that wraps the basic Read method.
+
+type Seeker interface {
+        Seek(offset int64, whence int) (int64, error)
+}
+Seeker is the interface that wraps the basic Seek method.
+
+type Closer interface {
+        Close() error
+}
+Closer is the interface that wraps the basic Close method.
+
+type ReadWriter interface {
+        Reader
+        Writer
+}
+ReadWriter is the interface that groups the basic Read and Write methods.
+
+type ReadWriteSeeker interface {
+        Reader
+        Writer
+        Seeker
+}
+ReadWriteSeeker is the interface that groups the basic Read, Write and Seek methods.
+
+///////////////
+// Design Step 2 - Create interface that use existing interfaces to achieve its desired objective.
+///////////////
+
+type ReaderFrom interface {
+        ReadFrom(r Reader) (n int64, err error)
+}
+ReaderFrom is the interface that wraps the ReadFrom method.
+ReadFrom reads data from r until EOF or error. 
+
+type WriterTo interface {
+        WriteTo(w Writer) (n int64, err error)
+}
+
+type ReaderAt interface {
+         ReadAt(p []byte, off int64) (n int, err error)
+}
+
+///////////////
+// Design Usage  - part 1
+///////////////
+
+func LimitReader(r Reader, n int64) Reader { 
+        return &LimitedReader{r, n} 
+}
+
+type LimitedReader struct {
+        R Reader // underlying reader
+        N int64  // max bytes remaining
+}
+
+func (l *LimitedReader) Read(p []byte) (n int, err error) {
+        // ...
+        return
+}
+
+///////////////
+// Design Usage  - part 2
+///////////////
+
+func NewSectionReader(r ReaderAt, off int64, n int64) *SectionReader {
+        return &SectionReader{r, off, off, off + n}
+}
+
+// SectionReader implements Read, Seek, and ReadAt on a section
+// of an underlying ReaderAt.
+type SectionReader struct {
+        r     ReaderAt
+        base  int64
+        off   int64
+        limit int64
+}
+
+func (s *SectionReader) Read(p []byte) (n int, err error) {
+        if s.off >= s.limit {
+                return 0, EOF
+        }
+        // ...
+        return
+}
+
+func (s *SectionReader) ReadAt(p []byte, off int64) (n int, err error) {
+        if off < 0 || off >= s.limit-s.base {
+                return 0, EOF
+        }
+        off += s.base
+        // ...
+}
+
+func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {        
+        // ...
+}
+```
+
+<br />
+
 - **Types & Command pattern -- refer - conform library**
 
 ```go
@@ -137,295 +259,10 @@ func (s *Storage) Option(opts ...option) {
 
 <br />
 
-```go
-
-// A bit of state management & still have composable, maintainable & readable code.
-// What if we want to return the previous value when an update is being made to
-// an option ?
-
-// 1. Define the type
-// Mark the option type can return a value i.e. previous state
-// Notice returning of empty interface value
-type option func(*Storage) interface{}
-
-// 2. Implement a business function
-// Mark the use of closure than direct setting of the property
-// Notice, that the client invocation to this method is still simple
-// i.e. storage.Capacity(100)
-// However, the client side resetting of this option will be verbose
-func Capacity(cap int) option {
-    return func(s *Storage) interface{}{
-        previous := s.capacity
-        s.capacity = cap
-        return previous
-    }
-}
-
-// 3. Utility to set various options that are defined now or in future
-// Mark the use of variadic arguments
-// Notice the previous value of last option is returned
-func (s *Storage) Option(opts ...option) (previous interface{}){
-  for _, opt := range opts {
-    previous = opt(s)
-  }
-
-  return previous
-}
-```
-
-<br />
-
-```go
-
-// A state machine implementation.
-// What if the feature encountered some issue & now needs to revert back to old
-// settings.
-// What if a feature needs to turn on a flag for 5 minutes & finally reset to
-// old flag. Probably, a profiling requirement.
-
-// 1. Define the type
-// Mark the option type returns another option
-// Otherwise known as a self referential function.
-// The return option can implement the inverse logic.
-// i.e. closures to our rescue yet again !!!
-type option func(*Storage) option
-
-// 2. Implement a business function
-// Mark the use of closure than direct setting of the property
-// Notice, that the client invocation to this method is still simple
-// i.e. storage.Capacity(100)
-// However, the client side resetting of this option will be verbose
-func Capacity(cap int) option {
-    return func(s *Storage) option{
-        previous := s.capacity
-        s.capacity = cap
-        return Capacity(previous)
-    }
-}
-
-// 3. Utility to set various options that are defined now or in future
-// Mark the use of variadic arguments
-// Notice the previous value of last option is returned
-func (s *Storage) Option(opts ...option) (previous option){
-  for _, opt := range opts {
-    previous = opt(s)
-  }
-
-  return previous
-}
-```
-
-<br />
-
 - **References**
   - [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
   - [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
   - [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
-
-<br />
-
-- **Simply structs**
- 
-```go
-
-package middleware
-
-// VersionMiddleware is a middleware that
-// validates the client and server versions.
-type VersionMiddleware struct {
-	serverVersion  string
-	defaultVersion string
-	minVersion     string
-}
-
-// NewVersionMiddleware creates a new VersionMiddleware
-// with the default versions.
-func NewVersionMiddleware(s, d, m string) VersionMiddleware {
-	return VersionMiddleware{
-		serverVersion:  s,
-		defaultVersion: d,
-		minVersion:     m,
-	}
-}
-
-//-------------------------------------------------------------------------
-// in some other file
-//-------------------------------------------------------------------------
-middleware.NewVersionMiddleware("0.1omega2", api.DefaultVersion, api.MinVersion)
-```
-
-<br />
-
-- **Structs everywhere**
-
-```go
-
-// Config provides the configuration for the API server
-type Config struct {
-	Logging     bool
-	Version     string
-	SocketGroup string
-	TLSConfig   *tls.Config
-}
-
-// HTTPServer contains an instance of http server and the listener.
-// The instance srv *http.Server, contains configuration to 
-//     - create a http server and a mux router with all api end points.
-// l   net.Listener, is a TCP or Socket listener that dispatches incoming request to the router.
-type HTTPServer struct {
-	srv *http.Server
-	l   net.Listener
-}
-
-// Server contains instance details for the server
-type Server struct {
-	cfg           *Config
-	servers       []*HTTPServer
-	routers       []router.Router
-	routerSwapper *routerSwapper
-	middlewares   []middleware.Middleware
-}
-```
-
-<br />
-
-- **Nouns as Structs' properties and Verbs as Interfaces' methods - I**
-
-```go
-
-// a simple built-in interface
-type error interface {
-    Error() string
-}
-
-// A library writer is free to implement this interface with a richer model
-// under the covers, making it possible not only to see the error 
-// but also to provide some context.
-// PathError records an error and the operation and
-// file path that caused it.
-type PathError struct {
-    Op string    // "open", "unlink", etc.
-    Path string  // The associated file.
-    Err error    // Returned by the system call.
-}
-
-func (e *PathError) Error() string {
-    return e.Op + " " + e.Path + ": " + e.Err.Error()
-}
-```
-
-<br />
-
-- **Nouns as Structs' properties and Verbs as Interfaces' methods - II**
-
-```go
-
-// refer - http://www.lshift.net/blog/2013/10/25/going-monad-with-parser-combinators/
-
-// Verbs i.e. behavior encapsulated in interface
-type Parser interface {
-    // Parse consumes some input and returns ParseTrees. If the
-    // receiver failed to parse anything, Parse returns an empty
-    // slice. A slice containing a single element represents an
-    // unambiguous parse. Multiple results mean multiple parse
-    // trees for the given consumed input.
-    Parse(s string) ParseTrees
-}
-
-// Struct i.e. the Noun -- consists of the properties
-type ParseTree struct{
-    Value interface{}
-    Remaining string
-}
-
-// Collection of Structs i.e Nouns
-type ParseTrees []ParseTree
-
-// type declaration for a specific implementation of ParseTree
-// This will do nothing
-type Zero struct {}
-
-// type declaration for a specific implementation of ParseTree
-// This will do some work
-type Item struct {}
-
-// Actual implementation - polymorphism
-func (p Zero) Parse(s string) (ParseTrees) {
-    return ParseTrees{}
-}
-
-// Actual implementation - polymorphism
-func (p Item) Parse(s string) (results ParseTrees) {
-    if len(s) == 0 {
-        results = ParseTrees{}
-    } else {
-        reader := strings.NewReader(s)
-        // ReadRune replaces an invalid rune with U+FFFD!
-        // Err is _never_ set!
-        first, size, _ := reader.ReadRune()
-        if first == 'uFFFD' {
-            results = ParseTrees{}
-        } else {
-            rest := s[size:]
-            results = ParseTrees{ParseTree{first, rest}}
-        }
-    }
-    return
-}
-```
-
-<br />
-
-- **Building logic... oops way !!!**
-
-```go
-
-// Config provides the configuration for the API server
-type Config struct {
-	Logging     bool
-	Version     string
-	SocketGroup string
-	TLSConfig   *tls.Config
-}
-
-// Server contains instance details for the server
-type Server struct {
-	cfg           *Config
-	servers       []*HTTPServer
-	routers       []router.Router
-	routerSwapper *routerSwapper
-	middlewares   []middleware.Middleware
-}
-
-// New returns a new instance of the server based on the specified configuration.
-// It allocates resources which will be needed for ServeAPI(ports, unix-sockets).
-func New(cfg *Config) *Server {
-	return &Server{
-		cfg: cfg,
-	}
-}
-
-// UseMiddleware appends a new middleware to the request chain.
-// This needs to be called before the API routes are configured.
-func (s *Server) UseMiddleware(m middleware.Middleware) {
-	s.middlewares = append(s.middlewares, m)
-}
-
-//-----------------------------------------------------------------
-// some other file e.g. test file
-//-----------------------------------------------------------------
-
-cfg := &Config{
-	Version: "0.1omega2",
-}
-srv := &Server{
-	cfg: cfg,
-}
-
-// An instance calling the instance method & then
-// package.ExposedMethod() invocation
-srv.UseMiddleware(middleware.NewVersionMiddleware("0.1omega2", api.DefaultVersion, api.MinVersion))
-```
 
 <br />
 
