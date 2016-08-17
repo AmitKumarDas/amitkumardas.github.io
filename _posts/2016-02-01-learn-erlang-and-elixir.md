@@ -3,6 +3,17 @@ layout: post
 title: Learn Erlang and Elixir
 ---
 
+# useful libraries
+
+```
+
+- https://github.com/bitwalker/swarm
+  - global distributed rgistry
+  - a custering utility
+```
+
+<br />
+
 # Learn Erlang and Elixir
 
 ```elixir
