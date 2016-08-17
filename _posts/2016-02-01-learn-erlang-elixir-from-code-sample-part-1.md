@@ -272,3 +272,44 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 - fits into an OTP supervision tree
 - can be a part of the supervision tree
 ```
+
+<br />
+
+### Type safe elixir
+
+```elixir
+
+# refer - elixir docs
+
+defmodule LousyCalculator do
+  @spec add(number, number) :: {number, String.t}
+  def add(x, y), do: {x + y, "You need a calculator to do that?!"}
+
+  @spec multiply(number, number) :: {number, String.t}
+  def multiply(x, y), do: {x * y, "Jeez, come on!"}
+end
+
+# versus.
+
+defmodule LousyCalculator do
+  @typedoc """
+  Just a number followed by a string.
+  """
+  @type number_with_remark :: {number, String.t}
+
+  @spec add(number, number) :: number_with_remark
+  def add(x, y), do: {x + y, "You need a calculator to do that?"}
+
+  @spec multiply(number, number) :: number_with_remark
+  def multiply(x, y), do: {x * y, "It is like addition on steroids."}
+end
+```
+
+<br />
+
+```
+
+- a doc for types
+- create custom types similar to golang
+- reuse types
+```
