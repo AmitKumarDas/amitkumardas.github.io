@@ -313,3 +313,36 @@ end
 - create custom types similar to golang
 - reuse types
 ```
+
+<br />
+
+### Behaviors are same as interfaces in Java
+
+```elixir
+
+defmodule Parser do
+  @callback parse(String.t) :: any
+  @callback extensions() :: [String.t]
+end
+
+defmodule JSONParser do
+  @behaviour Parser
+
+  def parse(str), do: # ... parse JSON
+  def extensions, do: ["json"]
+end
+
+defmodule YAMLParser do
+  @behaviour Parser
+
+  def parse(str), do: # ... parse YAML
+  def extensions, do: ["yml"]
+end
+```
+
+<br />
+
+```
+
+- you get compilation errors if you miss any callback directive !
+```
