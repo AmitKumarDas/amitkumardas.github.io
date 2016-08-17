@@ -364,3 +364,19 @@ end
 - ETS has no schema
 - data must be stored as a tuple whose first element is the key
 ```
+
+<br />
+
+### Sample Code - overloaded functions, guards, type specs, type checks
+
+```elixir
+
+@spec register(term, mfa | pid) :: {:ok, pid} | {:error, term}
+def register(name, {m,f,a})
+  when is_atom(m) and is_atom(f) and is_list(a) do
+  GenServer.call(__MODULE__, {:register, name, {m,f,a}})
+end
+def register(name, pid) when is_pid(pid) do
+  GenServer.call(__MODULE__, {:register, name, pid})
+end
+```
