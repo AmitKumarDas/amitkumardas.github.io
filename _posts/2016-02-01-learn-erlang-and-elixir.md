@@ -350,3 +350,17 @@ end
 - __MODULE__
   - returns the current module name as an atom or nil otherwise
 ```
+
+<br />
+
+### Erlang term Storage - ETS
+
+```
+
+- in-memory store
+- tables in ets are created & owned by individual processes
+- when owner process terminates, its tables are destroyed
+- ETS is limited to 1400 tables per node
+- ETS has no schema
+- data must be stored as a tuple whose first element is the key
+```
