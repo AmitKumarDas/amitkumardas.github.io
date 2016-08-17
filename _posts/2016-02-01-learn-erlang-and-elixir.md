@@ -340,3 +340,13 @@ end
 
 - you get compilation errors if you miss any callback directive !
 ```
+
+<br />
+
+### Elixir - Special Forms
+
+```
+
+- __MODULE__
+  - returns the current module name as an atom or nil otherwise
+```
