@@ -1,15 +1,15 @@
 ---
 layout: post
-title: My clojure refresher
+title: My lisp refresher
 ---
 
 # Why this article ?
 
-> This helps me in learning or referencing clojure quickly.
+> This helps me in learning or referencing clojure, lfe, etc quickly.
 
 <br />
 
-## S-Expressions
+### S-Expressions
 
 ```clojure
 
@@ -30,7 +30,7 @@ title: My clojure refresher
 
 <br />
 
-## Homoiconic Language
+### Homoiconic Language
 
 ```clojure
 
@@ -40,7 +40,7 @@ type of the language itself."
 
 <br />
 
-## Macros
+### Macros
 
 ```clojure
 
@@ -50,7 +50,7 @@ type of the language itself."
 
 <br />
 
-## Why use Macros ?
+### Why use Macros ?
 
 ```clojure
 
