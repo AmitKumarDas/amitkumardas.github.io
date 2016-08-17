@@ -171,7 +171,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### Enum vs. Streams
 
-```elixir
+```
 
 - whole collection in memory
 - versus. lazy traversal of collection
@@ -181,7 +181,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### Streams vs. Stream.async()
 
-```elixir
+```
 
 - lazy evaluation vs. using separate processes to process parts of the pipeline
 ```
@@ -190,7 +190,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### Stream.async() vs. supervising
 
-```elixir
+```
 
 - manual implementation leading to error prone implementation
 - how to manage back-pressure i.e. ensure a process from receiving too many messages
@@ -201,7 +201,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### case for **GenStage**
 
-```elixir
+```
 
 - exchange events between producers & consumers
 - a new Elixir behaviour for exchanging events between Elixir processes.
@@ -215,7 +215,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### **GenStage** stages
 
-```elixir
+```
 
 - stages receive or send data from other stages
 - can assume the role of a producer or consumer at once
@@ -230,7 +230,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### **GenStage** events
 
-```elixir
+```
 
 - events are sent by a dispatcher
 - events may be in-memory
@@ -241,7 +241,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### **GenStage** buffer events
 
-```elixir
+```
 
 - Assuming a consumer has crashed
 - The producer may want to buffer the events that have arrived from upstream
@@ -253,7 +253,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### **GenStages** notifications vs. broadcast
 
-```elixir
+```
 
 - send notifications to all consumers
 - out-of-band information
@@ -264,7 +264,7 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 
 ### GenServer
 
-```erlang
+```
 
 - provides the client-server interaction bits
 - has standard set of interface functions
