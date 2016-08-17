@@ -393,3 +393,18 @@ def register(name, pid) when is_pid(pid) do
   GenServer.call(__MODULE__, {:register, name, pid})
 end
 ```
+
+<br />
+
+### Supervisors vs. GenServers
+
+```
+
+- Supervisors glues together the GenServers
+- Supervises other processes called child processes
+- Builds a hierarchical process structure:
+  - a nice way to structure fault-tolerant applications
+- Spawns processes, typically GenServers
+  - manages them
+  - restarts them when they crash
+```
