@@ -1,19 +1,11 @@
 ---
 layout: post
-title: Learn Erlang or Elixir from code sample - Part 1
+title: Learn Erlang and Elixir
 ---
 
-# Learn Erlang or Elixir from code sample - Part 1
+# Learn Erlang and Elixir
 
-## Study below sample elixir code & analyze its syntax
-
-- refer - [crash course](http://elixir-lang.org/crash-course.html#anonymous-functions)
-- refer - [elixir forum post](https://elixirforum.com/t/help-with-performance-file-io/802)
-inv
-<br />
-
-```
-# elixir
+```elixir
 
 defmodule Foo do
 
@@ -36,28 +28,30 @@ Foo.run(file_name)
 
 <br />
 
-### module
+```
 
 - Each module lives in its own file.
 - You give the module a name.
 - In Erlang you need to explicitly export the functions to make them public.
 - Non-exported functions become private.
 - defp in elixir makes a function private.
+```
 
 <br />
 
-### atom
+### Atoms vs Variables
 
-- Notice the capital letters in Erlang
-- Notice the ```:``` in Elixir
+```erlang
 
-```
-% erlang.
+% erlang
 
 im_an_atom.
 
 But_i_am_a_var.
 X=100.
+```
+
+```elixir
 
 # elixir
 
