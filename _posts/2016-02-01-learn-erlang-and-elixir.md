@@ -371,6 +371,8 @@ end
 
 ```elixir
 
+# refer - https://github.com/bitwalker/swarm/
+
 @spec register(term, mfa | pid) :: {:ok, pid} | {:error, term}
 def register(name, {m,f,a})
   when is_atom(m) and is_atom(f) and is_list(a) do
