@@ -259,3 +259,16 @@ Enum.map [1, 2, 3, 4], &Math.square/1
 - out-of-band information
 - is different from broadcast
 ```
+
+<br />
+
+### GenServer
+
+```erlang
+
+- provides the client-server interaction bits
+- has standard set of interface functions
+- tracing & error reporting
+- fits into an OTP supervision tree
+- can be a part of the supervision tree
+```
