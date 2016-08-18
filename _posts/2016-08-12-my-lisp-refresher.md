@@ -15,19 +15,21 @@ title: My lisp refresher
   - undo changes
 - C-k
   - kill line after the pointer
+- C-g
+  - abort the current emacs action
+  - will not close emacs
+- C-x C-c
+  - exit emacs
 - C-y
   - yank
-- C-g
-  - go away if current action does not work
-  - will not close emacs
 - C-x C-f
   - open a file
 - C-x C-s
   - save a file
 - C-a
-  - move to beginning
+  - move to **beginning**
 - C-e
-  - move to end
+  - move to **end**
 - M-g g
   - go to line
 - M-x
