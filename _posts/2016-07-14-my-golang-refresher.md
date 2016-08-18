@@ -134,7 +134,7 @@ type WriterTo interface {
 }
 
 type ReaderAt interface {
-         ReadAt(p []byte, off int64) (n int, err error)
+        ReadAt(p []byte, off int64) (n int, err error)
 }
 
 ///////////////
@@ -191,6 +191,12 @@ func (s *SectionReader) ReadAt(p []byte, off int64) (n int, err error) {
 func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {        
         // ...
 }
+```
+
+```
+
+- A simplified version can be found below:
+- http://golangtutorials.blogspot.in/2011/06/polymorphism-in-go.html
 ```
 
 <br />
