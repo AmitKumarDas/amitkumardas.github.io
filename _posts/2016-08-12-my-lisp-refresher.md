@@ -74,6 +74,26 @@ title: My lisp refresher
 
 <br />
 
+### Lisp & its special syntax forms
+
+```lisp
+
+;; Lisp defines a couple of special syntax forms. 
+;; The quote (') indicates the next token is a literal. 
+;; The quasiquote or backtick (`) indicates the next token is a literal with escapes. 
+
+;; Escapes are indicated by the comma operator.
+
+;; The literal '(1 2 3) is the equivalent of Python's [1, 2, 3]. 
+;; You can assign it to another variable or use it in place. 
+;; `(1 2 ,x) is the equivalent of Python's [1, 2, x] 
+;; where x is a variable previously defined. 
+;; This list notation is part of the magic that goes into macros. 
+```
+
+<br />
+
+
 ### S-Expressions
 
 ```clojure
