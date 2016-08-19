@@ -131,3 +131,30 @@ type of the language itself."
 ;; ztellman/riddley
 ;; ztellman/proteus
 ```
+
+<br />
+
+### Clojure - Protocols for polymorphic dispatch
+
+```clojure
+
+;; http://clojure.org/protocols
+```
+
+<br />
+
+### Clojure - Keywords as functions
+
+```clojure
+
+;; http://stackoverflow.com/questions/6915531/why-does-using-keywords-or-symbols-as-functions-to-lookup-values-from-maps-work
+```
+
+<br />
+
+### Clojure - Transducers - Functions applied to collections
+
+```clojure
+
+;; http://clojure.org/transducers
+```
