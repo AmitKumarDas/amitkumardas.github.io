@@ -135,21 +135,45 @@ type of the language itself."
 
 <br />
 
-### Why use Macros ?
+### Macros are so special - Why ?
 
-```clojure
+```lisp
 
-;; syntax has semantics, data does not
-;; only way to create **control-flow abstractions**
-;; solving problems at compile time is always better than at runtime
+;; So let us define a macro called lcomp (short for list comprehension). 
+;; It's syntax will be exactly like the python 
+;; e.g. [x for x in range(10) if x % 2 == 0]
 
-;; GO macro
-;; a library & no compiler changes are required
-;; works in JVM & JavaScript environments
-;; identical flow of execution, just a different way to "park"
+;; vs. lisp's
+;; (lcomp x for x in (range 10) if (= (% x 2) 0))
+```
 
-;; ztellman/riddley
-;; ztellman/proteus
+```lisp
+
+(defmacro lcomp (expression for var in list conditional conditional-test)
+  ;; create a unique variable name for the result
+  (let ((result (gensym)))
+    ;; the arguments are really code so we can substitute them 
+    ;; store nil in the unique variable name generated above
+    `(let ((,result nil))
+       ;; var is a variable name
+       ;; list is the list literal we are suppose to iterate over
+       (loop for ,var in ,list
+            ;; conditional is if or unless
+            ;; conditioanl-test is (= (mod x 2) 0) in our examples
+            ,conditional ,conditional-test
+            ;; and this is the action from the earlier lisp example
+            ;; result = result + [x] in python
+            do (setq ,result (append ,result (list ,expression))))
+           ;; return the result 
+       ,result)))
+```
+
+```lisp
+
+;; using above macro in command line
+
+(lcomp x for x in (range 10) if (= (mod x 2) 0))
+(0 2 4 6 8)
 ```
 
 <br />
