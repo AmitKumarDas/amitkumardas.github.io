@@ -202,3 +202,21 @@ type of the language itself."
 
 ;; http://clojure.org/transducers
 ```
+
+<br />
+
+### Pixie - Native lisp on RPython
+
+```lisp
+
+;; Pixie from likes of Timothy Baldridge. 
+;; Tim is also a key part of Clojure's core.async.
+
+;; Pixie has all the good attributes of Clojure, but has a 10MB runtime. 
+;; It's small and fast. How? It's written in RPython and compiles down to native code. 
+;; It's got a tracing JIT and full garbage collection. 
+;; It's got very fast start-up time and Tim has some benchmarks that demonstrate that it runs reasonably fast.
+
+;; Pixie interoperates with the outside world pretty much the same way Python does... via libffi. 
+;; This means your Pixie code can call to C code... to native .so libraries.
+```
