@@ -22,6 +22,15 @@ no arguments and returns no value.
 
 <br />
 
+- **golang** & OOPs
+
+```go
+
+// https://github.com/luciotato/golang-notes/blob/master/OOP.md
+```
+
+<br />
+
 - **Just types -- refer - conform library**
 
 ```go
