@@ -18,3 +18,5 @@ title: My Nix refresher
 - Nix Cookbook:
   -  http://funops.co/nix-cookbook
 - Nix Pills (by Lethalman)
+- Nix based CI
+  - http://nixos.org/hydra/
