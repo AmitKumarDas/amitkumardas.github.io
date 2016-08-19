@@ -13,6 +13,8 @@ title: My lisp refresher
 
 - C-/
   - undo changes
+- C-x u
+  - redo
 - C-k
   - kill line after the pointer
 - C-g
@@ -38,6 +40,10 @@ title: My lisp refresher
   - forward by word
 - M-b
   - back by word
+- C-M-f
+  - forward to opening/closing parentheses
+- C-M-b
+  - backward to opening/closing parentheses
 - C-x b
   - to change buffer
 - C-x k
