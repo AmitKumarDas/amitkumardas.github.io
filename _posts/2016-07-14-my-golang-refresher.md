@@ -73,6 +73,18 @@ func main() {
 
 <br />
 
+- **Firmly grounded to types**
+
+```go
+
+// https://github.com/kanaka/mal/blob/master/go/src/types/types.go
+// https://github.com/kanaka/mal/blob/master/go/src/env/env.go
+// https://github.com/kanaka/mal/blob/master/go/src/core/core.go
+
+```
+
+<br />
+
 - **Complex requirements yet simple implementation**
 
 ```go
