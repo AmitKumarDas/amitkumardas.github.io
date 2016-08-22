@@ -125,6 +125,25 @@ title: My lisp refresher
 
 <br />
 
+### keywords vs. functions
+
+```clojure
+
+;; via keyword
+(:a #{:a :b})
+; => :a
+
+;; via get
+(get #{:a :b} :a)
+; => :a
+
+;; via contains?
+(contains? #{:a :b} :a)
+; => true
+```
+
+<br />
+
 ### S-Expressions
 
 ```clojure
