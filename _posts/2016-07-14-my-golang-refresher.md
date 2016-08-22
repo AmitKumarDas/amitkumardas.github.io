@@ -24,6 +24,7 @@ no arguments and returns no value.
 
 - **Cheatsheet**
 - [link](https://github.com/a8m/go-lang-cheat-sheet)
+- [link 2](https://github.com/golang/go/wiki)
 
 <br />
 
