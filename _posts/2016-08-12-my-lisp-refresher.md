@@ -99,6 +99,15 @@ title: My lisp refresher
 
 <br />
 
+### Basic Syntax
+
+```clojure
+
+;; Nested Maps
+{:name {:first "John" :middle "Jacob" :last "Jingleheimerschmidt"}}
+```
+
+<br />
 
 ### S-Expressions
 
