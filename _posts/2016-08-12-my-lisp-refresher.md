@@ -144,6 +144,24 @@ title: My lisp refresher
 
 <br />
 
+### inverted thinking
+
+```clojure
+
+;; selecting a function based on predicate
+((and (= 1 1) +) 1 2 3)
+; => 6
+
+;; function == data, data == function
+((first [+ 0]) 1 2 3)
+; => 6
+
+;; clojure functions can take any expression as arguments
+;; including other functions
+```
+
+<br />
+
 ### S-Expressions
 
 ```clojure
