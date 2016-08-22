@@ -36,27 +36,14 @@ no arguments and returns no value.
 
 <br />
 
-- **Just types -- refer - conform library**
+- **Proper Designs**
 
 ```go
 
-// declaration
-type x map[string]string
-
-// usage
-stuff := []x{x{"[^\\pL-\\s]": ""}, x{"\\s": " "}, x{"-": "-"}}
-```
-
-<br />
-
-- **Types and type casting -- refer - validator library**
-
-```go
-
-// validator returns nil or ValidationErrors as type error
-// Hence, an error needs to be typecasted to ValidationErrors
-err := validate.Struct(mystruct)
-validationErrors := err.(validator.ValidationErrors)
+// https://github.com/kanaka/mal/blob/master/go/src/types/types.go
+// https://github.com/kanaka/mal/blob/master/go/src/env/env.go
+// https://github.com/kanaka/mal/blob/master/go/src/core/core.go
+// https://husobee.github.io/golang/validation/2016/01/08/input-validation.html
 ```
 
 <br />
@@ -83,18 +70,6 @@ func main() {
 	fmt.Println(AsUint16(Year(2015)))
 	fmt.Println(Year(2015).ToUint16())
 }
-```
-
-<br />
-
-- **Firmly grounded to types**
-
-```go
-
-// https://github.com/kanaka/mal/blob/master/go/src/types/types.go
-// https://github.com/kanaka/mal/blob/master/go/src/env/env.go
-// https://github.com/kanaka/mal/blob/master/go/src/core/core.go
-
 ```
 
 <br />
