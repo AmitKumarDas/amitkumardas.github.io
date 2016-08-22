@@ -94,6 +94,25 @@ func main() {
 
 <br />
 
+- Arrays & Slices
+
+```go
+
+// We deal with an array when we create it with a size:
+names := [2]string{"hello", "world"}
+//or
+names := [2]string{}
+
+// These are slices
+names := []string{"hello", "world"}
+//or
+names := make([]string, 2)
+//or
+var names []string
+```
+
+<br />
+
 - **Complex requirements yet simple implementation**
 
 ```go
@@ -1197,3 +1216,4 @@ git remote show origin
 - [Expressiveness & Runtime Performance](http://dave.cheney.net/2012/02/11/how-the-go-language-improves-expressiveness-without-sacrificing-runtime-performance)
 - [Table driven tests](http://dave.cheney.net/2013/06/09/writing-table-driven-tests-in-go)
 - [Benchmarks](http://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go)
+- [Arrays & Slices](http://openmymind.net/The-Minimum-You-Need-To-Know-About-Arrays-And-Slices-In-Go/)
