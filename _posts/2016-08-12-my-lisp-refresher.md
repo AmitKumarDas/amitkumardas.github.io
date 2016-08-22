@@ -99,7 +99,7 @@ title: My lisp refresher
 
 <br />
 
-### Basic Syntax
+### Basic Types
 
 ```clojure
 
