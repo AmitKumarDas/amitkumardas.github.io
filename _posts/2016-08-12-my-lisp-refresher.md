@@ -111,6 +111,16 @@ title: My lisp refresher
 ; => {:a 1 :b 2}
 
 ;; multiple ways to lookup - use idiomatic way
+;; keywords can be used as function - loved by Clojurists
+
+;; vector is a 0-indexed array collection
+;; a vector can contain heterogenous types
+
+;; list is a linear collection of values
+;; list uses () plus '
+;; i.e. '() 
+
+;; read more on performance implications of retrieving from a list vs. vector
 ```
 
 <br />
