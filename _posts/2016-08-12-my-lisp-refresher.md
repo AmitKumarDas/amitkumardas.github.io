@@ -226,3 +226,13 @@ type of the language itself."
 ;; Pixie interoperates with the outside world pretty much the same way Python does... via libffi. 
 ;; This means your Pixie code can call to C code... to native .so libraries.
 ```
+
+<br />
+
+### References
+
+```lisp
+
+;; http://www.braveclojure.com/
+;; https://notamonadtutorial.com/how-to-earn-your-clojure-white-belt-7e7db68a71e5#.wuff9cdwu
+```
