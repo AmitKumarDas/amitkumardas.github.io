@@ -103,8 +103,14 @@ title: My lisp refresher
 
 ```clojure
 
-;; Nested Maps
+;; Nested Maps - A map literal syntax
 {:name {:first "John" :middle "Jacob" :last "Jingleheimerschmidt"}}
+
+;; Map - via - hash-map
+(hash-map :a 1 :b 2)
+; => {:a 1 :b 2}
+
+;; multiple ways to lookup - use idiomatic way
 ```
 
 <br />
