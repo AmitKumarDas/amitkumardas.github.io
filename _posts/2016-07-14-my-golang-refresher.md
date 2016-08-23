@@ -95,7 +95,7 @@ func main() {
 
 <br />
 
-- Arrays & Slices
+### Arrays & Slices
 
 ```go
 
@@ -114,7 +114,7 @@ var names []string
 
 <br />
 
-- **Complex requirements yet simple implementation**
+### Complex requirements yet simple implementation
 
 ```go
 
@@ -244,7 +244,7 @@ func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {
 
 <br />
 
-- **Types & Command pattern -- refer - conform library**
+### Types & Command pattern -- refer - conform library
 
 ```go
 
@@ -265,7 +265,7 @@ func onlyNumbers(s string) string {
 
 <br />
 
-- **Composable, Maintainable, Readable code in golang**
+### Composable, Maintainable, Readable code in golang
 
 ```go
 
@@ -312,40 +312,6 @@ func (s *Storage) Option(opts ...option) {
   - [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
   - [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
   - [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
-
-<br />
-
-- **Terse for loops**
-
-```go
-
-// HTTPServer contains an instance of http server and the listener.
-// The instance srv *http.Server, contains configuration to 
-//     - create a http server and a mux router with all api end points.
-// l   net.Listener, is a TCP or Socket listener that dispatches incoming request to the router.
-type HTTPServer struct {
-	srv *http.Server
-	l   net.Listener
-}
-
-// Server contains instance details for the server
-type Server struct {
-	servers       []*HTTPServer
-}
-
-// Accept sets a listener the server accepts connections into.
-func (s *Server) Accept(addr string, listeners ...net.Listener) {
-	for _, listener := range listeners {
-		httpServer := &HTTPServer{
-			srv: &http.Server{
-				Addr: addr,
-			},
-			l: listener,
-		}
-		s.servers = append(s.servers, httpServer)
-	}
-}
-```
 
 <br />
 
@@ -436,179 +402,7 @@ func (s *Server) handleWithGlobalMiddlewares(handler httputils.APIFunc) httputil
 
 <br />
 
-- **Here comes the goroutine - Your own http server !!**
- 
-```go
-
-// HTTPServer contains an instance of http server and the listener.
-// srv *http.Server, contains configuration to create a http server and a mux router with all api end points.
-// l   net.Listener, is a TCP or Socket listener that dispatches incoming request to the router.
-type HTTPServer struct {
-	srv *http.Server
-	l   net.Listener
-}
-
-// Server contains instance details for the server
-type Server struct {
-	cfg           *Config
-	servers       []*HTTPServer
-	routers       []router.Router
-	routerSwapper *routerSwapper
-	middlewares   []middleware.Middleware
-}
-
-// Serve starts listening for inbound requests.
-func (s *HTTPServer) Serve() error {
-	return s.srv.Serve(s.l)
-}
-
-// serveAPI loops through all initialized servers and spawns goroutine
-// with Server method for each. It sets createMux() as Handler also.
-func (s *Server) serveAPI() error {
-	var chErrors = make(chan error, len(s.servers))
-	for _, srv := range s.servers {
-		srv.srv.Handler = s.routerSwapper
-		go func(srv *HTTPServer) {
-			var err error
-			logrus.Infof("API listen on %s", srv.l.Addr())
-			if err = srv.Serve(); err != nil && strings.Contains(err.Error(), "use of closed network connection") {
-				err = nil
-			}
-			chErrors <- err
-		}(srv)
-	}
-
-	for i := 0; i < len(s.servers); i++ {
-		err := <-chErrors
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
-// Wait blocks the server goroutine until it exits.
-// It sends an error message if there is any error during
-// the API execution.
-func (s *Server) Wait(waitChan chan error) {
-	if err := s.serveAPI(); err != nil {
-		logrus.Errorf("ServeAPI error: %v", err)
-		waitChan <- err
-		return
-	}
-	waitChan <- nil
-}
-
-//------------------------------------------------------------
-// In the daemon code
-//------------------------------------------------------------
-func (cli *DaemonCli) start() (err error) {
-	stopc := make(chan bool)
-	defer close(stopc)
-
-	flags := flag.CommandLine
-	cli.commonFlags.PostParse()
-
-	cliConfig, err := loadDaemonCliConfig(cli.Config, flags, cli.commonFlags, *cli.configFile)
-	if err != nil {
-		return err
-	}
-	cli.Config = cliConfig
-
-	if cli.Pidfile != "" {
-		pf, err := pidfile.New(cli.Pidfile)
-		if err != nil {
-			return fmt.Errorf("Error starting daemon: %v", err)
-		}
-		defer func() {
-			if err := pf.Remove(); err != nil {
-				logrus.Error(err)
-			}
-		}()
-	}
-
-	serverConfig := &apiserver.Config{
-		// blah blah blah ...
-	}
-
-	api := apiserver.New(serverConfig)
-	cli.api = api
-
-	for i := 0; i < len(cli.Config.Hosts); i++ {
-		var err error
-		
-		protoAddr := cli.Config.Hosts[i]
-		protoAddrParts := strings.SplitN(protoAddr, "://", 2)
-		if len(protoAddrParts) != 2 {
-			return fmt.Errorf("bad format %s, expected PROTO://ADDR", protoAddr)
-		}
-
-		proto := protoAddrParts[0]
-		addr := protoAddrParts[1]
-
-		// It's a bad idea to bind to TCP without tlsverify.
-		if proto == "tcp" {
-			logrus.Warn("[!] DON'T BIND ON ANY IP ADDRESS WITHOUT setting -tlsverify")
-		}
-		
-		ls, err := listeners.Init(proto, addr, serverConfig.SocketGroup, serverConfig.TLSConfig)
-		if err != nil {
-			return err
-		}
-		
-		ls = wrapListeners(proto, ls)
-		// If we're binding to a TCP port, make sure that a container doesn't try to use it.
-		if proto == "tcp" {
-			if err := allocateDaemonPort(addr); err != nil {
-				return err
-			}
-		}
-		logrus.Debugf("Listener created for HTTP on %s (%s)", protoAddrParts[0], protoAddrParts[1])
-		
-		api.Accept(protoAddrParts[1], ls...)
-	}
-
-	signal.Trap(func() {
-		cli.stop()
-		<-stopc // wait for daemonCli.start() to return
-	})
-
-	d, err := daemon.NewDaemon(cli.Config)
-	if err != nil {
-		return fmt.Errorf("Error starting daemon: %v", err)
-	}
-
-	cli.initMiddlewares(api, serverConfig)
-	initRouter(api, d)
-
-	cli.d = d
-	cli.setupConfigReloadTrap()
-
-	// The serve API routine never exits unless an error occurs
-	// We need to start it as a goroutine and wait on it so
-	// daemon doesn't exit
-	serveAPIWait := make(chan error)
-	go api.Wait(serveAPIWait)
-
-	// after the daemon is done setting up we can notify systemd api
-	notifySystem()
-
-	// Daemon is fully initialized and handling API traffic
-	// Wait for serve API to complete
-	errAPI := <-serveAPIWait
-	shutdownDaemon(d, 15)
-	if errAPI != nil {
-		return fmt.Errorf("Shutting down due to ServeAPI error: %v", errAPI)
-	}
-
-	return nil
-}
-```
-
-<br />
-
-- **This or That - Case for defaults**
+### This or That - Case for defaults
 
 ```go
 
@@ -630,7 +424,7 @@ func BoolValueOrDefault(r *http.Request, k string, d bool) bool {
 
 <br />
 
-- **enumerated constants** - What are these ?
+### enumerated constants - What are these ?
 
 ```go
 
@@ -645,7 +439,7 @@ const(
 
 <br />
 
-- **:= vs. =** What is the difference ?
+### := versus = 
  
 ```go
 
@@ -663,106 +457,11 @@ func test(){
 
 <br />
 
-- **all-in-one if statement** Read the sample & understand !!
+### all-in-one if statement
 
 ```go
 
 if err := c.sess.Start(`echo "$SHELL"`); err != nil {..}
-```
-
-<br />
-
-- **Trying a functional approach via Closures**
-
-```go
-
-// RequiresMaxArgs returns an error if there is not at most max args
-func RequiresMaxArgs(max int) cobra.PositionalArgs {
-	return func(cmd *cobra.Command, args []string) error {
-		if len(args) <= max {
-			return nil
-		}
-		return fmt.Errorf(
-			"\"%s\" requires at most %d argument(s).\n",
-			cmd.CommandPath(),
-			max,
-		)
-	}
-}
-
-// some other file
-
-func NewLogoutCommand(dockerCli *client.DockerCli) *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "logout [SERVER]",
-		Short: "Log out from a Docker registry.",
-		Args:  cli.RequiresMaxArgs(1),
-	}
-
-	return cmd
-}
-```
-
-<br />
-
-- **Playing with Array & Struct**
-
-```go
-
-package cli
-
-// Command is the struct containing the command name and description
-type Command struct {
-	Name        string
-	Description string
-}
-
-// OpenEBSCommandUsage lists the top level openebs commands 
-// and their short usage
-var OpenEBSCommandUsage = []Command{
-}
-
-// OpenEBSCommands stores all the openebs command
-var OpenEBSCommands = make(map[string]Command)
-
-func init() {
-	for _, cmd := range OpenEBSCommandUsage {
-		OpenEBSCommands[cmd.Name] = cmd
-	}
-}
-```
-
-<br />
-
-- **Transformations to struct**
-
-```go
-
-// ArchiveOptions stores archive information for different operations.
-type ArchiveOptions struct {
-	Name string
-	Path string
-}
-
-// Parses form values and turns them into ArchiveOptions.
-// It fails if the archive name and path are not in the request.
-func ArchiveFormValues(r *http.Request, vars map[string]string) (ArchiveOptions, error) {
-	if err := ParseForm(r); err != nil {
-		return ArchiveOptions{}, err
-	}
-
-	name := vars["name"]
-	path := filepath.FromSlash(r.Form.Get("path"))
-
-	switch {
-	case name == "":
-		return ArchiveOptions{}, fmt.Errorf("bad parameter: 'name' cannot be empty")
-	case path == "":
-		return ArchiveOptions{}, fmt.Errorf("bad parameter: 'path' cannot be empty")
-	}
-
-	return ArchiveOptions{name, path}, nil
-}
 ```
 
 <br />
@@ -779,37 +478,6 @@ func ArchiveFormValues(r *http.Request, vars map[string]string) (ArchiveOptions,
   
 f, _ := os.Open(filename)
 defer f.Close()
-```
-
-<br />
-
-- **Error Handling**
-
-```go
-
-// May use errors package to create new errors.
-// err = errors.New("an error")
-// The returned error can be treated as a string by either:
-// accessing err.Error(), or 
-// using the fmt package functions (e.g. fmt.Println(err)).
-
-var (
- ErrNoDefault = fmt.Errorf("Error: No %q machine exists.", defaultMachineName)
- ErrTooManyArguments = errors.New("Error: Too many arguments given")
-
- osExit = func(code int) { os.Exit(code) }
-)
-
-// usage
-osExit(3)
-return
-
-// usage
-return "", ErrNoDefault
-
-// usage
-fmt.Fprintln(os.Stderr, err)
-os.Exit(1)
 ```
 
 <br />
@@ -831,7 +499,7 @@ func main() {
 
 <br />
 
-- **path settings, workspaces, etc.**
+### path settings, workspaces, etc.
   
 ```bash
 
@@ -864,7 +532,7 @@ $ go build
 
 <br />
 
-- **Flags**
+### Flags
 
 ```bash
 
@@ -873,7 +541,7 @@ $ go build
 
 <br />
 
-- **dot import**
+### dot import
 
 ```bash
 
@@ -884,38 +552,7 @@ $ go build
 
 <br />
 
-- **Address** of a given variable
-
-```go
-
-// Address can be found for a string, int, float32, complex64, etc.
-var (    
-    hello string = "Hello world"
-)
-
-func main() {    
-    fmt.Println("Hexadecimal address of hello is: ", &hello)
-}
-```
-
-<br />
-
-- Implicit definitions -- some examples
-
-```go
-
-// We know that pointer will be initialized with an address
-// i.e. *myptr = &myvar
-
-// In below example, cmdOutput is implicitly of type *bytes.Buffer
-// In addition, *cmdOutput will have the value of bytes.Buffer
-
-cmdOutput := &bytes.Buffer{}
-```
-
-<br />
-
-- new(T)
+### new(T)
 
 ```go
 
@@ -923,12 +560,11 @@ cmdOutput := &bytes.Buffer{}
 - It does not initialize the memory, it zeros the memory
 - Remember, new(type) returns a pointer to a newly allocated zero value of type T
 - i.e. returns a *T
-
 ```
 
 <br />
 
-- What after new(T) ?
+### What after new(T) ?
 
 ```go
 
@@ -975,7 +611,7 @@ return &File{fd: fd, name: name}
 
 <br />
 
-- Composite literals w.r.t ```arrays, slices, maps```
+### Composite literals w.r.t ```arrays, slices, maps```
 
 ```go
 
@@ -988,7 +624,7 @@ m := map[int]string{Enone: "no error", Eio: "Eio", Einval: "invalid argument"}
 
 <br />
 
-- make vs. new
+### make vs. new
  
 ```go
 
@@ -1011,7 +647,7 @@ v := make([]int, 100)
 
 <br />
 
-- arrays & pass-by-value
+### arrays & pass-by-value
 
 ```go
 
@@ -1028,7 +664,7 @@ v := make([]int, 100)
 
 <br />
 
-- slices and efficiency
+### slices and efficiency
  
 ```go
 
@@ -1044,7 +680,7 @@ n, err := f.Read(buf[0:32])
 
 <br />
 
-- **go keyword** - What is it ?
+### go keyword - What is it ?
 
 ```go
 
@@ -1055,7 +691,7 @@ n, err := f.Read(buf[0:32])
 
 <br />
 
-- **Concurrency** How to get it right ?
+### Concurrency - How to get it right ?
 
 ```bash
 
@@ -1079,7 +715,7 @@ n, err := f.Read(buf[0:32])
 
 <br />
 
-- **Code Review Comments**
+### Code Review Comments
 
 ```bash
 
@@ -1088,7 +724,7 @@ n, err := f.Read(buf[0:32])
 
 <br />
 
-- **Naming conventions**
+### Naming conventions
 
 ```bash
 
@@ -1097,7 +733,7 @@ n, err := f.Read(buf[0:32])
 
 <br />
 
-- **install golang on CentOS**
+### install golang on CentOS
 
 ```bash
 
@@ -1115,7 +751,7 @@ exit the session & re-login
 
 <br />
 
-- **golang & creation of workspace for development w.r.t CentOS**
+### golang & creation of workspace for development w.r.t CentOS
 
 ```bash
 
@@ -1136,7 +772,7 @@ export PATH=$PATH:$GOPATH/bin
 
 <br />
 
-- **creating a new golang project**
+### creating a new golang project
 
 ```bash
 
@@ -1152,7 +788,7 @@ $ govendor fetch github.com/urfave/cli/@=v1
 
 <br />
 
-- **govendor tips**
+### govendor tips
 
 ```bash
 
@@ -1177,7 +813,7 @@ $ govendor fetch github.com/openebs/openebs@master
 
 <br />
 
-- **git tips**
+### git tips
  
 ```bash
 
@@ -1210,7 +846,7 @@ git remote show origin
 
 <br />
 
-## Referenced Links:
+### Referenced Links:
 
 - [Effective golang](https://golang.org/doc/effective_go.html)
 - [Learn golang](http://go-book.appspot.com/index.html)
