@@ -44,14 +44,14 @@ type CreatorFunc func(*types.Input) (*types.Output, error)
 
 // Vsm Creator
 func VsmCreator (vsm *types.Vsm) CreatorFunc {
-	return func (ip *types.Input) (out *types.Output, err) {
+	return func (ip *types.Input) (out *types.Output, err error) {
 		// logic to create VSM
 	}
 }
 
 // Volume Creator
 func VolumeCreator (vol *types.Volume) CreatorFunc {
-	return func (ip *types.Input) (out *types.Output, err) {
+	return func (ip *types.Input) (out *types.Output, err error) {
 		// logic to create Volume
 	}
 }
