@@ -32,11 +32,11 @@ no arguments and returns no value.
 ```go
 
 // Achieving DRY, testable, composable code in imperative languages is an uphill task.
-// In Java, you might want to make use of java.util.function package
-// You will be able to get most with lot of code verbosity
 
-// However, it is simpler to understand & implement in golang
-// This is derived out of Rob Pike's self referential functions & design article.
+// Embrace interfaces
+// Build single method interfaces
+// Build function types & hence make your code functional
+// Avoid passing nil as a parameter to public APIs
 ```
 
 <br />
