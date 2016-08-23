@@ -122,7 +122,7 @@ Decorate(VsmCreator(&types.Vsm{}),
 		NewCounter("..."),
 		NewHistogram("..."),
 	),
-	FaultTolerant(3, 3),
+	FaultTolerant(3, time.Second),
 	)
 ```
 
