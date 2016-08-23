@@ -105,6 +105,25 @@ func FaultTolerant(attempts int, backoff time.Duration) CreateDecorator {
 		})
 	}
 }
+
+// Compose these decorators - Approach 1
+func Decorate (c Creator, ds ...CreateDecorator) Creator {
+	decorated := c
+	for _, decorate := range ds {
+		decorated = decorate(decorated)
+	}
+	return decorated
+}
+
+// Usage
+Decorate(VsmCreator(&types.Vsm{}),
+	Auditing(log.New("...")),
+	Instrumentation(
+		NewCounter("..."),
+		NewHistogram("..."),
+	),
+	FaultTolerant(3, 3),
+	)
 ```
 
 <br />
