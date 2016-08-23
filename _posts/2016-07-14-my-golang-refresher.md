@@ -42,6 +42,20 @@ type Creator interface {
 // NOTE - It is derived from signature !! No explicit stuff !!
 type CreatorFunc func(*types.Input) (*types.Output, error)
 
+// Vsm Creator
+func VsmCreator (vsm *types.Vsm) CreatorFunc {
+	return func (ip *types.Input) (out *types.Output, err) {
+		// logic to create VSM
+	}
+}
+
+// Volume Creator
+func VolumeCreator (vol *types.Volume) CreatorFunc {
+	return func (ip *types.Input) (out *types.Output, err) {
+		// logic to create Volume
+	}
+}
+
 // Meant to be used as a closure
 func (f CreatorFunc) Create(ip *types.Input) (*types.Output, error) {
 	// return the output of f
