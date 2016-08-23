@@ -27,6 +27,56 @@ no arguments and returns no value.
 
 <br />
 
+### Design References - Starter !!
+
+```go
+
+// Achieving DRY, testable, composable code in imperative languages is an uphill task.
+// In Java, you might want to make use of java.util.function package
+// You will be able to get most with lot of code verbosity
+
+// However, it is simpler to understand & implement in golang
+// This is derived out of Rob Pike's self referential functions & design article.
+```
+
+<br />
+
+```go
+
+package storage
+
+// 1. Define a type
+// Mark the case-sensitiveness of option
+type option func(*Storage)
+
+// 2. Implement a business function
+// Mark the use of closure than direct setting of the property
+// Notice, that the client invocation to this method will be very simple
+// i.e. storage.Capacity(100)
+func Capacity(cap int) option {
+    return func(s *Storage) {
+        s.capacity = cap
+    }
+}
+
+// 3. Utility to set various options that are defined now or in future
+// Mark the use of variadic arguments
+func (s *Storage) Option(opts ...option) {
+  for _, opt := range opts {
+    opt(s)
+  }
+}
+```
+
+<br />
+
+- **References**
+  - [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
+  - [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
+  - [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
+
+<br />
+
 ### Design References - Being Functional !!
 
 ```go
@@ -40,6 +90,8 @@ type Creator interface {
 
 // A typed function that implements Creator interface
 // NOTE - It is derived from signature !! No explicit stuff !!
+// NOTE - The moment you see a functional type, be sure that it
+// will be used as a closure.
 type CreatorFunc func(*types.Input) (*types.Output, error)
 
 // Vsm Creator
@@ -56,7 +108,7 @@ func VolumeCreator (vol *types.Volume) CreatorFunc {
 	}
 }
 
-// Meant to be used as a closure
+// A simple case where the functional type has been used as a closure
 func (f CreatorFunc) Create(ip *types.Input) (*types.Output, error) {
 	// return the output of f
 	return f(ip)
@@ -367,56 +419,6 @@ func onlyNumbers(s string) string {
 }
 
 ```
-
-<br />
-
-### Composable, Maintainable, Readable code in golang
-
-```go
-
-// Achieving DRY, testable, composable code in imperative languages is an uphill task.
-// In Java, you might want to make use of java.util.function package
-// You will be able to get most with lot of code verbosity
-
-// However, it is simpler to understand & implement in golang
-// This is derived out of Rob Pike's self referential functions & design article.
-```
-
-<br />
-
-```go
-
-package storage
-
-// 1. Define a type
-// Mark the case-sensitiveness of option
-type option func(*Storage)
-
-// 2. Implement a business function
-// Mark the use of closure than direct setting of the property
-// Notice, that the client invocation to this method will be very simple
-// i.e. storage.Capacity(100)
-func Capacity(cap int) option {
-    return func(s *Storage) {
-        s.capacity = cap
-    }
-}
-
-// 3. Utility to set various options that are defined now or in future
-// Mark the use of variadic arguments
-func (s *Storage) Option(opts ...option) {
-  for _, opt := range opts {
-    opt(s)
-  }
-}
-```
-
-<br />
-
-- **References**
-  - [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
-  - [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
-  - [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
 
 <br />
 
