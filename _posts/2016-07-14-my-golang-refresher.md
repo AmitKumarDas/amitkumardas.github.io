@@ -158,7 +158,7 @@ func FaultTolerant(attempts int, backoff time.Duration) CreateDecorator {
 	}
 }
 
-// Compose these decorators - Approach 1
+// Compose these decorators
 func Decorate (c Creator, ds ...CreateDecorator) Creator {
 	decorated := c
 	for _, decorate := range ds {
@@ -179,6 +179,13 @@ creatorFn := Decorate(VsmCreator(&types.Vsm{}),
 
 out, err := creatorFn(&types.Input{})
 ```
+
+<br />
+
+### Queries
+
+- Should FaultTolerant be the last decorator ?
+- Which decorator will be executed first & which one will be the last to be executed ?
 
 <br />
 
