@@ -37,6 +37,8 @@ no arguments and returns no value.
 // Build single method interfaces
 // Build function types & hence make your code functional
 // Avoid passing nil as a parameter to public APIs
+// e.g. Accepting pointer to config values provides a chance for passing nil
+// e.g. However, passing direct values removes above option
 ```
 
 <br />
