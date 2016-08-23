@@ -9,9 +9,7 @@ title: My golang refresher
 
 <br />
 
-## Frequently asked question:
-
-- **main** - What is it ?
+### main - What is it ?
 
 ```go
 
@@ -22,39 +20,61 @@ no arguments and returns no value.
 
 <br />
 
-- **Cheatsheet**
+### Cheatsheet
+
 - [link](https://github.com/a8m/go-lang-cheat-sheet)
 - [link 2](https://github.com/golang/go/wiki)
 
 <br />
 
-- **golang** & OOPs
+### Proper Designs
 
 ```go
 
+
+
+// Contracts - Interface based design
+// https://github.com/vulcand/vulcand/blob/master/engine/engine.go
+
+// Just Structs & ToString
+// https://github.com/vulcand/vulcand/blob/master/engine/events.go
+
+// Bound to Json
+// https://github.com/vulcand/vulcand/blob/master/engine/json.go
+
+// Business logic
+// https://github.com/vulcand/vulcand/blob/master/engine/model.go
+
+// Expose as Http service
+// https://github.com/vulcand/vulcand/blob/master/api/api.go
+```
+
+```go
+
+// Non business logic approach to learn golang
+
+// https://github.com/kanaka/mal/blob/master/go/src/types/types.go
+// https://github.com/kanaka/mal/blob/master/go/src/env/env.go
+// https://github.com/kanaka/mal/blob/master/go/src/core/core.go
+```
+
+```go
+
+// Others in the wild
+
+// https://husobee.github.io/golang/validation/2016/01/08/input-validation.html
 // https://github.com/luciotato/golang-notes/blob/master/OOP.md
 ```
 
 <br />
 
-- **Proper Designs**
-
-```go
-
-// https://github.com/kanaka/mal/blob/master/go/src/types/types.go
-// https://github.com/kanaka/mal/blob/master/go/src/env/env.go
-// https://github.com/kanaka/mal/blob/master/go/src/core/core.go
-// https://husobee.github.io/golang/validation/2016/01/08/input-validation.html
-```
-
-<br />
-
-- **Custom types on primitives & deferencing back to primitives**
+### Custom types & primitives
 
 ```go
 
 type Year uint16
 
+// Baked in validation & then unboxing !!
 func AsUint16(val interface{}) uint16 {
 	ref := reflect.ValueOf(val)
 	if ref.Kind() != reflect.Uint16 {
