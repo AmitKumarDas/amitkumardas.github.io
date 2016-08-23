@@ -27,11 +27,61 @@ no arguments and returns no value.
 
 <br />
 
-### Proper Designs
+### Design References - Being Functional !!
 
 ```go
 
+// refer - https://www.youtube.com/watch?v=xyDkyFjzFVc
 
+// Single method interface
+type Creator interface {
+	Create(*types.Input) (*types.Output, error)
+}
+
+// A typed function that implements Creator interface
+// NOTE - It is derived from signature !! No explicit stuff !!
+type CreatorFunc func(*types.Input) (*types.Output, error)
+
+// Meant to be used as a closure
+func (f CreatorFunc) Create(ip *types.Input) (*types.Output, error) {
+	// return the output of f
+	return f(ip)
+}
+
+// A typed decorator - to add optional behavior
+type CreateDecorator func(Creator) Creator
+
+// Audit decorator to log the create requests
+// NOTE - 3 return statements
+func Auditing(l *log.Logger) CreateDecorator {
+	return func(c Creator) Creator {
+		return CreatorFunc(func (ip *types.Input) (*types.Output, error) {
+			l.log("you are creating !!")
+			return c.Create(ip)
+		})
+	}
+}
+
+// Instrumenting decorator to instrument the create requests
+// NOTE - 3 return statements
+func Instrumentation(requests Counter, latency Historgram) CreateDecorator {
+	return func (c Creator) Creator {
+		return CreatorFunc( func(ip *types.Input) (*types.Output, error) {
+			defer func(start start.Time){
+				latency.Observe(time.Since(start).Nanoseconds())
+				requests.Add(1)
+			}(time.Now())
+			return c.Create(ip)
+		})
+	}
+}
+```
+
+<br />
+
+### Design References - Code Samples
+
+```go
 
 // Contracts - Interface based design
 // https://github.com/vulcand/vulcand/blob/master/engine/engine.go
@@ -49,18 +99,22 @@ no arguments and returns no value.
 // https://github.com/vulcand/vulcand/blob/master/api/api.go
 ```
 
-```go
+<br />
 
-// Non business logic approach to learn golang
+### Design References - Code Samples - Non business logic approach
+
+```go
 
 // https://github.com/kanaka/mal/blob/master/go/src/types/types.go
 // https://github.com/kanaka/mal/blob/master/go/src/env/env.go
 // https://github.com/kanaka/mal/blob/master/go/src/core/core.go
 ```
 
-```go
+<br />
 
-// Others in the wild
+### Design References - Others
+
+```go
 
 // https://husobee.github.io/golang/validation/2016/01/08/input-validation.html
 // https://github.com/luciotato/golang-notes/blob/master/OOP.md
