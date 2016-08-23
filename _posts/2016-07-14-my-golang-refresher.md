@@ -75,6 +75,22 @@ func Instrumentation(requests Counter, latency Historgram) CreateDecorator {
 		})
 	}
 }
+
+// Fault tolerant decorator
+// NOTE -  3 return statements
+func FaultTolerant(attempts int, backoff time.Duration) CreateDecorator {
+	return func(c Creator) Creator {
+		return CreatorFunc(func (ip *types.Input) (out *types.Output, err error) {
+			for i := 0; i < attempts; i++ {
+				if out, err = c.Create(ip); err == nil {
+					break
+				}
+				time.Sleep(backoff * time.Duration(i))
+			}
+			return out, err
+		})
+	}
+}
 ```
 
 <br />
