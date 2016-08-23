@@ -116,7 +116,7 @@ func Decorate (c Creator, ds ...CreateDecorator) Creator {
 }
 
 // Usage
-Decorate(VsmCreator(&types.Vsm{}),
+creatorFn := Decorate(VsmCreator(&types.Vsm{}),
 	Auditing(log.New("...")),
 	Instrumentation(
 		NewCounter("..."),
@@ -124,6 +124,8 @@ Decorate(VsmCreator(&types.Vsm{}),
 	),
 	FaultTolerant(3, time.Second),
 	)
+
+out, err := creatorFn(&types.Input{})
 ```
 
 <br />
