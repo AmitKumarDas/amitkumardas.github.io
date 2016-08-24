@@ -20,10 +20,11 @@ no arguments and returns no value.
 
 <br />
 
-### Cheatsheet
+### Cookbooks
 
-- [link](https://github.com/a8m/go-lang-cheat-sheet)
-- [link 2](https://github.com/golang/go/wiki)
+- [cheatsheet](https://github.com/a8m/go-lang-cheat-sheet)
+- [golang wiki](https://github.com/golang/go/wiki)
+- [go tips](https://github.com/beyondns/gotips)
 
 <br />
 
