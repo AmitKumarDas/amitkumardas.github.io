@@ -207,6 +207,18 @@ type Func struct {
 func (f Func) Call(v interface{}) interface{} {
 	return f.f(v)
 }
+
+func NewFunc(f interface{}) (*Func, error) {
+	// check type of f and return error if needed
+	return &Func{
+		in: tf.In(0),
+		out: tf.Out(0),
+		f: func(x interface{}) interface{} {
+			out := vf.Call([]reflect.Value{reflect.ValueOf(x)})
+			return out[0].Interface()
+		},
+	}, nil
+}
 ```
 
 <br />
