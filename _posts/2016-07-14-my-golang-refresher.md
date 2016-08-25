@@ -196,7 +196,7 @@ out, err := creatorFn(&types.Input{})
 
 ```go
 
-// refer - https://www.youtube.com/watch?v=ouyHp2nJl0I&spfreload=5
+// refer - https://www.youtube.com/watch?v=ouyHp2nJl0I
 
 type Func struct {
 	in reflect.Type
@@ -234,6 +234,7 @@ type List struct {
 	Tail *List
 }
 
+// List maps to a List
 func (l *List) Map(f * Func, l* List) *List {
 	if l == nil {
 		return nil
@@ -250,12 +251,22 @@ toUpper := Must(NewFunc(strings.ToUpper))
 m := &List{"hello", &List{"world", nil}}
 res := m.Map(toUpper)
 fmt.Println(res)
+```
+
+<br />
+
+### Design References - Being Functional - Take 3 - Running into Functors !!
+
+```go
+
+// refer - https://www.youtube.com/watch?v=ouyHp2nJl0I
 
 // Maybe - A functor - Simplified Monad
 type Maybe struct {
 	Val interface{}
 }
 
+// Maybe maps to a Maybe
 func (m Maybe) Map(f *Func) Maybe {
 	if m.Val == nil {
 		return Maybe{}
@@ -280,11 +291,11 @@ fmt.Println(res.Val)
 
 <br />
 
-### Design References - Being Functional - Take 3 - Tackle the reality!!
+### Design References - Being Functional - Take 4 - Tackle the reality!!
 
 ```go
 
-// refer - https://www.youtube.com/watch?v=ouyHp2nJl0I&spfreload=5
+// refer - https://www.youtube.com/watch?v=ouyHp2nJl0I
 
 // We code like this -- typical imperative approach
 func (p Person) Weather() string, error {
@@ -318,9 +329,65 @@ func (p Person) Weather() string {
 
 // ... in above pseudo code indicates a function implementation
 // that accepts one input & responds with one output.
+// e.g.
+// the first ... === func(p *Person) *Address { return p.address }
+// NOTE - This func is the f in the Map
+// NOTE - Hence, the p is a Maybe type.
 
-// QUERY
-// What about 
+// There are multiple issues:
+// 1. No error message indicating failure ?
+// 2. Code looks sphagetti !!
+// 3. Are we doing all these to avoid `err != nil` boilerplate ?
+
+```
+
+<br />
+
+### Design References - Being Functional - Take 5 - Reality simplified !!
+
+```go
+
+// refer - https://www.youtube.com/watch?v=ouyHp2nJl0I
+
+// We can go ahead & turn each property of Person
+// as a functional property.
+// e.g. Person.Address can be of type function
+
+// Finally we can avoid the Map(Must(NewFunc())) verbosity
+
+// We create another function which does below:
+// Given a bunch of functions, adapt them function
+// & call them recursively
+
+func (m Maybe) Do(fs ...interface{}) (Maybe, error) {
+	if len(fs) == o {
+		return m, nil
+	}
+	
+	if f, err := NewFunc(fs[0]); err != nil {
+		return Maybe{}, err
+	}
+	
+	return m.Map(f).Do(fs[1:]...)
+}
+
+// usage
+func (p Person) Weather() (w string, err error) {
+	if w, err = Maybe{p}.Do(
+		Person.Address,
+		Address.City,
+		City.Weather,
+		Weather.Description
+	); err != nil {
+		return
+	}
+	
+	if w.Val == nil {
+		return "", error.New("No weather")
+	}
+	
+	return w.Val.(string)
+}
 ```
 
 <br />
