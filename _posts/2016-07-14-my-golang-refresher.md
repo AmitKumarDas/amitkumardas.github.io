@@ -280,7 +280,7 @@ fmt.Println(res.Val)
 
 <br />
 
-### Design References - Being Functional - Take 3 !!
+### Design References - Being Functional - Take 3 - Tackle the reality!!
 
 ```go
 
@@ -299,6 +299,28 @@ func (p Person) Weather() string, error {
 	
 	return w.Desc()
 }
+
+// So what is above doing ?
+// Take an input, execute it & produce an output
+// Keep repeating this stuff.
+// The logic will finally be a flow.
+
+// With above functional learning, 
+// we can start off with a chain of Maps.
+// In-fact, this is what has been preached in 
+// reactive (rx) design patterns.
+func (p Person) Weather() string {
+	m := Maybe{p}.
+		Map(Must(NewFunc(...))).
+		Map(Must(NewFunc(...))).
+		Map(Must(NewFunc(...)))
+}
+
+// ... in above pseudo code indicates a function implementation
+// that accepts one input & responds with one output.
+
+// QUERY
+// What about 
 ```
 
 <br />
