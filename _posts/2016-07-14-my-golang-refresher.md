@@ -249,6 +249,21 @@ toUpper := Must(NewFunc(strings.ToUpper))
 
 m := &List{"hello", &List{"world", nil}}
 res := m.Map(toUpper)
+
+// Maybe Monad
+type Maybe struct {
+	Val interface{}
+}
+
+func (m Maybe) Map(f *Func) Maybe {
+	if m.Val == nil {
+		return Maybe{}
+	}
+	
+	return Maybe{
+		f.Call(m.Val)
+	}
+}
 ```
 
 <br />
