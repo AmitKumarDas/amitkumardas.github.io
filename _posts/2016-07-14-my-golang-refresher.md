@@ -249,8 +249,9 @@ toUpper := Must(NewFunc(strings.ToUpper))
 
 m := &List{"hello", &List{"world", nil}}
 res := m.Map(toUpper)
+fmt.Println(res)
 
-// Maybe Monad
+// Maybe - A functor - Simplified Monad
 type Maybe struct {
 	Val interface{}
 }
@@ -263,6 +264,40 @@ func (m Maybe) Map(f *Func) Maybe {
 	return Maybe{
 		f.Call(m.Val)
 	}
+}
+
+// Usage
+m := Maybe{}
+res := m.Map(toUpper)
+fmt.Println(res.Val)
+
+// Usage
+twice := Must(NewFunc(func(s string) string { return s +s }))
+h := Maybe{"hello"}
+res := m.Map(toUpper).Map(twice)
+fmt.Println(res.Val)
+```
+
+<br />
+
+### Design References - Being Functional - Take 3 !!
+
+```go
+
+// refer - https://www.youtube.com/watch?v=ouyHp2nJl0I&spfreload=5
+
+// We code like this -- typical imperative approach
+func (p Person) Weather() string, error {
+	a := p.Address()
+	if a == nil { return error.New("No address")}
+	
+	c := a.City()
+	if c == nil { return error.New("No city")}
+	
+	w := c.Weather()
+	if w == nil { return error.New("No weather")}
+	
+	return w.Desc()
 }
 ```
 
