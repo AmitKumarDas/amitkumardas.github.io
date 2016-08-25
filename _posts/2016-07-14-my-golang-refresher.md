@@ -192,6 +192,25 @@ out, err := creatorFn(&types.Input{})
 
 <br />
 
+### Design References - Being Functional - Take 2 !!
+
+```go
+
+// refer - https://www.youtube.com/watch?v=ouyHp2nJl0I&spfreload=5
+
+type Func struct {
+	in reflect.Type
+	out reflect.Type
+	f func(interface{}) interface{}
+}
+
+func (f Func) Call(v interface{}) interface{} {
+	return f.f(v)
+}
+```
+
+<br />
+
 ### Design References - Code Samples
 
 ```go
