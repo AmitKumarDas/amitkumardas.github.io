@@ -192,7 +192,7 @@ out, err := creatorFn(&types.Input{})
 
 <br />
 
-### Design References - Being Functional - Take 2 !!
+### Design References - Functional Extremism - Melding featues from other languages !!
 
 ```go
 
@@ -343,7 +343,7 @@ func (p Person) Weather() string {
 
 <br />
 
-### Design References - Being Functional - Take 5 - Reality simplified !!
+### Design References - Being Functional - Take 5 - Reality is tackled !!
 
 ```go
 
@@ -392,96 +392,7 @@ func (p Person) Weather() (w string, err error) {
 
 <br />
 
-### Design References - Code Samples
-
-```go
-
-// Contracts - Interface based design
-// https://github.com/vulcand/vulcand/blob/master/engine/engine.go
-
-// Just Structs & ToString
-// https://github.com/vulcand/vulcand/blob/master/engine/events.go
-
-// Bound to Json
-// https://github.com/vulcand/vulcand/blob/master/engine/json.go
-
-// Business logic
-// https://github.com/vulcand/vulcand/blob/master/engine/model.go
-
-// Expose as Http service
-// https://github.com/vulcand/vulcand/blob/master/api/api.go
-```
-
-<br />
-
-### Design References - Code Samples - Non business logic approach
-
-```go
-
-// https://github.com/kanaka/mal/blob/master/go/src/types/types.go
-// https://github.com/kanaka/mal/blob/master/go/src/env/env.go
-// https://github.com/kanaka/mal/blob/master/go/src/core/core.go
-```
-
-<br />
-
-### Design References - Others
-
-```go
-
-// https://husobee.github.io/golang/validation/2016/01/08/input-validation.html
-// https://github.com/luciotato/golang-notes/blob/master/OOP.md
-```
-
-<br />
-
-### Custom types & primitives
-
-```go
-
-type Year uint16
-
-// Baked in validation & then unboxing !!
-func AsUint16(val interface{}) uint16 {
-	ref := reflect.ValueOf(val)
-	if ref.Kind() != reflect.Uint16 {
-		return 0
-	}
-	return uint16(ref.Uint())
-}
-
-func (y Year) ToUint16() uint16 { 
-    return uint16(y)
-}
-
-func main() {
-	fmt.Println(AsUint16(Year(2015)))
-	fmt.Println(Year(2015).ToUint16())
-}
-```
-
-<br />
-
-### Arrays & Slices
-
-```go
-
-// We deal with an array when we create it with a size:
-names := [2]string{"hello", "world"}
-//or
-names := [2]string{}
-
-// These are slices
-names := []string{"hello", "world"}
-//or
-names := make([]string, 2)
-//or
-var names []string
-```
-
-<br />
-
-### Complex requirements yet simple implementation
+### Design References - How golang's std libraries do it ?
 
 ```go
 
@@ -611,6 +522,95 @@ func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {
 
 <br />
 
+### Design References - Code Samples
+
+```go
+
+// Contracts - Interface based design
+// https://github.com/vulcand/vulcand/blob/master/engine/engine.go
+
+// Just Structs & ToString
+// https://github.com/vulcand/vulcand/blob/master/engine/events.go
+
+// Bound to Json
+// https://github.com/vulcand/vulcand/blob/master/engine/json.go
+
+// Business logic
+// https://github.com/vulcand/vulcand/blob/master/engine/model.go
+
+// Expose as Http service
+// https://github.com/vulcand/vulcand/blob/master/api/api.go
+```
+
+<br />
+
+### Design References - Code Samples - Non business logic approach
+
+```go
+
+// https://github.com/kanaka/mal/blob/master/go/src/types/types.go
+// https://github.com/kanaka/mal/blob/master/go/src/env/env.go
+// https://github.com/kanaka/mal/blob/master/go/src/core/core.go
+```
+
+<br />
+
+### Design References - Others
+
+```go
+
+// https://husobee.github.io/golang/validation/2016/01/08/input-validation.html
+// https://github.com/luciotato/golang-notes/blob/master/OOP.md
+```
+
+<br />
+
+### Custom types & primitives
+
+```go
+
+type Year uint16
+
+// Baked in validation & then unboxing !!
+func AsUint16(val interface{}) uint16 {
+	ref := reflect.ValueOf(val)
+	if ref.Kind() != reflect.Uint16 {
+		return 0
+	}
+	return uint16(ref.Uint())
+}
+
+func (y Year) ToUint16() uint16 { 
+    return uint16(y)
+}
+
+func main() {
+	fmt.Println(AsUint16(Year(2015)))
+	fmt.Println(Year(2015).ToUint16())
+}
+```
+
+<br />
+
+### Arrays & Slices
+
+```go
+
+// We deal with an array when we create it with a size:
+names := [2]string{"hello", "world"}
+//or
+names := [2]string{}
+
+// These are slices
+names := []string{"hello", "world"}
+//or
+names := make([]string, 2)
+//or
+var names []string
+```
+
+<br />
+
 ### Types & Command pattern -- refer - conform library
 
 ```go
@@ -632,7 +632,7 @@ func onlyNumbers(s string) string {
 
 <br />
 
-- **Chain of Responsibility - Pass through the filters**
+### Chain of Responsibility - Pass through the filters
  
 ```go
 
@@ -799,7 +799,7 @@ defer f.Close()
 
 <br />
 
-- **recover**
+### recover
 
 ```go
 
