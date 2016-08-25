@@ -28,7 +28,137 @@ no arguments and returns no value.
 
 <br />
 
-### Design References - Starter !!
+### Design References - How golang's std libraries do it ?
+
+```go
+
+// refer - io/io.go
+
+// If your requirements is going to be dangerously complex !
+// Yet you do not want your implementation to spiral out of control !
+
+///////////////
+// Design Step 1 - Group various interfaces to produce a new interface type.
+///////////////
+
+type Writer interface {
+        Write(p []byte) (n int, err error)
+}
+Writer is the interface that wraps the basic Write method.
+
+type Reader interface {
+        Read(p []byte) (n int, err error)
+}
+Reader is the interface that wraps the basic Read method.
+
+type Seeker interface {
+        Seek(offset int64, whence int) (int64, error)
+}
+Seeker is the interface that wraps the basic Seek method.
+
+type Closer interface {
+        Close() error
+}
+Closer is the interface that wraps the basic Close method.
+
+type ReadWriter interface {
+        Reader
+        Writer
+}
+ReadWriter is the interface that groups the basic Read and Write methods.
+
+type ReadWriteSeeker interface {
+        Reader
+        Writer
+        Seeker
+}
+ReadWriteSeeker is the interface that groups the basic Read, Write and Seek methods.
+
+///////////////
+// Design Step 2 - Create interface that use existing interfaces to achieve its desired objective.
+///////////////
+
+type ReaderFrom interface {
+        ReadFrom(r Reader) (n int64, err error)
+}
+ReaderFrom is the interface that wraps the ReadFrom method.
+ReadFrom reads data from r until EOF or error. 
+
+type WriterTo interface {
+        WriteTo(w Writer) (n int64, err error)
+}
+
+type ReaderAt interface {
+        ReadAt(p []byte, off int64) (n int, err error)
+}
+
+///////////////
+// Design Usage  - part 1
+///////////////
+
+func LimitReader(r Reader, n int64) Reader { 
+        return &LimitedReader{r, n} 
+}
+
+type LimitedReader struct {
+        R Reader // underlying reader
+        N int64  // max bytes remaining
+}
+
+func (l *LimitedReader) Read(p []byte) (n int, err error) {
+        // ...
+        return
+}
+
+///////////////
+// Design Usage  - part 2
+///////////////
+
+func NewSectionReader(r ReaderAt, off int64, n int64) *SectionReader {
+        return &SectionReader{r, off, off, off + n}
+}
+
+// SectionReader implements Read, Seek, and ReadAt on a section
+// of an underlying ReaderAt.
+type SectionReader struct {
+        r     ReaderAt
+        base  int64
+        off   int64
+        limit int64
+}
+
+func (s *SectionReader) Read(p []byte) (n int, err error) {
+        if s.off >= s.limit {
+                return 0, EOF
+        }
+        // ...
+        return
+}
+
+func (s *SectionReader) ReadAt(p []byte, off int64) (n int, err error) {
+        if off < 0 || off >= s.limit-s.base {
+                return 0, EOF
+        }
+        off += s.base
+        // ...
+}
+
+func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {        
+        // ...
+}
+```
+
+```
+
+- A simplified version can be found below:
+
+- http://golangtutorials.blogspot.in/2011/06/polymorphism-in-go.html
+- http://www.deangalvin.com/2015/08/04/polymorphism-in-golang/
+```
+
+<br />
+
+### Design References - How can we write better code ?
 
 ```go
 
@@ -43,6 +173,8 @@ no arguments and returns no value.
 ```
 
 <br />
+
+### Design References - How can we write better code : An example !!
 
 ```go
 
@@ -73,10 +205,11 @@ func (s *Storage) Option(opts ...option) {
 
 <br />
 
-- **References**
-  - [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
-  - [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
-  - [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
+### Design References - Above was injecting functional mannerisms to write better code !! Why ?
+
+- [Functional Options](https://www.reddit.com/r/golang/comments/2jf63r/dotgo_functional_options_for_friendly_apis/)
+- [Self Referential Function](https://commandcenter.blogspot.in/2014/01/self-referential-functions-and-design.html?m=1)
+- [Config struct vs. Functional options](http://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)
 
 <br />
 
@@ -255,7 +388,7 @@ fmt.Println(res)
 
 <br />
 
-### Design References - Being Functional - Take 3 - Running into Functors !!
+### Design References - Functional Extremism - Running into Functors !!
 
 ```go
 
@@ -291,7 +424,7 @@ fmt.Println(res.Val)
 
 <br />
 
-### Design References - Being Functional - Take 4 - Tackle the reality!!
+### Design References - Functional Extremism - Tackle the reality!!
 
 ```go
 
@@ -343,7 +476,7 @@ func (p Person) Weather() string {
 
 <br />
 
-### Design References - Being Functional - Take 5 - Reality is tackled !!
+### Design References - Functional Extremism - Reality is tackled !!
 
 ```go
 
@@ -388,136 +521,6 @@ func (p Person) Weather() (w string, err error) {
 	
 	return w.Val.(string)
 }
-```
-
-<br />
-
-### Design References - How golang's std libraries do it ?
-
-```go
-
-// refer - io/io.go
-
-// If your requirements is going to be dangerously complex !
-// Yet you do not want your implementation to spiral out of control !
-
-///////////////
-// Design Step 1 - Group various interfaces to produce a new interface type.
-///////////////
-
-type Writer interface {
-        Write(p []byte) (n int, err error)
-}
-Writer is the interface that wraps the basic Write method.
-
-type Reader interface {
-        Read(p []byte) (n int, err error)
-}
-Reader is the interface that wraps the basic Read method.
-
-type Seeker interface {
-        Seek(offset int64, whence int) (int64, error)
-}
-Seeker is the interface that wraps the basic Seek method.
-
-type Closer interface {
-        Close() error
-}
-Closer is the interface that wraps the basic Close method.
-
-type ReadWriter interface {
-        Reader
-        Writer
-}
-ReadWriter is the interface that groups the basic Read and Write methods.
-
-type ReadWriteSeeker interface {
-        Reader
-        Writer
-        Seeker
-}
-ReadWriteSeeker is the interface that groups the basic Read, Write and Seek methods.
-
-///////////////
-// Design Step 2 - Create interface that use existing interfaces to achieve its desired objective.
-///////////////
-
-type ReaderFrom interface {
-        ReadFrom(r Reader) (n int64, err error)
-}
-ReaderFrom is the interface that wraps the ReadFrom method.
-ReadFrom reads data from r until EOF or error. 
-
-type WriterTo interface {
-        WriteTo(w Writer) (n int64, err error)
-}
-
-type ReaderAt interface {
-        ReadAt(p []byte, off int64) (n int, err error)
-}
-
-///////////////
-// Design Usage  - part 1
-///////////////
-
-func LimitReader(r Reader, n int64) Reader { 
-        return &LimitedReader{r, n} 
-}
-
-type LimitedReader struct {
-        R Reader // underlying reader
-        N int64  // max bytes remaining
-}
-
-func (l *LimitedReader) Read(p []byte) (n int, err error) {
-        // ...
-        return
-}
-
-///////////////
-// Design Usage  - part 2
-///////////////
-
-func NewSectionReader(r ReaderAt, off int64, n int64) *SectionReader {
-        return &SectionReader{r, off, off, off + n}
-}
-
-// SectionReader implements Read, Seek, and ReadAt on a section
-// of an underlying ReaderAt.
-type SectionReader struct {
-        r     ReaderAt
-        base  int64
-        off   int64
-        limit int64
-}
-
-func (s *SectionReader) Read(p []byte) (n int, err error) {
-        if s.off >= s.limit {
-                return 0, EOF
-        }
-        // ...
-        return
-}
-
-func (s *SectionReader) ReadAt(p []byte, off int64) (n int, err error) {
-        if off < 0 || off >= s.limit-s.base {
-                return 0, EOF
-        }
-        off += s.base
-        // ...
-}
-
-func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {        
-        // ...
-}
-```
-
-```
-
-- A simplified version can be found below:
-
-- http://golangtutorials.blogspot.in/2011/06/polymorphism-in-go.html
-- http://www.deangalvin.com/2015/08/04/polymorphism-in-golang/
 ```
 
 <br />
