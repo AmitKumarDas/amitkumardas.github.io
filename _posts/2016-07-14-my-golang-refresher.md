@@ -34,55 +34,48 @@ no arguments and returns no value.
 
 // refer - io/io.go
 
-// If your requirements is going to be dangerously complex !
-// Yet you do not want your implementation to spiral out of control !
-
 ///////////////
-// Design Step 1 - Group various interfaces to produce a new interface type.
+// Design Step 1 - Single method interfaces - Single Responsibility Principle.
 ///////////////
 
 type Writer interface {
         Write(p []byte) (n int, err error)
 }
-Writer is the interface that wraps the basic Write method.
 
 type Reader interface {
         Read(p []byte) (n int, err error)
 }
-Reader is the interface that wraps the basic Read method.
 
 type Seeker interface {
         Seek(offset int64, whence int) (int64, error)
 }
-Seeker is the interface that wraps the basic Seek method.
 
 type Closer interface {
         Close() error
 }
-Closer is the interface that wraps the basic Close method.
+
+///////////////
+// Design Step 2 - Compose broad interfaces from narrower interfaces.
+///////////////
 
 type ReadWriter interface {
         Reader
         Writer
 }
-ReadWriter is the interface that groups the basic Read and Write methods.
 
 type ReadWriteSeeker interface {
         Reader
         Writer
         Seeker
 }
-ReadWriteSeeker is the interface that groups the basic Read, Write and Seek methods.
 
 ///////////////
-// Design Step 2 - Create interface that use existing interfaces to achieve its desired objective.
+// Design Step 3 - Functions accepting narrow interfaces
 ///////////////
 
 type ReaderFrom interface {
         ReadFrom(r Reader) (n int64, err error)
 }
-ReaderFrom is the interface that wraps the ReadFrom method.
-ReadFrom reads data from r until EOF or error. 
 
 type WriterTo interface {
         WriteTo(w Writer) (n int64, err error)
@@ -147,6 +140,10 @@ func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {
         // ...
 }
 ```
+
+<br />
+
+### References
 
 ```
 
