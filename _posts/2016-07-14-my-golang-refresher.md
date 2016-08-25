@@ -80,7 +80,7 @@ func (s *Storage) Option(opts ...option) {
 
 <br />
 
-### Design References - Being Functional !!
+### Design References - Functional approach to combine othogonal features !!
 
 ```go
 
