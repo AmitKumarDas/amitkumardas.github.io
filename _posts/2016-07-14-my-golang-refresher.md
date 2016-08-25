@@ -219,6 +219,36 @@ func NewFunc(f interface{}) (*Func, error) {
 		},
 	}, nil
 }
+
+// validate the Func
+func Must(f *Func, err error) *Func {
+	if err != nil {
+		panic (err)
+	}
+	return f
+}
+
+// Use of Func in list
+type List struct {
+	Head interface{}
+	Tail *List
+}
+
+func (l *List) Map(f * Func, l* List) *List {
+	if l == nil {
+		return nil
+	}
+	
+	return &List{
+		f.Call(l.Head), Map(f, l.Tail)
+	}
+}
+
+// Usage
+toUpper := Must(NewFunc(strings.ToUpper))
+
+m := &List{"hello", &List{"world", nil}}
+res := m.Map(toUpper)
 ```
 
 <br />
