@@ -227,6 +227,12 @@ type Creator interface {
 // will be used as a closure.
 type CreatorFunc func(*types.Input) (*types.Output, error)
 
+// A simple case where the functional type has been used as a closure
+func (f CreatorFunc) Create(ip *types.Input) (*types.Output, error) {
+	// return the output of f
+	return f(ip)
+}
+
 // Vsm Creator
 func VsmCreator (vsm *types.Vsm) CreatorFunc {
 	return func (ip *types.Input) (out *types.Output, err error) {
@@ -239,12 +245,6 @@ func VolumeCreator (vol *types.Volume) CreatorFunc {
 	return func (ip *types.Input) (out *types.Output, err error) {
 		// logic to create Volume
 	}
-}
-
-// A simple case where the functional type has been used as a closure
-func (f CreatorFunc) Create(ip *types.Input) (*types.Output, error) {
-	// return the output of f
-	return f(ip)
 }
 
 // A typed decorator - to add optional behavior
