@@ -148,6 +148,7 @@ func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {
 ```
 
 - [7 common mistakes in go](https://www.youtube.com/watch?v=29LLRKIL_TI)
+- [12 best practices in go](https://www.youtube.com/watch?v=8D3Vmm1BGoY)
 - http://golangtutorials.blogspot.in/2011/06/polymorphism-in-go.html
 - http://www.deangalvin.com/2015/08/04/polymorphism-in-golang/
 ```
