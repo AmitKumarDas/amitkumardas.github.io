@@ -310,7 +310,7 @@ creatorFn := Decorate(VsmCreator(&types.Vsm{}),
 	FaultTolerant(3, time.Second),
 	)
 
-out, err := creatorFn(&types.Input{})
+out, err := creatorFn.Create(&types.Input{})
 ```
 
 <br />
