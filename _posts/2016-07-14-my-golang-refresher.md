@@ -227,13 +227,16 @@ type Creator interface {
 // will be used as a closure.
 type CreatorFunc func(*types.Input) (*types.Output, error)
 
-// A simple case where the functional type has been used as a closure
+// The type CreatorFunc implements the Create method as exposed by
+// Creator interface
 func (f CreatorFunc) Create(ip *types.Input) (*types.Output, error) {
-	// return the output of f
+	// Will invoke the actual implementation of CreateFunc type
+	// by passing the input
 	return f(ip)
 }
 
 // Vsm Creator
+// This returns an implementation of type CreatorFunc
 func VsmCreator (vsm *types.Vsm) CreatorFunc {
 	return func (ip *types.Input) (out *types.Output, err error) {
 		// logic to create VSM
@@ -241,16 +244,21 @@ func VsmCreator (vsm *types.Vsm) CreatorFunc {
 }
 
 // Volume Creator
+// This returns an implementation of type CreatorFunc
 func VolumeCreator (vol *types.Volume) CreatorFunc {
 	return func (ip *types.Input) (out *types.Output, err error) {
 		// logic to create Volume
 	}
 }
 
-// A typed decorator - to add optional behavior
+// A typed decorator / adapter - to add behavior(s) optionally
+// In other words it accepts a Creator & returns an altered Creator
+// This helps in composing various modular/SRP logic(s) together
+// in an un-intrusive manner.
 type CreateDecorator func(Creator) Creator
 
 // Audit decorator to log the create requests
+// NOTE - CreateDecorator returns a Creator returns a CreatorFunc
 // NOTE - 3 return statements
 func Auditing(l *log.Logger) CreateDecorator {
 	return func(c Creator) Creator {
@@ -262,6 +270,7 @@ func Auditing(l *log.Logger) CreateDecorator {
 }
 
 // Instrumenting decorator to instrument the create requests
+// NOTE - CreateDecorator returns a Creator returns a CreatorFunc
 // NOTE - 3 return statements
 func Instrumentation(requests Counter, latency Historgram) CreateDecorator {
 	return func (c Creator) Creator {
@@ -276,7 +285,8 @@ func Instrumentation(requests Counter, latency Historgram) CreateDecorator {
 }
 
 // Fault tolerant decorator
-// NOTE -  3 return statements
+// NOTE - CreateDecorator returns a Creator returns a CreatorFunc
+// NOTE - 3 return statements
 func FaultTolerant(attempts int, backoff time.Duration) CreateDecorator {
 	return func(c Creator) Creator {
 		return CreatorFunc(func (ip *types.Input) (out *types.Output, err error) {
