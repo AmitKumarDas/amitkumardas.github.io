@@ -25,6 +25,16 @@ no arguments and returns no value.
 - [cheatsheet](https://github.com/a8m/go-lang-cheat-sheet)
 - [golang wiki](https://github.com/golang/go/wiki)
 - [go tips](https://github.com/beyondns/gotips)
+- [concurrency in go](https://gist.github.com/kachayev/21e7fe149bc5ae0bd878)
+- [if you are a functional addict](https://github.com/BurntSushi/ty/)
+- [linq in go](http://ahmetalpbalkan.github.io/go-linq/)
+
+### Design Cookbooks
+
+- [io](https://golang.org/pkg/io/)
+- [Workq](https://github.com/iamduo/workq)
+- [Hugo](https://github.com/spf13/hugo)
+- [GoFlow](https://github.com/trustmaster/goflow)
 
 <br />
 
