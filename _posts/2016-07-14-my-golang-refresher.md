@@ -33,6 +33,8 @@ no arguments and returns no value.
 - [Linq in go](http://ahmetalpbalkan.github.io/go-linq/)
 - [Can not do without List & Maps](https://github.com/mndrix/ps)
 
+<br />
+
 ### Design Cookbooks
 
 - [io](https://golang.org/pkg/io/)
@@ -178,6 +180,60 @@ func (s *SectionReader) ReadAt(p []byte, off int64) (n int, err error) {
 func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {        
         // ...
 }
+```
+
+<br />
+
+### Design References - How golang's std libraries are used ?
+
+```go
+
+// refer - io.go
+
+type Reader interface {
+	Read(p []byte) (n int, err error)
+}
+
+type Writer interface {
+	Write(p []byte) (n int, err error)
+}
+
+type ReadSeeker interface {
+	Reader
+	Seeker
+}
+
+// refer - Docker source code
+
+type pos struct {
+	idx    int
+	offset int64
+}
+
+type multiReadSeeker struct {
+	readers []io.ReadSeeker
+	pos     *pos
+	posIdx  map[io.ReadSeeker]int
+}
+
+// Note - The return type is an interface.
+// It is able to accept any struct. As a matter of fact, this struct
+// contains an array of this interface.
+func MultiReadSeeker(readers ...io.ReadSeeker) io.ReadSeeker {
+	if len(readers) == 1 {
+		return readers[0]
+	}
+	idx := make(map[io.ReadSeeker]int)
+	for i, rdr := range readers {
+		idx[rdr] = i
+	}
+	return &multiReadSeeker{
+		readers: readers,
+		posIdx:  idx,
+	}
+}
+
+// Custom implementation of Seek & Read can be implemented
 ```
 
 <br />
