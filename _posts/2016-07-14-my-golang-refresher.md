@@ -48,7 +48,9 @@ no arguments and returns no value.
 - You should use this techniques for your own types and functions. 
 - Passing a focused interface to a function helps ensure that you aren't doing too much. 
 - It's one of the best tools I've seen that reduces the amount of refactoring you have to do
-- [reference link](http://openmymind.net/Things-I-Wish-Someone-Had-Told-Me-About-Go/)
+- [Reference Link](http://openmymind.net/Things-I-Wish-Someone-Had-Told-Me-About-Go/)
+
+<br />
 
 ### Design References - Pass interfaces to functions - II
 
