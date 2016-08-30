@@ -38,6 +38,20 @@ no arguments and returns no value.
 
 <br />
 
+### Design References - Pass interfaces to functions
+
+- Go's interfaces tend to promote small and cohesive behavior. 
+- It's quite common to see interfaces with a single method. 
+- This is quite handy when dealing with Go library interfaces. 
+- Want to write to your own type from any io.Reader? 
+- Simply implement the Write(p []byte) (n int, err error) function and you can use io.Copy.
+- You should use this techniques for your own types and functions. 
+- Passing a focused interface to a function helps ensure that you aren't doing too much. 
+- It's one of the best tools I've seen that reduces the amount of refactoring you have to do
+- [refer](http://openmymind.net/Things-I-Wish-Someone-Had-Told-Me-About-Go/)
+
+<br />
+
 ### Design References - How golang's std libraries do it ?
 
 ```go
