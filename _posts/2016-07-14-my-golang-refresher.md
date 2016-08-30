@@ -32,6 +32,7 @@ no arguments and returns no value.
 - [Functional Addict - III](https://github.com/yanatan16/itertools)
 - [Linq in go](http://ahmetalpbalkan.github.io/go-linq/)
 - [Can not do without List & Maps](https://github.com/mndrix/ps)
+- [Case with empty struct](http://dave.cheney.net/2014/03/25/the-empty-struct)
 
 <br />
 
