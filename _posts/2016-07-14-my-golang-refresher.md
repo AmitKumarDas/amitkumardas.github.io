@@ -23,12 +23,13 @@ no arguments and returns no value.
 ### Cookbooks
 
 - [Common Errors & Solutions](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/)
-- [cheatsheet](https://github.com/a8m/go-lang-cheat-sheet)
-- [golang wiki](https://github.com/golang/go/wiki)
-- [go tips](https://github.com/beyondns/gotips)
-- [concurrency in go](https://gist.github.com/kachayev/21e7fe149bc5ae0bd878)
-- [if you are a functional addict](https://github.com/BurntSushi/ty/)
-- [linq in go](http://ahmetalpbalkan.github.io/go-linq/)
+- [Cheatsheet](https://github.com/a8m/go-lang-cheat-sheet)
+- [Golang wiki](https://github.com/golang/go/wiki)
+- [Go tips](https://github.com/beyondns/gotips)
+- [Concurrency in go](https://gist.github.com/kachayev/21e7fe149bc5ae0bd878)
+- [If you are a functional addict](https://github.com/BurntSushi/ty/)
+- [Linq in go](http://ahmetalpbalkan.github.io/go-linq/)
+- [Can not do without List & Maps](https://github.com/mndrix/ps)
 
 ### Design Cookbooks
 
