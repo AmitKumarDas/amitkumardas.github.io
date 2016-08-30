@@ -281,6 +281,21 @@ func NewOnEOFReader(rc io.ReadCloser, fn func()) io.ReadCloser {
 
 <br />
 
+### Design References - Channels
+
+- [Refer - Curious Channels](http://dave.cheney.net/2013/04/30/curious-channels)
+- Refer - Docker source code - pkg/ioutils/writeflusher.go
+- Useful for controlling data flow within your program, 
+  - & flow of control as well
+- 
+
+```go
+
+
+```
+
+<br />
+
 ### References
 
 ```
