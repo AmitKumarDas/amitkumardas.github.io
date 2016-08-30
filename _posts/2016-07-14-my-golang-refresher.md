@@ -22,6 +22,7 @@ no arguments and returns no value.
 
 ### Cookbooks
 
+- [Common Errors & Solutions](http://devs.cloudimmunity.com/gotchas-and-common-mistakes-in-go-golang/)
 - [cheatsheet](https://github.com/a8m/go-lang-cheat-sheet)
 - [golang wiki](https://github.com/golang/go/wiki)
 - [go tips](https://github.com/beyondns/gotips)
