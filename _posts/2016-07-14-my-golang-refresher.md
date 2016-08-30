@@ -28,6 +28,8 @@ no arguments and returns no value.
 - [Go tips](https://github.com/beyondns/gotips)
 - [Concurrency in go](https://gist.github.com/kachayev/21e7fe149bc5ae0bd878)
 - [If you are a functional addict](https://github.com/BurntSushi/ty/)
+- [Functional Addict - II](http://www.slideshare.net/GeisonFlores/functional-go-53256805)
+- [Functional Addict - III](https://github.com/yanatan16/itertools)
 - [Linq in go](http://ahmetalpbalkan.github.io/go-linq/)
 - [Can not do without List & Maps](https://github.com/mndrix/ps)
 
