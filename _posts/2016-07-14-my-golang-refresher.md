@@ -184,7 +184,7 @@ func (s *SectionReader) Seek(offset int64, whence int) (int64, error) {
 
 <br />
 
-### Design References - How golang's std libraries are used ?
+### Design References - How golang's std libraries are used - I
 
 ```go
 
@@ -234,6 +234,48 @@ func MultiReadSeeker(readers ...io.ReadSeeker) io.ReadSeeker {
 }
 
 // Custom implementation of Seek & Read can be implemented
+```
+
+<br />
+
+### Design References - How golang's std libraries are used - II
+
+```go
+
+// refer - Docker source code
+
+type OnEOFReader struct {
+	Rc io.ReadCloser
+	Fn func()
+}
+
+func (r *OnEOFReader) Read(p []byte) (n int, err error) {
+	n, err = r.Rc.Read(p)
+	if err == io.EOF {
+		r.runFunc()
+	}
+	return
+}
+
+func (r *OnEOFReader) Close() error {
+	err := r.Rc.Close()
+	r.runFunc()
+	return err
+}
+
+func (r *OnEOFReader) runFunc() {
+	if fn := r.Fn; fn != nil {
+		fn()
+		r.Fn = nil
+	}
+}
+
+func NewOnEOFReader(rc io.ReadCloser, fn func()) io.ReadCloser {
+	return &OnEOFReader{
+		Rc: rc,
+		Fn: fn,
+	}
+}
 ```
 
 <br />
