@@ -50,6 +50,15 @@ no arguments and returns no value.
 - It's one of the best tools I've seen that reduces the amount of refactoring you have to do
 - [reference link](http://openmymind.net/Things-I-Wish-Someone-Had-Told-Me-About-Go/)
 
+### Design References - Pass interfaces to functions - II
+
+- ```func ServeHTTP(res http.ResponseWriter, req *http.Request) {...}```
+- req passed as a reference, but res passed as a value.
+- Is there any performance penalty of passing a copy of an object?
+- However, http.ResponseWriter is an interface 
+  - Either a value-type or a reference-type can satisfy an interface. 
+- Try passing the reference if it improves your performance
+
 <br />
 
 ### Design References - How golang's std libraries do it ?
