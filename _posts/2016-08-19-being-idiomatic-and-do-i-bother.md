@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Being idiomatic: Do I care ?
+title: Being idiomatic - Do I care ?
 ---
 
 ## Being idiomatic: Do I care ?
