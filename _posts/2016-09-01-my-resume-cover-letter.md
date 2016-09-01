@@ -21,6 +21,7 @@ IaaS frameworks or containers (Jails, LXC, Docker, Runc, etc.).
 As part of my tools to implement software pieces, I use a variety of programming 
 languages, libraries, tools as & when applicable. I am fascinated by functional 
 languages and the novelty they provide while thinking through any software puzzle.
+In short, I fulfill the role of a full stack / polygot programmer, designer & thinker.
 
 ### My Sites:
 - [My blog](https://amitkumardas.github.io/)
