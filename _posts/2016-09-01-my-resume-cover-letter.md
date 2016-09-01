@@ -32,7 +32,7 @@ In short, I fulfill the role of a full stack / polygot programmer, designer & th
 ### When I wear my devops hat
 
 I have recently been trying to hack into the world of Devops and Automation, as one of
-my generalist roles in my current place of work (a storage startup).
+my generalist roles in my current place of work (which is a storage startup).
 Below are my thoughts that try to convey my positioning with respect to the world of automata:
 - [Introduction](https://github.com/CloudByteStorages/automation-core/blob/master/README.md),
 - [Conclusion](https://github.com/CloudByteStorages/automation-core/blob/master/touchstone/DesignThoughts/My%20Final%20Thoughts.md)
@@ -54,7 +54,7 @@ I believe below projects have a chance to change the world of devops if applied 
 
 ### My contributions:
 
-- [Contributions to OpenStack]()
+- [Contributions to OpenStack](https://github.com/openstack/cinder/tree/master/cinder/volume/drivers/cloudbyte)
 - [Contributions to OpenEBS](https://github.com/openebs/)
 - [Devops story](https://github.com/CloudByteStorages/automation-core)
 - [Articles, blogs, learnings, etc..](https://amitkumardas.github.io/)
