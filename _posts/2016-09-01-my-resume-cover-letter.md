@@ -18,24 +18,36 @@ Currently designing solutions around the management pieces of file systems
 (read ZFS, OpenEBS based block storages) & finding suitable ways to orchestrate from
 IaaS frameworks or containers (Jails, LXC, Docker, Runc, etc.). 
 
-### Hands On
+<br />
+
+### My hands on
 
 As part of implementing software pieces, I use a variety of programming 
 languages, libraries, tools as & when applicable. I am fascinated by functional 
 languages and the novelty they provide while thinking through any software puzzle.
 In short, I fulfill the role of a full stack / polygot programmer, designer & thinker.
 
-### Activity in Devops
+<br />
 
+### When I put my devops hat
 
+I have recently trying to focus my energy in the world of Devops and Automation.
+Below are my thoughts that try to convey my positioning with respect to the world of automata.
+- [part 1](),
+- [part 2](),
+- [part 3](),
 
-### My Links:
+<br />
+
+### My contributions:
 
 - [Contributions to OpenStack]
 - [Contributions to OpenEBS](https://github.com/openebs/)
 - [Learnings being with a startup](https://amitkumardas.github.io/2016/08/20/lessons-learned-at-CloudByte.html)
 - [My articles, blogs, learnings, etc..](https://amitkumardas.github.io/)
 - [Other open source contributions of mine](https://github.com/AmitKumarDas)
+
+<br />
 
 ### I was part of below solutions in my earlier avatars:
 
@@ -45,3 +57,7 @@ In short, I fulfill the role of a full stack / polygot programmer, designer & th
 - Energy Trading and Risk Management (ETRM) interfaces
 - AMI (Automated Metering Infrastructure), Smart Grid/Metering
 - OMS GIS integration
+
+<br />
+
+[My LinkedIn profile](https://in.linkedin.com/in/amit-kumar-das-224b351b)
