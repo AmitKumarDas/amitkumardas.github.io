@@ -15,8 +15,8 @@ I am passionate about micro-frameworks and the way these libraries can be currie
 achieve a greater purpose.
 
 Currently designing solutions around the management pieces of file systems 
-(read ZFS, OpenEBS based block storages) & finding suitable ways to orchestrate from
-IaaS frameworks or containers (Jails, LXC, Docker, Runc, etc.). 
+(read ZFS, [OpenEBS](https://github.com/openebs/) based block storages) & finding 
+suitable ways to orchestrate from IaaS frameworks or containers (Jails, LXC, Docker, Runc, etc.). 
 
 <br />
 
@@ -38,7 +38,16 @@ Below are my thoughts that try to convey my positioning with respect to the worl
 - [Conclusion](https://github.com/CloudByteStorages/automation-core/blob/master/touchstone/DesignThoughts/My%20Final%20Thoughts.md)
 
 I believe below projects have a chance to change the world of devops if applied correctly:
-- []()
+- [pixie](https://github.com/pixie-lang/pixie)
+- [lambdacd](https://github.com/flosell/lambdacd)
+- [jepsen](https://github.com/aphyr/jepsen)
+
+<br />
+
+### Some of my stories while in startup:
+
+- [Learnings being with a startup](https://amitkumardas.github.io/2016/08/20/lessons-learned-at-CloudByte.html)
+- [Being idiomatic](https://amitkumardas.github.io/2016/08/19/being-idiomatic-and-do-i-bother.html)
 
 <br />
 
@@ -46,8 +55,8 @@ I believe below projects have a chance to change the world of devops if applied 
 
 - [Contributions to OpenStack]()
 - [Contributions to OpenEBS](https://github.com/openebs/)
-- [Learnings being with a startup](https://amitkumardas.github.io/2016/08/20/lessons-learned-at-CloudByte.html)
-- [My articles, blogs, learnings, etc..](https://amitkumardas.github.io/)
+- [Devops story](https://github.com/CloudByteStorages/automation-core)
+- [Articles, blogs, learnings, etc..](https://amitkumardas.github.io/)
 - [Other open source contributions of mine](https://github.com/AmitKumarDas)
 
 <br />
