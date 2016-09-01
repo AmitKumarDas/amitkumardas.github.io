@@ -30,7 +30,9 @@ As you know, this is not good for software maintainability & other stuff.
 My take, is "In Rome behave like Romans".
 If you do not like the baggage of a language you should try for better languages.
 
-## A fact - The problem I see with scala.
+<br />
+
+### Adding few facts - The problem I see with scala.
 
 - They have been trying to move the Java to Haskell like stuff in JVM.
 - The articles & papers were so tough to understand by me.
@@ -44,7 +46,9 @@ This is where I felt scala is forcing me to do things in unnatural ways.
 > year 2: hmm, maybe i shouldnt use every feature
 > year 3: java 8 looks nice
 
-## Any opinions on golang
+<br />
+
+### Any opinions on golang
 
 It is a different animal. It forces you to be idiomatic at least till now.
 Do not expect brilliant pieces of code. This simplistic approach has been its success.
@@ -53,7 +57,9 @@ nonchalant manner. Its type system is not at all verbose when compared to Java.
 Having a bit of experience in Groovy, I can say Golang treads a fine balance between
 Java & Groovy.
 
-## Ending with Rob Pike's quotes:
+<br />
+
+### Ending with Rob Pike's quotes:
 
 > The key point here is our programmers are Googlers, they’re not researchers.
 > They’re typically, fairly young, fresh out of school, probably learned Java, maybe
