@@ -29,7 +29,7 @@ In short, I fulfill the role of a full stack / polygot programmer, designer & th
 
 <br />
 
-### When I put my devops hat
+### When I wear my devops hat
 
 I have recently trying to focus my energy in the world of Devops and Automation.
 Below are my thoughts that try to convey my positioning with respect to the world of automata.
