@@ -18,15 +18,23 @@ Currently designing solutions around the management pieces of file systems
 (read ZFS, OpenEBS based block storages) & finding suitable ways to orchestrate from
 IaaS frameworks or containers (Jails, LXC, Docker, Runc, etc.). 
 
-As part of my tools to implement software pieces, I use a variety of programming 
+### Hands On
+
+As part of implementing software pieces, I use a variety of programming 
 languages, libraries, tools as & when applicable. I am fascinated by functional 
 languages and the novelty they provide while thinking through any software puzzle.
 In short, I fulfill the role of a full stack / polygot programmer, designer & thinker.
 
+### Activity in devops
+
+
 ### My Links:
-- [My blog](https://amitkumardas.github.io/)
-- [My open source contributions](https://github.com/AmitKumarDas)
-- [openebs](https://github.com/openebs/)
+
+- [Contributions to OpenStack]
+- [Contributions to OpenEBS](https://github.com/openebs/)
+- [Learnings being with a startup](https://amitkumardas.github.io/2016/08/20/lessons-learned-at-CloudByte.html)
+- [My articles, blogs, learnings, etc..](https://amitkumardas.github.io/)
+- [Other open source contributions of mine](https://github.com/AmitKumarDas)
 
 ### I was part of below solutions in my earlier avatars:
 
