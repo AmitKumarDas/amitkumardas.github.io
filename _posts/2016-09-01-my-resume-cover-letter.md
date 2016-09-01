@@ -38,6 +38,7 @@ Below are my thoughts that try to convey my positioning with respect to the worl
 - [Conclusion](https://github.com/CloudByteStorages/automation-core/blob/master/touchstone/DesignThoughts/My%20Final%20Thoughts.md)
 
 I believe below projects have a chance to change the world of devops if applied correctly:
+- [rally](https://wiki.openstack.org/wiki/Rally)
 - [pixie](https://github.com/pixie-lang/pixie)
 - [lambdacd](https://github.com/flosell/lambdacd)
 - [jepsen](https://github.com/aphyr/jepsen)
