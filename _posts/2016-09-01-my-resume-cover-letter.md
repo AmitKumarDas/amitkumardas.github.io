@@ -23,7 +23,7 @@ languages, libraries, tools as & when applicable. I am fascinated by functional
 languages and the novelty they provide while thinking through any software puzzle.
 In short, I fulfill the role of a full stack / polygot programmer, designer & thinker.
 
-### My Sites:
+### My Links:
 - [My blog](https://amitkumardas.github.io/)
 - [My open source contributions](https://github.com/AmitKumarDas)
 - [openebs](https://github.com/openebs/)
