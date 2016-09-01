@@ -41,10 +41,11 @@ If you do not like the baggage of a language you should try for better languages
 This is where I felt scala is forcing me to do things in unnatural ways.
 
 > https://twitter.com/capotej/status/695393215264849920
-> scala career timeline:
-> year 1: dope, gonna write some terse code
-> year 2: hmm, maybe i shouldnt use every feature
-> year 3: java 8 looks nice
+
+- scala career timeline:
+ - year 1: dope, gonna write some terse code
+ - year 2: hmm, maybe i shouldnt use every feature
+ - year 3: java 8 looks nice
 
 <br />
 
