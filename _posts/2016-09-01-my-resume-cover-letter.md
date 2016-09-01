@@ -32,10 +32,9 @@ In short, I fulfill the role of a full stack / polygot programmer, designer & th
 ### When I wear my devops hat
 
 I have recently trying to focus my energy in the world of Devops and Automation.
-Below are my thoughts that try to convey my positioning with respect to the world of automata.
-- [part 1](),
-- [part 2](),
-- [part 3](),
+Below are my thoughts that try to convey my positioning with respect to the world of automata:
+- [Introduction](https://github.com/CloudByteStorages/automation-core/blob/master/README.md),
+- [Conclusion](https://github.com/CloudByteStorages/automation-core/blob/master/touchstone/DesignThoughts/My%20Final%20Thoughts.md)
 
 <br />
 
