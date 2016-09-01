@@ -36,6 +36,9 @@ Below are my thoughts that try to convey my positioning with respect to the worl
 - [Introduction](https://github.com/CloudByteStorages/automation-core/blob/master/README.md),
 - [Conclusion](https://github.com/CloudByteStorages/automation-core/blob/master/touchstone/DesignThoughts/My%20Final%20Thoughts.md)
 
+I believe below projects have a chance to change the world of devops if applied correctly:
+- []()
+
 <br />
 
 ### My contributions:
