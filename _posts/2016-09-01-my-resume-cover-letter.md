@@ -25,7 +25,8 @@ languages, libraries, tools as & when applicable. I am fascinated by functional
 languages and the novelty they provide while thinking through any software puzzle.
 In short, I fulfill the role of a full stack / polygot programmer, designer & thinker.
 
-### Activity in devops
+### Activity in Devops
+
 
 
 ### My Links:
