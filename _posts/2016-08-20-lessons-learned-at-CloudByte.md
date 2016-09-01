@@ -8,7 +8,7 @@ title: Lessons learned in a storage startup
 We started off with the core idea on building QOS (Quality of Service) for
 storage. We knew the managed service providers had a tough time sharing
 infrastructure across businesses. The usual approach to solve this noisy neighbour
-problem was to provision these customers in isolated infrastructure
+problem was to provision these customers in isolated infrastructures
 (read storage servers). This was obviously not cost effective. Our QOS was built
 on throttling the server resources read RAM, IOPS, throughput, etc to their
 configured thresholds.
