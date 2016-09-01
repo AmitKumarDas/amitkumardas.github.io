@@ -6,7 +6,7 @@ title: My resume cover letter
 ##  AMIT KUMAR DAS
 Bangalore - 560103, Karnataka, India | C: (+91) 9972321496 | amitnist@gmail.com
 
-I have elaborated my current profile which in turn matches the stated job description.
+I have elaborated my current profile which in corelates to my interest of work.
 
 > I specialize in designing & building software solutions, improving them, or simply
 > refactoring them to isolated but cohesive features communicating in harmony.
