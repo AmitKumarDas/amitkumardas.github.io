@@ -41,7 +41,7 @@ Below are my thoughts that try to convey my positioning with respect to the worl
 
 ### My contributions:
 
-- [Contributions to OpenStack]
+- [Contributions to OpenStack]()
 - [Contributions to OpenEBS](https://github.com/openebs/)
 - [Learnings being with a startup](https://amitkumardas.github.io/2016/08/20/lessons-learned-at-CloudByte.html)
 - [My articles, blogs, learnings, etc..](https://amitkumardas.github.io/)
