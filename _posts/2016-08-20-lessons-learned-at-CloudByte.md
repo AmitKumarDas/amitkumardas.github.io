@@ -45,6 +45,7 @@ There were a lot of them that we made. I have listed down the important ones her
 > source company. This happened even after various rounds of successful POCs with
 > the same customer.
 
+<br />
 
 ### My transformation after joining a startup
 
