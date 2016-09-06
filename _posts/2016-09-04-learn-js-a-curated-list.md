@@ -54,3 +54,72 @@ refer - [Objects & JavaScript](https://davidwalsh.name/javascript-objects-decons
 > specify with the constructor function together with its subsequent .prototype additions... but all that is like 
 > a magician's sleight of hand that dazzles you over here to distract you from what's really going on over there.
 
+### Object.create vs. new operator
+
+refer - [object.create vs new operator](https://davidwalsh.name/javascript-objects-deconstruction)
+
+```javascript
+
+function Foo(who) {
+    this.me = who;
+}
+
+function Bar(who) {
+    Foo.call(this,who);
+}
+
+Bar.prototype = Object.create(Foo.prototype);
+```
+
+> Some people write Bar.prototype = Object.create(Foo.prototype); as Bar.prototype = new Foo();. 
+> Both approaches end up with the same linked objects, 
+
+<br />
+
+> where Bar.prototype is an object linked via its[[Prototype]] to Foo.prototype. 
+> The only real difference is whether or not the Foo function is called during the creation of Bar.prototype. 
+> Depending on your circumstances and intent, you may or may not want that to happen, so 
+> let's consider them roughly interchangable but with different purposes.
+
+- We have an object labelled Foo.prototype
+- Another object labelled Bar.prototype
+- Bar.prototype is [[Prototype]]-linked to Foo.prototype
+
+> I have to manually call (aka, "borrow") the Foo() function (it's not a constructor here, just a normal function call!) 
+> from inside ofBar(), and to make sure the this is bound correctly, I have to do the slightly more awkward 
+> .call(this) style of code. 
+
+<br />
+
+> the Foo() function isnot related in any useful/practical way to the Bar() function. 
+> The Foo() function does not even appear in the "inheritance" (aka "delegation") chain of Bar.prototype object.
+
+<br />
+
+> Any function at one level of the [[Prototype]] chain that wants to call up to an ancestor with the same name must 
+> do so via this manual implicit mixin approach just like we did inside of Bar() above. We have no effective way of 
+> making relative references up the chain.
+
+<br />
+
+> the only time a .constructor property is added to an object is when that object is the default .prototype attached 
+> to a declared function, as is the case of Foo(). When objects are created via new Fn() or Object.create(..) calls, 
+> those objects don't get a .constructor added to them. 
+
+<br />
+
+> So if you reference b1.constructor for instance, then you're 
+> actually going to delegate up the chain a few links, to Foo.prototype. Of course, Foo.prototype has a .constructor 
+> property and it's pointing at Foo like you'd expect. If you plan to rely on the .constructor property (which many do), 
+> you need to perform an extra step
+
+```javascript
+
+Bar.prototype = Object.create(Foo.prototype);
+Bar.prototype.constructor = Bar;
+```
+
+<br />
+
+> Foo() had nothing to do with creating the default Foo.prototype. Foo.prototype defaults to an empty object that 
+> was actually constructed by the built-in Object() constructor.
