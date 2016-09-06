@@ -71,6 +71,8 @@ function Bar(who) {
 Bar.prototype = Object.create(Foo.prototype);
 ```
 
+<br />
+
 > Some people write Bar.prototype = Object.create(Foo.prototype); as Bar.prototype = new Foo();. 
 > Both approaches end up with the same linked objects, 
 
@@ -81,9 +83,13 @@ Bar.prototype = Object.create(Foo.prototype);
 > Depending on your circumstances and intent, you may or may not want that to happen, so 
 > let's consider them roughly interchangable but with different purposes.
 
-- We have an object labelled Foo.prototype
-- Another object labelled Bar.prototype
-- Bar.prototype is [[Prototype]]-linked to Foo.prototype
+<br />
+
+- NOTE - We have an **object** labelled Foo.prototype
+- NOTE - Another object labelled Bar.prototype
+- NOTE - Bar.prototype is [[Prototype]]-linked to Foo.prototype
+
+<br />
 
 > I have to manually call (aka, "borrow") the Foo() function (it's not a constructor here, just a normal function call!) 
 > from inside ofBar(), and to make sure the this is bound correctly, I have to do the slightly more awkward 
@@ -112,6 +118,8 @@ Bar.prototype = Object.create(Foo.prototype);
 > actually going to delegate up the chain a few links, to Foo.prototype. Of course, Foo.prototype has a .constructor 
 > property and it's pointing at Foo like you'd expect. If you plan to rely on the .constructor property (which many do), 
 > you need to perform an extra step
+
+<br />
 
 ```javascript
 
