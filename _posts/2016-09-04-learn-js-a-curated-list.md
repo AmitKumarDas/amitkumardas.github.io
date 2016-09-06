@@ -210,7 +210,7 @@ var skydivingNinjaMouseWithWingsuit = assign({}, // create a new object
 
 - The prototypes that this technique inherits from are referred to as **exemplar prototypes**
 - exemplar differ from delegate prototypes where
-  - former copies from prototypes than delegates to prototypes
+  - former **copies from prototypes** & latter **delegates to prototypes**.
 
 ### Do you rely on instanceof ?
 
@@ -218,3 +218,48 @@ refer - [relying on instanceof](https://medium.com/javascript-scene/common-misco
 
 - `instanceof` does not do type checking we are used to in strongly typed languages
 - it does an identity check on the prototype object
+
+### Do you need constructors for data privacy !!
+
+refer - [constructors & data privacy](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a#.omzsiww6m)
+
+- It is not constructors rather closures that are used for data privacy
+- Any function can have a closure embedded in it for data privacy
+ 
+### No classes - show me code
+
+refer - [no classes](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a#.omzsiww6m)
+
+```javascript
+
+// no more var, but let in ES6
+let animal = {
+  animalType: 'animal',
+ 
+  // method shortcut, in ES6
+  describe () {
+    // templating available only in ES6
+    return `An ${this.animalType} with ${this.furColor} fur, 
+      ${this.legs} legs, and a ${this.tail} tail.`;
+  }
+};
+ 
+let mouseFactory = function mouseFactory () {
+  let secret = 'secret agent';
+ 
+  // Object.assign provides the concatenative inheritance via exemplar prototypes
+  // Object.create allows attaching delegate prototypes
+  return Object.assign(Object.create(animal), {
+    animalType: 'mouse',
+    furColor: 'brown',
+    legs: 4,
+    tail: 'long, skinny',
+    // closure for data privacy
+    profession () {
+      return secret;
+    }
+  });
+};
+ 
+let james = mouseFactory();
+```
