@@ -2,10 +2,10 @@
 
 layout: post
 
-title: Learn JavaScript - A curated list
+title: Learning JavaScript - A curated list
 ---
 
-
+## Learning JavaScript - A curated list
 
 ### react stamp
 
@@ -78,8 +78,6 @@ function Bar(who) {
 Bar.prototype = Object.create(Foo.prototype);
 ```
 
-<br />
-
 - Some people write 
   - Bar.prototype = Object.create(Foo.prototype); 
   - as 
@@ -131,3 +129,56 @@ Bar.prototype.constructor = Bar; // extra step
 
 - NOTE - Foo() had nothing to do with creating the default Foo.prototype. 
 - Foo.prototype defaults to an empty object constructed by the built-in Object() constructor.
+
+### Just Objects - No functions - No constructors
+
+refer - [just objects](https://davidwalsh.name/javascript-objects-deconstruction)
+
+```javascript
+
+var Foo = {
+    init: function(who) {
+        this.me = who;
+    },
+    identify: function() {
+        return "I am " + this.me;
+    }
+};
+
+var Bar = Object.create(Foo);
+
+var b1 = Object.create(Bar);
+```
+
+#### Points to note:
+
+- Bar & Foo are just objects
+- They were linked via Object.create(...)
+- I feel, the primary advantage is code readability even if I am from a different prog background.
+ 
+### Functions & Constructors vs Objects - Through lens of Reflection
+
+refer - [lens of reflection](https://davidwalsh.name/javascript-objects-deconstruction)
+
+```javascript
+
+// If functions & constructors approach then:
+b1 instanceof Bar; // true
+b2 instanceof Bar; // true
+b1 instanceof Foo; // true
+b2 instanceof Foo; // true
+Bar.prototype instanceof Foo; // true
+Object.getPrototypeOf(b1) === Bar.prototype; // true
+Object.getPrototypeOf(b2) === Bar.prototype; // true
+Object.getPrototypeOf(Bar.prototype) === Foo.prototype; // true
+
+// If pure objects approach then:
+Bar.isPrototypeOf(b1); // true
+Bar.isPrototypeOf(b2); // true
+Foo.isPrototypeOf(b1); // true
+Foo.isPrototypeOf(b2); // true
+Foo.isPrototypeOf(Bar); // true
+Object.getPrototypeOf(b1) === Bar; // true
+Object.getPrototypeOf(b2) === Bar; // true
+Object.getPrototypeOf(Bar) === Foo; // true
+```
