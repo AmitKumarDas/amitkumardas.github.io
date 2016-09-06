@@ -182,3 +182,39 @@ Object.getPrototypeOf(b1) === Bar; // true
 Object.getPrototypeOf(b2) === Bar; // true
 Object.getPrototypeOf(Bar) === Foo; // true
 ```
+
+### Concatenative Inheritance
+
+refer - [concantenative inheritance](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a#.omzsiww6m)
+
+```javascript
+
+// I'm not sure Object.assign() is available (ES6)
+// so this time I'll use Lodash. It's like Underscore,
+// with 200% more awesome. You could also use
+// jQuery.extend() or Underscore's _.extend()
+var assign = require('lodash/object/assign');
+
+var skydiving = require('skydiving');
+var ninja = require('ninja');
+var mouse = require('mouse');
+var wingsuit = require('wingsuit');
+
+// The amount of awesome in this next bit might be too much
+// for seniors with heart conditions or young children.
+var skydivingNinjaMouseWithWingsuit = assign({}, // create a new object
+  skydiving, ninja, mouse, wingsuit); // copy all the awesome to it.
+```
+
+<br />
+
+- The prototypes that this technique inherits from are referred to as **exemplar prototypes**
+- exemplar differ from delegate prototypes where
+  - former copies from prototypes than delegates to prototypes
+
+### Do you rely on instanceof ?
+
+refer - [relying on instanceof](https://medium.com/javascript-scene/common-misconceptions-about-inheritance-in-javascript-d5d9bab29b0a#.omzsiww6m)
+
+- `instanceof` does not do type checking we are used to in strongly typed languages
+- it does an identity check on the prototype object
