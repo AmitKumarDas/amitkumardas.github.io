@@ -91,27 +91,24 @@ Bar.prototype = Object.create(Foo.prototype);
 - Depending on your circumstances and intent, you may or may not want that to happen, so 
   - let's consider them roughly interchangable but with different purposes.
 
-<br />
+#### Few observations
 
 - NOTE - We have an **object** labelled Foo.prototype
 - NOTE - Another object labelled Bar.prototype
 - NOTE - Bar.prototype is [[Prototype]]-linked to Foo.prototype
 
-<br />
+#### Did we get inheritance ?
 
 - I have to manually call the Foo() function (it's not a constructor here, just a normal function call!)
   - from inside of Bar(), &
   - to make sure the this is bound correctly, I have to do ```.call(this)``` style of code. 
 - Foo() function is not related in any useful/practical way to the Bar() function. 
 - Foo() function does not even appear in the "inheritance" (aka "delegation") chain of Bar.prototype object.
-
-<br />
-
 - Any function at one level of the [[Prototype]] chain that wants to call up to an ancestor with the same name must 
   - do so via this manual implicit mixin approach just like we did inside of Bar() above. 
 - We have no effective way of making relative references up the chain.
 
-<br />
+#### What about .constructor ?
 
 - The only time a .constructor property is added to an object is:
   - when that object is the default .prototype attached to a declared function, as is the case of Foo(). 
@@ -130,7 +127,7 @@ Bar.prototype = Object.create(Foo.prototype);
 Bar.prototype.constructor = Bar; // extra step
 ```
 
-<br />
+#### What does executing Foo() signify ?
 
 - NOTE - Foo() had nothing to do with creating the default Foo.prototype. 
 - Foo.prototype defaults to an empty object constructed by the built-in Object() constructor.
