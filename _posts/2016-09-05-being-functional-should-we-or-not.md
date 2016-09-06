@@ -23,7 +23,7 @@ maintained & robust software .
 In fact, I have been pushing functional code in a golang repository called [openebs](https://github.com/openebs/openebs).
 I have begun to love golang for its ability to achieve so much in so less effort & lines of code. Way to go golang !! Compare this 
 with Java, and you will find lots of libraries (functional java, javaslang, etc to full fledged languages like scala) trying to 
-simplify functional programming for the developers. 
+simplify functional programming for JVM developers. 
 
 
 ## Fucntional vs. Idiomatic
