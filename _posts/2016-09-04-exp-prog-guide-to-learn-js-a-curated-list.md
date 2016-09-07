@@ -295,3 +295,14 @@ type NewQos(iops uint64, tput uint64) *Qos{
   }
 }
 ```
+
+### How was stampit made ?
+
+refer - [making of stampit](https://medium.com/@koresar/fun-with-stamps-episode-4-implementing-stamps-in-30-loc-e52f5c17dcfe#.qvq2w2hzq)
+
+> This might hold true when designing any micro library that allows for intuitive compositional strategies.
+
+- A composable object i.e. POJO
+- A compose function that composes variadic number of composables
+- A create stamp function that creates a object of above merged composables
+- A create factory function that handles internals of JS e.g. Object.create({...})
