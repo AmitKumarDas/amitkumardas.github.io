@@ -376,6 +376,8 @@ const reader = (delay) => {
 
 ### Optional dependencies by setting the dependencies to defaults
 
+refer - [optional dependencies](https://medium.com/@koresar/fun-with-stamps-episode-5-composition-design-pattern-fe55721c571a#.r1f5fzwu4)
+
 ```javascript
 
 import {reader, writer} from './somewhere';
