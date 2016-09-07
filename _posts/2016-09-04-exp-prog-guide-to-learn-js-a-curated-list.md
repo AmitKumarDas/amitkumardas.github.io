@@ -306,3 +306,10 @@ refer - [making of stampit](https://medium.com/@koresar/fun-with-stamps-episode-
 - A compose function that composes variadic number of composables
 - A create stamp function that creates a object of above merged composables
 - A create factory function that handles internals of JS e.g. Object.create({...})
+
+### White-box reuse vs. black-box reuse
+
+refer - [composition over inheritance](https://medium.com/@FennNaten/composition-over-inheritance-the-importance-of-context-d8916f041a7e#.yraotkgtn)
+
+- white-box === visibility. inheritance === internal of parent is visible
+- black-box === opaque. composition === internals are not visible
