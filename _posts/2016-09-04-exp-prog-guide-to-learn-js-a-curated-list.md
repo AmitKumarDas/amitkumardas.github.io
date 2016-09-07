@@ -351,16 +351,25 @@ const file = (readDelay, writeDelay, reader, writer) => Object.assign({}, reader
 let abcFile = file(4, 8, reader, writer);
 console.log(abcFile.delay) //8
 
-// Pure composition
+// Alternative compositional style
 const readWriterFile = (readDelay, writeDelay, reader, writer) =>({
  readerImpl: reader(readDelay),
  writerImpl: writer(writeDelay),
  read: () => this.readerImpl.read(),
  write: (bytes) => this.writerImpl.write(bytes)
 })
+
+// Yet another style
+const reader = (delay) => {
+  return {
+    getReadDelay(){
+      //...
+    },
+    read: function(){
+      //...
+    }
+  }
+}
+// Similarly writer will have getWriteDelay()
+// & concatenative inheritance will work well.
 ```
-
-### Does pure composition have any disadvantages ?
-
-- If you own the whole code & have decided to go for pure composition, then ok !!
-- This adds complexity i.e. add proxy to what is needed by the callers
