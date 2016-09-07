@@ -373,3 +373,21 @@ const reader = (delay) => {
 // Similarly writer will have getWriteDelay()
 // & concatenative inheritance will work well.
 ```
+
+### Optional dependencies by setting the dependencies to defaults
+
+```javascript
+
+import {reader, writer} from './somewhere';
+const ReadWriterFile = init(({readDelay, writeDelay, reader, writer}) => {
+  this.readerImpl = (reader || this.reader)(readDelay); 
+  this.read = () => this.readerImpl.read();
+  this.writerImpl = (writer || this.writer)(writeDelay); 
+  this.write = bytes => this.writerImpl.write(bytes);
+})
+.compose({properties: {reader, writer}}); // default dependencies
+
+const abcFile = ReadWriterFile({readDelay: 2, writeDelay: 1}); // shorter!
+abcFile.write(bytes);
+abcFile.read();
+```
