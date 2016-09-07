@@ -7,20 +7,6 @@ title: Experienced programmer's guide to lear JavaScript - A curated list
 
 ## Experienced programmer's guide to lear JavaScript - A curated list
 
-### react stamp
-
-refer - [react-stamp](https://github.com/stampit-org/react-stamp)
-
-- Composition is the act of creating an object from a collection of other objects. 
-- Many will say this is actually multiple inheritance, not composition. 
-- Well, in the classical sense of the word, they're right! 
-- However, JavaScript favors prototypal inheritance, 
-  - & composition is actually Prototypal OO's primary mechanism. 
-- Composition encompasses 
-  - differential inheritance, 
-  - concatenative inheritance, and 
-  - functional inheritance.
-
 ### javascript langauge's 2 pillars
 
 refer - [2 pillars](https://medium.com/javascript-scene/the-two-pillars-of-javascript-ee6f3281e7f3#.wkx0wdbgf)
@@ -320,7 +306,7 @@ refer - [composition over inheritance](https://medium.com/@FennNaten/composition
 
 ```javascript
 
-// Imagine this to be behavorial interface w.r.t Golang/Java
+// Imagine this as a behavorial interface w.r.t Golang/Java
 // Single Responsibility Principle
 const reader = (delay) => ({
     lastRead: null,
@@ -333,7 +319,7 @@ const reader = (delay) => ({
     }
 });
 
-// Imagine this to be behavorial interface w.r.t Golang/Java
+// Imagine this as a behavorial interface w.r.t Golang/Java
 // Single Responsibility Principle
 const writer = (delay) => ({
     lastWrite: null,
@@ -346,7 +332,7 @@ const writer = (delay) => ({
     }
 });
 
-// Issue with concatenative inheritance i.e. merge style
+// Issue with concatenative inheritance
 const file = (readDelay, writeDelay, reader, writer) => Object.assign({}, reader(readDelay), writer(writeDelay));
 let abcFile = file(4, 8, reader, writer);
 console.log(abcFile.delay) //8
@@ -374,22 +360,14 @@ const reader = (delay) => {
 // & concatenative inheritance will work well.
 ```
 
-### Optional dependencies by setting the dependencies to defaults
+### Separation, Composition, Property Hiding, Logic Placement - Puzzles
 
-refer - [optional dependencies](https://medium.com/@koresar/fun-with-stamps-episode-5-composition-design-pattern-fe55721c571a#.r1f5fzwu4)
+refer - [separation & composition](https://medium.com/@koresar/fun-with-stamps-episode-5-composition-design-pattern-fe55721c571a#.r1f5fzwu4)
 
-```javascript
-
-import {reader, writer} from './somewhere';
-const ReadWriterFile = init(({readDelay, writeDelay, reader, writer}) => {
-  this.readerImpl = (reader || this.reader)(readDelay); 
-  this.read = () => this.readerImpl.read();
-  this.writerImpl = (writer || this.writer)(writeDelay); 
-  this.write = bytes => this.writerImpl.write(bytes);
-})
-.compose({properties: {reader, writer}}); // default dependencies
-
-const abcFile = ReadWriterFile({readDelay: 2, writeDelay: 1}); // shorter!
-abcFile.write(bytes);
-abcFile.read();
-```
+- A separate file that will hold the behavior implementations
+- A separate file that will hold the composed behaviors
+- Make use of const objects
+- Minimize using `this`
+- Use of const will reduce the use of `this`
+- make use of stampit configuration property for hiding purposes
+- The best way to verify is via code testability
