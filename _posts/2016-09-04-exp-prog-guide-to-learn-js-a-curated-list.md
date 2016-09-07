@@ -313,3 +313,54 @@ refer - [composition over inheritance](https://medium.com/@FennNaten/composition
 
 - white-box === visibility. inheritance === internal of parent is visible
 - black-box === opaque. composition === internals are not visible
+
+### Composition all the way down
+
+refer - [composition over inheritance](https://medium.com/@FennNaten/composition-over-inheritance-the-importance-of-context-d8916f041a7e#.yraotkgtn)
+
+```javascript
+
+// Imagine this to be behavorial interface w.r.t Golang/Java
+// Single Responsibility Principle
+const reader = (delay) => ({
+    lastRead: null,
+    delay: delay,
+    canRead: function(now) {
+        //...
+    }
+    read: function(){
+        //...
+    }
+});
+
+// Imagine this to be behavorial interface w.r.t Golang/Java
+// Single Responsibility Principle
+const writer = (delay) => ({
+    lastWrite: null,
+    delay: delay,
+    canWrite: function(now) {
+        //...
+    }
+    write: function(bytes){
+        //...
+    }
+});
+
+// Issue with concatenative inheritance i.e. merge style
+const file = (readDelay, writeDelay, reader, writer) => Object.assign({}, reader(readDelay), writer(writeDelay));
+let abcFile = file(4, 8, reader, writer);
+console.log(abcFile.delay) //8
+
+// Pure composition
+const readWriterFile = (readDelay, writeDelay, reader, writer) =>({
+ readerImpl: reader(readDelay),
+ writerImpl: writer(writeDelay),
+ read: () => this.readerImpl.read(),
+ write: (bytes) => this.writerImpl.write(bytes)
+})
+```
+
+### Does pure composition have any disadvantages ?
+
+- If you own the whole code & have decided to go for pure composition, then ok !!
+- This adds complexity i.e. add proxy to what is needed by the callers
