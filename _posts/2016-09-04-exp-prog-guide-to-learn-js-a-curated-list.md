@@ -2,10 +2,10 @@
 
 layout: post
 
-title: Learning JavaScript - A curated list
+title: Experienced programmer's guide to lear JavaScript - A curated list
 ---
 
-## Learning JavaScript - A curated list
+## Experienced programmer's guide to lear JavaScript - A curated list
 
 ### react stamp
 
@@ -262,4 +262,36 @@ let mouseFactory = function mouseFactory () {
 };
  
 let james = mouseFactory();
+```
+
+### Constructors - ES2015 vs Stampit vs Golang
+
+```javascript
+// ES2015 way
+class Qos {
+	constructor({iops, throughput}){
+		this.iops = iops;
+		this.throughput = throughput;
+	}
+}
+
+const qos = new Qos({1000, 4000});
+
+// Stampit v3
+const Qos = overrides('iops', 'throughput');
+
+const qos = Qos({iops: 1000, throughput: 4000});
+
+// Golang
+type struct Qos {
+  Iops uint64
+  Throughput uint64
+}
+
+type NewQos(iops uint64, tput uint64) *Qos{
+  return &Qos{
+    Iops: iops, 
+    Throughput: tput,
+  }
+}
 ```
