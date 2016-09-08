@@ -31,10 +31,11 @@ In short, I fulfill the role of a full stack / polygot programmer, designer & th
 
 ### When I wear my devops hat
 
-I have recently been trying to hack into the world of Devops and Automation, as one of
-my generalist roles in my current place of work (which is a storage startup).
+I have recently been trying to hack into the world of ```Devops``` and ```Automation Everywhere```,
+as one of my generalist roles in my current place of work (which is a storage startup).
 
-Below are my thoughts that try to convey my positioning w.r.t the world of automata (i.e. create or exploit a tool):
+Below are my thoughts that try to convey my positioning w.r.t automation everywhere (i.e. create or exploit a tool).
+These are specific to ```creation of any tool```.
 
 - [Introduction](https://github.com/CloudByteStorages/automation-core/blob/master/README.md),
 - [Conclusion](https://github.com/CloudByteStorages/automation-core/blob/master/touchstone/DesignThoughts/My%20Final%20Thoughts.md)
