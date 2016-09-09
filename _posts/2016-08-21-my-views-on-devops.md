@@ -20,11 +20,22 @@ title: My views on devops
 
 ## What does StackStorm provide ?
 
-- YAML based workflow definitions
+- YAML based workflow specs
+- Implementation in any programming language
+  - A workflow is a collection of actions
+  - Actions can be written in any programming language/script
 - Loops, conditions, subroutines handled via jinja2 (high level) & python (step level)
+- Advantage over chef & puppet ?
+  - st2 can compose chef & puppet.
+  - Chef & Puppet can be used to manage state of a single node
+- Advantages over terraform, juju & bosh
+  - Terraform, juju & bosh are purpose built for app & infra deployments
+- How about concourse ?
+  - Stackstorm is not a CI solution but pretty good for orchestrating various automations points.
+- Provides event updates as actions take place, intercept triggers & execute workflows
 
 ## Good Source for DevOps
 
 - [stackstorm in yc](https://news.ycombinator.com/item?id=10342000)
-- [HCL](https://github.com/hashicorp/hcl)
+
 
