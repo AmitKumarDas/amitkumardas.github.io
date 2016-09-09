@@ -45,6 +45,7 @@ I believe below projects have a chance to change the world of devops if applied 
 - [rally](https://wiki.openstack.org/wiki/Rally)
 - [itsabot](https://github.com/itsabot/abot/wiki/Building-a-Plugin)
 - [operable](https://operable.io/)
+- [stackstorm](https://stackstorm.com/)
 - [pixie](https://github.com/pixie-lang/pixie)
 - [lambdacd](https://github.com/flosell/lambdacd)
 - [jepsen](https://github.com/aphyr/jepsen)
