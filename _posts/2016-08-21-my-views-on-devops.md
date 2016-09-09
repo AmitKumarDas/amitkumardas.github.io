@@ -22,7 +22,6 @@ title: My views on devops
 
 - YAML based workflow definitions
 - Loops, conditions, subroutines handled via jinja2 (high level) & python (step level)
-- 
 
 ## Good Source for DevOps
 
