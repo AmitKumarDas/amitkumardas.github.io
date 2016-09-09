@@ -3,8 +3,11 @@ layout: post
 title: My views on devops
 ---
 
-## Useful thoughts on DevOps
+## DevOps that fits our organization
 
+- Take inventory of where we are.
+- Take inventory of where we want to be.
+- Build a workflow & list gaps to get to the end.
 - Do we understand our painpoints ?
 - Can we prioritize our painpoints ?
 - Will solving the prioritized painpoint give us the maximum ROI ?
@@ -46,5 +49,5 @@ title: My views on devops
 
 - [Stackstorm at yc](https://news.ycombinator.com/item?id=10342000)
 - [Stackstorm in Netflix](http://www.datacenterknowledge.com/archives/2015/09/24/netflix-to-use-stackstorm-for-it-automation-under-cassandra/)
-
+- [CI & CD & OpenStack](https://www.youtube.com/watch?v=4gR5xVOSsdU)
 
