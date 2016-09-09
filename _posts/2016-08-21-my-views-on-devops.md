@@ -9,6 +9,7 @@ title: My views on devops
 - Take inventory of where we want to be.
 - Build a workflow & list gaps to get to the end.
 - Do we understand our painpoints ?
+- Do we know the most time consuming portions ?
 - Can we prioritize our painpoints ?
 - Will solving the prioritized painpoint give us the maximum ROI ?
 - Does the entire dev team checkin the source code daily ?
