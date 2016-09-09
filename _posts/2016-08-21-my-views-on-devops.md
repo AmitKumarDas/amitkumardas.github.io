@@ -40,6 +40,7 @@ title: My views on devops
 
 ## Good Source for DevOps
 
-- [stackstorm in yc](https://news.ycombinator.com/item?id=10342000)
+- [Stackstorm at yc](https://news.ycombinator.com/item?id=10342000)
+- [Stackstorm in Netflix](http://www.datacenterknowledge.com/archives/2015/09/24/netflix-to-use-stackstorm-for-it-automation-under-cassandra/)
 
 
