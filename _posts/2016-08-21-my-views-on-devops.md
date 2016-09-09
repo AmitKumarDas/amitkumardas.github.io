@@ -18,6 +18,10 @@ title: My views on devops
 - Are we able to version control the workflow definition ?
 - Does the devops automation architecture support multiple language ?
 
+## Real World UseCases
+
+> In the case of Netflix, Powell said, StackStorm is being used to monitor the Simple Queing Service (SQS) on Amazon Web Services where the implementation of Cassandra that Netflix uses resides. Powell said StackStorm sensors listen to SQS and issue triggers into the StackStorm internal message bus. A rules engine then listens to that message bus and does pattern matching to identify performance threshold violations. The system then checks to see if there is a tool that can be invoke to automatically remediate the problem. In cases where no solution to the problem can be found, StackStorm sends an alert to the appropriate admin.
+
 ## What does StackStorm provide ?
 
 - YAML based workflow specs
