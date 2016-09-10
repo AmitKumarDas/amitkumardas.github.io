@@ -1,11 +1,9 @@
 ---
-
 layout: post
-
-title: Experienced programmer's guide to lear JavaScript - A curated list
+title: Experienced programmer's guide to learn JavaScript - A curated list
 ---
 
-## Experienced programmer's guide to lear JavaScript - A curated list
+## Experienced programmer's guide to learn JavaScript - A curated list
 
 ### javascript langauge's 2 pillars
 
