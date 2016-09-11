@@ -17,4 +17,5 @@ add x y =
 -- thought 1 : Add 2 integers & return another integer
 -- thought 2 : A function that takes one integer as argument & returns a function.
 --             This returned function takes an integer & returns an integer.
+--             Passing state between functions does not warrant complex coding.
 ```
