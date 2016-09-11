@@ -275,41 +275,6 @@ type of the language itself."
 
 refer - [stuart sierra - component](https://www.youtube.com/watch?v=13cmHf_kt-Q)
 
-- Immutable data structure (map or record)
-- Public API
-- Managed lifecycle
-- Relationshipts to other components
-- Focussed on behavior
-- e.g.
-  - State wrapper for stateful objects
-    - tracks the expensive conn object, etc
-    - opaque to most consumers (similar to private properties)
-    - provide public APIs (similar to public methods)
-    - provide a constructor to create initial state
-    - provide lifecycle i.e. transitions (a clj protocol)
-  - Service Provider
-    - encapsulates endpoint & api key as a record
-    - provide public API
-  - Domain Model
-    - Is all about behavior
-    - represent aggregate operations
-    - encapsulate a set of related dependencies
-    - provides public API
-- Do not pass dependencies in constructor
-  - Declare your dependencies that gets filled in later
-- System = collection of components = map
-  - associate components with a name within the system
-  - manages the lifecycle of its components
-  - manages the component's dependencies
-  - figures the dependency graph & starts each component
-- Associative Injection
-  - possible due to immutable maps
-  - create versions of these components for just testing purposes
-  - obviously this needs to be done before start of lifecycle
-- Stub Service for Testing
-- Test business logic in isolation & parallel
-  - There is no global state to spoil our intentions
-
 ### Pixie - Native lisp on RPython
 
 ```lisp
@@ -334,4 +299,5 @@ refer - [stuart sierra - component](https://www.youtube.com/watch?v=13cmHf_kt-Q)
 
 ;; http://www.braveclojure.com/
 ;; https://notamonadtutorial.com/how-to-earn-your-clojure-white-belt-7e7db68a71e5#.wuff9cdwu
+;; http://clojure.org/api/cheatsheet
 ```
