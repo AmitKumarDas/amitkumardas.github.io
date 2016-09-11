@@ -73,4 +73,4 @@ refer - [microservices-evolution-soundcloud](https://www.infoq.com/articles/micr
 ### Hands On
 
 - [modularity](https://modularity.org/index.html)
-- [stuart sierra - component](https://www.youtube.com/watch?v=13cmHf_kt-Q)
+- [stuart sierra - components just enough structure](https://www.youtube.com/watch?v=13cmHf_kt-Q)
