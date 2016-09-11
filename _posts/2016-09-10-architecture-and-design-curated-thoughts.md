@@ -75,3 +75,4 @@ refer - [microservices-evolution-soundcloud](https://www.infoq.com/articles/micr
 - [modularity](https://modularity.org/index.html)
 - [stuart sierra - components just enough structure](https://www.youtube.com/watch?v=13cmHf_kt-Q)
 - [tesla-microservice](https://github.com/otto-de/tesla-microservice)
+- [clojure-walking-skeleton](http://www.agilityfeat.com/blog/2015/03/clojure-walking-skeleton)
