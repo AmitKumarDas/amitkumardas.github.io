@@ -19,7 +19,7 @@ title: Architecture and Design - Some Curated Thoughts
 - workaround for messages that do not arrive leading to async designs
 - wide array of testing (unit, functional, security & performance)
 
-### Microservice - Separation by Service level
+### Microservice - What, Why & How !!
 
 refer - [wix-microservices-devops](https://www.infoq.com/presentations/wix-microservices-devops)
 
@@ -43,6 +43,11 @@ refer - [wix-microservices-devops](https://www.infoq.com/presentations/wix-micro
 - failure handling ?
   - retry policy, circuit breaker, throttlers
 - expose service metrics within the service itself
+- Open sourcing each micro service (e.g. a separate github project) will benefit a lot
+ - No need of verbose team communications
+ - Consider github to be the communication medium
+ - Each issue, commit, doc signals an item for communication when required.
+ - Tracking dependencies becomes trivial
 
 ### Quotes
 
@@ -59,3 +64,8 @@ of course with CI in place.
 
 refer - [microservices-distributed-system](https://www.infoq.com/news/2016/09/microservices-distributed-system)
 
+> My opinion is that one of the things we’ll realize is the cost of RPC. SoundCloud is using HTTP + JSON for RPC
+at the moment and we already did some investment to migrate to Thrift. I believe next step in evolution is to 
+migrate all of our services to use a more efficient protocol for RPC.
+
+refer - [microservices-evolution-soundcloud](https://www.infoq.com/articles/microservices-evolution-soundcloud)
