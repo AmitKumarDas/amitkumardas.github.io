@@ -97,33 +97,15 @@ title: My lisp refresher
 ;; This list notation is part of the magic that goes into macros. 
 ```
 
-<br />
-
 ### Basic Types
 
-```clojure
+- vector, map, list, set
+- multiple ways to lookup - use idiomatic way
+- keywords can be used as function - loved by Clojurists
+- vector is a 0-indexed array collection
+- a vector can contain heterogenous types
+- read more on performance implications of retrieving from a list vs. vector
 
-;; Nested Maps - A map literal syntax
-{:name {:first "John" :middle "Jacob" :last "Jingleheimerschmidt"}}
-
-;; Map - via - hash-map
-(hash-map :a 1 :b 2)
-; => {:a 1 :b 2}
-
-;; multiple ways to lookup - use idiomatic way
-;; keywords can be used as function - loved by Clojurists
-
-;; vector is a 0-indexed array collection
-;; a vector can contain heterogenous types
-
-;; list is a linear collection of values
-;; list uses () plus '
-;; i.e. '() 
-
-;; read more on performance implications of retrieving from a list vs. vector
-```
-
-<br />
 
 ### keywords vs. functions
 
