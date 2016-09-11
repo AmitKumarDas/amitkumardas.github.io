@@ -286,8 +286,11 @@ refer - [stuart sierra - component](https://www.youtube.com/watch?v=13cmHf_kt-Q)
 
 ### References
 
+- Remember the paralysis analysis theory while reading though these links !!
+- 
 ```lisp
 
+;; http://clojure-doc.org/articles/tutorials/getting_started.html
 ;; http://www.braveclojure.com/
 ;; https://notamonadtutorial.com/how-to-earn-your-clojure-white-belt-7e7db68a71e5#.wuff9cdwu
 ;; http://clojure.org/api/cheatsheet
