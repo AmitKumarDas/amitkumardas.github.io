@@ -69,3 +69,9 @@ at the moment and we already did some investment to migrate to Thrift. I believe
 migrate all of our services to use a more efficient protocol for RPC.
 
 refer - [microservices-evolution-soundcloud](https://www.infoq.com/articles/microservices-evolution-soundcloud)
+
+### Hands On
+
+- [modularity](https://modularity.org/index.html)
+- [stuart sierra - component](https://www.youtube.com/watch?v=13cmHf_kt-Q)
+- 
