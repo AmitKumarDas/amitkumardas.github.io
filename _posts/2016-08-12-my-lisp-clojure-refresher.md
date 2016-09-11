@@ -97,6 +97,8 @@ title: My lisp refresher
 ;; This list notation is part of the magic that goes into macros. 
 ```
 
+<br />
+
 ### Basic Types
 
 - vector, map, list, set
@@ -106,6 +108,7 @@ title: My lisp refresher
 - a vector can contain heterogenous types
 - read more on performance implications of retrieving from a list vs. vector
 
+<br />
 
 ### keywords vs. functions
 
