@@ -28,3 +28,7 @@ business model often to remain valid.
 Keep listing down the things that have worked & things that have not. Keep a list of items that are a source of 
 painpoints in the org. Flaunt these lists all around your office premises. Once you have these lists in-grained in
 your thoughts, I am sure you will have plans to tackle them as well. 
+
+## What about the associated risks ?
+
+If you are not willing to risk the unusual, you have to settle for the ordinary.
