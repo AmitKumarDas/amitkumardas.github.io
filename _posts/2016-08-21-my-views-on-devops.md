@@ -30,6 +30,15 @@ title: My views on devops
 
 > I've worked with multiple services in multiple teams where upstream fixes take a while and meanwhile devs and ops people get paged like crazy for a diagonized and remediable problem. Agreed that logrotate config needs to be fixed for this case but it is only a simple demo for auto-remediation. For years, Cassandra dead node replacement is a 6 step manual process. You'd think upstream should be fixed but unfortunately not. So StackStorm fills the gap between what is ideal and what is running in production. Usually, there is a gap. See https://stackstorm.com/2015/09/22/auto-remediating-bad-hosts-in-cassandra-cluster-with-stackstorm/
 
+
+## Project Gating System
+
+- A program that can gate the source code repo of the project
+  - so that any changes are only merged if they pass tests.
+- OpenStack uses Zuul. 
+  -  It is a scheduler that expects events on proposed changes.
+  -  It triggers tests based on these events & reports back
+
 ## What does StackStorm provide ?
 
 - YAML based workflow specs
