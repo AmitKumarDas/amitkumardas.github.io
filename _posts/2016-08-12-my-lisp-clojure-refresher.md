@@ -110,6 +110,12 @@ title: My lisp refresher
 
 <br />
 
+### Scoping in Clojure -via- let
+
+- let expression evaluates to the last expression in its body
+
+<br />
+
 ### keywords vs. functions
 
 ```clojure
