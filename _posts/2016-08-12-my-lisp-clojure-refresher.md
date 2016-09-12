@@ -295,4 +295,5 @@ refer - [stuart sierra - component](https://www.youtube.com/watch?v=13cmHf_kt-Q)
 ;; https://notamonadtutorial.com/how-to-earn-your-clojure-white-belt-7e7db68a71e5#.wuff9cdwu
 ;; http://clojure.org/api/cheatsheet
 ;; https://github.com/magomimmo/modern-cljs
+;; https://aphyr.com/tags/Clojure-from-the-ground-up
 ```
