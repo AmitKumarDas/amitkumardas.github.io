@@ -12,11 +12,15 @@ title: Architecture and Design - Some Curated Thoughts
 - minimise the impact of different style of code due to various teams on a monolith
 - provides benefits of using polygot programming languages
 
+<br />
+
 ### Side effects on using micro-services
 
 - deal with latency
 - negotiate authentication & authorization- workaround for messages that do not arrive leading to async designs
 - wide array of testing (unit, functional, security & performance)
+
+<br />
 
 ### Microservice - What, Why & How !!
 
@@ -47,6 +51,56 @@ refer - [wix-microservices-devops](https://www.infoq.com/presentations/wix-micro
  - Consider github to be the communication medium
  - Each issue, commit, doc signals an item for communication when required.
  - Tracking dependencies becomes trivial
+
+<br />
+
+### You must be this TALL to use microservices
+
+- refer Martin Fowler
+
+- rapid provisioning
+- basic monitoring
+- rapid application deployment
+- devops culture
+
+<br />
+
+### Micro Services lead to Distributed Systems & hence its challenges
+
+- Configuration Management
+- Service Registration & Discovery
+- Routing & Load Balancing
+- Fault Tolerance
+- Monitoring
+
+<br />
+
+### Composing the Micro Services
+
+refer - https://www.youtube.com/watch?v=DBIm6gDpSNg
+
+- to represent the composite system
+  - use manifest files
+    - but this is very static
+  - like BOSH but for micro services
+    - without being a centralized management process
+    - there will be decentralized teams
+    - we just want to build a composite system of micro services
+    - we want composing fault tolerant systems
+  - Netflix OSS
+    - need to learn a lot, pick up & build up the pieces.
+  - Spring Cloud (more standardized approach to Netflix OSS)
+    - i.e. Spring Cloud on Cloud Foundry
+    - Spring Config Server
+      - Git <-> Config Server (REST Server) -pull-> App A
+      - Git <-> Config Server (REST Server) -pull-> App B
+      - Git <-> Config Server (REST Server) -pull-> App B
+    - How about update @ realtime ?
+      - Cloud Bus (Rabbit MQ)
+  - Read Cloud Foundry
+    - It might have something good.
+
+<br />
 
 ### Quotes
 
