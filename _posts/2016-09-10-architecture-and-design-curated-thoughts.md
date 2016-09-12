@@ -15,8 +15,7 @@ title: Architecture and Design - Some Curated Thoughts
 ### Side effects on using micro-services
 
 - deal with latency
-- negotiate authentication & authorization
-- workaround for messages that do not arrive leading to async designs
+- negotiate authentication & authorization- workaround for messages that do not arrive leading to async designs
 - wide array of testing (unit, functional, security & performance)
 
 ### Microservice - What, Why & How !!
@@ -75,4 +74,4 @@ refer - [microservices-evolution-soundcloud](https://www.infoq.com/articles/micr
 - [modularity](https://modularity.org/index.html)
 - [stuart sierra - components just enough structure](https://www.youtube.com/watch?v=13cmHf_kt-Q)
 - [tesla-microservice](https://github.com/otto-de/tesla-microservice)
-- [clojure-walking-skeleton](http://www.agilityfeat.com/blog/2015/03/clojure-walking-skeleton)
+- [IMP - clojure-walking-skeleton](http://www.agilityfeat.com/blog/2015/03/clojure-walking-skeleton)
