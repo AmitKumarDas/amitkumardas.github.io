@@ -102,6 +102,15 @@ refer - https://www.youtube.com/watch?v=DBIm6gDpSNg
 
 <br />
 
+### Programming Styles
+
+- [java9-reactive-programming](https://www.infoq.com/presentations/java9-reactive-programming)
+  - talks more on Spring Reactive
+  - good background on threads to Future to CompletableFuture to Streams to BackPressure
+- 
+
+<br />
+
 ### Quotes
 
 > Microservices architecture is not fundamentally different from SOA; the goals and objectives are the 
