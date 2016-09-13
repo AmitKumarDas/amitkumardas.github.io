@@ -107,7 +107,6 @@ refer - https://www.youtube.com/watch?v=DBIm6gDpSNg
 - [java9-reactive-programming](https://www.infoq.com/presentations/java9-reactive-programming)
   - talks more on Spring Reactive
   - good background on threads to Future to CompletableFuture to Streams to BackPressure
-- 
 
 <br />
 
