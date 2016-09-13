@@ -50,3 +50,11 @@ promise to myself not to write code that has already been written & proven.
 
 - [diego-ssh](https://github.com/cloudfoundry/diego-ssh)
 
+<br />
+
+### Secrets & Keys Management
+
+- [Vault]()
+- [Genesis](https://github.com/starkandwayne/genesis)
+- [Air Marshal](https://github.com/starkandwayne/airmarshal)
+  - cli -> air marshal -> concourse
