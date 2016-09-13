@@ -42,6 +42,7 @@ These are specific to ```creation of any tool```.
 
 I believe below projects have a chance to change the world of devops if applied correctly:
 
+- [cf](https://www.cloudfoundry.org/)
 - [rally](https://wiki.openstack.org/wiki/Rally)
 - [itsabot](https://github.com/itsabot/abot/wiki/Building-a-Plugin)
 - [operable](https://operable.io/)
