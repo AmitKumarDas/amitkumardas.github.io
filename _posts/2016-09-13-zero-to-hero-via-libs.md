@@ -25,4 +25,9 @@ promise to myself not to write code that has already been written & proven.
   - Decouples multiple backends from frontend.
   - Thinking multi-language backends. No problems.
   - Some perf optimizations are built-in.
-  
+
+<br />
+
+### Accessibility Testing
+
+- [pally](https://github.com/springernature/dashboard)
