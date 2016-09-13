@@ -37,3 +37,16 @@ promise to myself not to write code that has already been written & proven.
 ### Backup & DR solutions
 
 - [shield](https://github.com/starkandwayne/shield)
+
+<br />
+
+### Any CI solutions ? 
+
+- [concourse tutorial](https://github.com/starkandwayne/concourse-tutorial)
+
+<br />
+
+### Container solutions
+
+- [diego-ssh](https://github.com/cloudfoundry/diego-ssh)
+
