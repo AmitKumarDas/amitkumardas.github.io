@@ -38,11 +38,12 @@ on technology to solve our needs.
 
 <br />
 
-> Though we were using open source libraries, our contributions itself was closed
-sourced. The only open sourcing that we did as a company was when my orchestration
+> Though we were using open source libraries, we were not contributing back to the
+community. The only open sourcing we did as a company was when my orchestration
 team submitted relevant volume plugins to OpenStack & CloudStack communities. We
 later realized that being open source is an important factor to solve the issue
-of vendor lock-in. We even had to lose a customer on grounds of being a closed
+of vendor lock-in (this is true w.r.t storage doamin which is fiercly competitive & 
+commoditized). We even had to lose a customer on grounds of being a closed
 source company. This happened even after various rounds of successful POCs with
 the same customer.
 
@@ -65,5 +66,7 @@ tool or asking for feature requests. Currently, I am building the management sol
 for containerized storage (based on Linux). All these stuff made me use various 
 programming languages starting from Java to JavaScript to Python to Groovy to Bash to
 Golang. This also resulted in learning better tools & un-learning my older approaches to
-solving a problem. This is what I suppose has transformed me into a full stack
-programmer.
+solving a problem. In addition, I was at customer places to demo various features of our 
+product, the USP of our product, etc. Last but not the least, there were couple of realtime
+support handling, I had to see through for production customers. This is what I suppose has 
+transformed me into a full stack programmer.
