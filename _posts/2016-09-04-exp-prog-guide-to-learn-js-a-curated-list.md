@@ -372,7 +372,7 @@ refer - [separation & composition](https://medium.com/@koresar/fun-with-stamps-e
 
 <br />
 
-### Stuffing you with all the JavaScript syntax
+### JavaScript syntax
 
 - refer - [JS Queries](https://github.com/nishant8BITS/123-Essential-JavaScript-Interview-Question)
 
