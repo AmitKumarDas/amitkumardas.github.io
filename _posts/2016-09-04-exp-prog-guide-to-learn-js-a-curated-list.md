@@ -369,3 +369,35 @@ refer - [separation & composition](https://medium.com/@koresar/fun-with-stamps-e
 - Use of const will reduce the use of `this`
 - make use of stampit configuration property for hiding purposes
 - The best way to verify is via code testability
+
+<br />
+
+### Stuffing you with all the JavaScript syntax
+
+- refer - [JS Queries](https://github.com/nishant8BITS/123-Essential-JavaScript-Interview-Question)
+
+<br />
+
+#### check the type
+
+```javascript
+
+if(Object.prototype.toString.call(someobj) === '[object Array]'){...}
+```
+
+<br />
+
+#### run-time definition vs. parse-time definition
+
+```javascript
+<script>
+  hi(); // error
+  var hi = function () {};
+</script>
+
+<script>
+  hi(); //ok
+  function hi() {};
+</script>
+```
+
