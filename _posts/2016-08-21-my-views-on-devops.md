@@ -22,6 +22,8 @@ title: My views on devops
 - Are we able to version control the workflow definition ?
 - Does the devops automation architecture support multiple language ?
 
+<br />
+
 ## Real World UseCases
 
 > In the case of Netflix, Powell said, StackStorm is being used to monitor the Simple Queing Service (SQS) on Amazon Web Services where the implementation of Cassandra that Netflix uses resides. Powell said StackStorm sensors listen to SQS and issue triggers into the StackStorm internal message bus. A rules engine then listens to that message bus and does pattern matching to identify performance threshold violations. The system then checks to see if there is a tool that can be invoke to automatically remediate the problem. In cases where no solution to the problem can be found, StackStorm sends an alert to the appropriate admin.
@@ -30,6 +32,7 @@ title: My views on devops
 
 > I've worked with multiple services in multiple teams where upstream fixes take a while and meanwhile devs and ops people get paged like crazy for a diagonized and remediable problem. Agreed that logrotate config needs to be fixed for this case but it is only a simple demo for auto-remediation. For years, Cassandra dead node replacement is a 6 step manual process. You'd think upstream should be fixed but unfortunately not. So StackStorm fills the gap between what is ideal and what is running in production. Usually, there is a gap. See https://stackstorm.com/2015/09/22/auto-remediating-bad-hosts-in-cassandra-cluster-with-stackstorm/
 
+<br />
 
 ## Project Gating System
 
@@ -38,6 +41,8 @@ title: My views on devops
 - OpenStack uses Zuul. 
   -  It is a scheduler that expects events on proposed changes.
   -  It triggers tests based on these events & reports back
+
+<br />
 
 ## What does StackStorm provide ?
 
@@ -55,8 +60,11 @@ title: My views on devops
   - Stackstorm is not a CI solution but pretty good for orchestrating various automations points.
 - Provides event updates as actions take place, intercept triggers & execute workflows
 
-## Good Source for DevOps
+<br />
 
+## References
+
+- [Cloud Foundry](https://www.cloudfoundry.org/)
 - [Stackstorm at yc](https://news.ycombinator.com/item?id=10342000)
 - [Stackstorm in Netflix](http://www.datacenterknowledge.com/archives/2015/09/24/netflix-to-use-stackstorm-for-it-automation-under-cassandra/)
 - [CI & CD & OpenStack](https://www.youtube.com/watch?v=4gR5xVOSsdU)
