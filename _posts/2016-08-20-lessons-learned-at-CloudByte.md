@@ -32,18 +32,19 @@ hardware (we needed to have a Hardware Compatibility List after all).
 There were a lot of them that we made. I have listed down the important ones here. 
 
 > We were getting multiple requests from probable customers which never materialized
-> in reality. Prioritizing went into a toss while managing multiple customer requests.
-> We had now started to rely more on people than on technology to solve our problems.
+in reality. Since the requests were more of big features. Prioritizing customer needs
+vs. product needs went into a toss. We had often started to rely more on people than 
+on technology to solve our needs.
 
 <br />
 
 > Though we were using open source libraries, our contributions itself was closed
-> sourced. The only open sourcing that we did as a company was when my orchestration
-> team submitted relevant volume plugins to OpenStack & CloudStack communities. We
-> later realized that being open source is an important factor to solve the issue
-> of vendor lock-in. We even had to lose a customer on grounds of being a closed
-> source company. This happened even after various rounds of successful POCs with
-> the same customer.
+sourced. The only open sourcing that we did as a company was when my orchestration
+team submitted relevant volume plugins to OpenStack & CloudStack communities. We
+later realized that being open source is an important factor to solve the issue
+of vendor lock-in. We even had to lose a customer on grounds of being a closed
+source company. This happened even after various rounds of successful POCs with
+the same customer.
 
 <br />
 
@@ -54,15 +55,15 @@ application development, low latency trading systems & later with security produ
 In CloudByte, I started off with modularising the UI code (JavaScript) that was
 becoming unwieldy. Then I was off to build plugins for infrastructure solutions
 such as CloudStack, VMWare, & OpenStack. With the ecosystem of heterogeneous solutions
-needed for our core, we had the urgent need to automate various stuff. Automation
+needed for our core, we had the urgent need to automate the entire stack. Automation
 was needed for our continuous testing, delivery & integration platform. Soon I
-started developing DSLs (Domain Specific Languages) for our automation (read devops)
+started developing DSLs (Domain Specific Languages) for our automation (read DevOps)
 needs. The plan was to have anyone to start scripting out her manual tasks. This
 mandated the scripting language to be easy to learn & adapt so that QA, support,
 or even any customer admin would be able to automate without reaching out for new
 tool or asking for feature requests. Currently, I am building the management solution
-for Linux containerized storage. All these stuff made me use various programming
-languages starting from Java to JavaScript to Python to Groovy to Bash to Golang.
-This also resulted in learning better tools & unlearning my narrower approach to
+for containerized storage (based on Linux). All these stuff made me use various 
+programming languages starting from Java to JavaScript to Python to Groovy to Bash to
+Golang. This also resulted in learning better tools & un-learning my older approaches to
 solving a problem. This is what I suppose has transformed me into a full stack
 programmer.
