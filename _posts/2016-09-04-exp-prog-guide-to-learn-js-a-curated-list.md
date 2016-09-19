@@ -418,6 +418,12 @@ refer - [st2web](https://github.com/StackStorm/st2web/)
 
 <br />
 
+#### st2-api
+
+- st2-api consists of index.js & api.service.js
+
+<br />
+
 #### st2-history-child
 
 - a folder/component that consists of
