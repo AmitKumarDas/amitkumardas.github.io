@@ -378,6 +378,15 @@ refer - [separation & composition](https://medium.com/@koresar/fun-with-stamps-e
 
 <br />
 
+#### null check
+
+```javascript
+
+function GetName(context) {
+  return context && context.name;
+}
+```
+
 #### check the type
 
 ```javascript
@@ -401,3 +410,23 @@ if(Object.prototype.toString.call(someobj) === '[object Array]'){...}
 </script>
 ```
 
+### Reverse Engineering st2 web interface design
+
+refer - [st2web](https://github.com/StackStorm/st2web/)
+
+#### st2-history-child
+
+- a folder/component that consists of
+  - template.html, style.less, index.js, & history-child.directive.js
+- index registers the directive & exports it as a angular module
+  - export follows a namespace
+  - e.g. ```main.modules.st2HistoryChild```
+  - registration is done via name of the directive
+- directive does the following:
+  - sets certain well understood properties
+  - sets task name in a ```clever way```
+
+#### queries in st2web
+
+- $event.stopPropagation()
+- this.$apply() & bind(this)
