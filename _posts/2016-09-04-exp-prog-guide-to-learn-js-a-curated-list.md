@@ -410,9 +410,13 @@ if(Object.prototype.toString.call(someobj) === '[object Array]'){...}
 </script>
 ```
 
+<br />
+
 ### Reverse Engineering st2 web interface design
 
 refer - [st2web](https://github.com/StackStorm/st2web/)
+
+<br />
 
 #### st2-history-child
 
@@ -424,10 +428,22 @@ refer - [st2web](https://github.com/StackStorm/st2web/)
   - registration is done via name of the directive
 - directive does the following:
   - sets certain well understood properties
-  - sets task name in a ```clever way```
+  - sets task name in a ```clever way``` into the scope
+  - taskname is in-turn a function that has the core logic
 - template does the following:
   - lot of control structures seen in the template
   - especially the ng-if structures
+
+<br />
+
+#### st2-action-reporter
+
+- directive does the following:
+  - implements the Reporter & Traceback functions into the scope
+  - These scope.Reporter & scope.Traceback functions are closures to link property
+  - link seems to be a well understood property by st2web
+
+<br />
 
 #### queries in st2web
 
