@@ -425,6 +425,9 @@ refer - [st2web](https://github.com/StackStorm/st2web/)
 - directive does the following:
   - sets certain well understood properties
   - sets task name in a ```clever way```
+- template does the following:
+  - lot of control structures seen in the template
+  - especially the ng-if structures
 
 #### queries in st2web
 
