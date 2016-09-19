@@ -56,7 +56,7 @@ refer - [wix-microservices-devops](https://www.infoq.com/presentations/wix-micro
 
 ### You must be this TALL to use microservices
 
-- refer Martin Fowler
+refer Martin Fowler
 
 - rapid provisioning
 - basic monitoring
@@ -107,6 +107,45 @@ refer - https://www.youtube.com/watch?v=DBIm6gDpSNg
 - [java9-reactive-programming](https://www.infoq.com/presentations/java9-reactive-programming)
   - talks more on Spring Reactive
   - good background on threads to Future to CompletableFuture to Streams to BackPressure
+
+<br />
+
+### TCMU - TCM Userspace Design
+
+refer - [tcmu design](https://www.kernel.org/doc/Documentation/target/tcmu-design.txt)
+
+- TCM ............................ is another name for LIO
+- LIO ............................. an in kernel iSCSI target
+- TCMU ........................ TCM in Userspace
+- TCMU allows userspace programs to be written that act as iSCSI targets.
+- TCM modularizes data storages into modules.
+- TCM data storage modules are called as backstores or storage engines
+- Some of these backstores are file, block device, RAM or using another SCSI device
+- These are implemented entirely as kernel code
+
+<br />
+
+- NOTE - Similar to LIO is tgt.
+- tgt is a userspace iSCSI target solution.
+- tgt acts as a translator to non-traditional networked storage systems
+- NOTE - Non-traditional implies Gluster's GLFS or Ceph's RBD
+- tgt makes it easy to support any non-traditional storages via use of adapter modules
+- tgt adapter will use the available userspace libs for RBD, GLFS etc.
+
+
+<br />
+
+- How to implement similar userspace storage adapters for LIO which is kernel space ?
+- Do we need to port the non-traditional file system APIs o kernel space ?
+- No. We need to create a userspace pass-through backstore for LIO i.e. TCMU
+
+<br />
+
+- Why LIO ?
+- TCMU combines with the LIO loopback fabric & becomes something similar to FUSE
+- However this is at SCSI layer & not at file system layer.
+- TCMU design
+  - ...
 
 <br />
 
