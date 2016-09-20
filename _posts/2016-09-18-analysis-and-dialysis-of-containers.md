@@ -75,3 +75,17 @@ sudo docker run hello-world
 # launch rancher server
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
+
+### Services in Rancher
+
+- A group of containers created from same docker image
+- Leverages Rancher's DNS service for service discovery
+- Can be deployed individually or by deploying an item from the Catalog
+- Some of Rancher's builtin services:
+ - load balancers
+ - health monitoring
+ - upgrade support
+ - high-availability
+- A sample service can be e.g. Trello
+ - A Trello service may consist of 2 images
+ - i.e. Trello App & Trello DB each in a separate container
