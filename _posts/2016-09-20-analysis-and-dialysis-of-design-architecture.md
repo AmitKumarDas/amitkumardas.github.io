@@ -115,5 +115,5 @@ public void deleteFromCache(Set<String> deleteKeys) {
 - Above seems a good progress, isn't it.
 - For those who have had a dash of Groovy will find this progress very late.
 - NOTE - In Groovy above functional coding is a piece of cake.
-- Finally, what the most important feature that the article mentions is ```separation of concerns```.
+- Finally, the most important feature the article mentions is all about ```separation of concerns```.
   - i.e. separating **traversal** from **removal** logic
