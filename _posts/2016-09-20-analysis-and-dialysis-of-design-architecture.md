@@ -58,7 +58,9 @@ refer - [st2web](https://github.com/StackStorm/st2web/)
 - Not so good
   - $event.stopPropagation()
   - this.$apply()
-  - Need to learn the property of the objects. Tricky if IDE does not help.
+  - Need to learn the property of the objects. JS is dynamically typed.
+    - Usecase for [flow](https://flowtype.org/)
+    - Tricky if IDE does not help.
 - Tricky parts
   - Usage of bind(this) in code that deals with promise
   - Use of lodash for common validations, or utility stuff
