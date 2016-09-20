@@ -19,6 +19,10 @@ refer - [st2web](https://github.com/StackStorm/st2web/)
 #### st2-api
 
 - st2-api consists of index.js & api.service.js
+  - requires lodash, st2client & urijs
+  - logic about connecting, remembering the session, disconnect
+  - uses config to extract the host
+
 
 <br />
 
@@ -49,10 +53,15 @@ refer - [st2web](https://github.com/StackStorm/st2web/)
 
 <br />
 
-#### queries in st2web
+#### Summary
 
-- $event.stopPropagation()
-- this.$apply() & bind(this)
+- Not so good
+  - $event.stopPropagation()
+  - this.$apply()
+  - Need to learn the property of the objects. Tricky if IDE does not help.
+- Tricky parts
+  - Usage of bind(this) in code that deals with promise
+  - Use of lodash for common validations, or utility stuff
 
 <br />
 
