@@ -76,6 +76,10 @@ sudo docker run hello-world
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
 
+### Hosts in Rancher
+
+- 
+
 ### Services in Rancher
 
 - A group of containers created from same docker image
@@ -88,4 +92,4 @@ sudo docker run -d --restart=always -p 8080:8080 rancher/server
  - high-availability
 - A sample service can be e.g. Trello
  - A Trello service may consist of 2 images
- - i.e. Trello App & Trello DB each in a separate container
+ - i.e. Trello App (3 containers) & Trello DB (1 container)
