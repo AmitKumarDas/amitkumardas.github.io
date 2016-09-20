@@ -7,15 +7,6 @@ title: Analysis & Dialysis of Containers
 
 <br />
 
-## My experiences with Rancher
-
-- Running Rancher is as simple as launching two containers. 
-- One container as the management server and another container on a node as an agent. 
-- Launching Management Server: docker run -d --restart=always -p 8080:8080 rancher/server
- - The UI and API are available on the exposed port 8080.
-
-<br />
-
 ### Install docker on Ubuntu
 
 [refer install guide](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
@@ -76,9 +67,26 @@ sudo docker run hello-world
 sudo docker run -d --restart=always -p 8080:8080 rancher/server
 ```
 
+<br />
+
+## Experiences with Rancher
+
+- Running Rancher is as simple as launching two containers. 
+- One container as the management server and another container on a node as an agent. 
+- Launching Management Server: docker run -d --restart=always -p 8080:8080 rancher/server
+ - The UI and API are available on the exposed port 8080.
+
+<br />
+
 ### Hosts in Rancher
 
-- 
+- Host gets registered & connected to Rancher Server
+ - This happens when rancher agent is started on the host
+ - The registration token is used by the rancher agent to connect to the Rancher Server for the first time
+ - Agent is untrusted as it is running on the outside & potentially hostile to Rancher Server
+ - Agent accounts have access to only the resources they need in the API
+ - IPSec key is per environment. It is generated on the server, stored in the database
+  - It is sent to the host as part of the agent registration with the API key pair.
 
 ### Services in Rancher
 
