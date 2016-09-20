@@ -5,6 +5,11 @@ title: Analysis & Dialysis of design, techniques & architecture
 
 ## Analysis & Dialysis of design, techniques & architecture
 
+I will try to capture the mood & sentiment of two varying but completing 
+worlds i.e. frontend stack & backend technology stack. This will consist of
+references to articles & blog posts with some of my own experiences.
+
+
 ## Reverse Engineering st2 web interface design
 
 refer - [st2web](https://github.com/StackStorm/st2web/)
@@ -49,5 +54,66 @@ refer - [st2web](https://github.com/StackStorm/st2web/)
 - $event.stopPropagation()
 - this.$apply() & bind(this)
 
+<br />
 
 ## Java's move towards being functional
+
+- Lets understand by these sample snippets copied from below link:
+  - [refer](https://dzone.com/articles/towards-more-functional-java-using-lambdas-as-pred)
+- I am not trying to capture the essence of the logic
+- What I will try to do instead is to analyze the diff of an imperative vs functional logic
+ 
+```java
+
+// iterator
+
+public void deleteFromCache(Set<String> deleteKeys) {
+    Iterator<Map.Entry<String, Object>> iterator = dataCache.entrySet().iterator();
+    while (iterator.hasNext()) {
+        Map.Entry<String, Object> entry = iterator.next();
+        if (deleteKeys.contains(entry.getKey())) {
+            iterator.remove();
+        }
+    }
+}
+
+// vs. for
+
+public void deleteFromCache(Set<String> deleteKeys) {
+    for (String deleteKey : deleteKeys) {
+        dataCache.remove(deleteKey);
+    }
+}
+
+// vs. removeIf Predicate (Java 8)
+
+public void deleteFromCache(Set<String> deleteKeys) {
+    dataCache.entrySet().removeIf(new Predicate<Map.Entry<String, Object>>() {
+        @Override
+        public boolean test(Map.Entry<String, Object> entry) {
+            return deleteKeys.contains(entry.getKey());
+        }
+    });
+}
+
+// vs. lambda expression (Java 8)
+
+public void deleteFromCache(Set<String> deleteKeys) {
+    dataCache.entrySet().removeIf((Map.Entry<String, Object> entry) ->
+        deleteKeys.contains(entry.getKey()));
+}
+
+// vs. auto inference of arg types of lambda expressions (Java 8)
+
+public void deleteFromCache(Set<String> deleteKeys) {
+    dataCache.entrySet().removeIf(entry -> deleteKeys.contains(entry.getKey()));
+}
+```
+
+<br />
+
+- Above seems a good progress, isn't it.
+- For those who have had a dash of Groovy will find this progress very late.
+- NOTE - In Groovy above functional coding is a piece of cake.
+- Finally, what the most important feature that the article mentions is ```separation of concerns```.
+  - i.e. separating **traversal** from **removal** logic
