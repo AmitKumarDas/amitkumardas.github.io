@@ -102,6 +102,16 @@ refer - https://www.youtube.com/watch?v=DBIm6gDpSNg
 
 <br />
 
+### High Availability vs. Highly Available
+
+- refer [link](http://thenewstack.io/platform9-raises-high-availability-bar-openstack/)
+
+> Berezin explained how using a Red Hat component called Pacemaker to establish clusters and to 
+deploy HAProxy load balancers among those clusters, resulted in highly available controllers 
+that addressed High Availability needs.
+
+<br />
+
 ### Programming Styles
 
 - [java9-reactive-programming](https://www.infoq.com/presentations/java9-reactive-programming)
