@@ -102,13 +102,3 @@ sudo docker run -d --restart=always -p 8080:8080 rancher/server
  - A Trello service may consist of 2 images
  - i.e. Trello App (3 containers) & Trello DB (1 container)
 
-### Troubleshooting in Rancher OS
-
-```
-
-Error (500 Server Error: Internal Server Error ("driver failed programming external connectivity on endpoint 
-r-wekan_wekan_1 (d498ed937dbd3490b05c5e89251fa1073071412cb0e2a4e5606e3cf16e48bfc6): Error starting userland 
-proxy: listen tcp 0.0.0.0:80: bind: address already in use")
-
-
-```
