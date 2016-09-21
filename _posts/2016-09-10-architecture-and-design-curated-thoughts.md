@@ -146,7 +146,12 @@ in a cluster, there’s a higher chance that the multicast message would not be 
 recipient, than for the suspicion to be actually correct. That’s because IP multicast was intentionally 
 designed to be a “best effort” approach at targeting a broad swath of addresses. “Infection” relies 
 upon one member node propensity to chatter with another node. Using a gossip protocol, the suspicions
-are piggybacked onto the member nodes’ regular membership chatter messages.
+are piggybacked onto the member nodes’ regular membership chatter messages. Hashicorp's **serf** is an 
+implementation of SWIM protocol.
+
+<br />
+
+> Read about VMHA in OpenStack. Refer https://github.com/ntt-sic/masakari
 
 <br />
 
