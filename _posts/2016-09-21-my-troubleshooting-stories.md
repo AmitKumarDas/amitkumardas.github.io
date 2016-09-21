@@ -50,3 +50,7 @@ Cannot stat file /proc/26794/fd/11: Stale file handle
   - a library, 
   - a stream or a network file (Internet socket, NFS file, or UNIX domain socket)\
 - has options to exclude kernel blocking paths
+
+### Linux Server Security - Hardening
+
+- refer [link](https://dzone.com/articles/9-useful-tips-for-linux-server-security?edition=155252)
