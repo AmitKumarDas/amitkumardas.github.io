@@ -69,6 +69,75 @@ sudo docker run -d --restart=always -p 8080:8080 rancher/server
 
 <br />
 
+### Docker Image
+
+- Setup details are in a file called Dockerfile
+- File is placed in the project root location
+- Dockerfile will be used to build a docker image
+- Map the project directory to a directory (e.g. /code) in image
+- Execute the project's dependencies command
+ - e.g. RUN pip install -r requirements.txt
+- Set the default command for the container
+ - e.g. provide the command to start the application
+
+<br />
+
+### Building the docker image - Dockerfile
+
+```
+
+# assumption - Dockerfile file is present inside the project folder
+# this will create a image called web
+
+docker build -t web .
+```
+
+<br />
+
+### Defining docker services - docker-compose
+
+- This marks the use of docker-compose.yml
+- This file will make use of docker images
+- This file can also set to trigger building of image via the Dockerfile
+- One can expose the ports of the application in this file
+- In other words you can compose an application made out of different images
+- Modifying the code directly inside the container without need for rebuiliding the image is also possible
+
+<br />
+
+### Build & run your app - docker-compose
+
+```
+# in the project directory that has docker-compose.yml
+# run below command
+
+docker-compose up
+
+# detached mode
+# to run your services in the background
+
+docker-compose up -d
+
+# list the services
+docker-compose ps
+
+# Run one-off commands for your services
+# here web is our service
+# env will get the list of env variables available to web
+
+docker-compose run web env
+
+# want to learn on other available commands
+
+docker-compose --help
+
+# to stop your services
+
+docker-compose stop
+```
+
+<br />
+
 ## Experiences with Rancher
 
 - Running Rancher is as simple as launching two containers. 
