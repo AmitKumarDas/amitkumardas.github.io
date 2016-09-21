@@ -112,11 +112,18 @@ that addressed High Availability needs.
 
 <br />
 
+>  Pacemaker as a cluster resource manager, provided as part of the operating system, that wraps 
+itself around services and controls their current state of operation. Together with a virtual
+IP address and an HAProxy load balancer, Pacemaker can ensure that some copy of a service, 
+somewhere in the network, responds to an API request.
+
+<br />
+
 ### Programming Styles
 
 - [java9-reactive-programming](https://www.infoq.com/presentations/java9-reactive-programming)
   - talks more on Spring Reactive
-  - good background on threads to Future to CompletableFuture to Streams to BackPressure
+  - good background on threads to **Future** to **CompletableFuture** to **Streams** to **BackPressure**
 
 <br />
 
