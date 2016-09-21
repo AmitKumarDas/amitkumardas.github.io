@@ -119,6 +119,37 @@ somewhere in the network, responds to an API request.
 
 <br />
 
+> Platform9 deploys distributed clustering services on all KVM nodes in that AZ. The clustering 
+services use [a] gossip protocol to keep track of all nodes in the cluster. There are actually 
+a handful of various gossip protocols currently in use today. One of the first to make serious 
+headway was SWIM [PDF], which was supposed to have been an acronym for 
+**Scalable Weakly-consistent Infection-style Process Group Membership Protocol**.
+
+<br />
+
+> The whole point of SWIM was to substitute typical, semi-reliable heartbeat protocols with an 
+algorithm that periodically measured variances in the chatter messages, or gossip, between 
+servers in a cluster about the membership of their various processes.
+
+<br />
+
+> Here, processes in a cluster of servers register for membership. The registration process 
+generates streams of messages, which set forth a pattern of normal operation. When a pattern 
+changes beyond a continually updated tolerance level, a failure detector component kicks in 
+to determine the relative probability of a real failure.
+
+<br />
+
+> The “infection” part is based on a metaphor describing how the membership signals are disseminated 
+throughout a cluster. If a “suspicion of failure” message to be multicast to multiple other IP hosts 
+in a cluster, there’s a higher chance that the multicast message would not be received by an intended 
+recipient, than for the suspicion to be actually correct. That’s because IP multicast was intentionally 
+designed to be a “best effort” approach at targeting a broad swath of addresses. “Infection” relies 
+upon one member node propensity to chatter with another node. Using a gossip protocol, the suspicions
+are piggybacked onto the member nodes’ regular membership chatter messages.
+
+<br />
+
 ### Programming Styles
 
 - [java9-reactive-programming](https://www.infoq.com/presentations/java9-reactive-programming)
