@@ -155,6 +155,67 @@ implementation of SWIM protocol.
 
 <br />
 
+### Persistent Datastructures
+
+refer - [Intro to ClojureScript](https://www.youtube.com/watch?v=-I5ldi2aJTI)
+
+- immutable values
+- structural sharing 
+- this is how git works, even the JVM & JS engine use this
+- there are not deltas you just point to new tree
+- each tree shares structure with old tree
+
+<br />
+
+#### Bitmapped Vector Trie
+
+- invented by Clojure / Rich Hickey
+- data lives in the leaves
+ - prefix tree used for string lookup
+- a bitwise trie
+- technically called Persistent Vector
+- an array of arrays
+- origins of Bitmapped Vector Trie
+ - Array Mapped Trie & Hash Array Mapped Trie (Phil Bagwell, 2001)
+ - these were mutable datastructures
+
+<br />
+
+#### Clojure's Persistent Vector
+
+- uniform array of arrays of same dimension
+- each element of an array is an array
+- the depth  = ?
+- random access like array
+- can add to end like an array
+- can iterate with efficiency like an array
+- getindex (find)
+ - mask the index to find the value
+ - if dimension = 4, then mask the first two bits
+- dereference the array & do bit masking
+- assoc (i.e. update)
+ - replace all the arrays in the path till the leaf array
+- 32 is the dimension that was selected for Clojure
+ - 32^7 implies 7 level deep
+ - 34 billion+ elements
+ - atmost you need to update 7 arrays to update an element
+
+<br />
+
+#### ReactJS
+
+- tree diffing in-memory
+- lazy diffing
+- batch the changes... no interleaving
+
+<br />
+
+#### Immutable JS
+
+- idiomatic persistent datastructure library
+
+<br />
+
 ### Programming Styles
 
 - [java9-reactive-programming](https://www.infoq.com/presentations/java9-reactive-programming)
