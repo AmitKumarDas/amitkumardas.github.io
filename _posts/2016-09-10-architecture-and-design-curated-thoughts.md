@@ -222,9 +222,9 @@ implementation of SWIM protocol.
 #### >>> vs. >> in Java
 
 - >>> is a logical shift
- - any bits shifted in will be zero
+  - any bits shifted in will be zero
 - >> is arithmetic shift
- - bits shifted in will have the same value as the most significant bit
+  - bits shifted in will have the same value as the most significant bit
 - For C/C++/GO, >>> is same as >> for unsigned types
 
 <br />
@@ -233,14 +233,14 @@ implementation of SWIM protocol.
 
 - How has Clojure done this in O(1) ?
 - Lets understand the branching factor i.e. no of children per node.
- - With 2 children per node, this will be O(log n) of base 2
- - Clojure has 32 kids per node
- - The depth can be calculated based on the size required
- - depth of 6 with 32 branching factor can provide around a billion elements
- - The Big O for Clojure then comes to O(log n) with a base of 32 which is known as O(log n)
+  - With 2 children per node, this will be O(log n) of base 2
+  - Clojure has 32 kids per node
+  - The depth can be calculated based on the size required
+  - depth of 6 with 32 branching factor can provide around a billion elements
+  - The Big O for Clojure then comes to O(log n) with a base of 32 which is known as O(log n)
 - The shifts & masks are some of the most efficient operations on a modern CPU
- - How about the cache misses ?
- - It is handled by JVM
+  - How about the cache misses ?
+  - It is handled by JVM
 
 <br />
 
@@ -248,7 +248,7 @@ implementation of SWIM protocol.
 
 - elements are in the interior nodes
 - find is done via comparison of element/key at the **current node**
- - if element is lower than the node, we brach left, if higher we branch right
+  - if element is lower than the node, we brach left, if higher we branch right
 - **leaves** are **nil** & doesnot contain anything
 
 <br />
@@ -258,19 +258,19 @@ implementation of SWIM protocol.
 - has all values stored in its leaves
 - picking the **right branch** is done by using parts of the key as a lookup
 - Clojure's Persistent Vector is a trie where the indices of elements are used as keys
- - The catch here is to split these indices integers
- - Spliting these integers is done via digit partitioning or its faster sibling bit partitioning
- - e.g. the key 2345 can be split as [2,3,4,5] list
- - we also can use any base we want to for the key
- - this list is used for lookup or insertion in the trie
- - when we reach at the last digit by traversing the digits of the list, we get our required value
+  - The catch here is to split these indices integers
+  - Spliting these integers is done via digit partitioning or its faster sibling bit partitioning
+  - e.g. the key 2345 can be split as [2,3,4,5] list
+  - we also can use any base we want to for the key
+  - this list is used for lookup or insertion in the trie
+  - when we reach at the last digit by traversing the digits of the list, we get our required value
 - Digit partitioned tries would need a couple of integer divisions & modulo operations
- - Doing this on every branch will be time consuming
- - All digit partitioned tries in a base which is a power of two (2, 4, 8, 16, 32, etc)
- - can be turned into a bit-partitioned ones.
- - Bit manipulation can save us from costly arithmetic operations i.e. division & modulo
- - For 32-way branching trie, we need 5 bits in each part
- - For 4-way branching trie, we need 2 bits
+  - Doing this on every branch will be time consuming
+  - All digit partitioned tries in a base which is a power of two (2, 4, 8, 16, 32, etc)
+  - can be turned into a bit-partitioned ones.
+  - Bit manipulation can save us from costly arithmetic operations i.e. division & modulo
+  - For 32-way branching trie, we need 5 bits in each part
+  - For 4-way branching trie, we need 2 bits
 
 <br />
 
@@ -280,21 +280,21 @@ implementation of SWIM protocol.
 - So we need a 2 bit partitioning
 - Assume a Trie of 887 elements
 - So each child of the root node need to contain at least 256 elements 
- - 256 == 1 << 8 i.e. shift = 8
- - Hence levels will be 8 -> 6 -> 4 -> 2 -> 0
- - Alternatively, 256 elements with 4 way paritioning means 4 elems * 4 elems * 4 elems * 4 elems i.e. 4 levels depth is required
+  - 256 == 1 << 8 i.e. shift = 8
+  - Hence levels will be 8 -> 6 -> 4 -> 2 -> 0
+  - Alternatively, 256 elements with 4 way paritioning means 4 elems * 4 elems * 4 elems * 4 elems i.e. 4 levels depth is required
 - The mask here will be 4 - 1 = 3
 - TASK - Get the element at 626 i.e. 0000 0010 0111 0010 in its binary representation ?
- - Set node = root
- - set level = 8 // used for shifting
- - set BITS = 2
- - hop by levels 
- - logic::
-  - position = (key >>> level) & MASK
-  - node = node[position]
-  - level =- BITS
-  - loop till level = 0
- - value = node[position]
+  - Set node = root
+  - set level = 8 // used for shifting
+  - set BITS = 2
+  - hop by levels 
+  - logic::
+    - position = (key >>> level) & MASK
+    - node = node[position]
+    - level =- BITS
+    - loop till level = 0
+  - value = node[position]
 
 <br />
 
