@@ -157,8 +157,10 @@ implementation of SWIM protocol.
 
 ### Persistent Datastructures
 
-refer - [Intro to ClojureScript](https://www.youtube.com/watch?v=-I5ldi2aJTI)
-refer - [Understanding Persistent Vector](http://hypirion.com/musings/understanding-persistent-vector-pt-1)
+- refer - [Intro to ClojureScript](https://www.youtube.com/watch?v=-I5ldi2aJTI)
+- refer - [Understanding Persistent Vector](http://hypirion.com/musings/understanding-persistent-vector-pt-1)
+
+#### What are these ?
 
 - immutable values
 - structural sharing 
