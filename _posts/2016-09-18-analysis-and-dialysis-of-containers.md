@@ -131,6 +131,17 @@ docker build -t web .
   ports:
    - "${EXTERNAL_PORT}:5000"
  ```
+ - Container capabilities
+ ```yaml
+  cap_drop:
+   - NET_ADMIN
+   - SYS_ADMIN
+ ```
+ - cgroup_parent
+  - can specify an optional parent cgroup for the container
+ - container_name - be careful
+  - scaling a container beyond 1 is not possible if it has been assigned a name
+  - coz. a container must have a unique name
 
 <br />
 
