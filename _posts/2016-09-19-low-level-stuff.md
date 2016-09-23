@@ -95,3 +95,11 @@ unmount /dev/loop<<N>>
 ```
 
 - At a lower level, the assoc & de-assoc of a file with a loop is done via ioctl system call on the loop device
+
+### Configfs
+
+- Is a RAM based virtual filesystem provided by 2.6 Linux kernel
+- Configfs appears similar to sysfs but they are in fact different and complementary. 
+- Configfs is for creating, managing and destroying kernel objects from user-space, 
+- Sysfs for viewing and manipulating objects from user-space which are created and destroyed by kernel space.
+- Configfs is typically mounted at /sys/kernel/config (or more rarely at /config).
