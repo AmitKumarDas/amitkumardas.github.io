@@ -96,12 +96,23 @@ docker build -t web .
 
 ### Defining docker services - docker-compose
 
-- This marks the use of docker-compose.yml
+- This marks the use of **docker-compose.yml**
+ - The **default path** of the compose file is ./docker-compose.yml
 - This file will make use of docker images
 - This file can also set to trigger building of image via the Dockerfile
-- One can expose the ports of the application in this file
 - In other words you can compose an application made out of different images
-- Modifying the code directly inside the container without need for rebuiliding the image is also possible
+
+### Advanced compose sections
+
+- Modifying the code inside the container without rebuiliding the image is possible
+- Compose version 1 does not support volumes or networks
+- If image & build are present in the compose file, 
+ - then the image is built with the value of the image
+```
+ build: ./dir
+ image: coolapp:1.2.3
+```
+- 
 
 <br />
 
@@ -134,6 +145,20 @@ docker-compose --help
 # to stop your services
 
 docker-compose stop
+```
+
+### Variable substitution in compose file
+
+```shell
+
+# let the shell set EXTERNAL_PORT = 8000
+
+# in docker-compose.yml
+web:
+ build: .
+ ports:
+  - "${EXTERNAL_PORT}:5000"
+
 ```
 
 <br />
