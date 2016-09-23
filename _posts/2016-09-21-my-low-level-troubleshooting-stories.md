@@ -1,9 +1,9 @@
 ---
 layout: post
-title: My Troubleshooting Stories
+title: My Low Level Troubleshooting Stories
 ---
 
-## My Troubleshooting Stories
+## My Low Level Troubleshooting Stories
 
 ### Address already in use
 
@@ -50,6 +50,50 @@ Cannot stat file /proc/26794/fd/11: Stale file handle
   - a library, 
   - a stream or a network file (Internet socket, NFS file, or UNIX domain socket)\
 - has options to exclude kernel blocking paths
+
+<br />
+
+### loop device
+
+- refer [link](https://en.wikipedia.org/wiki/Loop_device)
+- makes a file accessible as a block device
+- hence, must be connected to an existing file as a filesystem
+- hence, if the file is an entire file system, the file needs to be **mounted** as if it were a **disk device**
+ - loop mounting makes such files accessible
+- TIP - it is incorrectly referred to as loop-back devices
+
+<br />
+
+### mounting a file containing a disk image on a directory
+
+- Run a command to let content of the file **used as a file system** rooted at a given mount point
+
+```shell
+
+# identify an available loop device
+losetup -f
+
+# my.img is a regular file containing a filesystem
+# /home/damit/play is a directory of user damit
+
+losetup /dev/loop0 my.img
+mount /dev/loop1 /home/damit/play
+
+# oneliner to do above steps
+mount -o loop my.img /home/damit/play
+
+# unmounting
+unmount home/damit/play
+# or, mount | grep "/home/damit/play"
+# or, losetup -a | grep my.img
+# you get the exact loop device
+unmount /dev/loop<<N>>
+
+```
+
+- At a lower level, the assoc & de-assoc of a file with a loop is done via ioctl system call on the loop device
+
+<br />
 
 ### Linux Server Security - Hardening
 
