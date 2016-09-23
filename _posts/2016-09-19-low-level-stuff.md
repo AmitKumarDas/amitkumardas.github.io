@@ -8,6 +8,7 @@ title: Low level stuff
 ### TCMU - TCM Userspace Design
 
 refer - [tcmu design](https://www.kernel.org/doc/Documentation/target/tcmu-design.txt)
+refer - target_core_user
 
 - TCM is another name for LIO
 - LIO an **in-kernel** iSCSI target
