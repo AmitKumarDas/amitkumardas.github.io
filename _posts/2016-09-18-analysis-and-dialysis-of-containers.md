@@ -115,7 +115,23 @@ docker build -t web .
   build: ./dir
   image: coolapp:1.2.3
  ```
- - 
+ - ARG
+  - These are specified in the Dockerfile
+  - Then they are mentioned in the ```build``` tag in docker-compose.yml file
+  - The values can be omitted in which case the value will extracted from the env
+ ```yaml
+  build:
+   context: .
+   args:
+    - buildno
+    - password
+ ```
+ - Variable substitution in compose file
+ ```shell
+ 
+  ports:
+   - "${EXTERNAL_PORT}:5000"
+ ```
 
 <br />
 
@@ -148,20 +164,6 @@ docker-compose --help
 # to stop your services
 
 docker-compose stop
-```
-
-### Variable substitution in compose file
-
-```shell
-
-# let the shell set EXTERNAL_PORT = 8000
-
-# in docker-compose.yml
-web:
- build: .
- ports:
-  - "${EXTERNAL_PORT}:5000"
-
 ```
 
 <br />
