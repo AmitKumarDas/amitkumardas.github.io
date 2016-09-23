@@ -111,7 +111,7 @@ docker build -t web .
 - Compose version 2: 
  - If image & build are present in the compose file, 
  - then the image is built with the value of the image
- ```
+ ```yaml
   build: ./dir
   image: coolapp:1.2.3
  ```
@@ -127,8 +127,7 @@ docker build -t web .
     - password
  ```
  - Variable substitution in compose file
- ```shell
- 
+ ```yaml
   ports:
    - "${EXTERNAL_PORT}:5000"
  ```
