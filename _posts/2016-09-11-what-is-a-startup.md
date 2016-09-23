@@ -19,7 +19,7 @@ thought processes to be effective.
 <br />
 
 Learn about its business model, its unique selling point. It should be at your finger tips. You should live by it.
-Keep constantly asking yourself the viability of this model. Share your thoughts bavely, every now & then on 
+Keep constantly asking yourself the viability of this model. Share your thoughts bravely, every now & then on 
 its effectiveness. It is the runway to the startup's future. It is again very common to have companies updating their 
 business model often to remain valid.
 
