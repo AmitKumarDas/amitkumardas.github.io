@@ -105,14 +105,17 @@ docker build -t web .
 ### Advanced compose sections
 
 - Modifying the code inside the container without rebuiliding the image is possible
-- Compose version 1 does not support volumes or networks
-- If image & build are present in the compose file, 
+- Compose version 1:
+ - does not support volumes or networks
+ - does not support build & image together
+- Compose version 2: 
+ - If image & build are present in the compose file, 
  - then the image is built with the value of the image
-```
- build: ./dir
- image: coolapp:1.2.3
-```
-- 
+ ```
+  build: ./dir
+  image: coolapp:1.2.3
+ ```
+ - 
 
 <br />
 
