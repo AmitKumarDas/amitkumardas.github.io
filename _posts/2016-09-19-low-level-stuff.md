@@ -103,3 +103,26 @@ unmount /dev/loop<<N>>
 - Configfs is for creating, managing and destroying kernel objects from user-space, 
 - Sysfs for viewing and manipulating objects from user-space which are created and destroyed by kernel space.
 - Configfs is typically mounted at /sys/kernel/config (or more rarely at /config).
+
+### udev - device manager for Linux kernel
+
+- successor of devfsd
+- manages device nodes in the /dev directory
+- handles all user space events raised while hardware devices are added into the system or removed
+ - this includes the firmware loading as required by certain devices
+- FAQ - After loading the driver into memory, kernel sends out an event to a userspace daemon (udevd)
+ - e.g. adding a new storage device event is notified to udevd
+ - udevd notifies the udiskd which in turn can mount the filesystem
+ - e.g. plugging a new ethernet cable into NIC event is notitied to udevd
+ - udevd notifies the network manager daemon for further actions
+- udev supports persistent device naming 
+ - which does not depend on the order in which devices are plugged into the system
+- udev executes entirely in user space (as opposed to devfs kernel space)
+ - naming policy is moved out from the kernel
+ - arbitrary programs can be run to compose a name for the device from the device props
+- 3 parts of udev
+ - libudev that allows access to device info
+ - udevd that manages the virtual /dev
+ - udevadm the admin cli
+- udev is a generic device manager running as a daemon & listening (via a netlink socket)
+ - to uevents the kernel sends out
