@@ -147,3 +147,11 @@ unmount /dev/loop<<N>>
     - communication happens over 1 or more TCP connections
     - can carry control messages, SCSI commands, parameters & data
     - all these are done within iSCSI PDUs (Protocol Data Unit)
+  - iSCSI Name & iSCSI address
+    - this separation allows multiple iSCSI nodes to use the same address
+    - this also allows same iSCSI node to use multiple addresses
+  - iSCSI target name - worldwide unique name of the target
+  - iSCSI Transfer Direction - defined w.r.t the initiator - outbound or inbound
+  - ISID - initiator part of the session identifier - specified by the initiator during login
+  - 
+  
