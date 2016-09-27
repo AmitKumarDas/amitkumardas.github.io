@@ -158,6 +158,8 @@ docker-compose up
 
 docker-compose up -d
 
+# Aliter - try using ctrl-p and ctrl-q to detach from a container
+
 # list the services
 docker-compose ps
 
