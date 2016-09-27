@@ -45,9 +45,26 @@ Cannot stat file /proc/26794/fd/11: Stale file handle
 
 <br />
 
-### Do you understand this ?
+### Do you understand netstat ?
 
-- iptables -L -n --line-numbers -t nat
+- reverse dns lookup for **faster output**
+  - use -n
+  - no need to find hostname for each IP
+  - IP address is sufficient
+- listening connections
+  - use -l
+  - netstat -nl
+- get name/pid and user id
+  - use -p
+  - netstat -nlpt
+- get extended info (e.g. owner) of the pid
+  - use -e
+  - netstat -nlpte
+- get kernel routing info
+  - use -r
+  - netstat -rn
+
+### Do you understand iptables ?
 
 ```bash
 # iptables -L -n --line-numbers -t nat
