@@ -126,6 +126,52 @@ num  target     prot opt source               destination
 
 <br />
 
+#### What are bridge interfaces ?
+
+- if a network host has 2 NICs it can bridge 2 segments of a network together
+  - connect 2 network segments together
+- bridge forwards packets on the MAC address
+- used a lot in virtualization
+- bridge is a virtual interface mapped to corresponding physical interfaces
+- e.g. 2 network cards; eth0 & eth1
+  - bridge is connected to eth0 & eth1 & named as br0 & assign an IP to br0
+- can be managed via /etc/sysconfig/network-script
+- actual purpose was to provide network connectivity failover & avoid downtime
+- can convert the single physical interface to a bridge network
+
+
+```bash
+service NetworkManager stop
+
+chkconfig NetworkManager off
+
+cd /etc/sysconfig/network-scripts
+
+vi ifcfg-br0
+
+vi ifcfg-eth0
+
+vi ifcfg-eth1
+
+service network restart
+```
+
+<br />
+
+```bash
+
+# on ubuntu trusty
+
+sudo apt-get install bridge-utils
+
+vi /etc/network/interfaces
+
+sudo reboot
+
+ifconfig
+```
+
+<br />
 
 ### lsof: list of open files
 
