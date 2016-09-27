@@ -217,10 +217,47 @@ docker-compose stop
 
 ## Experiences with Rancher
 
-- Running Rancher is as simple as launching two containers. 
-- One container as the management server and another container on a node as an agent. 
-- Launching Management Server: docker run -d --restart=always -p 8080:8080 rancher/server
+- Running Rancher is as simple as launching **two** containers. 
+- One container as the **management server** and another container on a node as **an agent**.
+- Launching Management Server: 
+ - ```docker run -d --restart=always -p 8080:8080 rancher/server```
  - The UI and API are available on the exposed port 8080.
+
+<br />
+
+### Rancher with curl
+
+- refer [link](https://github.com/rancher/rancher/issues/3422)
+
+```bash
+
+META_URL="http://rancher-metadata/2015-07-25"
+
+get_host_ip() {
+    UUID=$(curl -s -H 'Accept: application/json' ${META_URL}/containers/${1}|jq -r '.host_uuid')
+    IP=$(curl -s -H 'Accept: application/json' ${META_URL}/hosts |jq -r ".[] | select(.uuid==\"${UUID}\") | .agent_ip")
+    echo ${IP}
+}
+
+get_host_name() {
+    UUID=$(curl -s -H 'Accept: application/json' ${META_URL}/containers/${1}|jq -r '.host_uuid')
+    IP=$(curl -s -H 'Accept: application/json' ${META_URL}/hosts |jq -r ".[] | select(.uuid==\"${UUID}\") | .name")
+    echo ${IP}
+}
+
+get_container_primary_ip() {
+    IP=$(curl -s -H 'Accept: application/json' ${META_URL}/containers/${1}|jq -r .primary_ip)
+    echo ${IP}
+}
+
+get_self_name() {
+    self=$(curl -s -H 'Accept: application/json' ${META_URL}/self/container| jq -r .name)
+    echo ${self}
+}
+
+# then to get the current ip of the running container:
+IP=$(get_container_primary_ip get_self_name)
+```
 
 <br />
 
@@ -233,6 +270,8 @@ docker-compose stop
  - Agent accounts have access to only the resources they need in the API
  - IPSec key is per environment. It is generated on the server, stored in the database
   - It is sent to the host as part of the agent registration with the API key pair.
+
+<br />
 
 ### Services in Rancher OS
 
@@ -247,6 +286,8 @@ docker-compose stop
 - A sample service can be e.g. Trello
  - A Trello service may consist of 2 images
  - i.e. Trello App (3 containers) & Trello DB (1 container)
+
+<br />
 
 ### Tips on Rancher
 
