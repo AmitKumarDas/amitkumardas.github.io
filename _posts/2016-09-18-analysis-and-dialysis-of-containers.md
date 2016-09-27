@@ -129,12 +129,26 @@ docker0   Link encap:Ethernet  HWaddr 02:42:e8:f3:84:2f
 
 #### custom defined bridge network using docker
 
-- ```docker network create --driver bridge my_br_0```
-- ```docker network inspect my_br_0```
-- ```docker network ls```
-- ```docker run --netowkr=my_br_0 -itd --name=mycontainer busybox```
-- ```docker network inspect my_br_0```
+```bash
+docker network create --driver bridge my_br_0
 
+docker network inspect my_br_0
+
+docker network ls
+
+docker run --netowkr=my_br_0 -itd --name=mycontainer busybox
+
+docker network inspect my_br_0
+```
+
+- containers in this bridge can communicate with other containers in this bridge
+- with user-defined bridge network linking is not supported
+- the container ports can be exposed to an outside network
+- useful where you want to run a relatively small network on a single host
+
+<br />
+
+#### overlay network using docker
 
 <br />
 
