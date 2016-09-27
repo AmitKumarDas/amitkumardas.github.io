@@ -3,7 +3,7 @@ layout: post
 title: My Troubleshooting Stories
 ---
 
-## My Troubleshooting Stories
+## Troubleshooting Stories - Some of these are curated !!!
 
 ### Address already in use
 
@@ -105,7 +105,43 @@ num  target     prot opt source               destination
 3    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:4500 to:172.17.0.3:4500
 4    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:500 to:172.17.0.3:500
 5    DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8181 to:172.17.0.6:8181
-````
+```
+
+<br />
+
+### Rancher with curl
+
+- refer [link](https://github.com/rancher/rancher/issues/3422)
+
+```bash
+
+META_URL="http://rancher-metadata/2015-07-25"
+
+get_host_ip() {
+    UUID=$(curl -s -H 'Accept: application/json' ${META_URL}/containers/${1}|jq -r '.host_uuid')
+    IP=$(curl -s -H 'Accept: application/json' ${META_URL}/hosts |jq -r ".[] | select(.uuid==\"${UUID}\") | .agent_ip")
+    echo ${IP}
+}
+
+get_host_name() {
+    UUID=$(curl -s -H 'Accept: application/json' ${META_URL}/containers/${1}|jq -r '.host_uuid')
+    IP=$(curl -s -H 'Accept: application/json' ${META_URL}/hosts |jq -r ".[] | select(.uuid==\"${UUID}\") | .name")
+    echo ${IP}
+}
+
+get_container_primary_ip() {
+    IP=$(curl -s -H 'Accept: application/json' ${META_URL}/containers/${1}|jq -r .primary_ip)
+    echo ${IP}
+}
+
+get_self_name() {
+    self=$(curl -s -H 'Accept: application/json' ${META_URL}/self/container| jq -r .name)
+    echo ${self}
+}
+
+# then to get the current ip of the running container:
+IP=$(get_container_primary_ip get_self_name)
+```
 
 <br />
 
