@@ -153,5 +153,3 @@ unmount /dev/loop<<N>>
   - iSCSI target name - worldwide unique name of the target
   - iSCSI Transfer Direction - defined w.r.t the initiator - outbound or inbound
   - ISID - initiator part of the session identifier - specified by the initiator during login
-  - 
-  
