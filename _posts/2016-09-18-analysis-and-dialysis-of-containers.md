@@ -211,3 +211,7 @@ docker-compose stop
  - A Trello service may consist of 2 images
  - i.e. Trello App (3 containers) & Trello DB (1 container)
 
+### Tips on Rancher
+
+- Managed network: Can only "talk to" containers that are in the same service or linked to that service.
+- Managed network: is on top of bridged. You get both IPs.
