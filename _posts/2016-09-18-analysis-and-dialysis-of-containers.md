@@ -69,40 +69,70 @@ sudo docker run -d --restart=always -p 8080:8080 rancher/server
 
 <br />
 
-### Docker Image
+### docker & networks
 
-- Setup details are in a file called Dockerfile
-- File is placed in the project root location
-- Dockerfile will be used to build a docker image
-- Map the project directory to a directory (e.g. /code) in image
-- Execute the project's dependencies command
- - e.g. RUN pip install -r requirements.txt
-- Set the default command for the container
- - e.g. provide the command to start the application
-
-<br />
-
-### Building the docker image - Dockerfile
+- to run a container on a particular network use --network option
+  - docker run --network=<NETWORK>
+- you can create your own user defined networks as well
+- you can attach to a running container & investigate its network
 
 ```
+$ docker attach container1
 
-# assumption - Dockerfile file is present inside the project folder
-# this will create a image called web
+root@adhshd:/ # ifconfig
 
-docker build -t web .
+# ping to some other container from here
+
+# CTRL-p CTRL-q to detach & leave it running
 ```
 
 <br />
 
-### Defining docker services - docker-compose
+#### 3 networks are automatically created on installation of Docker
 
-- This marks the use of **docker-compose.yml**
- - The **default path** of the compose file is ./docker-compose.yml
-- This file will make use of docker images
-- This file can also set to trigger building of image via the Dockerfile
-- In other words you can compose an application made out of different images
+```bash
+# docker network ls
 
-### Advanced compose sections
+NETWORK ID          NAME                DRIVER              SCOPE
+d975c4b0d0a7        bridge              bridge              local
+0ddc26e426ad        host                host                local
+12c74021a20f        none                null                local
+
+# ifconfig
+docker0   Link encap:Ethernet  HWaddr 02:42:e8:f3:84:2f
+          inet addr:172.17.0.1  Bcast:0.0.0.0  Mask:255.255.0.0
+          inet6 addr: fe80::42:e8ff:fef3:842f/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:55857 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:60148 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:39108722 (39.1 MB)  TX bytes:38049611 (38.0 MB)
+```
+
+<br />
+
+#### docker & bridge network
+
+- bridge network is the default one that docker daemon connects containers with
+- the name of this bridge network is docker0
+- ```ifconfig | grep docker0```
+- bridge is part of a host's network stack
+- ```docker network inspect bridge```
+- docker engine creates a subnet & gateway to the bridge network
+- containers in this default bridge network are able to communicate with each other using IP
+- there is no automatic service discovery on this network
+- allows the use of port mapping
+- docker run --link allows communication between containers in the docker0 network
+- NOTE - Docker advices this to be cumbersome & recommends to use custom defined networks
+
+<br />
+
+#### custom defined bridge network
+
+
+<br />
+
+### Advanced docker-compose sections
 
 - Modifying the code inside the container without rebuiliding the image is possible
 - Compose version 1:
@@ -111,10 +141,12 @@ docker build -t web .
 - Compose version 2: 
  - If image & build are present in the compose file, 
  - then the image is built with the value of the image
+ 
  ```yaml
   build: ./dir
   image: coolapp:1.2.3
  ```
+ 
  - ARG
   - These are specified in the Dockerfile
   - Then they are mentioned in the ```build``` tag in docker-compose.yml file
@@ -126,17 +158,20 @@ docker build -t web .
     - buildno
     - password
  ```
+ 
  - Variable substitution in compose file
  ```yaml
   ports:
    - "${EXTERNAL_PORT}:5000"
  ```
+ 
  - Container capabilities
  ```yaml
   cap_drop:
    - NET_ADMIN
    - SYS_ADMIN
  ```
+ 
  - cgroup_parent
   - can specify an optional parent cgroup for the container
  - container_name - be careful
