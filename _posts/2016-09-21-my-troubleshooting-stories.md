@@ -126,6 +126,72 @@ num  target     prot opt source               destination
 
 <br />
 
+### Do you understand route ?
+
+- You can learn the subnet for the interface
+- You get to know the default gateway
+- Hence the networkid part & the hostid part from an IP address is also known
+
+```bash
+# route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         20.10.1.1       0.0.0.0         UG    0      0        0 eth0
+10.42.0.0       0.0.0.0         255.255.0.0     U     0      0        0 docker0
+20.0.0.0        0.0.0.0         255.0.0.0       U     1      0        0 eth0
+172.17.0.0      0.0.0.0         255.255.0.0     U     0      0        0 docker0
+
+# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         20.10.1.1       0.0.0.0         UG    0      0        0 eth0
+10.42.0.0       *               255.255.0.0     U     0      0        0 docker0
+20.0.0.0        *               255.0.0.0       U     1      0        0 eth0
+172.17.0.0      *               255.255.0.0     U     0      0        0 docker0
+
+# ip route show
+default via 20.10.1.1 dev eth0  proto static
+10.42.0.0/16 dev docker0  proto kernel  scope link  src 10.42.0.1
+20.0.0.0/8 dev eth0  proto kernel  scope link  src 20.10.112.151  metric 1
+172.17.0.0/16 dev docker0  proto kernel  scope link  src 172.17.0.1
+```
+
+<br />
+
+### subnet - sub networking
+
+- refer [link](http://searchnetworking.techtarget.com/definition/subnet)
+- divide a network into subnets
+- allows it to be connected to the internet with a single shared network address
+- the 32-bit IP address has 2 parts
+  - part identifying the network no
+  - part identifying the machine within the network
+  - e.g.  130.5.5.25
+    - <--Network address--><--Host address--> 130.5 . 5.25
+  - we can use some its in the specific machine to identify a specific subnet
+  - <--Network address--><--Subnet address--><--Host address--> 130.5 . 5 . 25
+  - here we have divided the subnet into 8 bits
+
+<br />
+
+### subnet - Again
+
+- Assume a Class A network (i.e mask of 255.0.0.0)  as shown below:
+  - IP     = 8.20.15.1  = 00001000.00010100.00001111.00000001
+  - Mask = 255.0.0.0 = 11111111.00000000.00000000.00000000
+- TIP = All the ip bits that are covered by 1's of the mask represent network
+- TIP = All the ip bits that are covered by 0's of the mask represent host/node
+- Hence network id = 8
+- Hence host id = 20.15.1
+
+- Now lets subnet
+  - Why ?
+  - else you can use only one network within a Class !!!
+  - each data link on a network must have a unique network ID
+  - breaking into subnets allows a unique network/subnet ID
+
+<br />
+
 #### What are bridge interfaces ?
 
 - if a network host has 2 NICs it can bridge 2 segments of a network together
