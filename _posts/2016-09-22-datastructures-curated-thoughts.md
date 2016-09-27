@@ -5,6 +5,10 @@ title: Datastructures - Some Curated Thoughts
 
 ## Datastructures - Some Curated Thoughts
 
+### Designing Load Balancers
+
+- refer - [link](https://www.infoq.com/news/2016/09/github-load-balancer-design)
+
 ### Persistent Datastructures
 
 - refer - [Intro to ClojureScript](https://www.youtube.com/watch?v=-I5ldi2aJTI)
