@@ -107,6 +107,16 @@ docker0   Link encap:Ethernet  HWaddr 02:42:e8:f3:84:2f
           TX packets:60148 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:0
           RX bytes:39108722 (39.1 MB)  TX bytes:38049611 (38.0 MB)
+
+# ip addr show docker0
+5: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 02:42:e8:f3:84:2f brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet 10.42.0.1/16 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::42:e8ff:fef3:842f/64 scope link
+       valid_lft forever preferred_lft forever
 ```
 
 <br />
