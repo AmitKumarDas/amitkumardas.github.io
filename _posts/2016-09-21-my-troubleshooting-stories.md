@@ -239,6 +239,39 @@ ifconfig
 
 <br />
 
+### brctl
+
+- ethernet bridge administration
+- used to connect different networks of ethernets together
+  - s.t. these ethernets appear as one ethernet to the apps
+- **each ethernet** being connected to the bridge corresponds to **1 physical interface** in the bridge
+- each bridge has a number of **ports attached** to it
+  - traffic coming in on any of these ports will be forwarded to the other ports
+  - this forwarding is transparent
+  - this is invisible to rest of network, i.e. bridge will not show in traceroute
+- NOTES:
+  - the ethernet address location data is not static data
+  - machines can move to other ports
+  - network cards can be replaced i.e. change of machine's ethernet address
+- Multiple bridges can work together to create even larger networks of ethernet
+  - using IEEE 802.1d ```Spanning Tree Protocol (STP)```
+
+```bash
+
+brctl addbr <name>
+brctl addif <brname> <ifname>
+
+# Above will make the interface <ifname> a port of the bridge <brname>
+# All frames received on <ifname> will be destined to <brname>
+# Also sending frames on <brname> will be destined to <ifname>
+
+brctl show <brname>
+brctl showmacs <brname>
+
+```
+
+<br />
+
 ### Change IP Subnet of docker's docker0 bridge network
 
 - refer [gist](https://gist.github.com/kamermans/94b1c41086de0204750b)
