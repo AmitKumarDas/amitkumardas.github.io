@@ -239,6 +239,12 @@ ifconfig
 
 <br />
 
+### Change IP Subnet of docker's docker0 bridge network
+
+- refer [gist](https://gist.github.com/kamermans/94b1c41086de0204750b)
+
+<br />
+
 ### lsof: list of open files
 
 - regular file, a directory, a block special file, a character special file, 
