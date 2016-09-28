@@ -288,6 +288,11 @@ brctl showmacs <brname>
 
 - refer [bridge vs. host](http://www.dasblinkenlichten.com/docker-networking-101-host-mode/)
 
+### Networking libs
+
+- refer [tenus](http://containerops.org/2014/07/30/tenus-golang-powered-linux-networking/)
+- refer [pipework](https://github.com/jpetazzo/pipework/)
+
 <br />
 
 ### lsof: list of open files
