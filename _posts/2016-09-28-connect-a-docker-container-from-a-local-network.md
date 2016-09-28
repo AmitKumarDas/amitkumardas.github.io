@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Connect a Docker container to a local network - WIP
+title: Connect a Docker container from a local network
 ---
 
 ## Connect a Docker container to a local network
@@ -286,3 +286,75 @@ num  target     prot opt source               destination
 6    DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8181 to:172.17.0.5:8181
 
 ```
+
+#### Summary
+
+- All the above steps did not help in accessing the Concourse CI web from my laptop
+- It was found that steps 5, 6 & 7 were not required.
+- Concourse somehow needed 8080 to listen for its web
+  - We had to install nestat into concourse web container to check the listening port
+- Hence step 3 was modified to have the container use port 8080
+  - original - ports: ["20.10.113.2:8181:8181"]
+  - modified - ports: ["20.10.113.2:8181:8080"]
+- Further the changes to iptables were removed to have below:
+
+```bash
+
+# iptables -L -n --line-numbers -t nat
+Chain PREROUTING (policy ACCEPT)
+num  target     prot opt source               destination
+1    CATTLE_PREROUTING  all  --  0.0.0.0/0            0.0.0.0/0
+2    DOCKER     all  --  0.0.0.0/0            0.0.0.0/0            ADDRTYPE match dst-type LOCAL
+3    w--prerouting  all  --  0.0.0.0/0            0.0.0.0/0
+
+Chain INPUT (policy ACCEPT)
+num  target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+num  target     prot opt source               destination
+1    DOCKER     all  --  0.0.0.0/0           !127.0.0.0/8          ADDRTYPE match dst-type LOCAL
+2    w--prerouting  all  --  0.0.0.0/0            0.0.0.0/0
+
+Chain POSTROUTING (policy ACCEPT)
+num  target     prot opt source               destination
+1    CATTLE_POSTROUTING  all  --  0.0.0.0/0            0.0.0.0/0
+2    MASQUERADE  all  --  172.17.0.0/16        0.0.0.0/0
+3    MASQUERADE  tcp  --  172.17.0.2           172.17.0.2           tcp dpt:8080
+4    MASQUERADE  udp  --  172.17.0.3           172.17.0.3           udp dpt:4500
+5    MASQUERADE  udp  --  172.17.0.3           172.17.0.3           udp dpt:500
+6    w--postrouting  all  --  0.0.0.0/0            0.0.0.0/0
+7    MASQUERADE  tcp  --  172.17.0.5           172.17.0.5           tcp dpt:8080
+
+Chain CATTLE_POSTROUTING (1 references)
+num  target     prot opt source               destination
+1    ACCEPT     all  --  10.42.0.0/16         169.254.169.250
+2    MASQUERADE  tcp  --  10.42.0.0/16        !10.42.0.0/16         masq ports: 1024-65535
+3    MASQUERADE  udp  --  10.42.0.0/16        !10.42.0.0/16         masq ports: 1024-65535
+4    MASQUERADE  all  --  10.42.0.0/16        !10.42.0.0/16
+5    SNAT       all  -- !10.42.0.0/16         169.254.169.250      mark match 0x2d3a7 to:10.42.185.255
+6    SNAT       all  -- !10.42.0.0/16         169.254.169.250      mark match 0x1214b to:10.42.74.59
+7    MASQUERADE  tcp  --  172.17.0.0/16        0.0.0.0/0            masq ports: 1024-65535
+8    MASQUERADE  udp  --  172.17.0.0/16        0.0.0.0/0            masq ports: 1024-65535
+
+Chain CATTLE_PREROUTING (1 references)
+num  target     prot opt source               destination
+1    DNAT       tcp  --  10.42.0.0/16         10.42.0.1            tcp dpt:53 to:169.254.169.250
+2    DNAT       udp  --  10.42.0.0/16         10.42.0.1            udp dpt:53 to:169.254.169.250
+3    MARK       all  -- !10.42.0.0/16         169.254.169.250      MAC 02:E2:1E:C2:7D:9F MARK set 0x2d3a7
+4    MARK       all  -- !10.42.0.0/16         169.254.169.250      MAC 02:E2:1E:AE:3B:F7 MARK set 0x1214b
+
+Chain DOCKER (2 references)
+num  target     prot opt source               destination
+1    RETURN     all  --  0.0.0.0/0            0.0.0.0/0
+2    DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:8080 to:172.17.0.2:8080
+3    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:4500 to:172.17.0.3:4500
+4    DNAT       udp  --  0.0.0.0/0            0.0.0.0/0            udp dpt:500 to:172.17.0.3:500
+5    DNAT       tcp  --  0.0.0.0/0            20.10.113.2          tcp dpt:8181 to:172.17.0.5:8080
+
+Chain w--postrouting (1 references)
+num  target     prot opt source               destination
+
+Chain w--prerouting (2 references)
+num  target     prot opt source               destination
+```
+- Now access the concourse web by http://20.10.113.2:8181
