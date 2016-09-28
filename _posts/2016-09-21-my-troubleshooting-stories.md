@@ -242,6 +242,7 @@ ifconfig
 ### Change IP Subnet of docker's docker0 bridge network
 
 - refer [gist](https://gist.github.com/kamermans/94b1c41086de0204750b)
+- refer [post](https://support.zenoss.com/hc/en-us/articles/203582809-How-to-Change-the-Default-Docker-Subnet)
 
 <br />
 
