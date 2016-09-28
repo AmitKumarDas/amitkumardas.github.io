@@ -357,4 +357,6 @@ num  target     prot opt source               destination
 Chain w--prerouting (2 references)
 num  target     prot opt source               destination
 ```
+- It will also be ok to set the CONCOURSE_EXTERNAL_URL's value hardcoded in the docker-compose file
 - Now access the concourse web by http://20.10.113.2:8181
+- 
