@@ -167,6 +167,23 @@ docker network inspect my_br_0
 
 <br />
 
+### Learn on the network inside a container
+
+```bash
+# docker ps
+CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                                          NAMES
+7ce4e965dee4        concourse/concourse:latest      "/usr/local/bin/dumb-"   24 hours ago        Up 24 hours                                                        r-conc_concourse-worker_1
+c7a52eae2865        concourse/concourse:latest      "/usr/local/bin/dumb-"   24 hours ago        Up About an hour    0.0.0.0:8181->8181/tcp                         r-conc_concourse-web_1
+f73a7459d526        postgres:9.5                    "/docker-entrypoint.s"   24 hours ago        Up 24 hours         5432/tcp                                       043b01fd-502d-4da7-8d62-5c8390bba08f
+0ab829eac7e0        postgres:9.5                    "/docker-entrypoint.s"   24 hours ago        Up 24 hours         5432/tcp                                       r-conc_concourse-db_1
+8dd98b634dca        rancher/agent-instance:v0.8.3   "/etc/init.d/agent-in"   7 days ago          Up 25 hours         0.0.0.0:500->500/udp, 0.0.0.0:4500->4500/udp   3b1dad2f-6a83-44d0-a9f5-ca80191e2202
+179e50a7cf85        rancher/agent:v1.0.2            "/run.sh run"            7 days ago          Up 25 hours                                                        rancher-agent
+
+
+```
+
+<br />
+
 #### overlay network using docker
 
 - refer [link](https://docs.docker.com/engine/userguide/networking/#/an-overlay-network-with-docker-engine-swarm-mode)
