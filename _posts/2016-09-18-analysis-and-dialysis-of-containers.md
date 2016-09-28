@@ -117,6 +117,15 @@ docker0   Link encap:Ethernet  HWaddr 02:42:e8:f3:84:2f
        valid_lft forever preferred_lft forever
     inet6 fe80::42:e8ff:fef3:842f/64 scope link
        valid_lft forever preferred_lft forever
+
+# brctl show docker0
+bridge name     bridge id               STP enabled     interfaces
+docker0         8000.0242e8f3842f       no              veth3558646
+                                                        veth8f95d84
+                                                        veth9d71534
+                                                        vethf14d267
+                                                        vethf401789
+                                                        vethfb4357b
 ```
 
 <br />
