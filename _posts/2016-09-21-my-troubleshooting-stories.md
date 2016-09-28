@@ -284,6 +284,10 @@ brctl showmacs <brname>
 
 - refer [subnet & bridge](https://github.com/docker/docker/issues/1558)
 
+### Bridge vs. Host mode networking in Docker
+
+- refer [bridge vs. host](http://www.dasblinkenlichten.com/docker-networking-101-host-mode/)
+
 <br />
 
 ### lsof: list of open files
