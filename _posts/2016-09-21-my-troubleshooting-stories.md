@@ -245,6 +245,12 @@ ifconfig
 
 <br />
 
+### Subnet & Bridge network in Docker
+
+- refer [subnet & bridge](https://github.com/docker/docker/issues/1558)
+
+<br />
+
 ### lsof: list of open files
 
 - regular file, a directory, a block special file, a character special file, 
