@@ -170,6 +170,27 @@ docker network inspect my_br_0
 ### Learn on the network inside a container
 
 ```bash
+
+# docker network inspect bridge
+[
+    {
+        "Name": "bridge",
+        "Id": "d975c4b0d0a7cdc0c6a2e1eae8c8176e5377e44b16b1e6617d99b97e65d5dfc7",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+...
+
 # docker ps
 CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS              PORTS                                          NAMES
 7ce4e965dee4        concourse/concourse:latest      "/usr/local/bin/dumb-"   24 hours ago        Up 24 hours                                                        r-conc_concourse-worker_1
@@ -178,6 +199,28 @@ f73a7459d526        postgres:9.5                    "/docker-entrypoint.s"   24 
 0ab829eac7e0        postgres:9.5                    "/docker-entrypoint.s"   24 hours ago        Up 24 hours         5432/tcp                                       r-conc_concourse-db_1
 8dd98b634dca        rancher/agent-instance:v0.8.3   "/etc/init.d/agent-in"   7 days ago          Up 25 hours         0.0.0.0:500->500/udp, 0.0.0.0:4500->4500/udp   3b1dad2f-6a83-44d0-a9f5-ca80191e2202
 179e50a7cf85        rancher/agent:v1.0.2            "/run.sh run"            7 days ago          Up 25 hours                                                        rancher-agent
+
+# docker exec c7a52eae2865 ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+32: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default
+    link/ether 02:e2:1e:0d:60:78 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.6/16 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet 10.42.227.22/16 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::e2:1eff:fe0d:6078/64 scope link
+       valid_lft forever preferred_lft forever
+
+# docker exec c7a52eae2865 ip route
+default via 172.17.0.1 dev eth0
+10.42.0.0/16 dev eth0  proto kernel  scope link  src 10.42.227.22
+169.254.169.250 dev eth0  scope link  src 10.42.227.22
+172.17.0.0/16 dev eth0  proto kernel  scope link  src 172.17.0.6
 
 
 ```
