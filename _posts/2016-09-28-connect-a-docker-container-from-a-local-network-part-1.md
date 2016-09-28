@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Connect a Docker container from a local network
+title: Connect a Docker container from a local network - Part 1
 ---
 
-## Connect a Docker container to a local network
+## Connect a Docker container from a local network - Part 1
 
-### Connect a Docker container to a local network -- Using NAT
+### Connect a Docker container from a local network -- **Using NAT**
 
 refer - [link](http://blog.oddbit.com/2014/08/11/four-ways-to-connect-a-docker/)
 
