@@ -277,6 +277,7 @@ brctl showmacs <brname>
 - refer [gist](https://gist.github.com/kamermans/94b1c41086de0204750b)
 - refer [post](https://support.zenoss.com/hc/en-us/articles/203582809-How-to-Change-the-Default-Docker-Subnet)
 - refer [via brctl & docker -b option](https://docs.docker.com/engine/userguide/networking/default_network/build-bridges/)
+- refer [cheat sheet](https://github.com/wsargent/docker-cheat-sheet)
 
 <br />
 
