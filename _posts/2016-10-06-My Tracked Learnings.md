@@ -24,7 +24,7 @@ title: My Tracked Learnings
 - [Database as a replicated state machine. Sum of all updates applied since its initial state](http://bookkeeper.apache.org/)
 - [Just replication. No leader election](http://bookkeeper.apache.org/)
 - [Want to make database replicated or messaging systems replicated or filesystems replicated ?](http://bookkeeper.apache.org/)
-- [Reads & Writes are directed to separate physical disks to keep publish latency as low as possible](https://github.com/yahoo/pulsar)
+- [Reads & Writes are directed to *`separate physical disks`* to keep publish latency as low as possible](https://github.com/yahoo/pulsar)
 - [Range Sharding Algorithm - based on table's PK.](https://rethinkdb.com/docs/architecture/)
 - [Distribute the shards across the cluster - Evenly !!](https://rethinkdb.com/docs/architecture/)
 - [Pick up the correct split point to ensure each shard has roughly similar no of records/data](https://rethinkdb.com/docs/architecture/)
