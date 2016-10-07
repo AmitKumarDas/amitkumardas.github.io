@@ -20,15 +20,36 @@ solutioning part.
 
 <br />
 
+### Solutioning
+
+- [Ready made lists for solutioning !!!](https://monkey.org/~marius/hints.pdf)
+
+<br />
+
 ### Low level Abstracts
 
 - [Linux processes & their status. How ps works](https://fredrb.github.io/2016/10/01/Understanding-proc/)
 
 <br />
 
-### Protocols
+### [Protocols](https://monkey.org/~marius/hints.pdf)
 
-- [Embrace RPCs](https://monkey.org/~marius/hints.pdf)
+- Embrace RPCs
+- Language agnositic means to serialize data:
+  - Thrift, Protocol Buffers, Avro
+- Use one that employs schema.
+- Only JSON does not employ schema
+
+<br />
+
+### [Measure Liberally](https://monkey.org/~marius/hints.pdf)
+
+- request_latency_ms can have various *dimensions*
+  - avg, count, max, min, p50, p90, p95, p99, p999, p9999, sum
+- Stats are aggregated across:
+  - clusters, datacenters
+- pay special attention to outliers, look at distributions
+- Profile & trace systems in situ
 
 <br />
 
