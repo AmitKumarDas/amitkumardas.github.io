@@ -5,18 +5,26 @@ title: My Tracked Learnings
 
 ## My Tracked Learnings
 
-> These are pinned down lines from various references !! A sort of filtering the good parts from various 
- articles.
+> These are pinned down lines from various references !! A sort of filtering of 
+*`the good parts`* from various articles. These curated thoughts will you ample 
+ideas & time to design a solution to any problem definition. Hence, two parts of 
+the dimension i.e. ideas & time are taken care of. You need to strategize on the
+solutioning part.
 
-### Good Code
+<br />
+
+### Good Coding
 
 - [Learn building a pure javascript lib. From bitcore](https://github.com/bitpay/bitcore-lib)
 - [Code Style Guide, Pull Requests. From OpenZeppelin](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/CONTRIBUTING.md#style-guidelines)
 
+<br />
 
 ### Low level Abstracts
 
 - [Linux processes & their status. How ps works](https://fredrb.github.io/2016/10/01/Understanding-proc/)
+
+<br />
 
 ### Replication, DataStore & CAP
 
@@ -94,10 +102,14 @@ title: My Tracked Learnings
 
 ### [Beyond round robin load balancing](https://blog.buoyant.io/2016/03/16/beyond-round-robin-load-balancing-for-latency/)
 
-- fundamental to the notion of scalability
-- traffic distribution is the act of load balancing
-- provides another feature i.e. resiliency
+- Fundamental to the notion of scalability
+- Traffic distribution is the act of load balancing
+- Provides another feature i.e. resiliency
   - i.e. failure of individual components will not fail the system
   - thus distribute the traffic to healthier instances
-- must protect against latency like it protects against failure
-- 
+- Must protect against latency like it protects against failure
+  - Even with the presence of slow replicas, the system as a whole must remain fast
+  - So how do you ditribute load across replicas with varying speeds ?
+    - peak EWMA (exponentially weighted moving average)
+    - round robin (most common in *Nginx & HAProxy*)
+    - least loaded
