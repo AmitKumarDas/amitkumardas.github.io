@@ -100,6 +100,8 @@ solutioning part.
   - Thrift
   - Mux
 
+<br />
+
 ### [Beyond round robin load balancing](https://blog.buoyant.io/2016/03/16/beyond-round-robin-load-balancing-for-latency/)
 
 - Fundamental to the notion of scalability
@@ -113,3 +115,18 @@ solutioning part.
     - peak EWMA (exponentially weighted moving average)
     - round robin (most common in *Nginx & HAProxy*)
     - least loaded
+- Finagle operates at Layer 5 in the OSI model (the “session” layer):
+  - it has access to information such as queue depth and RPC latencies.
+- Load balancing performance goes beyond the choice of algorithm:
+  - An algorithm may be unsuitable for long polling
+- For systems that load balance higher-level connections such as RPC or HTTP calls:
+  - where Layer 5 information such as endpoint latencies and request depths are available, 
+  - round robin load balancing can perform worse than other algorithms in the presence of slow endpoints.
+
+### [Hints for your design - Fault Tolerance](https://monkey.org/~marius/hints.pdf)
+
+- What happens when a dependency starts failing ?
+- How can the system degrade in a graceful manner ?
+- How does the system react to overload ?
+- What's the worst-case scenario for total failure ?
+- How quickly can the system recover >
