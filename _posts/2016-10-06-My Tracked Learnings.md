@@ -26,6 +26,12 @@ solutioning part.
 
 <br />
 
+### Protocols
+
+- [Embrace RPCs](https://monkey.org/~marius/hints.pdf)
+
+<br />
+
 ### Replication, DataStore & CAP
 
 - [Realtime Distributed OLAP Datastore](http://www.slideshare.net/KishoreGopalakrishna/pinot-realtime-distributed-olap-datastore)
@@ -123,6 +129,8 @@ solutioning part.
   - where Layer 5 information such as endpoint latencies and request depths are available, 
   - round robin load balancing can perform worse than other algorithms in the presence of slow endpoints.
 
+<br />
+
 ### [Hints for your design - Fault Tolerance](https://monkey.org/~marius/hints.pdf)
 
 - What happens when a dependency starts failing ?
@@ -130,3 +138,55 @@ solutioning part.
 - How does the system react to overload ?
 - What's the worst-case scenario for total failure ?
 - How quickly can the system recover >
+- Is delayable work delayed ?
+- *`Is the system as simple as possible ?`*
+- How can the system shed load ?
+- Which failures can be mitigated ?
+- Which operations can be retried ?
+
+### [Hints for your design - Scalability](https://monkey.org/~marius/hints.pdf)
+
+- How does the system grow ?
+  - What is the chief metric with which the system scales ?
+- How does the system scale to multiple datacenters ?
+- How does the demand vary ?
+  - How do you ensure the system is always able to handle peak loads ?
+- How much query processing is done ?
+  - is it possible to shape data into queries ?
+- is the system replicated ?
+
+<br />
+
+### [Hints for your design - Operability](https://monkey.org/~marius/hints.pdf)
+
+- How can features be turned on or off ?
+- How do you monitor the system ?
+  - How do you detect anomaly ?
+- Does the system have operational needs specific to the application ?
+- How do you deploy the system?
+  - How do you deploy in an emergency ?
+- What are the capacity needs ?
+  - How does the system grow ?
+- How do you configure the system ?
+  - Can you configure quickly ?
+  - Is it template based ?
+- Does the system behave in a predictable manner ?
+  - Where are there nonlinearities in load or failure responses ?
+
+<br />
+
+### [Hints for your design - Efficiency](https://monkey.org/~marius/hints.pdf)
+
+- Is it possible to precompute data ?
+- Are you doing as *little work as possible* ?
+- Is the program as concurrent as possible ?
+- Does the system make use of work batching ?
+- Have you profiled the system ?
+  - Is it possible to profile in situ ?
+- Are there opportunities for parallelization ?
+- Can you load test the system ?
+  - How do you detect performance regressions ?
+  
+### Architecture Diagrams
+
+- [Legacy vs. Current](https://monkey.org/~marius/hints.pdf)
