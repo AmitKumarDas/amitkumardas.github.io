@@ -5,8 +5,10 @@ title: My Tracked Learnings
 
 ## My Tracked Learnings
 
+> These are pinned down lines from various references !! A sort of filtering the good parts from various 
+ articles.
 
-### Code
+### Good Code
 
 - [Learn building a pure javascript lib. From bitcore](https://github.com/bitpay/bitcore-lib)
 - [Code Style Guide, Pull Requests. From OpenZeppelin](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/CONTRIBUTING.md#style-guidelines)
@@ -33,10 +35,20 @@ title: My Tracked Learnings
 - [Support both up-to-date & out-of-date reads](https://rethinkdb.com/docs/architecture/)
 - [Up-to-date read - query routed to shard's primary replica - executed in-order wih other ops on the shard - client sees latest view](https://rethinkdb.com/docs/architecture/)
 - [Out-of-date queries have lower latency & stronger availability gurantee](https://rethinkdb.com/docs/architecture/)
-- [CAP - high availability - clients can write to the same row on both sides of the netsplit](https://rethinkdb.com/docs/architecture/)
-- [CAP - high availability - apps need to deal with clock skew, conflict resolution, conflict repair](https://rethinkdb.com/docs/architecture/)
-- [CAP - high availability - perf issues for higly contested keys, latency issues associated with quorums](https://rethinkdb.com/docs/architecture/)
-- [CAP - high consistent - also known as Authoritative systems - MongoDB, RethinkDB](https://rethinkdb.com/docs/architecture/)
+
+<br />
+
+### [CAP - High Availability](https://rethinkdb.com/docs/architecture/)
+
+- Clients can write to the same row on both sides of the netsplit
+- Apps need to deal with clock skew, conflict resolution, conflict repair
+- Perf issues for higly contested keys, latency issues associated with quorums
+
+<br />
+
+### [CAP - High Consistentency](https://rethinkdb.com/docs/architecture/)
+
+- Also known as Authoritative systems - MongoDB, RethinkDB
 
 <br />
 
@@ -79,3 +91,13 @@ title: My Tracked Learnings
   - HTTP/1.1
   - Thrift
   - Mux
+
+### [Beyond round robin load balancing](https://blog.buoyant.io/2016/03/16/beyond-round-robin-load-balancing-for-latency/)
+
+- fundamental to the notion of scalability
+- traffic distribution is the act of load balancing
+- provides another feature i.e. resiliency
+  - i.e. failure of individual components will not fail the system
+  - thus distribute the traffic to healthier instances
+- must protect against latency like it protects against failure
+- 
