@@ -37,3 +37,18 @@ title: My Tracked Learnings
 - [CAP - high availability - apps need to deal with clock skew, conflict resolution, conflict repair](https://rethinkdb.com/docs/architecture/)
 - [CAP - high availability - perf issues for higly contested keys, latency issues associated with quorums](https://rethinkdb.com/docs/architecture/)
 - [CAP - high consistent - also known as Authoritative systems - MongoDB, RethinkDB](https://rethinkdb.com/docs/architecture/)
+
+### [Medium Engg Stack](https://medium.engineering/the-stack-that-helped-medium-drive-2-6-millennia-of-reading-time-e56801f7c492#.1fpa19iya)
+
+- Node has worked well, but performance problems have emerged where we block the event loop. 
+  - To alleviate this, we run multiple instances per machine &
+  - route expensive endpoints to specific instances, thus isolating them.
+- We use a combination of *`Nginx and HAProxy as reverse proxies and load balancers`*
+- DynamoDB is still our primary datastore, but it hasn’t been completely smooth sailing. 
+  - We have a *`Redis cache cluster sitting in front of Dynamo`*, which mitigates these *`issues with reads`*.
+- We use Neo4J (a master with 2 replicas) to store relations between the entities
+  - Edges are created on entity creation & when users perform action, we walk the graph to filter & recommend posts
+- Apache Spark will be the tool of our choice for data pipelines / ETL
+- We use Protocol Buffers for our schemas to comm across all layers of distributed system
+- Image servers are written in go & uses groupcache which is a memcache alternative
+  - In-memory cache is *`backed by a persistent`* S3 cache
