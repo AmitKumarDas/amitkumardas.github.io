@@ -12,7 +12,6 @@ It will be automatically transformed by [Jekyll](http://github.com/mojombo/jekyl
 ## License
 
 - This is a fork of mojombo/mojombo.github.io. 
-- The following directories and their contents are Copyright Amit Kumar Das. 
 - You may reuse anything therein with link to the original:
   - _posts/
   - images/
