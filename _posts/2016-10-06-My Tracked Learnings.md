@@ -38,6 +38,8 @@ title: My Tracked Learnings
 - [CAP - high availability - perf issues for higly contested keys, latency issues associated with quorums](https://rethinkdb.com/docs/architecture/)
 - [CAP - high consistent - also known as Authoritative systems - MongoDB, RethinkDB](https://rethinkdb.com/docs/architecture/)
 
+<br />
+
 ### [Medium Engg Stack](https://medium.engineering/the-stack-that-helped-medium-drive-2-6-millennia-of-reading-time-e56801f7c492#.1fpa19iya)
 
 - Node has worked well, but performance problems have emerged where we block the event loop. 
@@ -52,3 +54,24 @@ title: My Tracked Learnings
 - We use Protocol Buffers for our schemas to comm across all layers of distributed system
 - Image servers are written in go & uses groupcache which is a memcache alternative
   - In-memory cache is *`backed by a persistent`* S3 cache
+
+<br />
+
+### [linkerd](https://blog.buoyant.io/2016/10/04/a-service-mesh-for-kubernetes-part-i-top-line-service-metrics/)
+
+- A service mesh is a layer that manages the communication between apps (or between parts of the same app, e.g. microservices). 
+- In traditional apps, this logic is built directly into the application itself: 
+  - retries and timeouts, monitoring/visibility, tracing, service discovery, etc. are *`all hard-coded into each application`*.
+- A service mesh like linkerd provides critical features to multi-service applications running at scale:
+  - Top-line service metrics: 
+    - Success rates, request volumes, and latencies.
+  - Baseline resilience: 
+    - Retry, deadlines, circuit-breaking.
+  - Latency and failure tolerance: 
+    - Failure and latency aware load balancing that can route around slow or broken service instances.
+  - Distributed tracing a la Zipkin and OpenTracing
+  - Service discovery: locate destination instances.
+  - Protocol upgrades: 
+    - Wrapping cross-network communication in TLS, or converting HTTP/1.1 to HTTP/2.0.
+  - Routing: 
+    - Route requests between different versions of services, failover between clusters, etc.
