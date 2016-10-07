@@ -212,3 +212,13 @@ solutioning part.
 ### Architecture Diagrams
 
 - [Legacy vs. Current](https://monkey.org/~marius/hints.pdf)
+
+<br />
+
+### [GraphQL will replace REST](https://dev.to/reactiveconf/why-i-believe-graphql-will-come-to-replace-rest)
+
+<br />
+
+### [OneOps](http://www.oneops.com/benefits.html)
+
+
