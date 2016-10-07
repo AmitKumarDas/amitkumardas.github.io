@@ -75,3 +75,7 @@ title: My Tracked Learnings
     - Wrapping cross-network communication in TLS, or converting HTTP/1.1 to HTTP/2.0.
   - Routing: 
     - Route requests between different versions of services, failover between clusters, etc.
+- Supports common protocol formats:
+  - HTTP/1.1
+  - Thrift
+  - Mux
