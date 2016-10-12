@@ -105,6 +105,26 @@ solutioning part.
 
 <br />
 
+### CoreOS/flannel
+
+- Kubernetes does away with port mappings
+- Assigns unique IP to a pod
+- Configurations:
+  - Step 1 - Overlay network range: 10.100.0.0/16
+  - Step 2 - Size of subnet for each host: /24
+  - Hence, hosts may be registered with 10.100.5.0/24, 10.100.12.0/24 & so on
+  - These registrations has a lease for 24 hours
+  - These lease can be extended
+- Routing table encapsulation is done via:
+  - Utilizing the Universal TAP/TUN devices & proxies the IP fragments between:
+    - the TUN device & a UDP socket
+- Flannel uses etcd to maintain the mapping between allocated subnets & real host IP address
+- Flannel uses UDP for data path
+  - UDP encapsulates the datagrams to transmit them to remote host
+  - UDP can pass through the firewalls easily
+
+<br />
+
 ### [linkerd](https://blog.buoyant.io/2016/10/04/a-service-mesh-for-kubernetes-part-i-top-line-service-metrics/)
 
 - A service mesh is a layer that manages the communication between apps (or between parts of the same app, e.g. microservices). 
