@@ -105,6 +105,48 @@ solutioning part.
 
 <br />
 
+### Tips to Kubernetes from Scratch
+
+- Refer [scratch](http://kubernetes.io/docs/getting-started-guides/scratch/)
+- Cloud Provider 
+  - Specs - pkg/cloudprovider/cloud.go
+  - Manages load balancers, nodes, & networking routes
+- Need to provide a block of IPs to Kubernetes to be used as PODs IPs
+- Pod to pod communication via IP of the pod 
+  - overlay network 
+    - via traffic encapsulation
+  - without overlay  
+    - Configure switches, routers to be aware of POD IPs
+    - Better performance
+- Supports CNI network plugin interface
+- IPv6 is not supported for POD IPs
+  - e.g. use 10.10.0.0/16 as the range for the cluster, 
+    - with up to 256 nodes using 10.10.0.0/24 through 10.10.255.0/24, respectively.
+  - e.g. A /24 per node supports 254 pods per machine and is a common choice. 
+    - If IPs are scarce, a /26 (62 pods per machine) or even a /27 (30 pods) may be sufficient.
+- Kubernetes allocates an IP to each service.
+  - However these IPs need not be routable
+  - kube-proxy takes care of translating Service IPs to POD IPs before traffic leaves the node
+  - Need to allocate a block of IPs for the services 
+    - e.g. SERVICE_CLUSTER_IP_RANGE = "10.0.0.0/16" means 65534 services can be active simultaneously
+- Pick up a static IP for master node
+  - e.g. MASTER_IP
+- Open access to apiserver ports 80 &/or 443
+ - Enable ipv4 forwarding: sysctl net.ipv4.ip_forward = 1
+- Can have fine grained networking policy between PODs using Network Policy resource
+- Clusters can be represented as regions
+  - Provide a cluster name e.g. CLUSTER_NAME
+- The binaries required are:
+  - etcd, docker/rkt, kubelet, kube-proxy, kube-apiserver, kube-controller-manager, kube-scheduler
+
+<br />
+
+### Kubernetes Issues Encountered by Others
+
+- [kubernetes caveats and workarounds](http://code.haleby.se/2016/03/04/kubernetes-caveats-and-workarounds/)
+
+<br />
+
 ### [Immutable Containers](https://docs.openshift.org/latest/whats_new/index.html)
 
 - Image consists of a particular snapshot of app code & its dependent libs
