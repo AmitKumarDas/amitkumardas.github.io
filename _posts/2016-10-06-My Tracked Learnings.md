@@ -105,6 +105,13 @@ solutioning part.
 
 <br />
 
+### [Immutable Containers](https://docs.openshift.org/latest/whats_new/index.html)
+
+- Image consists of a particular snapshot of app code & its dependent libs
+  - Configuration, secrets, or persistent data is attached to the container at runtime
+
+<br />
+
 ### CoreOS/flannel
 
 - Kubernetes does away with port mappings
