@@ -17,7 +17,7 @@ solutioning part.
 
 - [Learn building a pure javascript lib. From bitcore](https://github.com/bitpay/bitcore-lib)
 - [Code Style Guide, Pull Requests. From OpenZeppelin](https://github.com/OpenZeppelin/zeppelin-solidity/blob/master/CONTRIBUTING.md#style-guidelines)
-- refer [Build Technical Wealth](http://firstround.com/review/forget-technical-debt-heres-how-to-build-technical-wealth/?mc_cid=07889699da&mc_eid=9a1ca6920c)
+- [Build Technical Wealth](http://firstround.com/review/forget-technical-debt-heres-how-to-build-technical-wealth/?mc_cid=07889699da&mc_eid=9a1ca6920c)
 
 <br />
 
