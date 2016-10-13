@@ -139,6 +139,18 @@ solutioning part.
   - Provide a cluster name e.g. CLUSTER_NAME
 - The binaries required are:
   - etcd, docker/rkt, kubelet, kube-proxy, kube-apiserver, kube-controller-manager, kube-scheduler
+  - https://github.com/kubernetes/kubernetes/releases/latest
+  - Kubernetes binary has all its dependant binaries
+- What runs outside the container ?
+  - *docker, kubelet, kube-proxy* ~ same way as we run the system daemons
+  - Hence bare binaries are reqd
+- What should run as a container ?
+  - *etcd, kube-apiserver, kube-controller-manager, & kube-scheduler*
+  - Hence images are required
+  - Get the images from gcr.io/google_containers/hyperkube:$TAG
+- NOTE - hyperkube is a all-in-one binary
+  - hyperkube kubelet runs kubelet
+  - hyperkube apiserver runs apiserver
 
 <br />
 
