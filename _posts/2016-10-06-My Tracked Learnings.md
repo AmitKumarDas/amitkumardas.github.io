@@ -242,7 +242,25 @@ solutioning part.
 - Are there opportunities for parallelization ?
 - Can you load test the system ?
   - How do you detect performance regressions ?
-  
+
+<br />
+
+### Private IP addresses to communicate with external Public network
+
+- Configure the firewall for IP masquerading
+- NOTE - firewall's internal IP device allows private IPs to communicate with each other
+- NOTE - firewall's external IP device is eth0
+- Masquerading masks the requests from private IP address with the IP address of eth0
+  - Hence, private IPs are able to communicate to external/public IPs
+- *`iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE`*
+  - this rule uses the *NAT packet matching table*
+  - specifies the built-in *POSTROUTING chain for NAT*
+  - on the firewall's external IP device i.e. eth0
+  - -j MASQUERADE masks the private IP of a node etc with the IP address of eth0
+
+
+<br />
+
 ### Architecture Diagrams
 
 - [Legacy vs. Current](https://monkey.org/~marius/hints.pdf)
