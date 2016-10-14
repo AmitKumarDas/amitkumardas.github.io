@@ -273,6 +273,9 @@ solutioning part.
   - `ip -4 a | grep eth0`
 - How do you know if its a bridge network ?
   - If the broadcast is 0.0.0.0 ?
+- Alternatively the dumb way is to use nm-tool
+  - It will give you the details that can be understood by a layman !!
+  - Address, Prefix (i.e. Subnet), Gateway, DNS, State (i.e. Status)
 
 <br />
 
