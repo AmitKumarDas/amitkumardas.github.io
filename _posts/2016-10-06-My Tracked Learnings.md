@@ -261,6 +261,21 @@ solutioning part.
 
 <br />
 
+### Networking - Subnet Basics
+
+```bash
+10.0.0.0        -   10.255.255.255  (10/8 prefix)
+172.16.0.0      -   172.31.255.255  (172.16/12 prefix)
+192.168.0.0     -   192.168.255.255 (192.168/16 prefix)
+```
+
+- if confused with ifconfig to understand the subnet try below
+  - `ip -4 a | grep eth0`
+- How do you know if its a bridge network ?
+  - If the broadcast is 0.0.0.0 ?
+
+<br />
+
 ### Architecture Diagrams
 
 - [Legacy vs. Current](https://monkey.org/~marius/hints.pdf)
