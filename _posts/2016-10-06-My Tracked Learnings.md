@@ -24,6 +24,7 @@ solutioning part.
 ### Solutioning
 
 - [Ready made lists for solutioning !!!](https://monkey.org/~marius/hints.pdf)
+- [aws guides](https://github.com/open-guides/og-aws)
 
 <br />
 
