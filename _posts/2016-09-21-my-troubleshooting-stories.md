@@ -5,6 +5,43 @@ title: My Troubleshooting Stories
 
 ## Troubleshooting Stories - Some of these are curated !!!
 
+### Docker is just installed on Ubuntu 14.04 - Observations
+
+- ip -4 l
+
+```bash
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000
+    link/ether 00:1e:67:a0:0b:74 brd ff:ff:ff:ff:ff:ff
+3: eth1: <BROADCAST,MULTICAST> mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 00:1e:67:a0:0b:75 brd ff:ff:ff:ff:ff:ff
+4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default
+    link/ether 02:42:14:ef:45:84 brd ff:ff:ff:ff:ff:ff
+```
+
+- ip -4 addr
+
+```bash
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    inet 172.16.115.2/16 brd 172.16.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+4: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    inet 172.17.0.1/16 scope global docker0
+       valid_lft forever preferred_lft forever
+```
+
+- ip -4 route
+
+```bash
+default via 172.16.1.1 dev eth0
+172.16.0.0/16 dev eth0  proto kernel  scope link  src 172.16.115.2
+172.17.0.0/16 dev docker0  proto kernel  scope link  src 172.17.0.1
+```
+
 ### Address already in use
 
 ```bash
