@@ -7,6 +7,7 @@ title: My adventures with Keys !!
 
 ## Learn you some KEYs
 
+
 - The private key is kept on the computer you log in from
 - The public key is stored on the .ssh/authorized_keys file on
   - all the computers you want to log in to.
@@ -18,12 +19,15 @@ title: My adventures with Keys !!
 - In fact, if you don't mind leaving a private key unprotected on your hard disk, 
   - you can even use keys to do secure automatic log-ins - as part of a network backup, for example. 
 - Different SSH programs generate public keys in different ways, but they all generate public keys in a similar format:
-  - <ssh-rsa or ssh-dss> <really long string of nonsense> <username>@<host>
+  - ```<ssh-rsa or ssh-dss> <really long string of nonsense> <username>@<host>```
 - SSH can use either "RSA" (Rivest-Shamir-Adleman) or "DSA" ("Digital Signature Algorithm") keys. 
   - RSA is the only recommended choice for new keys, so this guide uses "RSA key" and "SSH key" interchangeably.
 
+<br />
 
 ## Key based SSH login
+
+<br />
 
 ### How - To create your public and private SSH keys:
 
@@ -48,6 +52,8 @@ Your identification has been saved in /home/b/.ssh/id_rsa.
 Your public key has been saved in /home/b/.ssh/id_rsa.pub.
 ```
 
+<br />
+
 ### How - To Transfer Client Key to Host
 
 - The key you need to transfer to the host is the public one. 
@@ -69,6 +75,8 @@ cp authorized_keys authorized_keys_Backup
 cat id_rsa.pub >> authorized_keys
 ```
 
+<br />
+
 ### Verify - Key based SSH login
 
 ```bash
@@ -80,6 +88,8 @@ Enter passphrase for key '/home/<user>/.ssh/id_rsa':
 ```
 
 - Note : that the host should be configured to allow key based logins
+
+<br />
 
 ### Trouble - Still it asks for pw
 
@@ -94,6 +104,8 @@ RSAAuthentication yes
 - Restart OpenSSH, and try logging in again. 
 - If you get the passphrase prompt now, then congratulations, you're logging in with a key!
 
+<br />
+
 ### Trouble - Permission Denied (Public Key)
 
 - Chances are, your /home/<user> or ~/.ssh/authorized_keys permissions are too open by OpenSSH standards. 
@@ -105,6 +117,8 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ```
 
+<br />
+
 ### Trouble - Agent admitted failure to sign using the key
 
 - This error occurs when the ssh-agent on the client is not yet managing the key.
@@ -113,6 +127,8 @@ chmod 600 ~/.ssh/authorized_keys
 ```bash
 ssh-add
 ```
+
+<br />
 
 ### Trouble - Still more troubles - Wish I could debug ?
 
@@ -124,6 +140,8 @@ sudo /usr/sbin/sshd -d
 ssh -v ( or -vv) username@host
 ```
 
+<br />
+
 ### How - To disable password authentication, 
 
 - look for the following line in your sshd_config file:
@@ -134,9 +152,13 @@ PasswordAuthentication no
 
 - Once you have saved the file and restarted your SSH server, 
 
+<br />
+
 ### Trouble - I cannot get out of troubles
 
 - Google it
+
+<br />
 
 ### Credits
 
