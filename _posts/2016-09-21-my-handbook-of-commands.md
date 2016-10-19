@@ -1,13 +1,11 @@
 ---
 layout: post
-title: My Troubleshooting Stories
+title: My HandBook of Commands
 ---
-
-## Troubleshooting Stories - Some of these are curated !!!
 
 ### Docker is just installed on Ubuntu 14.04 - Observations
 
-- ip -4 l
+- **ip -4 l**
 
 ```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1
@@ -20,7 +18,7 @@ title: My Troubleshooting Stories
     link/ether 02:42:14:ef:45:84 brd ff:ff:ff:ff:ff:ff
 ```
 
-- ip -4 addr
+- **ip -4 addr**
 
 ```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
@@ -34,7 +32,7 @@ title: My Troubleshooting Stories
        valid_lft forever preferred_lft forever
 ```
 
-- ip -4 route
+- **ip -4 route**
 
 ```bash
 default via 172.16.1.1 dev eth0
@@ -44,34 +42,30 @@ default via 172.16.1.1 dev eth0
 
 ### Address already in use
 
-```bash
-
-Error (500 Server Error: Internal Server Error ("driver failed programming external connectivity on endpoint 
-r-wekan_wekan_1 (d498ed937dbd3490b05c5e89251fa1073071412cb0e2a4e5606e3cf16e48bfc6): Error starting userland 
-proxy: listen tcp 0.0.0.0:80: bind: address already in use")
-```
-
-<br />
+- **netstat with grep - will it help ?**
 
 ```bash
-# netstat with grep will not help
 
 netstat -tp | grep 80
 tcp        0      0 localhost:48007         localhost:44085         ESTABLISHED 9755/python
 tcp        0      0 localhost:44085         localhost:48007         ESTABLISHED 9755/python
+```
 
-# use lsof
-lsof -i :80
+- **lsof -i :80**
+
+```bash
 COMMAND   PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 apache2  2424     root    4u  IPv6  16600      0t0  TCP *:http (LISTEN)
 apache2 24790 www-data    4u  IPv6  16600      0t0  TCP *:http (LISTEN)
 apache2 24791 www-data    4u  IPv6  16600      0t0  TCP *:http (LISTEN)
+```
 
-# more precise command
-lsof -i tcp:80
+- **lsof -i tcp:80**
+`- this is more precise !!!
 
-# Alternative: use fuser
-fuser 80/tcp
+- **fuser 80/tcp**
+
+```bash
 Cannot stat file /proc/26794/fd/4: Stale file handle
 Cannot stat file /proc/26794/fd/5: Stale file handle
 Cannot stat file /proc/26794/fd/6: Stale file handle
@@ -79,8 +73,6 @@ Cannot stat file /proc/26794/fd/7: Stale file handle
 Cannot stat file /proc/26794/fd/11: Stale file handle
 80/tcp:               2424 24790 24791
 ```
-
-<br />
 
 ### Do you understand netstat ?
 
