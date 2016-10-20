@@ -236,7 +236,7 @@ preferences: {}
 users:
 - name: ubuntu
   user:
-    password: xrCSSV3POZJyLTyX
+    password: ####
     username: admin
 ```
 
