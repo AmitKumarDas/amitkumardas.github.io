@@ -7,19 +7,30 @@ title: My HandBook of Commands
 
 > Remember these `cool` (or `hot` or perhaps `fresh`) TIPs
 
+## Shorten the terminal prompt
+
+```bash
+# only for this terminal instance
+PS1='\u:\W\$ '
+```
+
 ## What is ~ location in Ubuntu
 
+```bash
 $ cd ~
 $ pwd
 /home/amit
+```
 
 ## When do we use --depth option in git clone ?
 
-- In the context of Continuous Integration (CI) and Continuous Delivery (CD) using git introduces server load. 
-- Because Git’s design includes everything in each copy of a repository, every clone gets not only the files but every revision of every file ever committed. 
-- It isn’t hard to imagine how that can quickly become a bottleneck with expanding numbers of build, test and deployment pipelines.
-- Fortunately, Git supports the notion of a “shallow clone”, which is a more succinctly meaningful way of describing a local repository with history truncated to a particular depth during the clone operation. 
-- By providing an argument of --depth 1 to the clone command, the process will copy only the latest revision of everything in the repository. 
+- Because Git’s design:
+  - every clone gets not only the files but every revision of every file ever committed. 
+- It can quickly become a bottleneck with expanding numbers of build, test and deployment pipelines.
+- Fortunately, Git supports the notion of a “shallow clone”:
+  - i.e. describing a local repository with history truncated to a particular depth. 
+- arg of --depth 1 to the clone command:
+  - the process will copy only the latest revision of everything in the repository. 
 - This can be a lifesaver for Git servers that might otherwise be overwhelmed by CI/CD automation.
 
 git clone --depth 1 https://github.com/kubernetes/kubernetes.git kubenetes-git
