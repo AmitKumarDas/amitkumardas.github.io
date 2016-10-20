@@ -13,7 +13,7 @@ a fair glimpse of my personality.
 refactoring them to isolated but cohesive features communicating in harmony. However,
 I firmly believe above skills does not have a profound impact until those are read,
 understood, apprecitated & criticized by a larger community. Hence my belief in 
-*`Literatre Programming`*. I conclude by accepting the fact that any solution can stand
+*`Literate Programming`*. I conclude by accepting the fact that any solution can stand
 the test of time if & only if it is *`simple`*.
 
 
