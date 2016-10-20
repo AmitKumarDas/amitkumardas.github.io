@@ -1,23 +1,13 @@
 ---
-
 layout: post
-
 title: Kubernetes Travels - Detour with Helm
 ---
 
-
-
 # Kubernetes Travels - Detour with Helm 
 
-
-
 > This can be thought of a book that meanders across the tool (or river) called 
-
 Kubernetes (*of the size of Amazon*). This book has been divided across many chapters.
- 
 This chapter (i.e. Chapter 2) puts some details around use of Helm.
-
-
 
 ## Chapter 2 - Detour with Helm
 
@@ -192,7 +182,6 @@ loping-toad-mysql   Pending                                      3s
 
 ```
 
-
 ```bash
 
 $ helm ls
@@ -261,7 +250,6 @@ deployment, replica sets & pods. Probably, it is time to understand these deploy
 SchedulerPredicates failed due to PersistentVolumeClaim is not bound: "loping-toad-mysql", which is unexpected., 
 SchedulerPredicates failed due to PersistentVolumeClaim is not bound: "loping-toad-mysql", which is unexpected.]
 ```
-
 
 ## References
 
