@@ -208,6 +208,15 @@ a DaemonSet.
 - monitor & manage logs for daemons
 - use kubectl for managing these daemons
 
+## Others in the wild
+
+- privileded mode 
+  - if containers want to use linux capabilities
+    - e.g. manipulating network stack
+    - accessing devices
+  - processes within the container get the same priviledges as processes outside the container
+
+
 ## References
 
 - http://kubernetes.io/docs/user-guide/
