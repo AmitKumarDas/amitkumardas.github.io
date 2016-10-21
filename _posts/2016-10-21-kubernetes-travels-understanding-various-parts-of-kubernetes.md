@@ -63,7 +63,7 @@ Can use multiple namespaces within a cluster that categorize dev, prod & qa.
 
 ## Learn you some POD
 
-> We shall directly with a sample YAML specification
+> We shall start directly with a sample YAML specification
 
 ```yaml
 apiVersion: v1
@@ -108,7 +108,7 @@ process supervisor (latter can only manage individual process(es) on a single no
 replication controller to replace it. The old & new rc's `.spec.selector` should be same to 
 enable the new rc adopt the old pods. 
 
-> NOTE - There will be no effort (*automatic*) to make existing pods match/migrate a new, 
+> NOTE - There will be no effort (*automatic*) to make existing pods match a new, 
 different pod template. 
 
 ### Update pod to a new spec - Rolling Update
