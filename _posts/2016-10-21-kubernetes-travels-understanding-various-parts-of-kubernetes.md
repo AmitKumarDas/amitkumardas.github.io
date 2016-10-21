@@ -124,6 +124,15 @@ different pod template.
 
 ### Isolating pods from a replication controller
 
+> I shall try to give a use-case for isolating the pod from its rc. Imagine
+you would want to debug a pod however without impact the production etc. So you
+can go ahead and change its label. This pod will be removed & another one will be
+replaced automatically associating to the rc.
+
+> Finally, it depends. You have multiple other ways to do this as well. The entire 
+thing boils down to the pod's container image(s). You may perhaps run a short job to 
+do the analysis or even create a bare pod to do the analysis.
+
 ### A skeleton replication yaml
 
 > NOTE - All kubernetes configuration files, need apiVersion, kind & metadata fields.
