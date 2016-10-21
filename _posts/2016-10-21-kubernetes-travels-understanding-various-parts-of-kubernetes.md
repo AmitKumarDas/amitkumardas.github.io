@@ -133,7 +133,7 @@ replaced automatically associating to the rc.
 thing boils down to the pod's container image(s). You may perhaps run a short job to 
 do the analysis or even create a bare pod to do the analysis.
 
-### A skeleton replication yaml
+### A sample replication yaml
 
 > NOTE - All kubernetes configuration files, need apiVersion, kind & metadata fields.
 
@@ -173,6 +173,15 @@ echo $pods
 nginx-3ntk0 nginx-4ok8v nginx-qrm3m
 ```
 
+### **Important** facts about rc !!!
+
+> The replication controller is intended to be a composable building-block primitive. 
+We expect higher-level APIs and/or tools to be built on top of it and other 
+complementary primitives for user convenience in the future. The “macro” operations 
+currently supported by kubectl (run, stop, scale, rolling-update) are proof-of-concept
+examples of this. For instance, we could imagine something like Asgard managing replication
+controllers, auto-scalers, services, scheduling policies, canaries, etc.
+
 ## What about a job ?
 
 - A job creates one or more pods
@@ -198,3 +207,7 @@ a DaemonSet.
 - running daemons in containers with resource limits increase isolation between daemons from app containers
 - monitor & manage logs for daemons
 - use kubectl for managing these daemons
+
+## References
+
+- http://kubernetes.io/docs/user-guide/
