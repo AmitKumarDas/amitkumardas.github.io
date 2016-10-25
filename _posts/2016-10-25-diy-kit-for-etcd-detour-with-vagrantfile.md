@@ -37,6 +37,12 @@ Often a project requires multiple VMs to be provisioned. Below snippet shows us 
 end
 ```
 
+> Tip: Learn various provisioners available at Vagrant. Some of them are Shell, Puppet, Chef,
+Ansible, Salt, Docker, etc.
+
+> Tip: Inline shell provisioner refers to the shell script/snippet that is available at the 
+guest.
+
 > Tip: Remember to override locale in SSH session. Failing to do so causes failures if the guest
 does not support host's locale.
 
