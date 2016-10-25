@@ -7,6 +7,12 @@ title: My HandBook of Commands
 
 > Remember these `cool` (or `hot` or perhaps `fresh`) TIPs
 
+## Private IPv4 address spaces
+
+- These are guaranteed to never be publicly routable
+- Most routers block traffic from outside world to private network address space.
+- https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces
+
 ## Shorten the terminal prompt
 
 ```bash
