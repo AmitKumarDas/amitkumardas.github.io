@@ -50,6 +50,10 @@ does not support host's locale.
 
 > Tip: Learn Windows guest related settings via the `config.winrm` namespace
 
+> Tip: In a project that creates multiple VMs as part of its setup. One needs to be careful with cases
+where some scripts needs to be run only after all the VMs are running. There are trigger plugins
+available to ensure just these use-cases.
+
 <br />
 
 ## References
