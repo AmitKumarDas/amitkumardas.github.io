@@ -54,6 +54,13 @@ does not support host's locale.
 where some scripts needs to be run only after all the VMs are running. There are trigger plugins
 available to ensure just these use-cases.
 
+## I am getting errors. What do I do now ?
+
+- Typically vagrant tries to provide a solution along with the error.
+- Do a vagrant status & see what has just happenened.
+- Get the list of possible commands / options w.r.t vagrant
+- Check over internet
+
 <br />
 
 ## References
