@@ -4,7 +4,6 @@ title: My resume cover letter
 ---
 
 ##  AMIT KUMAR DAS
-Bangalore - 560103, Karnataka, India | amitnist@gmail.com
 
 I have elaborated my current profile which in correlates my area of interest & provides
 a fair glimpse of my personality.
