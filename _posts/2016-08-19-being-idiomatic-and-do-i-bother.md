@@ -58,8 +58,6 @@ nonchalant manner. Its type system is not at all verbose when compared to Java.
 Having a bit of experience in Groovy, I can say Golang treads a fine balance between
 Java & Groovy.
 
-[This is how I have been using golang in a functional way](https://github.com/openebs/openebs/blob/master/daemon/storage_controller.go)
-
 <br />
 
 ### Ending with Rob Pike's quotes:
